@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name='robots' content='noindex'><link rel='canonical'/>
+	<meta charset="UTF-8" />
+	<title>JellyTruck</title>
+
+	<link rel="stylesheet" type="text/css" href="fonts/fonts.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<link rel="icon" href="assets/launcher.png" type="image/png" />
+	<link rel="manifest" href="manifest.json" />
+	
+	<!-- Required Libraries and frameworks Starts -->
+	<script type="text/javascript" src="js/lib/phaser.min.js"></script>
+	<script type="text/javascript" src="js/lib/box2d-plugin.min.js"></script>
+	<script type="text/javascript" src="js/util/AdvancedTiming.js"></script>
+	<!-- Required Libraries and frameworks ends -->
+	
+	<!--script type="text/javascript" src="js/jellytruck.min.js"></script>
+	<script type="text/javascript" src="js/lib/mt.helper.js"></script>
+	<script type="text/javascript" src="js/lib/mt.data.js"></script-->
+
+	<script type="text/javascript" src="js/main.js"></script>	
+	<script type="text/javascript" src="js/state/boot.js"></script>
+	<script type="text/javascript" src="js/state/load.js"></script>	
+	<script type="text/javascript" src="js/game.js"></script>
+	<script type="text/javascript" src="js/JellyPeace.js"></script>
+	<script type="text/javascript" src="js/Jelly.js"></script>
+	<script type="text/javascript" src="js/state/menu.js"></script>
+	<!--script type="text/javascript" src="js/state/play.js"></script>-->
+	<script type="text/javascript" src="js/state/demo.js"></script>
+	<script type="text/javascript" src="js/util/common.js"></script>	
+	<!-- Level data starts -->
+	<script type="text/javascript" src="js/levels/level01.js"></script>
+	<script type="text/javascript" src="js/levels/level02.js"></script>
+	<script type="text/javascript" src="js/levels/level03.js"></script>
+	<script type="text/javascript" src="js/levels/level04.js"></script>
+	<script type="text/javascript" src="js/levels/level05.js"></script>
+	<script type="text/javascript" src="js/levels/level06.js"></script>
+	<script type="text/javascript" src="js/levels/level07.js"></script>
+	<script type="text/javascript" src="js/levels/level08.js"></script>
+	<script type="text/javascript" src="js/levels/level09.js"></script>
+	<script type="text/javascript" src="js/levels/level10.js"></script>
+	<script type="text/javascript" src="js/levels/level11.js"></script>
+	<script type="text/javascript" src="js/levels/level12.js"></script>
+	<script type="text/javascript" src="js/levels/level13.js"></script>
+	<script type="text/javascript" src="js/levels/level14.js"></script>
+	<script type="text/javascript" src="js/levels/level15.js"></script>
+	<script type="text/javascript" src="js/levels/level16.js"></script>
+	<script type="text/javascript" src="js/levels/level17.js"></script>
+	<script type="text/javascript" src="js/levels/level18.js"></script>
+	<script type="text/javascript" src="js/levels/level19.js"></script>
+	<script type="text/javascript" src="js/levels/level20.js"></script>
+	<!-- Level data starts -->
+
+  
+
+          <style type="text/css">
+            .no-select {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+            }
+          </style>
+        
+          <script type="text/javascript">
+            setTimeout(function(){
+              if(document.getElementsByTagName("canvas").length) {
+                document.getElementsByTagName("body")[0].classList.add("no-select")
+              }
+            }, 2000);
+          </script>
+        <script type="text/javascript">
+          function setUserAgent(window, userAgent) {
+           // Works on Firefox, Chrome, Opera and IE9+
+            if (navigator.__defineGetter__) {
+                navigator.__defineGetter__("userAgent", function () {
+                    return userAgent;
+                });
+            } else if (Object.defineProperty) {
+                Object.defineProperty(navigator, "userAgent", {
+                    get: function () {
+                        return userAgent;
+                    }
+                });
+            }
+            // Works on Safari
+            if (window.navigator.userAgent !== userAgent) {
+                var userAgentProp = {
+                    get: function () {
+                        return userAgent;
+                    }
+                };
+                try {
+                    Object.defineProperty(window.navigator, "userAgent", userAgentProp);
+                } catch (e) {
+                    window.navigator = Object.create(navigator, {
+                        userAgent: userAgentProp
+                    });
+                }
+            }
+          }
+          if(window.navigator.userAgent.indexOf("Safari")>=0 && "ontouchstart" in window && !/iPhone|Android/.test(window.navigator.userAgent)) {
+            //var userAgent = window.navigator.userAgent.replace("Macintosh", "iPad");
+            var userAgent = "Mozilla/5.0 (iPad; CPU OS 13_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.1 Mobile/15E148 Safari/604.1";
+            setUserAgent(window,userAgent);
+          }
+
+          //GA event helper functions
+          function getCookie(key) {
+            var keyValue = document.cookie.match("(^|;) ?" + key + "=([^;]*)(;|$)");
+            return keyValue ? keyValue[2] : null;
+          }
+          function setCookie2(key, value, exptime, domain) {
+            //document.cookie = key + "=" + value + ";";
+            var d = new Date();
+            d.setTime(d.getTime() + exptime);
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = key + "=" + value + "; " + expires + "; path=/; domain=" +domain;
+          }
+          function cmg_is_mobile_device() {
+            var sUsrAg = navigator.userAgent;
+            //if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(sUsrAg)){
+            if(/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(sUsrAg)){
+              return true;
+            } else {
+              if(navigator.maxTouchPoints == 5) {
+                return true;
+              } else if(sUsrAg.indexOf("Safari")>=0 && "ontouchstart" in window && sUsrAg.indexOf("iPhone")== -1) {
+                return true;
+              } else {
+                return false;
+              }
+            }
+          }
+          var enableDebug=false;
+          function debugOut(msg){
+            if (typeof getParameterByName === "function" && getParameterByName("debug") !== "") { enableDebug = getParameterByName("debug");}
+            if(enableDebug){console.log(msg);}
+          }
+          function getParameterByName(name) {
+            var regexS = "[\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(location.href);
+            if (results !== null) {
+              return decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+            //Check the parent window
+            var results = regex.exec(window.top.location.href);
+            if (results === null) {
+              return "";
+            }
+            return decodeURIComponent(results[1].replace(/\+/g, " "));
+          }
+          function getBrowserNameVer() {
+            var sBrowser, sUsrAg = navigator.userAgent;
+            // The order matters here, and this may report false positives for unlisted browsers.
+            if (sUsrAg.indexOf("Firefox") > -1) {
+              sBrowser = "Mozilla Firefox";
+              // "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0"
+            } else if (sUsrAg.indexOf("SamsungBrowser") > -1) {
+              sBrowser = "Samsung Internet";
+              // "Mozilla/5.0 (Linux; Android 9; SAMSUNG SM-G955F Build/PPR1.180610.011) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/9.4 Chrome/67.0.3396.87 Mobile Safari/537.36
+            } else if (sUsrAg.indexOf("Opera") > -1 || sUsrAg.indexOf("OPR") > -1) {
+              sBrowser = "Opera";
+              // "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 OPR/57.0.3098.106"
+            } else if (sUsrAg.indexOf("Trident") > -1) {
+              sBrowser = "Microsoft Internet Explorer";
+              // "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; Zoom 3.6.0; wbx 1.0.0; rv:11.0) like Gecko"
+            } else if (sUsrAg.indexOf("Edge") > -1) {
+              sBrowser = "Microsoft Edge (Legacy)";
+              // "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299"
+            } else if (sUsrAg.indexOf("Edg") > -1) {
+              sBrowser = "Microsoft Edge (Chromium)";
+              // Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64
+            } else if (sUsrAg.indexOf("Chrome") > -1) {
+              sBrowser = "Google Chrome or Chromium";
+              // "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/66.0.3359.181 Chrome/66.0.3359.181 Safari/537.36"
+            } else if (sUsrAg.indexOf("Safari") > -1) {
+              sBrowser = "Apple Safari";
+              // "Mozilla/5.0 (iPhone; CPU iPhone OS 11_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1 980x1306"
+            } else if (!/Safari|CriOS/.test(sUsrAg) && /iPhone|iPad\iPod/.test(sUsrAg) ) {
+              //( /iPhone|iPad\iPod/.test(sUsrAg) &&  /Safari/.test(sUsrAg) )
+              sBrowser = "iPhone Safari WebView";
+            } else {
+              sBrowser = "unknown";
+            }
+            sUsrAgArr = navigator.userAgent.split(" ")
+            sBrowser = sBrowser + " " + sUsrAgArr[0] + " " + sUsrAgArr[sUsrAgArr.length -1]
+            debugOut("You are using: " + sBrowser);
+            return sBrowser;
+          }
+          
+          function trackEvent(category, action, label, value) {
+            if(typeof value === "undefined" || value === null) { value = 0; }
+            if(typeof __gaTracker !== "undefined") {
+              __gaTracker("send", {hitType: "event", eventCategory: category, eventAction: action, eventLabel: label, eventValue: value});
+            }
+          }
+          //Category: GamePlayPage, Action: DesktopiFrame / DesktopToplevel / DesktopImmersive / MobileToplevel / MobileImmersive, Label: Game title
+          var pCategory = "GamePlayPageRedirect";
+          var pAction = "Mobile "+ getBrowserNameVer();
+          var pLabel = location.pathname;
+          if(pLabel.startsWith("/")) {
+            pLabel = pLabel.substr(1);
+          }
+
+          debugOut("cmgplaypage: debug redirect check - pCategory="+pCategory +", pAction="+pAction + " " +new Date());
+
+          if(cmg_is_mobile_device() && window.top == window.self && document.referrer == "" ) {
+            //GA Trackevent and then Redirect the user to game landing page
+            //Check if we can use GA
+            var cmg_gdpr_check = getCookie("GDPR");
+            var cmg_gdpr_all_check = getCookie("GDPR_All");
+            var cmg_gdpr_first_check = getCookie("GDPR_First");
+            var cmg_gdpr_reject_check = getCookie("GDPR_Reject");
+            if(cmg_gdpr_check != null && ( ( cmg_gdpr_reject_check == null && cmg_gdpr_all_check == null && cmg_gdpr_first_check == null) || (cmg_gdpr_reject_check !== null ) ) )  {
+              //Delete ga cookies, if they were set elsewhere
+              var cookies = document.cookie.split(";");
+              for (var i = 0; i < cookies.length; i++) {
+                if(/_ga|_gid|usprivacy/.test(cookies[i].split("=")[0])) {
+                  setCookie2(cookies[i].split("=")[0], "", -1, ".coolmathgames.com");
+                  setCookie2(cookies[i].split("=")[0], "", -1, location.host);
+                }
+              }
+            }
+            //GA Loading
+            if (cmg_gdpr_check == null || (cmg_gdpr_check != null && cmg_gdpr_reject_check === null) ) {
+              (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,"script","//www.google-analytics.com/analytics.js","__gaTracker");
+                var ga_dev_host = /(stage|stage2|dev|dev2|dev3|d9\-test)(\-edit)?\.coolmathgames\.(com|local)/.test(window.location.host);
+                if(ga_dev_host || window.location.host == "d9-test-coolmathgames.local") {
+                 __gaTracker("create", "UA-1192998-21", "auto");
+               } else {
+                __gaTracker("create", "UA-1192998-2", "auto");
+               }
+            }
+            //End of GA loading
+            setTimeout(function () {
+              debugOut("cmgplaypage: debug trackEvent and redirect - pCategory="+pCategory +", pAction="+pAction + ". Redirect: " +document.querySelector("link[rel='canonical']").href +" " +new Date());
+              //Load and fire GA event
+              trackEvent(pCategory, pAction, pLabel);
+              var sUsrAg = navigator.userAgent;
+              //Exclude iPads, iphone/iPod App and Android App
+              if(document.querySelector("link[rel='canonical']").href && !/iPad/.test(sUsrAg) && ( (/iPhone|iPod/.test(sUsrAg) && /Safari/.test(sUsrAg) ) || ( /Android/.test(sUsrAg) && !/wv/.test(sUsrAg) ) ) ) {
+                window.location.href = document.querySelector("link[rel='canonical']").href;
+              }
+            }, 100);
+          }
+          </script>
+        </head>
+<body>
+	<span id="preload-font"></span>
+	<div id="orientation"></div>
+	<div id="msg">
+		<img src="assets/Loading/jt.png"/>
+		<p>Unfortunately,<br/> Jelly Truck doesn’t work <br/>in your web browser.<br/><br/>Please use a <br/>different browser <br/>and try again!</p>
+	</div>
+<script>function fnSendMsg(evt){
+          if(typeof window.parent.postMessage == 'function') {
+            window.parent.postMessage('keypress-from-game', '*');
+          } else if(typeof window.top.postMessage == 'function' && window.top != window.self) {
+            window.top.postMessage('keypress-from-game', '*');
+          }
+        }
+        document.body.addEventListener('click', function(event) {
+          fnSendMsg(event);
+        });
+        document.addEventListener('keypress', function(event) {
+        	 fnSendMsg(event);
+        });
+        document.addEventListener('keydown', function (e) {
+        	 fnSendMsg(event);
+        });
+        document.addEventListener('keyup', function (e) {
+        	  fnSendMsg(event);
+        });
+        </script></body>
+</html>
