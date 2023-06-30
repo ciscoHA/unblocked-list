@@ -1,0 +1,14 @@
+{
+    "companyName": "Michael Eichler",
+    "productName": "Getaway Shootout",
+    "dataUrl": "getaway-shootout.data.unityweb",
+    "asmCodeUrl": "getaway-shootout.asm.code.unityweb",
+    "asmMemoryUrl": "getaway-shootout.asm.memory.unityweb",
+    "asmFrameworkUrl": "getaway-shootout.asm.framework.unityweb",
+    "TOTAL_MEMORY": 268435456,
+    "graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+    "webglContextAttributes": {"preserveDrawingBuffer": false},
+    "splashScreenStyle": "Dark",
+    "backgroundColor": "#231F20"
+    }
+    
