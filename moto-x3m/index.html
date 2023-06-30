@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <link rel="stylesheet" href="assets/css/app.css" type="text/css" />
+    <meta property="og:image" content="moto-x3m.png" />
+    <title>Moto X3M Unblocked</title>
+    <script type="text/javascript">
+        var useEvents = (typeof(Event) === 'function');
+
+        var myDispatchEvent = function (name){
+            var event;
+            if (useEvents){
+                event =  new Event(name);
+            }else{
+                event = document.createEvent('Event');
+                event.initEvent(name, true, true);
+            }
+            document.getElementById("content").dispatchEvent(event);
+        }
+        var nape = "nape.mi.js";
+
+        window.famobi_onPauseRequested = function(){
+            // code that pauses/mutes the game
+            console.log('ad started');
+            myDispatchEvent('SDK_GAME_PAUSE');
+        };
+
+        window.famobi_onResumeRequested = function(){
+            // code that unpauses/unmutes the game
+            console.log('ad resumed');
+            myDispatchEvent('SDK_GAME_START');
+        };
+
+        window.famobi_gameID = 'moto-x3m'; // the actual GAMEID is added to the final version by Famobi
+        window.famobi_gameJS = ['js/all.js',
+            function() {
+                // start the game
+                window.famobi_started = true;
+                myDispatchEvent('start_game');
+            }
+        ];
+        (function (document, url, fgJS, firstJS) {
+            fgJS = document.createElement('script');
+            firstJS = document.getElementsByTagName('script')[0];
+            fgJS.src = url + encodeURIComponent(document.location.href);
+            firstJS.parentNode.insertBefore(fgJS, firstJS);
+            })(document, 'js/start.js?e=');
+    </script>
+</head>
+
+<body>
+    <div id="content"></div>
+    <div id="orientation"></div>
+    <div id="loader">Loading ...</div>
+    <script src="js/analytics_ubg_v1_4.js"></script>
+    <script src="js/ubg235_client_v1_1.js"></script>
+</html>
