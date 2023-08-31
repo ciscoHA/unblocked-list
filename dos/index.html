@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Play Doom Shareware</title>
+    <!-- Include CSS and other head elements -->
+</head>
+<body>
+    <div id="dosbox-container"></div>
+
+    <script src="/dosm/js-dos.js"></script>
+    <script>
+        const Dos = window.Dos;
+
+        const dosbox = new Dos({
+            id: "dosbox-container",
+            wdosboxUrl: "/dosm/wdosbox.js",
+            cycles: "auto"
+        });
+
+        dosbox.run("/doom/DOOM.EXE"); // Update the path as needed
+    </script>
+</body>
+</html>
