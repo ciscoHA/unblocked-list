@@ -64,5 +64,39 @@
     <!-- Run the game code -->
     <script type="text/javascript" src="html5game_a5/circloO.js"></script>
     <script src="/js/main.js"></script>
+    
+    <script>
+        function adjustCanvasSize() {
+            const canvas = document.getElementById('canvas');
+            const body = document.body;
+            canvas.style.maxHeight = '100%';
+            canvas.style.maxWidth = '100%';
+            canvas.style.width = 'auto';
+            canvas.style.height = 'auto';
+
+            // Check if the page is in fullscreen mode
+            const fullscreenElement =
+                document.fullscreenElement ||
+                document.webkitFullscreenElement ||
+                document.mozFullScreenElement ||
+                document.msFullscreenElement;
+
+            if (fullscreenElement) {
+                // If in fullscreen, set canvas size to match screen size
+                canvas.style.width = '100%';
+                canvas.style.height = '100%';
+            }
+        }
+
+        // Listen for window resize and fullscreen change events
+        window.addEventListener('resize', adjustCanvasSize);
+        document.addEventListener('fullscreenchange', adjustCanvasSize);
+        document.addEventListener('webkitfullscreenchange', adjustCanvasSize);
+        document.addEventListener('mozfullscreenchange', adjustCanvasSize);
+        document.addEventListener('MSFullscreenChange', adjustCanvasSize);
+
+        // Adjust canvas size initially
+        adjustCanvasSize();
+    </script>
 </body>
 </html>
