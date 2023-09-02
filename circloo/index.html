@@ -34,10 +34,10 @@
         margin: 0px;
         padding: 0px;
         border: 0px;
-        width: 100%; /* Set canvas width to 100% */
-        height: 100%; /* Set canvas height to 100% */
-        max-width: 100%; /* Ensure canvas doesn't exceed the viewport width */
-        max-height: 100%; /* Ensure canvas doesn't exceed the viewport height */
+        max-height: 100vh; /* Set the canvas height to fill the entire screen height */
+        max-width: 133.3vh; /* Maintain 4:3 aspect ratio (100vh * 4/3) */
+        width: 100%; /* Ensure canvas width fills the screen width */
+        height: auto; /* Allow the canvas height to adjust automatically */
       }
       :-webkit-full-screen #canvas {
         width: 100%;
@@ -95,7 +95,7 @@
       // Adjust canvas size when the window is resized
       window.addEventListener('resize', () => {
         const canvas = document.getElementById('canvas');
-        canvas.style.maxWidth = window.innerWidth + 'px';
+        canvas.style.maxWidth = window.innerHeight * 1.33 + 'px'; // Maintain 4:3 aspect ratio
         canvas.style.maxHeight = window.innerHeight + 'px';
       });
 
