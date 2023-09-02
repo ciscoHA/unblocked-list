@@ -37,6 +37,21 @@
             width: 100%;
             height: 100%;
         }
+
+        /* Ensure canvas maintains aspect ratio */
+        @media (min-aspect-ratio: 16/9) {
+            canvas {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (max-aspect-ratio: 16/9) {
+            canvas {
+                width: auto;
+                height: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -66,6 +81,18 @@
 
         // Initial canvas size adjustment
         window.addEventListener('load', resizeCanvas);
+
+        // Fullscreen change event
+        document.addEventListener('fullscreenchange', function () {
+            resizeCanvas(); // Adjust canvas size when entering/exiting fullscreen
+        });
+
+        // Adjust canvas size when the parent iframe size changes
+        window.addEventListener('message', function (event) {
+            if (event.data === 'iframeResize') {
+                resizeCanvas();
+            }
+        });
     </script>
 </body>
 </html>
