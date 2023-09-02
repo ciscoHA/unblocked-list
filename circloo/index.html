@@ -10,10 +10,18 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center; /* Horizontally center the canvas */
-            align-items: center; /* Vertically center the canvas */
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
             height: 100vh;
             overflow: hidden;
+        }
+
+        #canvas-container {
+            max-width: 100%; /* Ensure the container doesn't exceed the screen width */
+            max-height: 100%; /* Ensure the container doesn't exceed the screen height */
+            display: flex;
+            justify-content: center; /* Horizontally center the canvas */
+            align-items: center; /* Vertically center the canvas */
         }
 
         canvas {
@@ -27,14 +35,14 @@
             max-height: 100%; /* Ensure the canvas doesn't exceed the screen height */
         }
 
-        :-webkit-full-screen canvas {
+        :-webkit-full-screen #canvas {
             width: 100%;
             height: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="gm4html5_div_class" id="gm4html5_div_id">
+    <div id="canvas-container">
         <!-- Create the canvas element the game draws to -->
         <canvas id="canvas">
             <p>Your browser doesn't support HTML5 canvas.</p>
