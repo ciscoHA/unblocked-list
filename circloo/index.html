@@ -34,8 +34,8 @@
         margin: 0px;
         padding: 0px;
         border: 0px;
-        max-height: 100vh; /* Set the canvas height to fill the entire screen height */
-        max-width: 133.3vh; /* Maintain 4:3 aspect ratio (100vh * 4/3) */
+        max-height: 95vh; /* A bit smaller than the screen height */
+        max-width: 95vw; /* A bit smaller than the screen width */
         width: 100%; /* Ensure canvas width fills the screen width */
         height: auto; /* Allow the canvas height to adjust automatically */
       }
@@ -90,17 +90,5 @@
     <!-- Run the game code -->
     <script type="text/javascript" src="html5game_a5/circloO.js"></script>
     <script src="/js/main.js"></script>
-
-    <script>
-      // Adjust canvas size when the window is resized
-      window.addEventListener('resize', () => {
-        const canvas = document.getElementById('canvas');
-        canvas.style.maxWidth = window.innerHeight * 1.33 + 'px'; // Maintain 4:3 aspect ratio
-        canvas.style.maxHeight = window.innerHeight + 'px';
-      });
-
-      // Initial adjustment
-      window.dispatchEvent(new Event('resize'));
-    </script>
   </body>
 </html>
