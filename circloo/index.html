@@ -18,14 +18,13 @@
         #game-container {
             width: 100%;
             height: 100%;
-            max-width: 800px; /* Adjust the maximum width as needed */
-            max-height: 600px; /* Adjust the maximum height as needed */
-            margin: auto; /* Center the container horizontally and vertically */
-            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         canvas {
-            width: 100%;
-            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
             display: block;
         }
     </style>
@@ -38,28 +37,9 @@
     <script>
         // Adjust canvas size when the window is resized
         window.addEventListener('resize', () => {
-            const gameContainer = document.getElementById('game-container');
             const canvas = document.getElementById('canvas');
-            const aspectRatio = 4 / 3; // Adjust the aspect ratio as needed
-
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-
-            if (width / height > aspectRatio) {
-                // Screen is wider, adjust canvas height
-                const newHeight = width / aspectRatio;
-                gameContainer.style.width = width + 'px';
-                gameContainer.style.height = newHeight + 'px';
-                canvas.width = width;
-                canvas.height = newHeight;
-            } else {
-                // Screen is taller, adjust canvas width
-                const newWidth = height * aspectRatio;
-                gameContainer.style.width = newWidth + 'px';
-                gameContainer.style.height = height + 'px';
-                canvas.width = newWidth;
-                canvas.height = height;
-            }
+            canvas.style.maxWidth = window.innerWidth + 'px';
+            canvas.style.maxHeight = window.innerHeight + 'px';
         });
 
         // Initial adjustment
