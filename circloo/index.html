@@ -17,8 +17,6 @@
         }
 
         #canvas-container {
-            max-width: 100%; /* Ensure the container doesn't exceed the screen width */
-            max-height: 100%; /* Ensure the container doesn't exceed the screen height */
             display: flex;
             justify-content: center; /* Horizontally center the canvas */
             align-items: center; /* Vertically center the canvas */
@@ -52,5 +50,22 @@
     <!-- Run the game code -->
     <script type="text/javascript" src="html5game_a5/circloO.js"></script>
     <script src="/js/main.js"></script>
+
+    <script>
+        // Adjust canvas size when the window is resized
+        window.addEventListener('resize', resizeCanvas);
+
+        function resizeCanvas() {
+            const canvas = document.getElementById('canvas');
+            const container = document.getElementById('canvas-container');
+            
+            // Set canvas dimensions
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+        }
+
+        // Initial canvas size adjustment
+        window.addEventListener('load', resizeCanvas);
+    </script>
 </body>
 </html>
