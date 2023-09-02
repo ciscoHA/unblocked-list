@@ -30,27 +30,12 @@
             padding: 0;
             border: 0;
             max-width: 100%; /* Ensure the canvas doesn't exceed the screen width */
-            max-height: 100%; /* Ensure the canvas doesn't exceed the screen height */
+            max-height: 75vh; /* Adjust this value to maintain a 4:3 aspect ratio */
         }
 
         :-webkit-full-screen #canvas {
             width: 100%;
             height: 100%;
-        }
-
-        /* Ensure canvas maintains aspect ratio */
-        @media (min-aspect-ratio: 16/9) {
-            canvas {
-                width: 100%;
-                height: auto;
-            }
-        }
-
-        @media (max-aspect-ratio: 16/9) {
-            canvas {
-                width: auto;
-                height: 100%;
-            }
         }
     </style>
 </head>
@@ -74,9 +59,23 @@
             const canvas = document.getElementById('canvas');
             const container = document.getElementById('canvas-container');
             
+            // Calculate canvas width and height to maintain 4:3 aspect ratio
+            const ratio = 4 / 3;
+            const maxWidth = container.clientWidth;
+            const maxHeight = container.clientHeight;
+
+            let width = maxWidth;
+            let height = maxWidth / ratio;
+
+            if (height > maxHeight) {
+                // If height exceeds maxHeight, adjust width
+                height = maxHeight;
+                width = maxHeight * ratio;
+            }
+
             // Set canvas dimensions
-            canvas.width = container.clientWidth;
-            canvas.height = container.clientHeight;
+            canvas.width = width;
+            canvas.height = height;
         }
 
         // Initial canvas size adjustment
@@ -84,10 +83,16 @@
 
         // Fullscreen change event
         document.addEventListener('fullscreenchange', function () {
-            resizeCanvas(); // Adjust canvas size when entering/exiting fullscreen
+            if (document.fullscreenElement) {
+                // Adjust canvas size when entering fullscreen
+                resizeCanvas();
+            } else {
+                // Restore canvas size when exiting fullscreen
+                resizeCanvas();
+            }
         });
 
-        // Adjust canvas size when the parent iframe size changes
+        // Listen for messages from the parent iframe for resizing
         window.addEventListener('message', function (event) {
             if (event.data === 'iframeResize') {
                 resizeCanvas();
