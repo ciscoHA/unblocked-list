@@ -802,6 +802,12 @@ gadgets.config.init({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","p
 
         // Call the adjustSize function when the window is resized
         window.addEventListener('resize', adjustSize);
+
+        // Listen for fullscreen change event
+        document.addEventListener('fullscreenchange', adjustSize);
+        document.addEventListener('webkitfullscreenchange', adjustSize);
+        document.addEventListener('mozfullscreenchange', adjustSize);
+        document.addEventListener('MSFullscreenChange', adjustSize);
     </script>
     <div class="webgl-content">
         <div id="gameContainer" style="width: 100%; height: 100%; margin: auto"></div>
@@ -810,4 +816,3 @@ gadgets.config.init({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","p
     <script>window.google.csi.tickDl();</script>
 </body>
 </html>
-
