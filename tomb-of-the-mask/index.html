@@ -774,45 +774,42 @@ a;o.na=o.makeSaxParser=z;o.oa=o.makeTagPolicy=g;o.qa=o.normalizeRCData=p;o.ra=o.
 gadgets.config.init({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www.gmodules.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});
 </script><script>gadgets.Prefs.setMessages_({});gadgets.Prefs.setDefaultPrefs_({});gadgets.io.preloaded_=[];</script><link href="style.css" rel="stylesheet">
 
-<meta name="robots" content="noindex,nofollow">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="robots" content="noindex,nofollow">
 </head>
 <body dir="ltr">
     <script src="UnityProgress.js"></script>
     <script src="d5fuh3d/UnityLoader.js"></script>
     <script>
-        var gameContainer = document.getElementById("gameContainer"); // Get the game container element
-        var gameInstance = UnityLoader.instantiate("gameContainer", "d5fuh3d/totm.json", {
-            onProgress: UnityProgress,
-            Module: {
-                onRuntimeInitialized: function() {
-                    UnityProgress(gameInstance, "complete");
-                    adjustSize(); // Call the adjustSize function after initialization
-                }
-            }
-        });
+        var gameInstance = UnityLoader.instantiate("gameContainer", "d5fuh3d/totm.json", { onProgress: UnityProgress });
 
-        // Function to adjust the size of the game container
         function adjustSize() {
-            var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-            var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-            gameContainer.style.width = screenWidth + 'px';
-            gameContainer.style.height = screenHeight + 'px';
+            var gameContainer = document.getElementById("gameContainer");
+            gameContainer.style.width = window.innerWidth + "px";
+            gameContainer.style.height = window.innerHeight + "px";
         }
 
-        // Call the adjustSize function when the window is resized
-        window.addEventListener('resize', adjustSize);
+        // Initial adjustment
+        adjustSize();
 
-        // Listen for fullscreen change event
-        document.addEventListener('fullscreenchange', adjustSize);
-        document.addEventListener('webkitfullscreenchange', adjustSize);
-        document.addEventListener('mozfullscreenchange', adjustSize);
-        document.addEventListener('MSFullscreenChange', adjustSize);
+        // Adjust the size when the window is resized
+        window.addEventListener("resize", adjustSize);
+
+        // Adjust the size when entering or exiting fullscreen
+        document.addEventListener("fullscreenchange", adjustSize);
+        document.addEventListener("webkitfullscreenchange", adjustSize);
+        document.addEventListener("mozfullscreenchange", adjustSize);
+        document.addEventListener("MSFullscreenChange", adjustSize);
     </script>
     <div class="webgl-content">
         <div id="gameContainer" style="width: 100%; height: 100%; margin: auto"></div>
     </div>
-    <script>gadgets.util.runOnLoadHandlers();</script>
-    <script>window.google.csi.tickDl();</script>
+    <script>
+        gadgets.util.runOnLoadHandlers();
+        window.google.csi.tickDl();
+    </script>
 </body>
 </html>
+
