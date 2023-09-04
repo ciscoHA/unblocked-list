@@ -774,25 +774,18 @@ a;o.na=o.makeSaxParser=z;o.oa=o.makeTagPolicy=g;o.qa=o.normalizeRCData=p;o.ra=o.
 gadgets.config.init({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","proxyUrl":"//www.gmodules.com/gadgets/proxy/refresh=%refresh%&container=%container%%rewriteMime%&gadget=%gadget%/%rawurl%"},"shindig.auth":{"authToken":"","trustedJson":""},"core.util":{"core":{}}});
 </script><script>gadgets.Prefs.setMessages_({});gadgets.Prefs.setDefaultPrefs_({});gadgets.io.preloaded_=[];</script><link href="style.css" rel="stylesheet">
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="robots" content="noindex,nofollow">
-</head>
-<body dir="ltr">
-    <script src="UnityProgress.js"></script>
-    <script src="d5fuh3d/UnityLoader.js"></script>
-    <script>
-        var gameInstance = UnityLoader.instantiate("gameContainer", "d5fuh3d/totm.json", { onProgress: UnityProgress });
+<meta name="robots" content="noindex,nofollow" />
+    
+    </head><body dir="ltr"><script src="UnityProgress.js"></script><script src="d5fuh3d/UnityLoader.js"></script><script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "d5fuh3d/totm.json", {onProgress: UnityProgress,Module:{onRuntimeInitialized: function() {UnityProgress(gameInstance, "complete")}}});
+    </script><div class="webgl-content">
+        <div id="gameContainer" style="width: 100%; height: 100%; margin: auto"></div>
+        </div>
 
-        function adjustSize() {
-            var gameContainer = document.getElementById("gameContainer");
-            gameContainer.style.width = window.innerWidth + "px";
-            gameContainer.style.height = window.innerHeight + "px";
-        }
+<script>gadgets.util.runOnLoadHandlers();</script><script>window.google.csi.tickDl();
+</script></body></html>
 
-        // Initial adjustment
-        adjustSize();
+
 
         // Adjust the size when the window is resized
         window.addEventListener("resize", adjustSize);
