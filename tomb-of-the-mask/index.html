@@ -780,14 +780,28 @@ gadgets.config.init({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","p
     <script src="UnityProgress.js"></script>
     <script src="d5fuh3d/UnityLoader.js"></script>
     <script>
+        var gameContainer = document.getElementById("gameContainer"); // Get the game container element
         var gameInstance = UnityLoader.instantiate("gameContainer", "d5fuh3d/totm.json", {
             onProgress: UnityProgress,
             Module: {
                 onRuntimeInitialized: function() {
-                    UnityProgress(gameInstance, "complete")
+                    UnityProgress(gameInstance, "complete");
+                    adjustSize(); // Call the adjustSize function after initialization
                 }
             }
         });
+
+        // Function to adjust the size of the game container
+        function adjustSize() {
+            var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+            gameContainer.style.width = screenWidth + 'px';
+            gameContainer.style.height = screenHeight + 'px';
+        }
+
+        // Call the adjustSize function when the window is resized
+        window.addEventListener('resize', adjustSize);
     </script>
     <div class="webgl-content">
         <div id="gameContainer" style="width: 100%; height: 100%; margin: auto"></div>
@@ -796,3 +810,4 @@ gadgets.config.init({"core.io":{"jsonProxyUrl":"//%host%/gadgets/makeRequest","p
     <script>window.google.csi.tickDl();</script>
 </body>
 </html>
+
