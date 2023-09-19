@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Alien Hominid</title>
+
+    <meta
+    name="description"
+    content="Alien Hominid is a 2d run and gun alien pew pew game. Play for free at Cool UBG"
+  />
+    <meta property="og:title" content="Alien Hominid">
+    <meta property="og:description" content="Alien Hominid is a 2d run and gun alien pew pew game. Play for free at Cool UBG">
+    <meta property="og:image" content="https://ciscoha.github.io/unblocked-list/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" sizes="64x64"/>
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon-48.png" sizes="48x48"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-48.png" sizes="48x48"/>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;800;900&display=swap");
+       @font-face {
+        font-family: Satisfactory Base;
+        src: url(/fonts/SatisfactoryBase-jEoZ9.otf);
+      }
+      @font-face {
+        font-family: Satisfactory Baseline;
+        src: url(/fonts/SatisfactoryBaseline-z8BdX.otf);
+      }
+      @font-face {
+        font-family: Satisfactory Topline;
+        src: url(/fonts/SatisfactoryTopline-1GAPZ.otf);
+      }
+
+      .game-title-subtext a {
+        color: #3c3c3c;
+      }
+
+      .game-title-subtext a:hover {
+        text-decoration: underline !important; /* Underline the link on hover */
+      }
+
+      @media (max-width: 320px),
+        (min-width: 321px) and (max-width: 480px),
+        (min-width: 481px) and (max-width: 768px) {
+        body {
+          overflow-x: auto;
+          font-size: xx-large; /* Adjust the font size for mobile devices */
+        }
+      }
+
+      .left {
+        margin-right: 0px;
+      }
+
+      .right {
+        margin-left: 15px;
+      }
+
+      a {
+        text-decoration: none !important;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-image: url("../blank.png");
+        background-color: #141414;
+      }
+
+      .navbar {
+        font-family: "M Plus Rounded 1c", sans-serif;
+        font-weight: bold;
+        font-size: large;
+        background-color: #58aafc;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .logo {
+        font-size: 120%;
+        margin-top: -5px;
+        margin-bottom: 0px;
+      }
+
+      @media (max-width: 320px),
+        (min-width: 321px) and (max-width: 480px),
+        (min-width: 481px) and (max-width: 768px) {
+        .logo {
+          font-size: 120%;
+        }
+        #game-iframe {
+          width: 650px;
+          height: 465px;
+        }
+        .game-title {
+          width: 630px !important;
+        }
+        .game-desc {
+          width: 590px !important;
+        }
+      }
+
+      .navbar-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .navbar-menu a {
+        display: block;
+        color: #3c3c3c;
+        text-align: center;
+        padding: 5px 10px;
+        margin-right: 5px;
+        margin-left: 5px;
+        text-decoration: none;
+        border: 2px solid transparent;
+        border-radius: 10px;
+      }
+
+      .navbar-menu a:hover {
+        outline: 5px solid #3c3c3c;
+      }
+
+      .suggest-game {
+        padding: 10px;
+        margin-top: 10px;
+      }
+
+      .suggest-game a {
+        display: block;
+        text-decoration: none;
+        color: white;
+        font-size: large;
+        margin-top: 5px;
+      }
+
+      .suggest-game img {
+        margin-bottom: -5px;
+        border-radius: 5px;
+        width: 249px;
+        height: 140px;
+        border: #141414 solid 4px;
+      }
+
+      span {
+        font-size: large;
+      }
+
+      .suggest-text.underline {
+        text-decoration: underline !important;
+      }
+
+      .game-list {
+        margin-top: -15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .game-desc {
+        color: #3c3c3c;
+        background-color: #58aafc;
+        background-image: url("../wood.png");
+        width: 740px;
+        padding: 10px;
+        margin-top: 30px;
+        padding-left: 30px;
+        padding-right: 30px;
+        border-radius: 10px;
+        outline: 0px solid #58aafc;
+        font-family: "M Plus Rounded 1c", sans-serif;
+        font-weight: 800;
+        font-size: large;
+        display: block;
+        align-items: center;
+      }
+
+      .game-title {
+        color: #3c3c3c;
+        background-color: #58aafc;
+        background-image: url("../wood.png");
+        width: 780px;
+        padding: 10px;
+        margin-top: 0px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        outline: 0px solid #58aafc;
+        font-family: "M Plus Rounded 1c", sans-serif;
+        font-weight: 800;
+        font-size: xx-large;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        display: flex; /* Use flexbox to horizontally align popup and fullscreen button */
+        align-items: center; /* Vertically align items within .game-title */
+        justify-content: flex-start; /* Align items from the start (left) of .game-title */
+        position: relative; /* Create a positioning context for the absolute-positioned .popup */
+
+        display: flex; /* Use flexbox to horizontally align the title and button */
+        justify-content: space-between; /* Put space between the title and button */
+        align-items: center; /* Vertically center items within .game-title */
+        position: relative; /* Create a positioning context for the absolute-positioned .popup */
+      }
+      .game-title button {
+        background: none;
+        border: none;
+        padding: 0;
+        margin-left: 0px; /* Adjust margin as needed */
+        padding-right: 15px;
+      }
+
+      .game-title button img {
+        width: 40px;
+        height: 40px;
+        vertical-align: middle; /* Vertically align the image */
+      }
+
+      .game-title > div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 20px;
+      }
+
+      .game-title-text {
+        font-size: xx-large;
+        padding-bottom: 5px; /* Add a small bottom padding */
+      }
+
+      .game-title-subtext {
+        margin-top: -5px;
+        font-size: large;
+        font-weight: 600;
+        text-align: left;
+        padding-left: 0; /* Remove the left padding */
+        white-space: nowrap; /* Prevent subtext from wrapping */
+      }
+      .game-title button {
+        margin-left: 15px; /* Add a 15px margin to the left of the "Fullscreen" button */
+      }
+      .popup {
+        position: absolute;
+        right: 80px; /* Position the .popup 40px from the right edge of .game-title */
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+      }
+
+      .popup-icon {
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+        margin-right: 5px;
+      }
+
+      .popuptext {
+        text-rendering: optimizeLegibility;
+        visibility: hidden;
+        width: 160px;
+        background-color: #3c3c3c;
+        font-size: medium;
+        font-family: "M Plus Rounded 1c";
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px;
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .popup:hover .popuptext {
+        visibility: visible;
+        opacity: 1;
+      }
+    </style>
+    <script>
+      function goToRandomPage() {
+        var pages = [
+          "../games/circloo.html",
+          "../games/drive-mad.html",
+          "../games/duck-life-3.html",
+          "../games/getaway-shootout.html",
+          "../games/jacksmith.html",
+          "../games/jelly-truck.html",
+          "../games/moto-x3m-pool-party.html",
+          "../games/moto-x3m-winter.html",
+          "../games/moto-x3m.html",
+          "../games/raft-wars.html",
+          "../games/rooftop-snipers.html",
+          "../games/run-3.html",
+          "../games/slope.html",
+          "../games/stack.html",
+          "../games/tomb-of-the-mask.html",
+        ];
+
+        var randomIndex = Math.floor(Math.random() * pages.length);
+        var randomPage = pages[randomIndex];
+
+        window.location.href = randomPage;
+      }
+
+      function toggleFullscreen() {
+        var iframe = document.getElementById("game-iframe");
+
+        if (!document.fullscreenElement) {
+          iframe.requestFullscreen().catch((err) => {
+            console.log(
+              `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
+            );
+          });
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">
+        <a style="text-decoration: none !important" href="/#">
+          <span
+            style="
+              text-align: left;
+              text-decoration: none;
+              font-size: 310%;
+              color: #3c3c3c;
+              font-family: 'Satisfactory Baseline';
+              font-weight: normal;
+            "
+            >Cool</span
+          >
+          <span
+            style="
+              text-align: left;
+              text-decoration: none;
+              font-size: 310%;
+              color: #3c3c3c;
+              font-family: 'Satisfactory Topline';
+              font-weight: normal;
+            "
+            >Un<span
+              style="
+                text-align: left;
+                text-decoration: none;
+                font-size: 100%;
+                color: #3c3c3c;
+                font-family: 'Satisfactory Baseline';
+                font-weight: normal;
+                margin-right: -17px;
+              "
+              >b</span
+            >
+            LockeD</span
+          >
+          <span
+            style="
+              text-align: left;
+              text-decoration: none;
+              font-size: 310%;
+              color: #3c3c3c;
+              font-family: 'Satisfactory Baseline';
+              font-weight: normal;
+            "
+            >GamE</span
+          ><span
+            style="
+              text-align: left;
+              text-decoration: none;
+              font-size: 310%;
+              color: #3c3c3c;
+              font-family: 'Satisfactory Topline';
+              font-weight: normal;
+            "
+            >s</span
+          >
+        </a>
+      </div>
+      <div class="navbar-menu">
+      <a href="../index.html#popular-games">Popular</a>
+        <a href="../index.html#multiplayer-games">Multiplayer</a>
+        <a href="#" onclick="goToRandomPage()">Random</a>
+        <a href="../list.html">All Games</a>
+        <a href="../about.html">Contact</a>
+      </div>
+    </div>
+    <div
+      style="
+        margin-top: 30px;
+        margin-bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+      "
+    >
+      <embed
+        id="game-iframe"
+        src="https://ciscoha.github.io/unblocked-list/alien-hominid.swf"
+        width="800px"
+        height="578px"
+        frameborder="0"
+        style="
+          z-index: 1;
+          display: block;
+          border: 0px solid #58aafc;
+          background-image: url('../loading.png');
+          background-size: auto;
+          background-position: 50%;
+        "
+      />
+      <div class="game-title">
+        <div>
+          <span class="game-title-text">Alien hominid</span>
+          <span class="game-title-subtext">
+            By
+            <a
+              href="https://www.thebehemoth.com/"
+              style="color: #3c3c3c !important"
+              >The Behemoth</a
+            >
+          </span>
+        </div>
+        <div class="popup">
+          <img
+            class="popup-icon"
+            src="../images/icons/flash.png"
+            alt="Flash"
+            width="40"
+            height="40"
+          />
+          <span class="popuptext">Emulated by Ruffle</span>
+        </div>
+        <button onclick="toggleFullscreen()">
+          <img
+            src="../images/icons/zoom.png"
+            alt="Fullscreen"
+            width="64"
+            height="64"
+          />
+        </button>
+      </div>
+
+      <p class="game-desc">
+        <b><font size="6">Instructions and Overview</font></b>
+        <br />
+        <br />
+        THE alien hominid. alien you are yes?
+      </p>
+    </div>
+  </body>
+</html>
