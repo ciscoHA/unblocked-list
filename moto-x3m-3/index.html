@@ -13,9 +13,7 @@
     <div id="orientation"></div>
     <div id="loader">Loading ...</div>
     <script type="text/javascript" src="http://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
-    <script type="text/javascript" src="assets/box2dweb/nape.min.js">
-        var nape = "nape.min.js";
-    </script>
+    <script type="text/javascript" src="assets/box2dweb/nape.min.js"></script>
     <script type="text/javascript" src="assets/box2dweb/nape-debug-draw.min.js"></script>
     <script type="text/javascript" src="assets/box2dweb/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="assets/box2dweb/easeljs-0.8.2.combined.js"></script>
@@ -63,7 +61,7 @@
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) { return; }
             js = d.createElement(s); js.id = id;
-            js.src = document.location.protocol == 'http:' ? "http://cdn.y8.com/api/sdk.js" : "https://cdn.y8.com/api/sdk.js";
+            js.src = document.location.protocol == 'http:' ? "http://cdn.y8.com/api/sdk.js" : "http://cdn.y8.com/api/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'id-jssdk'));
 
@@ -81,9 +79,6 @@
     </script>
 
     <!-- Load your game script -->
-    <script type="text/javascript">
-        // Your game-specific JavaScript code here
-        // Ensure that your game initialization code is present here
-    </script>
+    <script type="text/javascript" src="motox3m3.min.js?7f0b6a921b936b549968"></script>
 </body>
 </html>
