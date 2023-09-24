@@ -42,15 +42,13 @@
             console.log(ID);
             console.log(ID.initialized);
             ID.Event.subscribe('id.init', function () { // SDK initialized
-                console.log("id.init ditpatch")
+                console.log("id.init dispatch")
                 let toggle_event = null;
                 try {
                     toggle_event = new Event("sdk_inited");
                 } catch (error) {
                     toggle_event = document.createEvent("Event");
-                    let doesnt_bubble = false;
-                    let isnt_cancelable = false;
-                    toggle_event.initEvent("sdk_inited", doesnt_bubble, isnt_cancelable);
+                    toggle_event.initEvent("sdk_inited", true, true);
                 }
                 document.getElementById('content').dispatchEvent(toggle_event);
             });
@@ -65,15 +63,13 @@
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) { return; }
             js = d.createElement(s); js.id = id;
-            js.src = document.location.protocol == 'http:' ? "http://cdn.y8.com/api/sdk.js" : "http://cdn.y8.com/api/sdk.js";
+            js.src = document.location.protocol == 'http:' ? "http://cdn.y8.com/api/sdk.js" : "https://cdn.y8.com/api/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'id-jssdk'));
 
-        document.getElementById('content').addEventListener('click',
-            onAdsClick);
-    </script>
+        document.getElementById('content').addEventListener('click', onAdsClick);
 
-    <script type="text/javascript">
+        // Additional scripts if needed
         function setFocus() {
             var iframe = $("#game")[0];
             iframe.contentWindow.focus();
@@ -84,6 +80,10 @@
         }); 
     </script>
 
-    <script type="text/javascript" src="motox3m3.min.js?7f0b6a921b936b549968"></script>
+    <!-- Load your game script -->
+    <script type="text/javascript">
+        // Your game-specific JavaScript code here
+        // Ensure that your game initialization code is present here
+    </script>
 </body>
 </html>
