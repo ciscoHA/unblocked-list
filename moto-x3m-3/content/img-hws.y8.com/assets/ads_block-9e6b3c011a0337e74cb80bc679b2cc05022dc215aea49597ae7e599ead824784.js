@@ -1,0 +1,1 @@
+var adBlockDetected=!1;
