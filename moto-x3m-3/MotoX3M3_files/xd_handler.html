@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!-- saved from url=(0107)https://cdn.y8.com/Xd/xd_handler.html?version=44&xdm_e=https%3A%2F%2Fstorage.y8.com&xdm_c=id_xd_api&xdm_p=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <title>Id,net cross-domain XHMLHttpRequest provider</title>
+        <script type="text/javascript">
+          if (!/no_x_frames/.test(document.URL)) {
+            if (document.domain.indexOf('id.net') != -1) {
+              document.domain = 'id.net';
+            } else if (document.domain.indexOf('y8.com') != -1) {
+              document.domain = 'y8.com';
+            }
+          } else {
+            // Takes the top frame domain and uses it in this sub frame
+            // https://stackoverflow.com/questions/1481251/what-does-document-domain-document-domain-do
+            document.domain = document.domain;
+          }
+        </script>
+        <script type="text/javascript" src="./easyXDM.min.js.download">
+            // This should be changed so that it points to the minified version before use in production.
+        </script><script charset="utf-8" src="chrome-extension://donbcfbmhbcapadipfkeojnmajbakjdc/dist/ruffle.js?id=25839454952"></script>
+        <script type="text/javascript">
+            // Update to point to your copy
+            easyXDM.DomHelper.requiresJSON("/Xd/json2.js");
+        </script>
+        <script type="text/javascript">
+
+        /*
+         * This is a CORS (Cross-Origin Resource Sharing) and AJAX enabled endpoint for easyXDM.
+         * The ACL code is adapted from pmxdr (http://github.com/eligrey/pmxdr/) by Eli Grey (http://eligrey.com/)
+         *
+         */
+        // From http://peter.michaux.ca/articles/feature-detection-state-of-the-art-browser-scripting
+        function isHostMethod(object, property){
+            var t = typeof object[property];
+            return t == 'function' ||
+            (!!(t == 'object' && object[property])) ||
+            t == 'unknown';
+        }
+
+        /**
+         * Creates a cross-browser XMLHttpRequest object
+         * @return {XMLHttpRequest} A XMLHttpRequest object.
+         */
+        var getXhr = (function(){
+            if (isHostMethod(window, "XMLHttpRequest")) {
+                return function(){
+                    return new XMLHttpRequest();
+                };
+            }
+            else {
+                var item = (function(){
+                    var list = ["Microsoft", "Msxml2", "Msxml3"], i = list.length;
+                    while (i--) {
+                        try {
+                            item = list[i] + ".XMLHTTP";
+                            var obj = new ActiveXObject(item);
+                            return item;
+                        }
+                        catch (e) {
+                        }
+                    }
+                }());
+                return function(){
+                    return new ActiveXObject(item);
+                };
+            }
+        }());
+
+        // this file is by default set up to use Access Control - this means that it will use the headers set by the server to decide whether or not to allow the call to return
+        var useAccessControl = false;
+        // always trusted origins, can be exact strings or regular expressions
+        var alwaysTrustedOrigins = [(/\.?id\.net/), (/.*\.?y8\.com/), 't.id.net', 't.y8.com'];
+
+        // instantiate a new easyXDM object which will handle the request
+        var remote = new easyXDM.Rpc({
+            local: "../name.html",
+            swf: "../easyxdm.swf"
+        }, {
+            remote: {
+              setSize: {},
+              postLoginInfo: {},
+              sendEvent: {},
+              analyticsEvent: {}
+            },
+            local: {
+                // define the exposed method
+                api: function(config, success, error){
+
+                    // apply default values if not set
+                    easyXDM.apply(config, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                            "X-Requested-With": "XMLHttpRequest"
+                        },
+                        success: Function.prototype,
+                        error: function(msg){
+                            throw new Error(msg);
+                        },
+                        data: {},
+                        timeout: 10 * 1000
+                    }, true);
+
+                    // set the CORS request header
+                    // only if there is no XHR2 features
+                    if (!window.XMLHttpRequest || !('withCredentials' in (new XMLHttpRequest))) {
+                        config.headers.Origin = remote.origin;
+                    }
+
+                    var isPOST = config.method == "POST";
+                    // convert the data into a format we can send to the server
+                    var pairs = [];
+                    for (var key in config.data) {
+                        if (config.data.hasOwnProperty(key)) {
+                            if (config.data[key] !== null && typeof config.data[key] === 'object') {
+                                for (var key2 in config.data[key]) {
+                                    pairs.push(encodeURIComponent(key + '[' + key2 + ']') + "=" + encodeURIComponent(config.data[key][key2]));
+                                }
+                            } else {
+                                pairs.push(encodeURIComponent(key) + "=" + encodeURIComponent(config.data[key]));
+                            }
+                        }
+                    }
+                    var data = pairs.join("&");
+
+                    // create the XMLHttpRequest object
+                    var req = getXhr();
+                    // Send cookies to id.net if XHR2
+                    if ('withCredentials' in req) {
+                      try {
+                        req.withCredentials = true;
+                      } catch(e) {
+                        //IE 10 and below will fail here with SCRIPT5022: InvalidStateError
+                      }
+                    }else{
+                        delete config.headers["X-Requested-With"];
+                    }
+                    var url = !isPOST && data
+                        ? config.url + (~config.url.indexOf('?') ? '&' : '?') + data
+                        : config.url;
+                    req.open(config.method, url, true);
+
+                    // apply the request headers
+                    for (var prop in config.headers) {
+                        if (config.headers.hasOwnProperty(prop) && config.headers[prop]) {
+                            req.setRequestHeader(prop, config.headers[prop]);
+                        }
+                    }
+
+                    // set a timeout
+                    var timeout;
+                    timeout = setTimeout(function(){
+                        // reset the handler
+                        req.onreadystatechange = Function.prototype;
+                        req.abort();
+                        req = null;
+                        error('{message: '+ '"timeout after "' + config.timeout + '" second", status: 0, data: null}',
+                        null);
+                    }, config.timeout);
+
+                    // check if this origin should always be trusted
+                    var alwaysTrusted = false, i = alwaysTrustedOrigins.length;
+                    while (i-- && !alwaysTrusted) {
+                        if (alwaysTrustedOrigins[i] instanceof RegExp) {
+                            alwaysTrusted = alwaysTrustedOrigins[i].test(remote.origin);
+                        }
+                        else if (typeof alwaysTrustedOrigins[i] == "string") {
+                            alwaysTrusted = (remote.origin === alwaysTrustedOrigins[i]);
+                        }
+                    }
+
+
+                    // define the onreadystate handler
+                    req.onreadystatechange = function(){
+                        if (req.readyState == 4) {
+                            clearTimeout(timeout);
+
+                            // parse the response headers
+                            var rawHeaders = req.getAllResponseHeaders(), headers = {}, headers_lowercase = {}, reHeader = /([\w-_]+):\s+(.*)$/gm, m;
+                            while ((m = reHeader.exec(rawHeaders))) {
+                                headers_lowercase[m[1].toLowerCase()] = headers[m[1]] = m[2];
+                            }
+
+                            if (req.status < 200 || req.status >= 300) {
+                                if (useAccessControl) {
+                                    error("INVALID_STATUS_CODE");
+                                }
+                                else {
+                                    error("INVALID_STATUS_CODE", {
+                                        status: req.status,
+                                        data: req.responseText
+                                    });
+                                }
+                            }
+                            else {
+
+                                var errorMessage;
+                                if (useAccessControl) {
+                                    // normalize the valuse access controls
+                                    var aclAllowedOrigin = (headers_lowercase["access-control-allow-origin"] || "").replace(/\s/g, "");
+                                    var aclAllowedMethods = (headers_lowercase["access-control-allow-methods"] || "").replace(/\s/g, "");
+
+                                    // determine if origin is trusted
+                                    if (alwaysTrusted || aclAllowedOrigin == "*" || aclAllowedOrigin.indexOf(remote.origin) != -1) {
+                                        // determine if the request method was allowed
+                                        if (aclAllowedMethods && aclAllowedMethods != "*" && aclAllowedMethods.indexOf(config.method) == -1) {
+                                            errorMessage = "DISALLOWED_REQUEST_METHOD";
+                                        }
+                                    }
+                                    else {
+                                        errorMessage = "DISALLOWED_ORIGIN";
+                                    }
+
+                                }
+
+                                if (errorMessage) {
+                                    error(errorMessage);
+                                }
+                                else {
+                                    success(req.responseText);
+                                }
+                            }
+                            // reset the handler
+                            req.onreadystatechange = Function.prototype;
+                            req = null;
+                        }
+                    };
+
+                    // issue the request
+                    req.send(isPOST ? data : "");
+                }
+            }
+        });
+        window.setSize = function(dialog_id, w, h) {
+          remote.setSize(dialog_id, w, h);
+        }
+
+        window.postLoginInfo = function(dialog_id, message) {
+          remote.postLoginInfo(dialog_id, message);
+        }
+
+        window.sendEvent = function(event_name, arguments) {
+          remote.sendEvent(event_name, arguments);
+        }
+
+        window.analyticsEvent = function(arguments) {
+          remote.analyticsEvent(arguments);
+        }
+        </script>
+    </head>
+    <body data-new-gr-c-s-check-loaded="14.1126.0" data-gr-ext-installed="">
+    
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
