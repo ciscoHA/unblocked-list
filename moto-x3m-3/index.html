@@ -1,85 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-    <link rel="stylesheet" href="assets/css/app.css" type="text/css" />
-    <title>Moto X3M 2 / Unblcoked Games 76</title>
-    <script type="text/javascript" src="/js/main.js"></script>
-    <link rel="icon" href="/favicon.ico" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script type="text/javascript" src="https://ubg76.github.io/cloak.js"></script>
-  </head>
-
-  <body>
-    <div id="content"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <style>
+        /* Set background color to black and remove scrolling */
+        body {
+            background-color: black;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        /* Center the canvas */
+        #content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Adjust the canvas size while maintaining a 16:9 aspect ratio */
+        canvas {
+            width: 100%;
+            height: 56.25%; /* 9/16 aspect ratio for 16:9 */
+            display: block;
+            touch-action: none;
+            user-select: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            cursor: inherit;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <canvas id="gameCanvas"></canvas>
+    </div>
     <div id="orientation"></div>
-    <div id="loader">Loading ...</div>
-    <script type="text/javascript" src="ima3.js"></script>
-
-    <script type="text/javascript" src="assets/lib/nape.min.js">
-      var nape = "nape.min.js";
-    </script>
-    <script type="text/javascript" src="assets/lib/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="assets/lib/easeljs-0.8.2.combined.js"></script>
-    <script type="text/javascript" src="assets/lib/bluebird.min.js"></script>
-    <script type="text/javascript" src="assets/lib/phaser.min.js"></script>
-    <script type="text/javascript" src="assets/lib/phaser-cachebuster.min.js"></script>
-    <script type="text/javascript" src="assets/lib/phaser-super-storage.min.js"></script>
-    <script type="text/javascript" src="assets/lib/dragonBones.min.js"></script>
- 
-    <script type="text/javascript">
-      var useEvents = typeof Event === "function";
-
-      var myDispatchEvent = function (name) {
-        var event;
-        if (useEvents) {
-          event = new Event(name);
-        } else {
-          event = document.createEvent("Event");
-          event.initEvent(name, true, true);
-        }
-        document.getElementById("content").dispatchEvent(event);
-      };
-
-      // Optional callback to handle response data
-      var loginCallback = function (response) {
-        if (response) {
-        }
-      };
-
-      window.idAsyncInit = function () {
-        // SDK downloaded
-        ID.Event.subscribe("id.init", function () {
-          // SDK initialized
-          ID.ads.init("101993");
-          myDispatchEvent("sdk_inited");
-        });
-
-        ID.init({
-          appId: "56b1b9bcd55930ac06002d7f",
-        });
-      };
-
-      // Load the JS SDK
-      (function (d, s, id) {
-        var js,
-          fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-          return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = document.location.protocol == "https:" ? "https://cdn.y8.com/api/sdk.js" : "http://cdn.y8.com/api/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      })(document, "script", "id-jssdk");
-    </script>
-
-
-
-    <script type="text/javascript" src="assets/lib/gameBreakBeta.js"></script>
-
-    <script type="text/javascript" src="motox3m2.min.js?b136670b2db2fd123181"></script>
-  </body>
+    <div id="loader" style="display: none">Loading ...</div>
+    <script src="./Moto X3M 3_files/nape.min.js.download" type="text/javascript"></script>
+    <script src="./Moto X3M 3_files/nape-debug-draw.min.js.download" type="text/javascript"></script>
+    <script src="./Moto X3M 3_files/jquery-3.1.1.min.js.download" type="text/javascript"></script>
+    <script src="./Moto X3M 3_files/easeljs-0.8.2.combined.js.download" type="text/javascript"></script>
+    <script src="./Moto X3M 3_files/bluebird.min.js.download" type="text/javascript"></script>
+    <script src="./Moto X3M 3_files/motox3m3.min.js.download" type="text/javascript"></script>
+    <script src="./Moto X3M 3_files/addc4348-16c2-4645-9dff-f99b962e39ef_scr.js.download"></script>
+</body>
 </html>
