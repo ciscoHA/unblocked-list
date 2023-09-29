@@ -26,11 +26,24 @@
 
         Dos(canvas, { autolock: true }).ready((fs, main) => {
             fs.extract("DOOM.ZIP").then(() => {
-                    main(["SETUP.EXE"]).then((ci) => {
-                        window.ci = ci;
+                main(["SETUP.EXE"]).then((ci) => {
+                    window.ci = ci;
+
+                    // Request pointer lock and focus when canvas is clicked
+                    canvas.addEventListener("click", () => {
+                        canvas.requestPointerLock();
+                        canvas.focus();
+                    });
+
+                    // Release pointer lock when Escape key is pressed
+                    document.addEventListener("keydown", (e) => {
+                        if (e.key === "Escape") {
+                            document.exitPointerLock();
+                        }
                     });
                 });
             });
+        });
     </script>
 </body>
 </html>
