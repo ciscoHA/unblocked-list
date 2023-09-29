@@ -20,9 +20,9 @@
     <script src="js-dos.js"></script>
 </head>
 <body>
-    <canvas></canvas>
+    <canvas id="dos-canvas" tabindex="0"></canvas>
     <script>
-        const canvas = document.querySelector("canvas");
+        const canvas = document.getElementById("dos-canvas");
 
         Dos(canvas, { autolock: true }).ready((fs, main) => {
             fs.extract("DOOM.ZIP").then(() => {
@@ -39,6 +39,14 @@
                     document.addEventListener("keydown", (e) => {
                         if (e.key === "Escape") {
                             document.exitPointerLock();
+                        }
+                    });
+
+                    // Prevent default arrow key behavior (e.g., scrolling)
+                    canvas.addEventListener("keydown", (e) => {
+                        if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+                            e.preventDefault();
+                            // Add logic to change menu selection here
                         }
                     });
                 });
