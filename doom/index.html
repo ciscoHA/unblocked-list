@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DOOM</title>
+    <style>
+        body, html {
+            margin: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100vh;
+            object-fit: contain;
+        }
+    </style>
+    <script src="js-dos.js"></script>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        const canvas = document.querySelector("canvas");
+
+        Dos(canvas, { autolock: true }).ready((fs, main) => {
+            fs.extract("DOOM.ZIP").then(() => {
+                    main(["SETUP.EXE"]).then((ci) => {
+                        window.ci = ci;
+                    });
+                });
+            });
+    </script>
+</body>
+</html>
