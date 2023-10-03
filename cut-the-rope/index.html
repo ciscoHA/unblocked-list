@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fullscreen Iframe</title>
+    <style>
+        /* Reset default margin and padding for body and HTML */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; 
+            margin-top: 1% !important;
+            transform: scale(1);/* Hide any potential scrollbars */
+        }
+
+        /* Center the iframe both horizontally and vertically */
+        iframe {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%; /* Adjust the width to make it larger, e.g., 150% */
+            height: 100%; /* Adjust the height to make it larger, e.g., 150% */
+            border: none; /* Remove iframe border */
+        }
+    </style>
+</head>
+<body>
+    <iframe src="/index.html"></iframe>
+</body>
+</html>
