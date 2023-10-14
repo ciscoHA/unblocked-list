@@ -129,7 +129,8 @@ p.footer {
 }
 
 #canvasDiv {
-	 width: 30%;
-    text-align: center;
-    margin: 0 auto;
+    width: 30%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
