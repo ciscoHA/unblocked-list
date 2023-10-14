@@ -45,7 +45,7 @@ body {
     /* fix bug: https://github.com/cocos-creator/2d-tasks/issues/791 */
     /* overflow cannot be applied in Cocos2dGameContainer, 
   otherwise child elements will be hidden when Cocos2dGameContainer rotated 90 deg */
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 #Cocos2dGameContainer {
