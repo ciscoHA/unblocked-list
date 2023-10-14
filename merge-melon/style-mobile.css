@@ -127,8 +127,9 @@ p.footer {
         background-position: 60px 0;
     }
 }
+
 #canvasDiv {
-    width: 30%;
+	 width: 30%;
     text-align: center;
-    margin: 0 auto; /* Add this line to center the div horizontally */
+    margin: 0 auto;
 }
