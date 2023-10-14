@@ -1,7 +1,5 @@
 html {
     -ms-touch-action: none;
-    height: 100%;
-    margin: 0;
 }
 
 body,
@@ -19,10 +17,13 @@ div {
 }
 
 /* Remove spin of input type number */
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 body {
@@ -34,7 +35,6 @@ body {
     padding: 0;
     border: 0;
     margin: 0;
-	margin-left: 50%;
     cursor: default;
     color: #888;
     background-color: #333;
@@ -42,6 +42,9 @@ body {
     font-family: Helvetica, Verdana, Arial, sans-serif;
     display: flex;
     flex-direction: column;
+    /* fix bug: https://github.com/cocos-creator/2d-tasks/issues/791 */
+    /* overflow cannot be applied in Cocos2dGameContainer, 
+  otherwise child elements will be hidden when Cocos2dGameContainer rotated 90 deg */
     overflow: hidden;
 }
 
@@ -96,6 +99,7 @@ p.footer {
     height: 15px;
     padding: 5px;
     width: 50%;
+    /*margin: 0 -175px;         */
     border-radius: 5px;
     box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
 }
