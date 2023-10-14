@@ -129,8 +129,8 @@ p.footer {
 }
 
 #canvasDiv {
-    width: 30%;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 30% !important;
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
 }
