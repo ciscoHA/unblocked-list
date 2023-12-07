@@ -1,4 +1,4 @@
-<html><head><meta name="color-scheme" content="light dark"><script charset="utf-8" src="chrome-extension://donbcfbmhbcapadipfkeojnmajbakjdc/dist/ruffle.js?id=85074623084"></script></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">{"companyName":"JustPlay.LOL",
+{"companyName":"JustPlay.LOL",
 "productName":"1v1.LOL",
 "productVersion":"3.800",
 "dataUrl":"webgl - rc.data.unityweb",
@@ -11,4 +11,4 @@
 "cacheControl":{"default":"must-revalidate"},
 "developmentBuild":false,
 "multithreading":false,
-"unityVersion":"2019.4.24f1"}</pre></body></html>
+"unityVersion":"2019.4.24f1"}
