@@ -1,302 +1,302 @@
-:root {
-    font-size: 10px;
-    padding: 0;
-    margin: 0;
-    background-image: linear-gradient(to bottom, black -50%, #1a6cb4 35%, #1a6cb4 65%, black 150%);
-    min-height: 100%;
-  }
-
-  body {
-    font-size: 1.6rem;
-    padding: 0;
-    margin: 0;
-    font-family: Verdana, sans-serif;
-    font-weight: 400;
-    color: #fff;
-  }
-
-  a {
-    color: #fff;
-  }
-
-  .container {
-    max-width: 80rem;
-    padding: 0 0.8rem;
-    margin: 0 auto;
-  }
-
-  .in-game .container {
-    max-width: min(80rem, calc(16 / 9 * 100dvmin));
-  }
-
-  #canvas-wrapper {
-    position: relative;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    max-width: calc(16 / 9 * 100dvmin);
-    max-height: calc(100dvmin - 2rem);
-    margin: 0 auto;
-  }
-
-  #overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-
-  .fullscreen-button {
-    display: none;
-    width: 3.2rem;
-    height: 3.2rem;
-    padding: 0;
-    background: none;
-    border: none;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .fullscreen-button::before {
-    content: '';
-    display: block;
-    width: 1.6rem;
-    height: 1.6rem;
-    border: 0.2rem dashed #fff;
-  }
-
-  .fullscreen-button:hover {
-    animation: pulse 0.2s ease-in-out;
-    cursor: pointer;
-  }
-
-  .fullscreen-button:focus {
-    outline: none;
-  }
-
-  .fullscreen-button span {
-    display: none;
-  }
-
-  @keyframes pulse {
-    from {
-      transform: scale(1);
+    :root {
+      font-size: 10px;
+      padding: 0;
+      margin: 0;
+      background-image: linear-gradient(to bottom, black -50%, #1a6cb4 35%, #1a6cb4 65%, black 150%);
+      min-height: 100%;
     }
 
-    50% {
-      transform: scale(1.2);
+    body {
+      font-size: 1.6rem;
+      padding: 0;
+      margin: 0;
+      font-family: Verdana, sans-serif;
+      font-weight: 400;
+      color: #fff;
     }
 
-    to {
-      transform: scale(1);
+    a {
+      color: #fff;
     }
-  }
 
-  #canvas-wrapper:fullscreen .fullscreen-button {
-    display: none;
-  }
+    .container {
+      max-width: 80rem;
+      padding: 0 0.8rem;
+      margin: 0 auto;
+    }
 
-  #canvas-wrapper:fullscreen {
-    aspect-ratio: auto;
-    min-width: auto;
-    min-height: auto;
-  }
+    .in-game .container {
+      max-width: min(80rem, calc(16 / 9 * 100dvmin));
+    }
 
-  #canvas-wrapper:fullscreen #canvas {
-    position: static;
-  }
+    #canvas-wrapper {
+      position: relative;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      max-width: calc(16 / 9 * 100dvmin);
+      max-height: calc(100dvmin - 2rem);
+      margin: 0 auto;
+    }
 
-  #canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; /* Fill parent. */
-  }
+    #overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
 
-  #status-line {
-    background: #67686d;
-    position: relative;
-    padding: 1rem;
-    margin-bottom: 2rem;
-    border-radius: 1rem;
-    overflow: hidden;
-  }
+    .fullscreen-button {
+      display: none;
+      width: 3.2rem;
+      height: 3.2rem;
+      padding: 0;
+      background: none;
+      border: none;
+      justify-content: center;
+      align-items: center;
+    }
 
-  #progress {
-    width: 0;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: #40ad47;
-    z-index: 1;
-  }
+    .fullscreen-button::before {
+      content: '';
+      display: block;
+      width: 1.6rem;
+      height: 1.6rem;
+      border: 0.2rem dashed #fff;
+    }
 
-  #status {
-    position:relative;
-    z-index: 2;
-    color: #fff;
-  }
+    .fullscreen-button:hover {
+      animation: pulse 0.2s ease-in-out;
+      cursor: pointer;
+    }
 
-  .neverball-button {
-    background: rgba(25, 25, 25, 0.5);
-    outline: none;
-    border: none;
-    color: #fff;
-    border-radius: 1rem;
-    padding: 1rem;
-    font-weight: bold;
-    font-size: 1.4rem;
-    text-shadow: 0.08em 0.08em rgba(0, 0, 0, 0.5);
-    font-family: "DejaVu Sans", Verdana, sans-serif;
-    display: inline-block;
-  }
+    .fullscreen-button:focus {
+      outline: none;
+    }
 
-  .neverball-button:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
+    .fullscreen-button span {
+      display: none;
+    }
 
-  .neverball-button:not(:disabled):hover, .neverball-button:focus {
-    cursor: pointer;
-    background: rgba(255, 178, 76, 0.73);
-    transition: background 0.1s ease-in-out;
-    animation: pulse 0.2s;
-    animation-timing-function: ease-in-out;
-  }
+    @keyframes pulse {
+      from {
+        transform: scale(1);
+      }
 
-  #run-button:disabled + .spinner {
-    display: block;
-  }
+      50% {
+        transform: scale(1.2);
+      }
 
-  .spinner {
-    display: none;
-    width: 0.8rem;
-    height: 0.8rem;
-    background-color: #fff;
-    border-radius: 50%;
-    animation: blink 1s infinite;
-  }
+      to {
+        transform: scale(1);
+      }
+    }
 
-  #screenshot {
-    width: 100%;
-    max-width: 32rem;
-    height: auto;
-  }
+    #canvas-wrapper:fullscreen .fullscreen-button {
+      display: none;
+    }
 
-  @media (min-width: 640px) {
+    #canvas-wrapper:fullscreen {
+      aspect-ratio: auto;
+      min-width: auto;
+      min-height: auto;
+    }
+
+    #canvas-wrapper:fullscreen #canvas {
+      position: static;
+    }
+
+    #canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; /* Fill parent. */
+    }
+
+    #status-line {
+      background: #67686d;
+      position: relative;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    #progress {
+      width: 0;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: #40ad47;
+      z-index: 1;
+    }
+
+    #status {
+      position:relative;
+      z-index: 2;
+      color: #fff;
+    }
+
+    .neverball-button {
+      background: rgba(25, 25, 25, 0.5);
+      outline: none;
+      border: none;
+      color: #fff;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 1.4rem;
+      text-shadow: 0.08em 0.08em rgba(0, 0, 0, 0.5);
+      font-family: "DejaVu Sans", Verdana, sans-serif;
+      display: inline-block;
+    }
+
+    .neverball-button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .neverball-button:not(:disabled):hover, .neverball-button:focus {
+      cursor: pointer;
+      background: rgba(255, 178, 76, 0.73);
+      transition: background 0.1s ease-in-out;
+      animation: pulse 0.2s;
+      animation-timing-function: ease-in-out;
+    }
+
+    #run-button:disabled + .spinner {
+      display: block;
+    }
+
+    .spinner {
+      display: none;
+      width: 0.8rem;
+      height: 0.8rem;
+      background-color: #fff;
+      border-radius: 50%;
+      animation: blink 1s infinite;
+    }
+
     #screenshot {
-      float: right;
-      margin: 0 0 1rem 1rem;
+      width: 100%;
+      max-width: 32rem;
+      height: auto;
     }
-  }
 
-  .neverball-text {
-    font-family: "DejaVu Sans", Verdana, sans-serif;
-    font-weight: 700;
-    filter: drop-shadow(0.07em 0.07em rgba(0, 0, 0, 0.5));
-    background-image: linear-gradient(red, yellow);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: rgba(255, 255, 255, 0);
-  }
-
-  .neverball-box {
-    background-color: rgba(25, 25, 25, 0.5);
-    padding: 1rem;
-    border-radius: 1rem;
-  }
-
-  .flex {
-    display: flex;
-  }
-
-  .flex-column {
-    flex-direction: column;
-  }
-
-  .items-center {
-    align-items: center;
-  }
-
-  .gap-1 {
-    gap: 0.4rem;
-  }
-
-  .gap-2 {
-    gap: 0.8rem;
-  }
-
-  .gap-2\.5 {
-    gap: 1rem;
-  }
-
-  .gap-5 {
-    gap: 2rem;
-  }
-
-  .p-0 {
-    padding: 0;
-  }
-
-  .p-1 {
-    padding: 0.4rem;
-  }
-
-  .py-2\.5 {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-
-  .py-5 {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-
-  .m-0 {
-    margin: 0;
-  }
-
-  .list-none {
-    list-style-type: none;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  h1, h2 {
-    margin-top: 0;
-  }
-
-  .in-game .in-game\:pt-0 {
-    padding-top: 0;
-  }
-
-  .in-game .in-game\:block {
-    display: block;
-  }
-
-  .in-game .in-game\:hidden {
-    display: none;
-  }
-
-  .text-xs {
-    font-size: 1.2rem;
-  }
-
-  .flex-wrap {
-    flex-wrap: wrap;
-  }
-
-  @keyframes pulse {
-    50% {
-      transform: scale(1.2);
+    @media (min-width: 640px) {
+      #screenshot {
+        float: right;
+        margin: 0 0 1rem 1rem;
+      }
     }
-  }
 
-  @keyframes blink {
-    to {
-      opacity: 0;
+    .neverball-text {
+      font-family: "DejaVu Sans", Verdana, sans-serif;
+      font-weight: 700;
+      filter: drop-shadow(0.07em 0.07em rgba(0, 0, 0, 0.5));
+      background-image: linear-gradient(red, yellow);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: rgba(255, 255, 255, 0);
     }
-  }
+
+    .neverball-box {
+      background-color: rgba(25, 25, 25, 0.5);
+      padding: 1rem;
+      border-radius: 1rem;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-column {
+      flex-direction: column;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .gap-1 {
+      gap: 0.4rem;
+    }
+
+    .gap-2 {
+      gap: 0.8rem;
+    }
+
+    .gap-2\.5 {
+      gap: 1rem;
+    }
+
+    .gap-5 {
+      gap: 2rem;
+    }
+
+    .p-0 {
+      padding: 0;
+    }
+
+    .p-1 {
+      padding: 0.4rem;
+    }
+
+    .py-2\.5 {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .py-5 {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .m-0 {
+      margin: 0;
+    }
+
+    .list-none {
+      list-style-type: none;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    .in-game .in-game\:pt-0 {
+      padding-top: 0;
+    }
+
+    .in-game .in-game\:block {
+      display: block;
+    }
+
+    .in-game .in-game\:hidden {
+      display: none;
+    }
+
+    .text-xs {
+      font-size: 1.2rem;
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap;
+    }
+
+    @keyframes pulse {
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    @keyframes blink {
+      to {
+        opacity: 0;
+      }
+    }

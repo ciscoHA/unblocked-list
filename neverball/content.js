@@ -183,34 +183,30 @@ var Neverball = {
     var fragment = document.createDocumentFragment();
 
     for (const replay of replays) {
-      var elem = document.createElement('li');
+        var elem = document.createElement('li');
 
-      elem.classList.add('neverball-box', 'p-1', 'flex', 'gap-1', 'items-center');
-      elem.innerHTML = `
-        <div>
-          <span class="neverball-text text-xs">
-            ${replay.filename.replace('.nbr', '')}
-          </span>
-        </div>
+        elem.classList.add('neverball-box', 'p-1', 'flex', 'gap-1', 'items-center');
+        elem.innerHTML = `
+            <div>
+                <span class="neverball-text text-xs">
+                    ${replay.filename.replace('.nbr', '')}
+                </span>
+            </div>
 
-        <button class="neverball-button in-game:hidden" onclick="Neverball.watchReplay('/neverball/Replays/${replay.filename}');">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" width="10" height="10">
-            <path d="M 2 0 L 2 10 L 8 5 Z" fill="#fff"/>
-          </svg>
-        </button>
+            <!-- Removed the Watch Replay button -->
+            
+            <button class="neverball-button" onclick="Neverball.downloadFile('/neverball/Replays/${replay.filename}')">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" width="10" height="10">
+                    <path d="M 7 0 L 3 0 L 3 6 L 1 6 L 5 10 L 9 6 L 7 6 Z" fill="#fff"/>
+                </svg>
+            </button>
+        `;
 
-        <button class="neverball-button" onclick="Neverball.downloadFile('/neverball/Replays/${replay.filename}')">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" width="10" height="10">
-            <path d="M 7 0 L 3 0 L 3 6 L 1 6 L 5 10 L 9 6 L 7 6 Z" fill="#fff"/>
-          </svg>
-        </button>
-      `;
-
-      fragment.appendChild(elem);
+        fragment.appendChild(elem);
     }
 
     this._replayList.replaceChildren(fragment);
-  },
+},
 
   ready: function () {
     this._runButton.disabled = false;

@@ -15,6 +15,7 @@
 </head>
 
 <body>
+  <div style="display: none;">
   <section class="container flex flex-column gap-2.5 py-2.5">
     <div class="neverball-box in-game:hidden">
       <h1><span class="neverball-text" style="visibility: hidden;">Play Neverball</span></h1>
@@ -34,9 +35,9 @@
       <div id="overlay">
         <button id="fullscreen-button" class="fullscreen-button"><span>Fullscreen</span></button>
       </div>
-<div style="display: none;">
+    </div>
     <div class="neverball-box" id="replay-list-box">
-      <h2><span class="neverball-text">Replays</span></h2>
+      <h2><span class="neverball-text">Replays (refresh the page to apply changes)</span></h2>
 
       <div class="flex flex-column gap-2.5">
         <div id="replay-list-desc">Save or add some replays to see them here.</div>
@@ -51,7 +52,6 @@
           <!-- <span class="text-xs">Drag and drop also works.</span> -->
         </div>
       </div>
-    </div>
     </div>
 
   <script async src="content.js"></script>
