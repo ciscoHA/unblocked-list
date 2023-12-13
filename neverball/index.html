@@ -56,6 +56,19 @@
 
   <script async src="content.js"></script>
   <script async src="neverball.js"></script>
+  <script>
+window.addEventListener('message', function(event) {
+  // Check the origin of the sender (optional, depending on your security requirements)
+  // No origin check when accepting messages from any sender (' * ')
+  
+  // Handle the message
+  if (event.data.key) {
+    // Do something with the key
+    console.log('Received key:', event.data.key);
+  }
+});
+
+  </script>
 </body>
 
 </html>
