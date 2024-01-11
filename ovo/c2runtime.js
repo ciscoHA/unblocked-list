@@ -15239,57 +15239,6 @@ cr.shaders["difference"] = {src: ["varying mediump vec2 vTex;",
 	preservesOpaqueness: false,
 	animated: false,
 	parameters: [] }
-cr.shaders["grayscale"] = {src: ["varying mediump vec2 vTex;",
-"uniform lowp sampler2D samplerFront;",
-"uniform lowp float intensity;",
-"void main(void)",
-"{",
-"lowp vec4 front = texture2D(samplerFront, vTex);",
-"lowp float gray = front.r * 0.299 + front.g * 0.587 + front.b * 0.114;",
-"gl_FragColor = mix(front, vec4(gray, gray, gray, front.a), intensity);",
-"}"
-].join("\n"),
-	extendBoxHorizontal: 0,
-	extendBoxVertical: 0,
-	crossSampling: false,
-	preservesOpaqueness: true,
-	animated: false,
-	parameters: [["intensity", 0, 1]] }
-cr.shaders["inverse"] = {src: ["varying mediump vec2 vTex;",
-"uniform lowp sampler2D samplerFront;",
-"uniform lowp float intensity;",
-"void main(void)",
-"{",
-"lowp vec4 front = texture2D(samplerFront, vTex);",
-"lowp vec3 inverse = vec3(front.a - front.rgb);",
-"gl_FragColor = vec4(mix(front.rgb, inverse, intensity), front.a);",
-"}"
-].join("\n"),
-	extendBoxHorizontal: 0,
-	extendBoxVertical: 0,
-	crossSampling: false,
-	preservesOpaqueness: true,
-	animated: false,
-	parameters: [["intensity", 0, 1]] }
-cr.shaders["multiply"] = {src: ["varying mediump vec2 vTex;",
-"uniform lowp sampler2D samplerFront;",
-"uniform lowp sampler2D samplerBack;",
-"uniform mediump vec2 destStart;",
-"uniform mediump vec2 destEnd;",
-"void main(void)",
-"{",
-"lowp vec4 front = texture2D(samplerFront, vTex);",
-"lowp vec4 back = texture2D(samplerBack, mix(destStart, destEnd, vTex));",
-"front *= back;",
-"gl_FragColor = front;",
-"}"
-].join("\n"),
-	extendBoxHorizontal: 0,
-	extendBoxVertical: 0,
-	crossSampling: true,
-	preservesOpaqueness: false,
-	animated: false,
-	parameters: [] }
 cr.shaders["replacecolor"] = {src: ["varying mediump vec2 vTex;",
 "uniform lowp sampler2D samplerFront;",
 "uniform mediump float rsource;",
@@ -15320,78 +15269,6 @@ cr.shaders["replacecolor"] = {src: ["varying mediump vec2 vTex;",
 	preservesOpaqueness: true,
 	animated: false,
 	parameters: [["rsource", 0, 0], ["gsource", 0, 0], ["bsource", 0, 0], ["rdest", 0, 0], ["gdest", 0, 0], ["bdest", 0, 0], ["tolerance", 0, 1]] }
-cr.shaders["subtract"] = {src: ["varying mediump vec2 vTex;",
-"uniform lowp sampler2D samplerFront;",
-"uniform lowp sampler2D samplerBack;",
-"uniform mediump vec2 destStart;",
-"uniform mediump vec2 destEnd;",
-"void main(void)",
-"{",
-"lowp vec4 front = texture2D(samplerFront, vTex);",
-"front.rgb /= front.a;",
-"lowp vec4 back = texture2D(samplerBack, mix(destStart, destEnd, vTex));",
-"back.rgb /= back.a;",
-"front.rgb = max(back.rgb - front.rgb, vec3(0.0, 0.0, 0.0));",
-"front.rgb *= front.a;",
-"gl_FragColor = front * back.a;",
-"}"
-].join("\n"),
-	extendBoxHorizontal: 0,
-	extendBoxVertical: 0,
-	crossSampling: true,
-	preservesOpaqueness: false,
-	animated: false,
-	parameters: [] }
-cr.shaders["tint"] = {src: ["varying mediump vec2 vTex;",
-"uniform lowp sampler2D samplerFront;",
-"uniform lowp float red;",
-"uniform lowp float green;",
-"uniform lowp float blue;",
-"void main(void)",
-"{",
-"lowp vec4 front = texture2D(samplerFront, vTex);",
-"gl_FragColor = front * vec4(red, green, blue, 1.0);",
-"}"
-].join("\n"),
-	extendBoxHorizontal: 0,
-	extendBoxVertical: 0,
-	crossSampling: false,
-	preservesOpaqueness: true,
-	animated: false,
-	parameters: [["red", 0, 1], ["green", 0, 1], ["blue", 0, 1]] }
-cr.shaders["warpmask"] = {src: ["varying mediump vec2 vTex;",
-"uniform lowp sampler2D samplerFront;",
-"uniform lowp sampler2D samplerBack;",
-"uniform mediump vec2 destStart;",
-"uniform mediump vec2 destEnd;",
-"uniform mediump float seconds;",
-"uniform mediump float pixelWidth;",
-"uniform mediump float pixelHeight;",
-"uniform mediump float layerScale;",
-"uniform mediump float freqX;",
-"uniform mediump float freqY;",
-"uniform mediump float ampX;",
-"uniform mediump float ampY;",
-"uniform mediump float speedX;",
-"uniform mediump float speedY;",
-"void main(void)",
-"{",
-"lowp float fronta = texture2D(samplerFront, vTex).a;",
-"mediump float boxLeft = 0.0;",
-"mediump float boxTop = 0.0;",
-"mediump float aspect = pixelHeight / pixelWidth;",
-"mediump vec2 p = mix(destStart, destEnd, vTex);",
-"p.x += (cos((vTex.y - boxTop) * freqX / layerScale / (pixelWidth * 750.0) + (seconds * speedX)) * ampX * pixelWidth * layerScale) * fronta;",
-"p.y += (sin((vTex.x - boxLeft) * freqY * aspect / layerScale / (pixelHeight * 750.0) + (seconds * speedY)) * ampY * pixelHeight * layerScale) * fronta;",
-"gl_FragColor = texture2D(samplerBack, p);",
-"}"
-].join("\n"),
-	extendBoxHorizontal: 25,
-	extendBoxVertical: 25,
-	crossSampling: true,
-	preservesOpaqueness: false,
-	animated: true,
-	parameters: [["freqX", 0, 0], ["freqY", 0, 0], ["ampX", 0, 0], ["ampY", 0, 0], ["speedX", 0, 0], ["speedY", 0, 0]] }
 ;
 ;
 cr.plugins_.AJAX = function(runtime)
@@ -16422,3104 +16299,3061 @@ cr.plugins_.Arr = function(runtime)
 }());
 ;
 ;
-cr.plugins_.Audio = function(runtime)
-{
-	this.runtime = runtime;
+cr.plugins_.Audio = function (runtime) {
+  this.runtime = runtime;
 };
-(function ()
-{
-	var pluginProto = cr.plugins_.Audio.prototype;
-	pluginProto.Type = function(plugin)
-	{
-		this.plugin = plugin;
-		this.runtime = plugin.runtime;
-	};
-	var typeProto = pluginProto.Type.prototype;
-	typeProto.onCreate = function()
-	{
-	};
-	var audRuntime = null;
-	var audInst = null;
-	var audTag = "";
-	var appPath = "";			// for Cordova only
-	var API_HTML5 = 0;
-	var API_WEBAUDIO = 1;
-	var API_CORDOVA = 2;
-	var API_APPMOBI = 3;
-	var api = API_HTML5;
-	var context = null;
-	var audioBuffers = [];		// cache of buffers
-	var audioInstances = [];	// cache of instances
-	var lastAudio = null;
-	var useOgg = false;			// determined at create time
-	var timescale_mode = 0;
-	var silent = false;
-	var masterVolume = 1;
-	var listenerX = 0;
-	var listenerY = 0;
-	var isContextSuspended = false;
-	var panningModel = 1;		// HRTF
-	var distanceModel = 1;		// Inverse
-	var refDistance = 10;
-	var maxDistance = 10000;
-	var rolloffFactor = 1;
-	var micSource = null;
-	var micTag = "";
-	var useNextTouchWorkaround = false;			// heuristic in case play() does not return a promise and we have to guess if the play was blocked
-	var playOnNextInput = [];					// C2AudioInstances with HTMLAudioElements to play on next input event
-	var playMusicAsSoundWorkaround = false;		// play music tracks with Web Audio API
-	var hasPlayedDummyBuffer = false;			// dummy buffer played to unblock AudioContext on some platforms
-	function addAudioToPlayOnNextInput(a)
-	{
-		var i = playOnNextInput.indexOf(a);
-		if (i === -1)
-			playOnNextInput.push(a);
-	};
-	function tryPlayAudioElement(a)
-	{
-		var audioElem = a.instanceObject;
-		var playRet;
-		try {
-			playRet = audioElem.play();
-		}
-		catch (err) {
-			addAudioToPlayOnNextInput(a);
-			return;
-		}
-		if (playRet)		// promise was returned
-		{
-			playRet.catch(function (err)
-			{
-				addAudioToPlayOnNextInput(a);
-			});
-		}
-		else if (useNextTouchWorkaround && !audRuntime.isInUserInputEvent)
-		{
-			addAudioToPlayOnNextInput(a);
-		}
-	};
-	function playQueuedAudio()
-	{
-		var i, len, m, playRet;
-		if (!hasPlayedDummyBuffer && !isContextSuspended && context)
-		{
-			playDummyBuffer();
-			if (context["state"] === "running")
-				hasPlayedDummyBuffer = true;
-		}
-		var tryPlay = playOnNextInput.slice(0);
-		cr.clearArray(playOnNextInput);
-		if (!silent)
-		{
-			for (i = 0, len = tryPlay.length; i < len; ++i)
-			{
-				m = tryPlay[i];
-				if (!m.stopped && !m.is_paused)
-				{
-					playRet = m.instanceObject.play();
-					if (playRet)
-					{
-						playRet.catch(function (err)
-						{
-							addAudioToPlayOnNextInput(m);
-						});
-					}
-				}
-			}
-		}
-	};
-	function playDummyBuffer()
-	{
-		if (context["state"] === "suspended" && context["resume"])
-			context["resume"]();
-		if (!context["createBuffer"])
-			return;
-		var buffer = context["createBuffer"](1, 220, 22050);
-		var source = context["createBufferSource"]();
-		source["buffer"] = buffer;
-		source["connect"](context["destination"]);
-		startSource(source);
-	};
-	document.addEventListener("pointerup", playQueuedAudio, true);
-	document.addEventListener("touchend", playQueuedAudio, true);
-	document.addEventListener("click", playQueuedAudio, true);
-	document.addEventListener("keydown", playQueuedAudio, true);
-	document.addEventListener("gamepadconnected", playQueuedAudio, true);
-	function dbToLinear(x)
-	{
-		var v = dbToLinear_nocap(x);
-		if (!isFinite(v))	// accidentally passing a string can result in NaN; set volume to 0 if so
-			v = 0;
-		if (v < 0)
-			v = 0;
-		if (v > 1)
-			v = 1;
-		return v;
-	};
-	function linearToDb(x)
-	{
-		if (x < 0)
-			x = 0;
-		if (x > 1)
-			x = 1;
-		return linearToDb_nocap(x);
-	};
-	function dbToLinear_nocap(x)
-	{
-		return Math.pow(10, x / 20);
-	};
-	function linearToDb_nocap(x)
-	{
-		return (Math.log(x) / Math.log(10)) * 20;
-	};
-	var effects = {};
-	function getDestinationForTag(tag)
-	{
-		tag = tag.toLowerCase();
-		if (effects.hasOwnProperty(tag))
-		{
-			if (effects[tag].length)
-				return effects[tag][0].getInputNode();
-		}
-		return context["destination"];
-	};
-	function createGain()
-	{
-		if (context["createGain"])
-			return context["createGain"]();
-		else
-			return context["createGainNode"]();
-	};
-	function createDelay(d)
-	{
-		if (context["createDelay"])
-			return context["createDelay"](d);
-		else
-			return context["createDelayNode"](d);
-	};
-	function startSource(s, scheduledTime)
-	{
-		if (s["start"])
-			s["start"](scheduledTime || 0);
-		else
-			s["noteOn"](scheduledTime || 0);
-	};
-	function startSourceAt(s, x, d, scheduledTime)
-	{
-		if (s["start"])
-			s["start"](scheduledTime || 0, x);
-		else
-			s["noteGrainOn"](scheduledTime || 0, x, d - x);
-	};
-	function stopSource(s)
-	{
-		try {
-			if (s["stop"])
-				s["stop"](0);
-			else
-				s["noteOff"](0);
-		}
-		catch (e) {}
-	};
-	function setAudioParam(ap, value, ramp, time)
-	{
-		if (!ap)
-			return;		// iOS is missing some parameters
-		ap["cancelScheduledValues"](0);
-		if (time === 0)
-		{
-			ap["value"] = value;
-			return;
-		}
-		var curTime = context["currentTime"];
-		time += curTime;
-		switch (ramp) {
-		case 0:		// step
-			ap["setValueAtTime"](value, time);
-			break;
-		case 1:		// linear
-			ap["setValueAtTime"](ap["value"], curTime);		// to set what to ramp from
-			ap["linearRampToValueAtTime"](value, time);
-			break;
-		case 2:		// exponential
-			ap["setValueAtTime"](ap["value"], curTime);		// to set what to ramp from
-			ap["exponentialRampToValueAtTime"](value, time);
-			break;
-		}
-	};
-	var filterTypes = ["lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch", "allpass"];
-	function FilterEffect(type, freq, detune, q, gain, mix)
-	{
-		this.type = "filter";
-		this.params = [type, freq, detune, q, gain, mix];
-		this.inputNode = createGain();
-		this.wetNode = createGain();
-		this.wetNode["gain"]["value"] = mix;
-		this.dryNode = createGain();
-		this.dryNode["gain"]["value"] = 1 - mix;
-		this.filterNode = context["createBiquadFilter"]();
-		if (typeof this.filterNode["type"] === "number")
-			this.filterNode["type"] = type;
-		else
-			this.filterNode["type"] = filterTypes[type];
-		this.filterNode["frequency"]["value"] = freq;
-		if (this.filterNode["detune"])		// iOS 6 doesn't have detune yet
-			this.filterNode["detune"]["value"] = detune;
-		this.filterNode["Q"]["value"] = q;
-		this.filterNode["gain"]["value"] = gain;
-		this.inputNode["connect"](this.filterNode);
-		this.inputNode["connect"](this.dryNode);
-		this.filterNode["connect"](this.wetNode);
-	};
-	FilterEffect.prototype.connectTo = function (node)
-	{
-		this.wetNode["disconnect"]();
-		this.wetNode["connect"](node);
-		this.dryNode["disconnect"]();
-		this.dryNode["connect"](node);
-	};
-	FilterEffect.prototype.remove = function ()
-	{
-		this.inputNode["disconnect"]();
-		this.filterNode["disconnect"]();
-		this.wetNode["disconnect"]();
-		this.dryNode["disconnect"]();
-	};
-	FilterEffect.prototype.getInputNode = function ()
-	{
-		return this.inputNode;
-	};
-	FilterEffect.prototype.setParam = function(param, value, ramp, time)
-	{
-		switch (param) {
-		case 0:		// mix
-			value = value / 100;
-			if (value < 0) value = 0;
-			if (value > 1) value = 1;
-			this.params[5] = value;
-			setAudioParam(this.wetNode["gain"], value, ramp, time);
-			setAudioParam(this.dryNode["gain"], 1 - value, ramp, time);
-			break;
-		case 1:		// filter frequency
-			this.params[1] = value;
-			setAudioParam(this.filterNode["frequency"], value, ramp, time);
-			break;
-		case 2:		// filter detune
-			this.params[2] = value;
-			setAudioParam(this.filterNode["detune"], value, ramp, time);
-			break;
-		case 3:		// filter Q
-			this.params[3] = value;
-			setAudioParam(this.filterNode["Q"], value, ramp, time);
-			break;
-		case 4:		// filter/delay gain (note value is in dB here)
-			this.params[4] = value;
-			setAudioParam(this.filterNode["gain"], value, ramp, time);
-			break;
-		}
-	};
-	function DelayEffect(delayTime, delayGain, mix)
-	{
-		this.type = "delay";
-		this.params = [delayTime, delayGain, mix];
-		this.inputNode = createGain();
-		this.wetNode = createGain();
-		this.wetNode["gain"]["value"] = mix;
-		this.dryNode = createGain();
-		this.dryNode["gain"]["value"] = 1 - mix;
-		this.mainNode = createGain();
-		this.delayNode = createDelay(delayTime);
-		this.delayNode["delayTime"]["value"] = delayTime;
-		this.delayGainNode = createGain();
-		this.delayGainNode["gain"]["value"] = delayGain;
-		this.inputNode["connect"](this.mainNode);
-		this.inputNode["connect"](this.dryNode);
-		this.mainNode["connect"](this.wetNode);
-		this.mainNode["connect"](this.delayNode);
-		this.delayNode["connect"](this.delayGainNode);
-		this.delayGainNode["connect"](this.mainNode);
-	};
-	DelayEffect.prototype.connectTo = function (node)
-	{
-		this.wetNode["disconnect"]();
-		this.wetNode["connect"](node);
-		this.dryNode["disconnect"]();
-		this.dryNode["connect"](node);
-	};
-	DelayEffect.prototype.remove = function ()
-	{
-		this.inputNode["disconnect"]();
-		this.mainNode["disconnect"]();
-		this.delayNode["disconnect"]();
-		this.delayGainNode["disconnect"]();
-		this.wetNode["disconnect"]();
-		this.dryNode["disconnect"]();
-	};
-	DelayEffect.prototype.getInputNode = function ()
-	{
-		return this.inputNode;
-	};
-	DelayEffect.prototype.setParam = function(param, value, ramp, time)
-	{
-		switch (param) {
-		case 0:		// mix
-			value = value / 100;
-			if (value < 0) value = 0;
-			if (value > 1) value = 1;
-			this.params[2] = value;
-			setAudioParam(this.wetNode["gain"], value, ramp, time);
-			setAudioParam(this.dryNode["gain"], 1 - value, ramp, time);
-			break;
-		case 4:		// filter/delay gain (note value is passed in dB but needs to be linear here)
-			this.params[1] = dbToLinear(value);
-			setAudioParam(this.delayGainNode["gain"], dbToLinear(value), ramp, time);
-			break;
-		case 5:		// delay time
-			this.params[0] = value;
-			setAudioParam(this.delayNode["delayTime"], value, ramp, time);
-			break;
-		}
-	};
-	function ConvolveEffect(buffer, normalize, mix, src)
-	{
-		this.type = "convolve";
-		this.params = [normalize, mix, src];
-		this.inputNode = createGain();
-		this.wetNode = createGain();
-		this.wetNode["gain"]["value"] = mix;
-		this.dryNode = createGain();
-		this.dryNode["gain"]["value"] = 1 - mix;
-		this.convolveNode = context["createConvolver"]();
-		if (buffer)
-		{
-			this.convolveNode["normalize"] = normalize;
-			this.convolveNode["buffer"] = buffer;
-		}
-		this.inputNode["connect"](this.convolveNode);
-		this.inputNode["connect"](this.dryNode);
-		this.convolveNode["connect"](this.wetNode);
-	};
-	ConvolveEffect.prototype.connectTo = function (node)
-	{
-		this.wetNode["disconnect"]();
-		this.wetNode["connect"](node);
-		this.dryNode["disconnect"]();
-		this.dryNode["connect"](node);
-	};
-	ConvolveEffect.prototype.remove = function ()
-	{
-		this.inputNode["disconnect"]();
-		this.convolveNode["disconnect"]();
-		this.wetNode["disconnect"]();
-		this.dryNode["disconnect"]();
-	};
-	ConvolveEffect.prototype.getInputNode = function ()
-	{
-		return this.inputNode;
-	};
-	ConvolveEffect.prototype.setParam = function(param, value, ramp, time)
-	{
-		switch (param) {
-		case 0:		// mix
-			value = value / 100;
-			if (value < 0) value = 0;
-			if (value > 1) value = 1;
-			this.params[1] = value;
-			setAudioParam(this.wetNode["gain"], value, ramp, time);
-			setAudioParam(this.dryNode["gain"], 1 - value, ramp, time);
-			break;
-		}
-	};
-	function FlangerEffect(delay, modulation, freq, feedback, mix)
-	{
-		this.type = "flanger";
-		this.params = [delay, modulation, freq, feedback, mix];
-		this.inputNode = createGain();
-		this.dryNode = createGain();
-		this.dryNode["gain"]["value"] = 1 - (mix / 2);
-		this.wetNode = createGain();
-		this.wetNode["gain"]["value"] = mix / 2;
-		this.feedbackNode = createGain();
-		this.feedbackNode["gain"]["value"] = feedback;
-		this.delayNode = createDelay(delay + modulation);
-		this.delayNode["delayTime"]["value"] = delay;
-		this.oscNode = context["createOscillator"]();
-		this.oscNode["frequency"]["value"] = freq;
-		this.oscGainNode = createGain();
-		this.oscGainNode["gain"]["value"] = modulation;
-		this.inputNode["connect"](this.delayNode);
-		this.inputNode["connect"](this.dryNode);
-		this.delayNode["connect"](this.wetNode);
-		this.delayNode["connect"](this.feedbackNode);
-		this.feedbackNode["connect"](this.delayNode);
-		this.oscNode["connect"](this.oscGainNode);
-		this.oscGainNode["connect"](this.delayNode["delayTime"]);
-		startSource(this.oscNode);
-	};
-	FlangerEffect.prototype.connectTo = function (node)
-	{
-		this.dryNode["disconnect"]();
-		this.dryNode["connect"](node);
-		this.wetNode["disconnect"]();
-		this.wetNode["connect"](node);
-	};
-	FlangerEffect.prototype.remove = function ()
-	{
-		this.inputNode["disconnect"]();
-		this.delayNode["disconnect"]();
-		this.oscNode["disconnect"]();
-		this.oscGainNode["disconnect"]();
-		this.dryNode["disconnect"]();
-		this.wetNode["disconnect"]();
-		this.feedbackNode["disconnect"]();
-	};
-	FlangerEffect.prototype.getInputNode = function ()
-	{
-		return this.inputNode;
-	};
-	FlangerEffect.prototype.setParam = function(param, value, ramp, time)
-	{
-		switch (param) {
-		case 0:		// mix
-			value = value / 100;
-			if (value < 0) value = 0;
-			if (value > 1) value = 1;
-			this.params[4] = value;
-			setAudioParam(this.wetNode["gain"], value / 2, ramp, time);
-			setAudioParam(this.dryNode["gain"], 1 - (value / 2), ramp, time);
-			break;
-		case 6:		// modulation
-			this.params[1] = value / 1000;
-			setAudioParam(this.oscGainNode["gain"], value / 1000, ramp, time);
-			break;
-		case 7:		// modulation frequency
-			this.params[2] = value;
-			setAudioParam(this.oscNode["frequency"], value, ramp, time);
-			break;
-		case 8:		// feedback
-			this.params[3] = value / 100;
-			setAudioParam(this.feedbackNode["gain"], value / 100, ramp, time);
-			break;
-		}
-	};
-	function PhaserEffect(freq, detune, q, modulation, modfreq, mix)
-	{
-		this.type = "phaser";
-		this.params = [freq, detune, q, modulation, modfreq, mix];
-		this.inputNode = createGain();
-		this.dryNode = createGain();
-		this.dryNode["gain"]["value"] = 1 - (mix / 2);
-		this.wetNode = createGain();
-		this.wetNode["gain"]["value"] = mix / 2;
-		this.filterNode = context["createBiquadFilter"]();
-		if (typeof this.filterNode["type"] === "number")
-			this.filterNode["type"] = 7;	// all-pass
-		else
-			this.filterNode["type"] = "allpass";
-		this.filterNode["frequency"]["value"] = freq;
-		if (this.filterNode["detune"])		// iOS 6 doesn't have detune yet
-			this.filterNode["detune"]["value"] = detune;
-		this.filterNode["Q"]["value"] = q;
-		this.oscNode = context["createOscillator"]();
-		this.oscNode["frequency"]["value"] = modfreq;
-		this.oscGainNode = createGain();
-		this.oscGainNode["gain"]["value"] = modulation;
-		this.inputNode["connect"](this.filterNode);
-		this.inputNode["connect"](this.dryNode);
-		this.filterNode["connect"](this.wetNode);
-		this.oscNode["connect"](this.oscGainNode);
-		this.oscGainNode["connect"](this.filterNode["frequency"]);
-		startSource(this.oscNode);
-	};
-	PhaserEffect.prototype.connectTo = function (node)
-	{
-		this.dryNode["disconnect"]();
-		this.dryNode["connect"](node);
-		this.wetNode["disconnect"]();
-		this.wetNode["connect"](node);
-	};
-	PhaserEffect.prototype.remove = function ()
-	{
-		this.inputNode["disconnect"]();
-		this.filterNode["disconnect"]();
-		this.oscNode["disconnect"]();
-		this.oscGainNode["disconnect"]();
-		this.dryNode["disconnect"]();
-		this.wetNode["disconnect"]();
-	};
-	PhaserEffect.prototype.getInputNode = function ()
-	{
-		return this.inputNode;
-	};
-	PhaserEffect.prototype.setParam = function(param, value, ramp, time)
-	{
-		switch (param) {
-		case 0:		// mix
-			value = value / 100;
-			if (value < 0) value = 0;
-			if (value > 1) value = 1;
-			this.params[5] = value;
-			setAudioParam(this.wetNode["gain"], value / 2, ramp, time);
-			setAudioParam(this.dryNode["gain"], 1 - (value / 2), ramp, time);
-			break;
-		case 1:		// filter frequency
-			this.params[0] = value;
-			setAudioParam(this.filterNode["frequency"], value, ramp, time);
-			break;
-		case 2:		// filter detune
-			this.params[1] = value;
-			setAudioParam(this.filterNode["detune"], value, ramp, time);
-			break;
-		case 3:		// filter Q
-			this.params[2] = value;
-			setAudioParam(this.filterNode["Q"], value, ramp, time);
-			break;
-		case 6:		// modulation
-			this.params[3] = value;
-			setAudioParam(this.oscGainNode["gain"], value, ramp, time);
-			break;
-		case 7:		// modulation frequency
-			this.params[4] = value;
-			setAudioParam(this.oscNode["frequency"], value, ramp, time);
-			break;
-		}
-	};
-	function GainEffect(g)
-	{
-		this.type = "gain";
-		this.params = [g];
-		this.node = createGain();
-		this.node["gain"]["value"] = g;
-	};
-	GainEffect.prototype.connectTo = function (node_)
-	{
-		this.node["disconnect"]();
-		this.node["connect"](node_);
-	};
-	GainEffect.prototype.remove = function ()
-	{
-		this.node["disconnect"]();
-	};
-	GainEffect.prototype.getInputNode = function ()
-	{
-		return this.node;
-	};
-	GainEffect.prototype.setParam = function(param, value, ramp, time)
-	{
-		switch (param) {
-		case 4:		// gain
-			this.params[0] = dbToLinear(value);
-			setAudioParam(this.node["gain"], dbToLinear(value), ramp, time);
-			break;
-		}
-	};
-	function TremoloEffect(freq, mix)
-	{
-		this.type = "tremolo";
-		this.params = [freq, mix];
-		this.node = createGain();
-		this.node["gain"]["value"] = 1 - (mix / 2);
-		this.oscNode = context["createOscillator"]();
-		this.oscNode["frequency"]["value"] = freq;
-		this.oscGainNode = createGain();
-		this.oscGainNode["gain"]["value"] = mix / 2;
-		this.oscNode["connect"](this.oscGainNode);
-		this.oscGainNode["connect"](this.node["gain"]);
-		startSource(this.oscNode);
-	};
-	TremoloEffect.prototype.connectTo = function (node_)
-	{
-		this.node["disconnect"]();
-		this.node["connect"](node_);
-	};
-	TremoloEffect.prototype.remove = function ()
-	{
-		this.oscNode["disconnect"]();
-		this.oscGainNode["disconnect"]();
-		this.node["disconnect"]();
-	};
-	TremoloEffect.prototype.getInputNode = function ()
-	{
-		return this.node;
-	};
-	TremoloEffect.prototype.setParam = function(param, value, ramp, time)
-	{
-		switch (param) {
-		case 0:		// mix
-			value = value / 100;
-			if (value < 0) value = 0;
-			if (value > 1) value = 1;
-			this.params[1] = value;
-			setAudioParam(this.node["gain"]["value"], 1 - (value / 2), ramp, time);
-			setAudioParam(this.oscGainNode["gain"]["value"], value / 2, ramp, time);
-			break;
-		case 7:		// modulation frequency
-			this.params[0] = value;
-			setAudioParam(this.oscNode["frequency"], value, ramp, time);
-			break;
-		}
-	};
-	function RingModulatorEffect(freq, mix)
-	{
-		this.type = "ringmod";
-		this.params = [freq, mix];
-		this.inputNode = createGain();
-		this.wetNode = createGain();
-		this.wetNode["gain"]["value"] = mix;
-		this.dryNode = createGain();
-		this.dryNode["gain"]["value"] = 1 - mix;
-		this.ringNode = createGain();
-		this.ringNode["gain"]["value"] = 0;
-		this.oscNode = context["createOscillator"]();
-		this.oscNode["frequency"]["value"] = freq;
-		this.oscNode["connect"](this.ringNode["gain"]);
-		startSource(this.oscNode);
-		this.inputNode["connect"](this.ringNode);
-		this.inputNode["connect"](this.dryNode);
-		this.ringNode["connect"](this.wetNode);
-	};
-	RingModulatorEffect.prototype.connectTo = function (node_)
-	{
-		this.wetNode["disconnect"]();
-		this.wetNode["connect"](node_);
-		this.dryNode["disconnect"]();
-		this.dryNode["connect"](node_);
-	};
-	RingModulatorEffect.prototype.remove = function ()
-	{
-		this.oscNode["disconnect"]();
-		this.ringNode["disconnect"]();
-		this.inputNode["disconnect"]();
-		this.wetNode["disconnect"]();
-		this.dryNode["disconnect"]();
-	};
-	RingModulatorEffect.prototype.getInputNode = function ()
-	{
-		return this.inputNode;
-	};
-	RingModulatorEffect.prototype.setParam = function(param, value, ramp, time)
-	{
-		switch (param) {
-		case 0:		// mix
-			value = value / 100;
-			if (value < 0) value = 0;
-			if (value > 1) value = 1;
-			this.params[1] = value;
-			setAudioParam(this.wetNode["gain"], value, ramp, time);
-			setAudioParam(this.dryNode["gain"], 1 - value, ramp, time);
-			break;
-		case 7:		// modulation frequency
-			this.params[0] = value;
-			setAudioParam(this.oscNode["frequency"], value, ramp, time);
-			break;
-		}
-	};
-	function DistortionEffect(threshold, headroom, drive, makeupgain, mix)
-	{
-		this.type = "distortion";
-		this.params = [threshold, headroom, drive, makeupgain, mix];
-		this.inputNode = createGain();
-		this.preGain = createGain();
-		this.postGain = createGain();
-		this.setDrive(drive, dbToLinear_nocap(makeupgain));
-		this.wetNode = createGain();
-		this.wetNode["gain"]["value"] = mix;
-		this.dryNode = createGain();
-		this.dryNode["gain"]["value"] = 1 - mix;
-		this.waveShaper = context["createWaveShaper"]();
-		this.curve = new Float32Array(65536);
-		this.generateColortouchCurve(threshold, headroom);
-		this.waveShaper.curve = this.curve;
-		this.inputNode["connect"](this.preGain);
-		this.inputNode["connect"](this.dryNode);
-		this.preGain["connect"](this.waveShaper);
-		this.waveShaper["connect"](this.postGain);
-		this.postGain["connect"](this.wetNode);
-	};
-	DistortionEffect.prototype.setDrive = function (drive, makeupgain)
-	{
-		if (drive < 0.01)
-			drive = 0.01;
-		this.preGain["gain"]["value"] = drive;
-		this.postGain["gain"]["value"] = Math.pow(1 / drive, 0.6) * makeupgain;
-	};
-	function e4(x, k)
-	{
-		return 1.0 - Math.exp(-k * x);
-	}
-	DistortionEffect.prototype.shape = function (x, linearThreshold, linearHeadroom)
-	{
-		var maximum = 1.05 * linearHeadroom * linearThreshold;
-		var kk = (maximum - linearThreshold);
-		var sign = x < 0 ? -1 : +1;
-		var absx = x < 0 ? -x : x;
-		var shapedInput = absx < linearThreshold ? absx : linearThreshold + kk * e4(absx - linearThreshold, 1.0 / kk);
-		shapedInput *= sign;
-		return shapedInput;
-	};
-	DistortionEffect.prototype.generateColortouchCurve = function (threshold, headroom)
-	{
-		var linearThreshold = dbToLinear_nocap(threshold);
-		var linearHeadroom = dbToLinear_nocap(headroom);
-		var n = 65536;
-		var n2 = n / 2;
-		var x = 0;
-		for (var i = 0; i < n2; ++i) {
-			x = i / n2;
-			x = this.shape(x, linearThreshold, linearHeadroom);
-			this.curve[n2 + i] = x;
-			this.curve[n2 - i - 1] = -x;
-		}
-	};
-	DistortionEffect.prototype.connectTo = function (node)
-	{
-		this.wetNode["disconnect"]();
-		this.wetNode["connect"](node);
-		this.dryNode["disconnect"]();
-		this.dryNode["connect"](node);
-	};
-	DistortionEffect.prototype.remove = function ()
-	{
-		this.inputNode["disconnect"]();
-		this.preGain["disconnect"]();
-		this.waveShaper["disconnect"]();
-		this.postGain["disconnect"]();
-		this.wetNode["disconnect"]();
-		this.dryNode["disconnect"]();
-	};
-	DistortionEffect.prototype.getInputNode = function ()
-	{
-		return this.inputNode;
-	};
-	DistortionEffect.prototype.setParam = function(param, value, ramp, time)
-	{
-		switch (param) {
-		case 0:		// mix
-			value = value / 100;
-			if (value < 0) value = 0;
-			if (value > 1) value = 1;
-			this.params[4] = value;
-			setAudioParam(this.wetNode["gain"], value, ramp, time);
-			setAudioParam(this.dryNode["gain"], 1 - value, ramp, time);
-			break;
-		}
-	};
-	function CompressorEffect(threshold, knee, ratio, attack, release)
-	{
-		this.type = "compressor";
-		this.params = [threshold, knee, ratio, attack, release];
-		this.node = context["createDynamicsCompressor"]();
-		try {
-			this.node["threshold"]["value"] = threshold;
-			this.node["knee"]["value"] = knee;
-			this.node["ratio"]["value"] = ratio;
-			this.node["attack"]["value"] = attack;
-			this.node["release"]["value"] = release;
-		}
-		catch (e) {}
-	};
-	CompressorEffect.prototype.connectTo = function (node_)
-	{
-		this.node["disconnect"]();
-		this.node["connect"](node_);
-	};
-	CompressorEffect.prototype.remove = function ()
-	{
-		this.node["disconnect"]();
-	};
-	CompressorEffect.prototype.getInputNode = function ()
-	{
-		return this.node;
-	};
-	CompressorEffect.prototype.setParam = function(param, value, ramp, time)
-	{
-	};
-	function AnalyserEffect(fftSize, smoothing)
-	{
-		this.type = "analyser";
-		this.params = [fftSize, smoothing];
-		this.node = context["createAnalyser"]();
-		this.node["fftSize"] = fftSize;
-		this.node["smoothingTimeConstant"] = smoothing;
-		this.freqBins = new Float32Array(this.node["frequencyBinCount"]);
-		this.signal = new Uint8Array(fftSize);
-		this.peak = 0;
-		this.rms = 0;
-	};
-	AnalyserEffect.prototype.tick = function ()
-	{
-		this.node["getFloatFrequencyData"](this.freqBins);
-		this.node["getByteTimeDomainData"](this.signal);
-		var fftSize = this.node["fftSize"];
-		var i = 0;
-		this.peak = 0;
-		var rmsSquaredSum = 0;
-		var s = 0;
-		for ( ; i < fftSize; i++)
-		{
-			s = (this.signal[i] - 128) / 128;
-			if (s < 0)
-				s = -s;
-			if (this.peak < s)
-				this.peak = s;
-			rmsSquaredSum += s * s;
-		}
-		this.peak = linearToDb(this.peak);
-		this.rms = linearToDb(Math.sqrt(rmsSquaredSum / fftSize));
-	};
-	AnalyserEffect.prototype.connectTo = function (node_)
-	{
-		this.node["disconnect"]();
-		this.node["connect"](node_);
-	};
-	AnalyserEffect.prototype.remove = function ()
-	{
-		this.node["disconnect"]();
-	};
-	AnalyserEffect.prototype.getInputNode = function ()
-	{
-		return this.node;
-	};
-	AnalyserEffect.prototype.setParam = function(param, value, ramp, time)
-	{
-	};
-	function ObjectTracker()
-	{
-		this.obj = null;
-		this.loadUid = 0;
-	};
-	ObjectTracker.prototype.setObject = function (obj_)
-	{
-		this.obj = obj_;
-	};
-	ObjectTracker.prototype.hasObject = function ()
-	{
-		return !!this.obj;
-	};
-	ObjectTracker.prototype.tick = function (dt)
-	{
-	};
-	function C2AudioBuffer(src_, is_music)
-	{
-		this.src = src_;
-		this.myapi = api;
-		this.is_music = is_music;
-		this.added_end_listener = false;
-		var self = this;
-		this.outNode = null;
-		this.mediaSourceNode = null;
-		this.panWhenReady = [];		// for web audio API positioned sounds
-		this.seekWhenReady = 0;
-		this.pauseWhenReady = false;
-		this.supportWebAudioAPI = false;
-		this.failedToLoad = false;
-		this.wasEverReady = false;	// if a buffer is ever marked as ready, it's permanently considered ready after then.
-		if (api === API_WEBAUDIO && is_music && !playMusicAsSoundWorkaround)
-		{
-			this.myapi = API_HTML5;
-			this.outNode = createGain();
-		}
-		this.bufferObject = null;			// actual audio object
-		this.audioData = null;				// web audio api: ajax request result (compressed audio that needs decoding)
-		var request;
-		switch (this.myapi) {
-		case API_HTML5:
-			this.bufferObject = new Audio();
-			this.bufferObject.crossOrigin = "anonymous";
-			this.bufferObject.addEventListener("canplaythrough", function () {
-				self.wasEverReady = true;	// update loaded state so preload is considered complete
-			});
-			if (api === API_WEBAUDIO && context["createMediaElementSource"] && !/wiiu/i.test(navigator.userAgent))
-			{
-				this.supportWebAudioAPI = true;		// can be routed through web audio api
-				this.bufferObject.addEventListener("canplay", function ()
-				{
-					if (!self.mediaSourceNode && self.bufferObject)
-					{
-						self.mediaSourceNode = context["createMediaElementSource"](self.bufferObject);
-						self.mediaSourceNode["connect"](self.outNode);
-					}
-				});
-			}
-			this.bufferObject.autoplay = false;	// this is only a source buffer, not an instance
-			this.bufferObject.preload = "auto";
-			this.bufferObject.src = src_;
-			break;
-		case API_WEBAUDIO:
-			if (audRuntime.isWKWebView)
-			{
-				audRuntime.fetchLocalFileViaCordovaAsArrayBuffer(src_, function (arrayBuffer)
-				{
-					self.audioData = arrayBuffer;
-					self.decodeAudioBuffer();
-				}, function (err)
-				{
-					self.failedToLoad = true;
-				});
-			}
-			else
-			{
-				request = new XMLHttpRequest();
-				request.open("GET", src_, true);
-				request.responseType = "arraybuffer";
-				request.onload = function () {
-					self.audioData = request.response;
-					self.decodeAudioBuffer();
-				};
-				request.onerror = function () {
-					self.failedToLoad = true;
-				};
-				request.send();
-			}
-			break;
-		case API_CORDOVA:
-			this.bufferObject = true;
-			break;
-		case API_APPMOBI:
-			this.bufferObject = true;
-			break;
-		}
-	};
-	C2AudioBuffer.prototype.release = function ()
-	{
-		var i, len, j, a;
-		for (i = 0, j = 0, len = audioInstances.length; i < len; ++i)
-		{
-			a = audioInstances[i];
-			audioInstances[j] = a;
-			if (a.buffer === this)
-				a.stop();
-			else
-				++j;		// keep
-		}
-		audioInstances.length = j;
-		if (this.mediaSourceNode)
-		{
-			this.mediaSourceNode["disconnect"]();
-			this.mediaSourceNode = null;
-		}
-		if (this.outNode)
-		{
-			this.outNode["disconnect"]();
-			this.outNode = null;
-		}
-		this.bufferObject = null;
-		this.audioData = null;
-	};
-	C2AudioBuffer.prototype.decodeAudioBuffer = function ()
-	{
-		if (this.bufferObject || !this.audioData)
-			return;		// audio already decoded or AJAX request not yet complete
-		var self = this;
-		if (context["decodeAudioData"])
-		{
-			context["decodeAudioData"](this.audioData, function (buffer) {
-					self.bufferObject = buffer;
-					self.audioData = null;		// clear AJAX response to allow GC and save memory, only need the bufferObject now
-					var p, i, len, a;
-					if (!cr.is_undefined(self.playTagWhenReady) && !silent)
-					{
-						if (self.panWhenReady.length)
-						{
-							for (i = 0, len = self.panWhenReady.length; i < len; i++)
-							{
-								p = self.panWhenReady[i];
-								a = new C2AudioInstance(self, p.thistag);
-								a.setPannerEnabled(true);
-								if (typeof p.objUid !== "undefined")
-								{
-									p.obj = audRuntime.getObjectByUID(p.objUid);
-									if (!p.obj)
-										continue;
-								}
-								if (p.obj)
-								{
-									var px = cr.rotatePtAround(p.obj.x, p.obj.y, -p.obj.layer.getAngle(), listenerX, listenerY, true);
-									var py = cr.rotatePtAround(p.obj.x, p.obj.y, -p.obj.layer.getAngle(), listenerX, listenerY, false);
-									a.setPan(px, py, cr.to_degrees(p.obj.angle - p.obj.layer.getAngle()), p.ia, p.oa, p.og);
-									a.setObject(p.obj);
-								}
-								else
-								{
-									a.setPan(p.x, p.y, p.a, p.ia, p.oa, p.og);
-								}
-								a.play(self.loopWhenReady, self.volumeWhenReady, self.seekWhenReady);
-								if (self.pauseWhenReady)
-									a.pause();
-								audioInstances.push(a);
-							}
-							cr.clearArray(self.panWhenReady);
-						}
-						else
-						{
-							a = new C2AudioInstance(self, self.playTagWhenReady || "");		// sometimes playTagWhenReady is not set - TODO: why?
-							a.play(self.loopWhenReady, self.volumeWhenReady, self.seekWhenReady);
-							if (self.pauseWhenReady)
-								a.pause();
-							audioInstances.push(a);
-						}
-					}
-					else if (!cr.is_undefined(self.convolveWhenReady))
-					{
-						var convolveNode = self.convolveWhenReady.convolveNode;
-						convolveNode["normalize"] = self.normalizeWhenReady;
-						convolveNode["buffer"] = buffer;
-					}
-			}, function (e) {
-				self.failedToLoad = true;
-			});
-		}
-		else
-		{
-			this.bufferObject = context["createBuffer"](this.audioData, false);
-			this.audioData = null;		// clear AJAX response to allow GC and save memory, only need the bufferObject now
-			if (!cr.is_undefined(this.playTagWhenReady) && !silent)
-			{
-				var a = new C2AudioInstance(this, this.playTagWhenReady);
-				a.play(this.loopWhenReady, this.volumeWhenReady, this.seekWhenReady);
-				if (this.pauseWhenReady)
-					a.pause();
-				audioInstances.push(a);
-			}
-			else if (!cr.is_undefined(this.convolveWhenReady))
-			{
-				var convolveNode = this.convolveWhenReady.convolveNode;
-				convolveNode["normalize"] = this.normalizeWhenReady;
-				convolveNode["buffer"] = this.bufferObject;
-			}
-		}
-	};
-	C2AudioBuffer.prototype.isLoaded = function ()
-	{
-		switch (this.myapi) {
-		case API_HTML5:
-			var ret = this.bufferObject["readyState"] >= 4;	// HAVE_ENOUGH_DATA
-			if (ret)
-				this.wasEverReady = true;
-			return ret || this.wasEverReady;
-		case API_WEBAUDIO:
-			return !!this.audioData || !!this.bufferObject;
-		case API_CORDOVA:
-			return true;
-		case API_APPMOBI:
-			return true;
-		}
-		return false;
-	};
-	C2AudioBuffer.prototype.isLoadedAndDecoded = function ()
-	{
-		switch (this.myapi) {
-		case API_HTML5:
-			return this.isLoaded();		// no distinction between loaded and decoded in HTML5 audio, just rely on ready state
-		case API_WEBAUDIO:
-			return !!this.bufferObject;
-		case API_CORDOVA:
-			return true;
-		case API_APPMOBI:
-			return true;
-		}
-		return false;
-	};
-	C2AudioBuffer.prototype.hasFailedToLoad = function ()
-	{
-		switch (this.myapi) {
-		case API_HTML5:
-			return !!this.bufferObject["error"];
-		case API_WEBAUDIO:
-			return this.failedToLoad;
-		}
-		return false;
-	};
-	function C2AudioInstance(buffer_, tag_)
-	{
-		var self = this;
-		this.tag = tag_;
-		this.fresh = true;
-		this.stopped = true;
-		this.src = buffer_.src;
-		this.buffer = buffer_;
-		this.myapi = api;
-		this.is_music = buffer_.is_music;
-		this.playbackRate = 1;
-		this.hasPlaybackEnded = true;	// ended flag
-		this.resume_me = false;			// make sure resumes when leaving suspend
-		this.is_paused = false;
-		this.resume_position = 0;		// for web audio api to resume from correct playback position
-		this.looping = false;
-		this.is_muted = false;
-		this.is_silent = false;
-		this.volume = 1;
-		this.onended_handler = function (e)
-		{
-			if (self.is_paused || self.resume_me)
-				return;
-			var bufferThatEnded = this;
-			if (!bufferThatEnded)
-				bufferThatEnded = e.target;
-			if (bufferThatEnded !== self.active_buffer)
-				return;
-			self.hasPlaybackEnded = true;
-			self.stopped = true;
-			audTag = self.tag;
-			audRuntime.trigger(cr.plugins_.Audio.prototype.cnds.OnEnded, audInst);
-		};
-		this.active_buffer = null;
-		this.isTimescaled = ((timescale_mode === 1 && !this.is_music) || timescale_mode === 2);
-		this.mutevol = 1;
-		this.startTime = (this.isTimescaled ? audRuntime.kahanTime.sum : audRuntime.wallTime.sum);
-		this.gainNode = null;
-		this.pannerNode = null;
-		this.pannerEnabled = false;
-		this.objectTracker = null;
-		this.panX = 0;
-		this.panY = 0;
-		this.panAngle = 0;
-		this.panConeInner = 0;
-		this.panConeOuter = 0;
-		this.panConeOuterGain = 0;
-		this.instanceObject = null;
-		var add_end_listener = false;
-		if (this.myapi === API_WEBAUDIO && this.buffer.myapi === API_HTML5 && !this.buffer.supportWebAudioAPI)
-			this.myapi = API_HTML5;
-		switch (this.myapi) {
-		case API_HTML5:
-			if (this.is_music)
-			{
-				this.instanceObject = buffer_.bufferObject;
-				add_end_listener = !buffer_.added_end_listener;
-				buffer_.added_end_listener = true;
-			}
-			else
-			{
-				this.instanceObject = new Audio();
-				this.instanceObject.crossOrigin = "anonymous";
-				this.instanceObject.autoplay = false;
-				this.instanceObject.src = buffer_.bufferObject.src;
-				add_end_listener = true;
-			}
-			if (add_end_listener)
-			{
-				this.instanceObject.addEventListener('ended', function () {
-						audTag = self.tag;
-						self.stopped = true;
-						audRuntime.trigger(cr.plugins_.Audio.prototype.cnds.OnEnded, audInst);
-				});
-			}
-			break;
-		case API_WEBAUDIO:
-			this.gainNode = createGain();
-			this.gainNode["connect"](getDestinationForTag(tag_));
-			if (this.buffer.myapi === API_WEBAUDIO)
-			{
-				if (buffer_.bufferObject)
-				{
-					this.instanceObject = context["createBufferSource"]();
-					this.instanceObject["buffer"] = buffer_.bufferObject;
-					this.instanceObject["connect"](this.gainNode);
-				}
-			}
-			else
-			{
-				this.instanceObject = this.buffer.bufferObject;		// reference the audio element
-				this.buffer.outNode["connect"](this.gainNode);
-				if (!this.buffer.added_end_listener)
-				{
-					this.buffer.added_end_listener = true;
-					this.buffer.bufferObject.addEventListener('ended', function () {
-							audTag = self.tag;
-							self.stopped = true;
-							audRuntime.trigger(cr.plugins_.Audio.prototype.cnds.OnEnded, audInst);
-					});
-				}
-			}
-			break;
-		case API_CORDOVA:
-			this.instanceObject = new window["Media"](appPath + this.src, null, null, function (status) {
-					if (status === window["Media"]["MEDIA_STOPPED"])
-					{
-						self.hasPlaybackEnded = true;
-						self.stopped = true;
-						audTag = self.tag;
-						audRuntime.trigger(cr.plugins_.Audio.prototype.cnds.OnEnded, audInst);
-					}
-			});
-			break;
-		case API_APPMOBI:
-			this.instanceObject = true;
-			break;
-		}
-	};
-	C2AudioInstance.prototype.hasEnded = function ()
-	{
-		var time;
-		switch (this.myapi) {
-		case API_HTML5:
-			return this.instanceObject.ended;
-		case API_WEBAUDIO:
-			if (this.buffer.myapi === API_WEBAUDIO)
-			{
-				if (!this.fresh && !this.stopped && this.instanceObject["loop"])
-					return false;
-				if (this.is_paused)
-					return false;
-				return this.hasPlaybackEnded;
-			}
-			else
-				return this.instanceObject.ended;
-		case API_CORDOVA:
-			return this.hasPlaybackEnded;
-		case API_APPMOBI:
-			true;	// recycling an AppMobi sound does not matter because it will just do another throwaway playSound
-		}
-		return true;
-	};
-	C2AudioInstance.prototype.canBeRecycled = function ()
-	{
-		if (this.fresh || this.stopped)
-			return true;		// not yet used or is not playing
-		return this.hasEnded();
-	};
-	C2AudioInstance.prototype.setPannerEnabled = function (enable_)
-	{
-		if (api !== API_WEBAUDIO)
-			return;
-		if (!this.pannerEnabled && enable_)
-		{
-			if (!this.gainNode)
-				return;
-			if (!this.pannerNode)
-			{
-				this.pannerNode = context["createPanner"]();
-				if (typeof this.pannerNode["panningModel"] === "number")
-					this.pannerNode["panningModel"] = panningModel;
-				else
-					this.pannerNode["panningModel"] = ["equalpower", "HRTF", "soundfield"][panningModel];
-				if (typeof this.pannerNode["distanceModel"] === "number")
-					this.pannerNode["distanceModel"] = distanceModel;
-				else
-					this.pannerNode["distanceModel"] = ["linear", "inverse", "exponential"][distanceModel];
-				this.pannerNode["refDistance"] = refDistance;
-				this.pannerNode["maxDistance"] = maxDistance;
-				this.pannerNode["rolloffFactor"] = rolloffFactor;
-			}
-			this.gainNode["disconnect"]();
-			this.gainNode["connect"](this.pannerNode);
-			this.pannerNode["connect"](getDestinationForTag(this.tag));
-			this.pannerEnabled = true;
-		}
-		else if (this.pannerEnabled && !enable_)
-		{
-			if (!this.gainNode)
-				return;
-			this.pannerNode["disconnect"]();
-			this.gainNode["disconnect"]();
-			this.gainNode["connect"](getDestinationForTag(this.tag));
-			this.pannerEnabled = false;
-		}
-	};
-	C2AudioInstance.prototype.setPan = function (x, y, angle, innerangle, outerangle, outergain)
-	{
-		if (!this.pannerEnabled || api !== API_WEBAUDIO)
-			return;
-		this.pannerNode["setPosition"](x, y, 0);
-		this.pannerNode["setOrientation"](Math.cos(cr.to_radians(angle)), Math.sin(cr.to_radians(angle)), 0);
-		this.pannerNode["coneInnerAngle"] = innerangle;
-		this.pannerNode["coneOuterAngle"] = outerangle;
-		this.pannerNode["coneOuterGain"] = outergain;
-		this.panX = x;
-		this.panY = y;
-		this.panAngle = angle;
-		this.panConeInner = innerangle;
-		this.panConeOuter = outerangle;
-		this.panConeOuterGain = outergain;
-	};
-	C2AudioInstance.prototype.setObject = function (o)
-	{
-		if (!this.pannerEnabled || api !== API_WEBAUDIO)
-			return;
-		if (!this.objectTracker)
-			this.objectTracker = new ObjectTracker();
-		this.objectTracker.setObject(o);
-	};
-	C2AudioInstance.prototype.tick = function (dt)
-	{
-		if (!this.pannerEnabled || api !== API_WEBAUDIO || !this.objectTracker || !this.objectTracker.hasObject() || !this.isPlaying())
-		{
-			return;
-		}
-		this.objectTracker.tick(dt);
-		var inst = this.objectTracker.obj;
-		var px = cr.rotatePtAround(inst.x, inst.y, -inst.layer.getAngle(), listenerX, listenerY, true);
-		var py = cr.rotatePtAround(inst.x, inst.y, -inst.layer.getAngle(), listenerX, listenerY, false);
-		this.pannerNode["setPosition"](px, py, 0);
-		var a = 0;
-		if (typeof this.objectTracker.obj.angle !== "undefined")
-		{
-			a = inst.angle - inst.layer.getAngle();
-			this.pannerNode["setOrientation"](Math.cos(a), Math.sin(a), 0);
-		}
-	};
-	C2AudioInstance.prototype.play = function (looping, vol, fromPosition, scheduledTime)
-	{
-		var instobj = this.instanceObject;
-		this.looping = looping;
-		this.volume = vol;
-		var seekPos = fromPosition || 0;
-		scheduledTime = scheduledTime || 0;
-		switch (this.myapi) {
-		case API_HTML5:
-			if (instobj.playbackRate !== 1.0)
-				instobj.playbackRate = 1.0;
-			if (instobj.volume !== vol * masterVolume)
-				instobj.volume = vol * masterVolume;
-			if (instobj.loop !== looping)
-				instobj.loop = looping;
-			if (instobj.muted)
-				instobj.muted = false;
-			if (instobj.currentTime !== seekPos)
-			{
-				try {
-					instobj.currentTime = seekPos;
-				}
-				catch (err)
-				{
+(function () {
+  var pluginProto = cr.plugins_.Audio.prototype;
+  pluginProto.Type = function (plugin) {
+    this.plugin = plugin;
+    this.runtime = plugin.runtime;
+  };
+  var typeProto = pluginProto.Type.prototype;
+  typeProto.onCreate = function () {};
+  var audRuntime = null;
+  var audInst = null;
+  var audTag = "";
+  var appPath = ""; // for Cordova only
+  var API_HTML5 = 0;
+  var API_WEBAUDIO = 1;
+  var API_CORDOVA = 2;
+  var API_APPMOBI = 3;
+  var api = API_HTML5;
+  var context = null;
+  var audioBuffers = []; // cache of buffers
+  var audioInstances = []; // cache of instances
+  var lastAudio = null;
+  var useOgg = false; // determined at create time
+  var timescale_mode = 0;
+  var silent = false;
+  var masterVolume = 1;
+  var listenerX = 0;
+  var listenerY = 0;
+  var isContextSuspended = false;
+  var panningModel = 1; // HRTF
+  var distanceModel = 1; // Inverse
+  var refDistance = 10;
+  var maxDistance = 10000;
+  var rolloffFactor = 1;
+  var micSource = null;
+  var micTag = "";
+  var useNextTouchWorkaround = false; // heuristic in case play() does not return a promise and we have to guess if the play was blocked
+  var playOnNextInput = []; // C2AudioInstances with HTMLAudioElements to play on next input event
+  var playMusicAsSoundWorkaround = false; // play music tracks with Web Audio API
+  var hasPlayedDummyBuffer = false; // dummy buffer played to unblock AudioContext on some platforms
+  function addAudioToPlayOnNextInput(a) {
+    var i = playOnNextInput.indexOf(a);
+    if (i === -1) playOnNextInput.push(a);
+  }
+  function tryPlayAudioElement(a) {
+    var audioElem = a.instanceObject;
+    var playRet;
+    try {
+      playRet = audioElem.play();
+    } catch (err) {
+      addAudioToPlayOnNextInput(a);
+      return;
+    }
+    if (playRet) {
+      playRet.catch(function (err) {
+        addAudioToPlayOnNextInput(a);
+      });
+    }
+    else if (useNextTouchWorkaround && !audRuntime.isInUserInputEvent) {
+      addAudioToPlayOnNextInput(a);
+    }
+  }
+  function playQueuedAudio() {
+    var i, len, m, playRet;
+    if (!hasPlayedDummyBuffer && !isContextSuspended && context) {
+      playDummyBuffer();
+      if (context["state"] === "running") hasPlayedDummyBuffer = true;
+    }
+    var tryPlay = playOnNextInput.slice(0);
+    cr.clearArray(playOnNextInput);
+    if (!silent) {
+      for (i = 0, len = tryPlay.length; i < len; ++i) {
+        m = tryPlay[i];
+        if (!m.stopped && !m.is_paused) {
+          playRet = m.instanceObject.play();
+          if (playRet) {
+            playRet.catch(function (err) {
+              addAudioToPlayOnNextInput(m);
+            });
+          }
+        }
+      }
+    }
+  }
+  function playDummyBuffer() {
+    if (context["state"] === "suspended" && context["resume"])
+      context["resume"]();
+    if (!context["createBuffer"]) return;
+    var buffer = context["createBuffer"](1, 220, 22050);
+    var source = context["createBufferSource"]();
+    source["buffer"] = buffer;
+    source["connect"](context["destination"]);
+    startSource(source);
+  }
+  document.addEventListener("pointerup", playQueuedAudio, true);
+  document.addEventListener("touchend", playQueuedAudio, true);
+  document.addEventListener("click", playQueuedAudio, true);
+  document.addEventListener("keydown", playQueuedAudio, true);
+  document.addEventListener("gamepadconnected", playQueuedAudio, true);
+  function dbToLinear(x) {
+    var v = dbToLinear_nocap(x);
+    if (!isFinite(v))
+      v = 0;
+    if (v < 0) v = 0;
+    if (v > 1) v = 1;
+    return v;
+  }
+  function linearToDb(x) {
+    if (x < 0) x = 0;
+    if (x > 1) x = 1;
+    return linearToDb_nocap(x);
+  }
+  function dbToLinear_nocap(x) {
+    return Math.pow(10, x / 20);
+  }
+  function linearToDb_nocap(x) {
+    return (Math.log(x) / Math.log(10)) * 20;
+  }
+  var effects = {};
+  function getDestinationForTag(tag) {
+    tag = tag.toLowerCase();
+    if (effects.hasOwnProperty(tag)) {
+      if (effects[tag].length) return effects[tag][0].getInputNode();
+    }
+    return context["destination"];
+  }
+  function createGain() {
+    if (context["createGain"]) return context["createGain"]();
+    else return context["createGainNode"]();
+  }
+  function createDelay(d) {
+    if (context["createDelay"]) return context["createDelay"](d);
+    else return context["createDelayNode"](d);
+  }
+  function startSource(s, scheduledTime) {
+    if (s["start"]) s["start"](scheduledTime || 0);
+    else s["noteOn"](scheduledTime || 0);
+  }
+  function startSourceAt(s, x, d, scheduledTime) {
+    if (s["start"]) s["start"](scheduledTime || 0, x);
+    else s["noteGrainOn"](scheduledTime || 0, x, d - x);
+  }
+  function stopSource(s) {
+    try {
+      if (s["stop"]) s["stop"](0);
+      else s["noteOff"](0);
+    } catch (e) {}
+  }
+  function setAudioParam(ap, value, ramp, time) {
+    if (!ap) return; // iOS is missing some parameters
+    ap["cancelScheduledValues"](0);
+    if (time === 0) {
+      ap["value"] = value;
+      return;
+    }
+    var curTime = context["currentTime"];
+    time += curTime;
+    switch (ramp) {
+      case 0: // step
+        ap["setValueAtTime"](value, time);
+        break;
+      case 1: // linear
+        ap["setValueAtTime"](ap["value"], curTime); // to set what to ramp from
+        ap["linearRampToValueAtTime"](value, time);
+        break;
+      case 2: // exponential
+        ap["setValueAtTime"](ap["value"], curTime); // to set what to ramp from
+        ap["exponentialRampToValueAtTime"](value, time);
+        break;
+    }
+  }
+  var filterTypes = [
+    "lowpass",
+    "highpass",
+    "bandpass",
+    "lowshelf",
+    "highshelf",
+    "peaking",
+    "notch",
+    "allpass",
+  ];
+  function FilterEffect(type, freq, detune, q, gain, mix) {
+    this.type = "filter";
+    this.params = [type, freq, detune, q, gain, mix];
+    this.inputNode = createGain();
+    this.wetNode = createGain();
+    this.wetNode["gain"]["value"] = mix;
+    this.dryNode = createGain();
+    this.dryNode["gain"]["value"] = 1 - mix;
+    this.filterNode = context["createBiquadFilter"]();
+    if (typeof this.filterNode["type"] === "number")
+      this.filterNode["type"] = type;
+    else this.filterNode["type"] = filterTypes[type];
+    this.filterNode["frequency"]["value"] = freq;
+    if (this.filterNode["detune"])
+      this.filterNode["detune"]["value"] = detune;
+    this.filterNode["Q"]["value"] = q;
+    this.filterNode["gain"]["value"] = gain;
+    this.inputNode["connect"](this.filterNode);
+    this.inputNode["connect"](this.dryNode);
+    this.filterNode["connect"](this.wetNode);
+  }
+  FilterEffect.prototype.connectTo = function (node) {
+    this.wetNode["disconnect"]();
+    this.wetNode["connect"](node);
+    this.dryNode["disconnect"]();
+    this.dryNode["connect"](node);
+  };
+  FilterEffect.prototype.remove = function () {
+    this.inputNode["disconnect"]();
+    this.filterNode["disconnect"]();
+    this.wetNode["disconnect"]();
+    this.dryNode["disconnect"]();
+  };
+  FilterEffect.prototype.getInputNode = function () {
+    return this.inputNode;
+  };
+  FilterEffect.prototype.setParam = function (param, value, ramp, time) {
+    switch (param) {
+      case 0: // mix
+        value = value / 100;
+        if (value < 0) value = 0;
+        if (value > 1) value = 1;
+        this.params[5] = value;
+        setAudioParam(this.wetNode["gain"], value, ramp, time);
+        setAudioParam(this.dryNode["gain"], 1 - value, ramp, time);
+        break;
+      case 1: // filter frequency
+        this.params[1] = value;
+        setAudioParam(this.filterNode["frequency"], value, ramp, time);
+        break;
+      case 2: // filter detune
+        this.params[2] = value;
+        setAudioParam(this.filterNode["detune"], value, ramp, time);
+        break;
+      case 3: // filter Q
+        this.params[3] = value;
+        setAudioParam(this.filterNode["Q"], value, ramp, time);
+        break;
+      case 4: // filter/delay gain (note value is in dB here)
+        this.params[4] = value;
+        setAudioParam(this.filterNode["gain"], value, ramp, time);
+        break;
+    }
+  };
+  function DelayEffect(delayTime, delayGain, mix) {
+    this.type = "delay";
+    this.params = [delayTime, delayGain, mix];
+    this.inputNode = createGain();
+    this.wetNode = createGain();
+    this.wetNode["gain"]["value"] = mix;
+    this.dryNode = createGain();
+    this.dryNode["gain"]["value"] = 1 - mix;
+    this.mainNode = createGain();
+    this.delayNode = createDelay(delayTime);
+    this.delayNode["delayTime"]["value"] = delayTime;
+    this.delayGainNode = createGain();
+    this.delayGainNode["gain"]["value"] = delayGain;
+    this.inputNode["connect"](this.mainNode);
+    this.inputNode["connect"](this.dryNode);
+    this.mainNode["connect"](this.wetNode);
+    this.mainNode["connect"](this.delayNode);
+    this.delayNode["connect"](this.delayGainNode);
+    this.delayGainNode["connect"](this.mainNode);
+  }
+  DelayEffect.prototype.connectTo = function (node) {
+    this.wetNode["disconnect"]();
+    this.wetNode["connect"](node);
+    this.dryNode["disconnect"]();
+    this.dryNode["connect"](node);
+  };
+  DelayEffect.prototype.remove = function () {
+    this.inputNode["disconnect"]();
+    this.mainNode["disconnect"]();
+    this.delayNode["disconnect"]();
+    this.delayGainNode["disconnect"]();
+    this.wetNode["disconnect"]();
+    this.dryNode["disconnect"]();
+  };
+  DelayEffect.prototype.getInputNode = function () {
+    return this.inputNode;
+  };
+  DelayEffect.prototype.setParam = function (param, value, ramp, time) {
+    switch (param) {
+      case 0: // mix
+        value = value / 100;
+        if (value < 0) value = 0;
+        if (value > 1) value = 1;
+        this.params[2] = value;
+        setAudioParam(this.wetNode["gain"], value, ramp, time);
+        setAudioParam(this.dryNode["gain"], 1 - value, ramp, time);
+        break;
+      case 4: // filter/delay gain (note value is passed in dB but needs to be linear here)
+        this.params[1] = dbToLinear(value);
+        setAudioParam(
+          this.delayGainNode["gain"],
+          dbToLinear(value),
+          ramp,
+          time
+        );
+        break;
+      case 5: // delay time
+        this.params[0] = value;
+        setAudioParam(this.delayNode["delayTime"], value, ramp, time);
+        break;
+    }
+  };
+  function ConvolveEffect(buffer, normalize, mix, src) {
+    this.type = "convolve";
+    this.params = [normalize, mix, src];
+    this.inputNode = createGain();
+    this.wetNode = createGain();
+    this.wetNode["gain"]["value"] = mix;
+    this.dryNode = createGain();
+    this.dryNode["gain"]["value"] = 1 - mix;
+    this.convolveNode = context["createConvolver"]();
+    if (buffer) {
+      this.convolveNode["normalize"] = normalize;
+      this.convolveNode["buffer"] = buffer;
+    }
+    this.inputNode["connect"](this.convolveNode);
+    this.inputNode["connect"](this.dryNode);
+    this.convolveNode["connect"](this.wetNode);
+  }
+  ConvolveEffect.prototype.connectTo = function (node) {
+    this.wetNode["disconnect"]();
+    this.wetNode["connect"](node);
+    this.dryNode["disconnect"]();
+    this.dryNode["connect"](node);
+  };
+  ConvolveEffect.prototype.remove = function () {
+    this.inputNode["disconnect"]();
+    this.convolveNode["disconnect"]();
+    this.wetNode["disconnect"]();
+    this.dryNode["disconnect"]();
+  };
+  ConvolveEffect.prototype.getInputNode = function () {
+    return this.inputNode;
+  };
+  ConvolveEffect.prototype.setParam = function (param, value, ramp, time) {
+    switch (param) {
+      case 0: // mix
+        value = value / 100;
+        if (value < 0) value = 0;
+        if (value > 1) value = 1;
+        this.params[1] = value;
+        setAudioParam(this.wetNode["gain"], value, ramp, time);
+        setAudioParam(this.dryNode["gain"], 1 - value, ramp, time);
+        break;
+    }
+  };
+  function FlangerEffect(delay, modulation, freq, feedback, mix) {
+    this.type = "flanger";
+    this.params = [delay, modulation, freq, feedback, mix];
+    this.inputNode = createGain();
+    this.dryNode = createGain();
+    this.dryNode["gain"]["value"] = 1 - mix / 2;
+    this.wetNode = createGain();
+    this.wetNode["gain"]["value"] = mix / 2;
+    this.feedbackNode = createGain();
+    this.feedbackNode["gain"]["value"] = feedback;
+    this.delayNode = createDelay(delay + modulation);
+    this.delayNode["delayTime"]["value"] = delay;
+    this.oscNode = context["createOscillator"]();
+    this.oscNode["frequency"]["value"] = freq;
+    this.oscGainNode = createGain();
+    this.oscGainNode["gain"]["value"] = modulation;
+    this.inputNode["connect"](this.delayNode);
+    this.inputNode["connect"](this.dryNode);
+    this.delayNode["connect"](this.wetNode);
+    this.delayNode["connect"](this.feedbackNode);
+    this.feedbackNode["connect"](this.delayNode);
+    this.oscNode["connect"](this.oscGainNode);
+    this.oscGainNode["connect"](this.delayNode["delayTime"]);
+    startSource(this.oscNode);
+  }
+  FlangerEffect.prototype.connectTo = function (node) {
+    this.dryNode["disconnect"]();
+    this.dryNode["connect"](node);
+    this.wetNode["disconnect"]();
+    this.wetNode["connect"](node);
+  };
+  FlangerEffect.prototype.remove = function () {
+    this.inputNode["disconnect"]();
+    this.delayNode["disconnect"]();
+    this.oscNode["disconnect"]();
+    this.oscGainNode["disconnect"]();
+    this.dryNode["disconnect"]();
+    this.wetNode["disconnect"]();
+    this.feedbackNode["disconnect"]();
+  };
+  FlangerEffect.prototype.getInputNode = function () {
+    return this.inputNode;
+  };
+  FlangerEffect.prototype.setParam = function (param, value, ramp, time) {
+    switch (param) {
+      case 0: // mix
+        value = value / 100;
+        if (value < 0) value = 0;
+        if (value > 1) value = 1;
+        this.params[4] = value;
+        setAudioParam(this.wetNode["gain"], value / 2, ramp, time);
+        setAudioParam(this.dryNode["gain"], 1 - value / 2, ramp, time);
+        break;
+      case 6: // modulation
+        this.params[1] = value / 1000;
+        setAudioParam(this.oscGainNode["gain"], value / 1000, ramp, time);
+        break;
+      case 7: // modulation frequency
+        this.params[2] = value;
+        setAudioParam(this.oscNode["frequency"], value, ramp, time);
+        break;
+      case 8: // feedback
+        this.params[3] = value / 100;
+        setAudioParam(this.feedbackNode["gain"], value / 100, ramp, time);
+        break;
+    }
+  };
+  function PhaserEffect(freq, detune, q, modulation, modfreq, mix) {
+    this.type = "phaser";
+    this.params = [freq, detune, q, modulation, modfreq, mix];
+    this.inputNode = createGain();
+    this.dryNode = createGain();
+    this.dryNode["gain"]["value"] = 1 - mix / 2;
+    this.wetNode = createGain();
+    this.wetNode["gain"]["value"] = mix / 2;
+    this.filterNode = context["createBiquadFilter"]();
+    if (typeof this.filterNode["type"] === "number")
+      this.filterNode["type"] = 7;
+    else this.filterNode["type"] = "allpass";
+    this.filterNode["frequency"]["value"] = freq;
+    if (this.filterNode["detune"])
+      this.filterNode["detune"]["value"] = detune;
+    this.filterNode["Q"]["value"] = q;
+    this.oscNode = context["createOscillator"]();
+    this.oscNode["frequency"]["value"] = modfreq;
+    this.oscGainNode = createGain();
+    this.oscGainNode["gain"]["value"] = modulation;
+    this.inputNode["connect"](this.filterNode);
+    this.inputNode["connect"](this.dryNode);
+    this.filterNode["connect"](this.wetNode);
+    this.oscNode["connect"](this.oscGainNode);
+    this.oscGainNode["connect"](this.filterNode["frequency"]);
+    startSource(this.oscNode);
+  }
+  PhaserEffect.prototype.connectTo = function (node) {
+    this.dryNode["disconnect"]();
+    this.dryNode["connect"](node);
+    this.wetNode["disconnect"]();
+    this.wetNode["connect"](node);
+  };
+  PhaserEffect.prototype.remove = function () {
+    this.inputNode["disconnect"]();
+    this.filterNode["disconnect"]();
+    this.oscNode["disconnect"]();
+    this.oscGainNode["disconnect"]();
+    this.dryNode["disconnect"]();
+    this.wetNode["disconnect"]();
+  };
+  PhaserEffect.prototype.getInputNode = function () {
+    return this.inputNode;
+  };
+  PhaserEffect.prototype.setParam = function (param, value, ramp, time) {
+    switch (param) {
+      case 0: // mix
+        value = value / 100;
+        if (value < 0) value = 0;
+        if (value > 1) value = 1;
+        this.params[5] = value;
+        setAudioParam(this.wetNode["gain"], value / 2, ramp, time);
+        setAudioParam(this.dryNode["gain"], 1 - value / 2, ramp, time);
+        break;
+      case 1: // filter frequency
+        this.params[0] = value;
+        setAudioParam(this.filterNode["frequency"], value, ramp, time);
+        break;
+      case 2: // filter detune
+        this.params[1] = value;
+        setAudioParam(this.filterNode["detune"], value, ramp, time);
+        break;
+      case 3: // filter Q
+        this.params[2] = value;
+        setAudioParam(this.filterNode["Q"], value, ramp, time);
+        break;
+      case 6: // modulation
+        this.params[3] = value;
+        setAudioParam(this.oscGainNode["gain"], value, ramp, time);
+        break;
+      case 7: // modulation frequency
+        this.params[4] = value;
+        setAudioParam(this.oscNode["frequency"], value, ramp, time);
+        break;
+    }
+  };
+  function GainEffect(g) {
+    this.type = "gain";
+    this.params = [g];
+    this.node = createGain();
+    this.node["gain"]["value"] = g;
+  }
+  GainEffect.prototype.connectTo = function (node_) {
+    this.node["disconnect"]();
+    this.node["connect"](node_);
+  };
+  GainEffect.prototype.remove = function () {
+    this.node["disconnect"]();
+  };
+  GainEffect.prototype.getInputNode = function () {
+    return this.node;
+  };
+  GainEffect.prototype.setParam = function (param, value, ramp, time) {
+    switch (param) {
+      case 4: // gain
+        this.params[0] = dbToLinear(value);
+        setAudioParam(this.node["gain"], dbToLinear(value), ramp, time);
+        break;
+    }
+  };
+  function TremoloEffect(freq, mix) {
+    this.type = "tremolo";
+    this.params = [freq, mix];
+    this.node = createGain();
+    this.node["gain"]["value"] = 1 - mix / 2;
+    this.oscNode = context["createOscillator"]();
+    this.oscNode["frequency"]["value"] = freq;
+    this.oscGainNode = createGain();
+    this.oscGainNode["gain"]["value"] = mix / 2;
+    this.oscNode["connect"](this.oscGainNode);
+    this.oscGainNode["connect"](this.node["gain"]);
+    startSource(this.oscNode);
+  }
+  TremoloEffect.prototype.connectTo = function (node_) {
+    this.node["disconnect"]();
+    this.node["connect"](node_);
+  };
+  TremoloEffect.prototype.remove = function () {
+    this.oscNode["disconnect"]();
+    this.oscGainNode["disconnect"]();
+    this.node["disconnect"]();
+  };
+  TremoloEffect.prototype.getInputNode = function () {
+    return this.node;
+  };
+  TremoloEffect.prototype.setParam = function (param, value, ramp, time) {
+    switch (param) {
+      case 0: // mix
+        value = value / 100;
+        if (value < 0) value = 0;
+        if (value > 1) value = 1;
+        this.params[1] = value;
+        setAudioParam(this.node["gain"]["value"], 1 - value / 2, ramp, time);
+        setAudioParam(this.oscGainNode["gain"]["value"], value / 2, ramp, time);
+        break;
+      case 7: // modulation frequency
+        this.params[0] = value;
+        setAudioParam(this.oscNode["frequency"], value, ramp, time);
+        break;
+    }
+  };
+  function RingModulatorEffect(freq, mix) {
+    this.type = "ringmod";
+    this.params = [freq, mix];
+    this.inputNode = createGain();
+    this.wetNode = createGain();
+    this.wetNode["gain"]["value"] = mix;
+    this.dryNode = createGain();
+    this.dryNode["gain"]["value"] = 1 - mix;
+    this.ringNode = createGain();
+    this.ringNode["gain"]["value"] = 0;
+    this.oscNode = context["createOscillator"]();
+    this.oscNode["frequency"]["value"] = freq;
+    this.oscNode["connect"](this.ringNode["gain"]);
+    startSource(this.oscNode);
+    this.inputNode["connect"](this.ringNode);
+    this.inputNode["connect"](this.dryNode);
+    this.ringNode["connect"](this.wetNode);
+  }
+  RingModulatorEffect.prototype.connectTo = function (node_) {
+    this.wetNode["disconnect"]();
+    this.wetNode["connect"](node_);
+    this.dryNode["disconnect"]();
+    this.dryNode["connect"](node_);
+  };
+  RingModulatorEffect.prototype.remove = function () {
+    this.oscNode["disconnect"]();
+    this.ringNode["disconnect"]();
+    this.inputNode["disconnect"]();
+    this.wetNode["disconnect"]();
+    this.dryNode["disconnect"]();
+  };
+  RingModulatorEffect.prototype.getInputNode = function () {
+    return this.inputNode;
+  };
+  RingModulatorEffect.prototype.setParam = function (param, value, ramp, time) {
+    switch (param) {
+      case 0: // mix
+        value = value / 100;
+        if (value < 0) value = 0;
+        if (value > 1) value = 1;
+        this.params[1] = value;
+        setAudioParam(this.wetNode["gain"], value, ramp, time);
+        setAudioParam(this.dryNode["gain"], 1 - value, ramp, time);
+        break;
+      case 7: // modulation frequency
+        this.params[0] = value;
+        setAudioParam(this.oscNode["frequency"], value, ramp, time);
+        break;
+    }
+  };
+  function DistortionEffect(threshold, headroom, drive, makeupgain, mix) {
+    this.type = "distortion";
+    this.params = [threshold, headroom, drive, makeupgain, mix];
+    this.inputNode = createGain();
+    this.preGain = createGain();
+    this.postGain = createGain();
+    this.setDrive(drive, dbToLinear_nocap(makeupgain));
+    this.wetNode = createGain();
+    this.wetNode["gain"]["value"] = mix;
+    this.dryNode = createGain();
+    this.dryNode["gain"]["value"] = 1 - mix;
+    this.waveShaper = context["createWaveShaper"]();
+    this.curve = new Float32Array(65536);
+    this.generateColortouchCurve(threshold, headroom);
+    this.waveShaper.curve = this.curve;
+    this.inputNode["connect"](this.preGain);
+    this.inputNode["connect"](this.dryNode);
+    this.preGain["connect"](this.waveShaper);
+    this.waveShaper["connect"](this.postGain);
+    this.postGain["connect"](this.wetNode);
+  }
+  DistortionEffect.prototype.setDrive = function (drive, makeupgain) {
+    if (drive < 0.01) drive = 0.01;
+    this.preGain["gain"]["value"] = drive;
+    this.postGain["gain"]["value"] = Math.pow(1 / drive, 0.6) * makeupgain;
+  };
+  function e4(x, k) {
+    return 1.0 - Math.exp(-k * x);
+  }
+  DistortionEffect.prototype.shape = function (
+    x,
+    linearThreshold,
+    linearHeadroom
+  ) {
+    var maximum = 1.05 * linearHeadroom * linearThreshold;
+    var kk = maximum - linearThreshold;
+    var sign = x < 0 ? -1 : +1;
+    var absx = x < 0 ? -x : x;
+    var shapedInput =
+      absx < linearThreshold
+        ? absx
+        : linearThreshold + kk * e4(absx - linearThreshold, 1.0 / kk);
+    shapedInput *= sign;
+    return shapedInput;
+  };
+  DistortionEffect.prototype.generateColortouchCurve = function (
+    threshold,
+    headroom
+  ) {
+    var linearThreshold = dbToLinear_nocap(threshold);
+    var linearHeadroom = dbToLinear_nocap(headroom);
+    var n = 65536;
+    var n2 = n / 2;
+    var x = 0;
+    for (var i = 0; i < n2; ++i) {
+      x = i / n2;
+      x = this.shape(x, linearThreshold, linearHeadroom);
+      this.curve[n2 + i] = x;
+      this.curve[n2 - i - 1] = -x;
+    }
+  };
+  DistortionEffect.prototype.connectTo = function (node) {
+    this.wetNode["disconnect"]();
+    this.wetNode["connect"](node);
+    this.dryNode["disconnect"]();
+    this.dryNode["connect"](node);
+  };
+  DistortionEffect.prototype.remove = function () {
+    this.inputNode["disconnect"]();
+    this.preGain["disconnect"]();
+    this.waveShaper["disconnect"]();
+    this.postGain["disconnect"]();
+    this.wetNode["disconnect"]();
+    this.dryNode["disconnect"]();
+  };
+  DistortionEffect.prototype.getInputNode = function () {
+    return this.inputNode;
+  };
+  DistortionEffect.prototype.setParam = function (param, value, ramp, time) {
+    switch (param) {
+      case 0: // mix
+        value = value / 100;
+        if (value < 0) value = 0;
+        if (value > 1) value = 1;
+        this.params[4] = value;
+        setAudioParam(this.wetNode["gain"], value, ramp, time);
+        setAudioParam(this.dryNode["gain"], 1 - value, ramp, time);
+        break;
+    }
+  };
+  function CompressorEffect(threshold, knee, ratio, attack, release) {
+    this.type = "compressor";
+    this.params = [threshold, knee, ratio, attack, release];
+    this.node = context["createDynamicsCompressor"]();
+    try {
+      this.node["threshold"]["value"] = threshold;
+      this.node["knee"]["value"] = knee;
+      this.node["ratio"]["value"] = ratio;
+      this.node["attack"]["value"] = attack;
+      this.node["release"]["value"] = release;
+    } catch (e) {}
+  }
+  CompressorEffect.prototype.connectTo = function (node_) {
+    this.node["disconnect"]();
+    this.node["connect"](node_);
+  };
+  CompressorEffect.prototype.remove = function () {
+    this.node["disconnect"]();
+  };
+  CompressorEffect.prototype.getInputNode = function () {
+    return this.node;
+  };
+  CompressorEffect.prototype.setParam = function (param, value, ramp, time) {
+  };
+  function AnalyserEffect(fftSize, smoothing) {
+    this.type = "analyser";
+    this.params = [fftSize, smoothing];
+    this.node = context["createAnalyser"]();
+    this.node["fftSize"] = fftSize;
+    this.node["smoothingTimeConstant"] = smoothing;
+    this.freqBins = new Float32Array(this.node["frequencyBinCount"]);
+    this.signal = new Uint8Array(fftSize);
+    this.peak = 0;
+    this.rms = 0;
+  }
+  AnalyserEffect.prototype.tick = function () {
+    this.node["getFloatFrequencyData"](this.freqBins);
+    this.node["getByteTimeDomainData"](this.signal);
+    var fftSize = this.node["fftSize"];
+    var i = 0;
+    this.peak = 0;
+    var rmsSquaredSum = 0;
+    var s = 0;
+    for (; i < fftSize; i++) {
+      s = (this.signal[i] - 128) / 128;
+      if (s < 0) s = -s;
+      if (this.peak < s) this.peak = s;
+      rmsSquaredSum += s * s;
+    }
+    this.peak = linearToDb(this.peak);
+    this.rms = linearToDb(Math.sqrt(rmsSquaredSum / fftSize));
+  };
+  AnalyserEffect.prototype.connectTo = function (node_) {
+    this.node["disconnect"]();
+    this.node["connect"](node_);
+  };
+  AnalyserEffect.prototype.remove = function () {
+    this.node["disconnect"]();
+  };
+  AnalyserEffect.prototype.getInputNode = function () {
+    return this.node;
+  };
+  AnalyserEffect.prototype.setParam = function (param, value, ramp, time) {
+  };
+  function ObjectTracker() {
+    this.obj = null;
+    this.loadUid = 0;
+  }
+  ObjectTracker.prototype.setObject = function (obj_) {
+    this.obj = obj_;
+  };
+  ObjectTracker.prototype.hasObject = function () {
+    return !!this.obj;
+  };
+  ObjectTracker.prototype.tick = function (dt) {};
+  function C2AudioBuffer(src_, is_music) {
+    this.src = src_;
+    this.myapi = api;
+    this.is_music = is_music;
+    this.added_end_listener = false;
+    var self = this;
+    this.outNode = null;
+    this.mediaSourceNode = null;
+    this.panWhenReady = []; // for web audio API positioned sounds
+    this.seekWhenReady = 0;
+    this.pauseWhenReady = false;
+    this.supportWebAudioAPI = false;
+    this.failedToLoad = false;
+    this.wasEverReady = false; // if a buffer is ever marked as ready, it's permanently considered ready after then.
+    if (api === API_WEBAUDIO && is_music && !playMusicAsSoundWorkaround) {
+      this.myapi = API_HTML5;
+      this.outNode = createGain();
+    }
+    this.bufferObject = null; // actual audio object
+    this.audioData = null; // web audio api: ajax request result (compressed audio that needs decoding)
+    var request;
+    switch (this.myapi) {
+      case API_HTML5:
+        this.bufferObject = new Audio();
+        this.bufferObject.crossOrigin = "anonymous";
+        this.bufferObject.addEventListener("canplaythrough", function () {
+          self.wasEverReady = true; // update loaded state so preload is considered complete
+        });
+        if (
+          api === API_WEBAUDIO &&
+          context["createMediaElementSource"] &&
+          !/wiiu/i.test(navigator.userAgent)
+        ) {
+          this.supportWebAudioAPI = true; // can be routed through web audio api
+          this.bufferObject.addEventListener("canplay", function () {
+            if (!self.mediaSourceNode && self.bufferObject) {
+              self.mediaSourceNode = context["createMediaElementSource"](
+                self.bufferObject
+              );
+              self.mediaSourceNode["connect"](self.outNode);
+            }
+          });
+        }
+        this.bufferObject.autoplay = false; // this is only a source buffer, not an instance
+        this.bufferObject.preload = "auto";
+        this.bufferObject.src = src_;
+        break;
+      case API_WEBAUDIO:
+        if (audRuntime.isWKWebView) {
+          audRuntime.fetchLocalFileViaCordovaAsArrayBuffer(
+            src_,
+            function (arrayBuffer) {
+              self.audioData = arrayBuffer;
+              self.decodeAudioBuffer();
+            },
+            function (err) {
+              self.failedToLoad = true;
+            }
+          );
+        } else {
+          request = new XMLHttpRequest();
+          request.open("GET", src_, true);
+          request.responseType = "arraybuffer";
+          request.onload = function () {
+            self.audioData = request.response;
+            self.decodeAudioBuffer();
+          };
+          request.onerror = function () {
+            self.failedToLoad = true;
+          };
+          request.send();
+        }
+        break;
+      case API_CORDOVA:
+        this.bufferObject = true;
+        break;
+      case API_APPMOBI:
+        this.bufferObject = true;
+        break;
+    }
+  }
+  C2AudioBuffer.prototype.release = function () {
+    var i, len, j, a;
+    for (i = 0, j = 0, len = audioInstances.length; i < len; ++i) {
+      a = audioInstances[i];
+      audioInstances[j] = a;
+      if (a.buffer === this) a.stop();
+      else ++j; // keep
+    }
+    audioInstances.length = j;
+    if (this.mediaSourceNode) {
+      this.mediaSourceNode["disconnect"]();
+      this.mediaSourceNode = null;
+    }
+    if (this.outNode) {
+      this.outNode["disconnect"]();
+      this.outNode = null;
+    }
+    this.bufferObject = null;
+    this.audioData = null;
+  };
+  C2AudioBuffer.prototype.decodeAudioBuffer = function () {
+    if (this.bufferObject || !this.audioData) return; // audio already decoded or AJAX request not yet complete
+    var self = this;
+    if (context["decodeAudioData"]) {
+      context["decodeAudioData"](
+        this.audioData,
+        function (buffer) {
+          self.bufferObject = buffer;
+          self.audioData = null; // clear AJAX response to allow GC and save memory, only need the bufferObject now
+          var p, i, len, a;
+          if (!cr.is_undefined(self.playTagWhenReady) && !silent) {
+            if (self.panWhenReady.length) {
+              for (i = 0, len = self.panWhenReady.length; i < len; i++) {
+                p = self.panWhenReady[i];
+                a = new C2AudioInstance(self, p.thistag);
+                a.setPannerEnabled(true);
+                if (typeof p.objUid !== "undefined") {
+                  p.obj = audRuntime.getObjectByUID(p.objUid);
+                  if (!p.obj) continue;
+                }
+                if (p.obj) {
+                  var px = cr.rotatePtAround(
+                    p.obj.x,
+                    p.obj.y,
+                    -p.obj.layer.getAngle(),
+                    listenerX,
+                    listenerY,
+                    true
+                  );
+                  var py = cr.rotatePtAround(
+                    p.obj.x,
+                    p.obj.y,
+                    -p.obj.layer.getAngle(),
+                    listenerX,
+                    listenerY,
+                    false
+                  );
+                  a.setPan(
+                    px,
+                    py,
+                    cr.to_degrees(p.obj.angle - p.obj.layer.getAngle()),
+                    p.ia,
+                    p.oa,
+                    p.og
+                  );
+                  a.setObject(p.obj);
+                } else {
+                  a.setPan(p.x, p.y, p.a, p.ia, p.oa, p.og);
+                }
+                a.play(
+                  self.loopWhenReady,
+                  self.volumeWhenReady,
+                  self.seekWhenReady
+                );
+                if (self.pauseWhenReady) a.pause();
+                audioInstances.push(a);
+              }
+              cr.clearArray(self.panWhenReady);
+            } else {
+              a = new C2AudioInstance(self, self.playTagWhenReady || ""); // sometimes playTagWhenReady is not set - TODO: why?
+              a.play(
+                self.loopWhenReady,
+                self.volumeWhenReady,
+                self.seekWhenReady
+              );
+              if (self.pauseWhenReady) a.pause();
+              audioInstances.push(a);
+            }
+          } else if (!cr.is_undefined(self.convolveWhenReady)) {
+            var convolveNode = self.convolveWhenReady.convolveNode;
+            convolveNode["normalize"] = self.normalizeWhenReady;
+            convolveNode["buffer"] = buffer;
+          }
+        },
+        function (e) {
+          self.failedToLoad = true;
+        }
+      );
+    } else {
+      this.bufferObject = context["createBuffer"](this.audioData, false);
+      this.audioData = null; // clear AJAX response to allow GC and save memory, only need the bufferObject now
+      if (!cr.is_undefined(this.playTagWhenReady) && !silent) {
+        var a = new C2AudioInstance(this, this.playTagWhenReady);
+        a.play(this.loopWhenReady, this.volumeWhenReady, this.seekWhenReady);
+        if (this.pauseWhenReady) a.pause();
+        audioInstances.push(a);
+      } else if (!cr.is_undefined(this.convolveWhenReady)) {
+        var convolveNode = this.convolveWhenReady.convolveNode;
+        convolveNode["normalize"] = this.normalizeWhenReady;
+        convolveNode["buffer"] = this.bufferObject;
+      }
+    }
+  };
+  C2AudioBuffer.prototype.isLoaded = function () {
+    switch (this.myapi) {
+      case API_HTML5:
+        var ret = this.bufferObject["readyState"] >= 4; // HAVE_ENOUGH_DATA
+        if (ret) this.wasEverReady = true;
+        return ret || this.wasEverReady;
+      case API_WEBAUDIO:
+        return !!this.audioData || !!this.bufferObject;
+      case API_CORDOVA:
+        return true;
+      case API_APPMOBI:
+        return true;
+    }
+    return false;
+  };
+  C2AudioBuffer.prototype.isLoadedAndDecoded = function () {
+    switch (this.myapi) {
+      case API_HTML5:
+        return this.isLoaded(); // no distinction between loaded and decoded in HTML5 audio, just rely on ready state
+      case API_WEBAUDIO:
+        return !!this.bufferObject;
+      case API_CORDOVA:
+        return true;
+      case API_APPMOBI:
+        return true;
+    }
+    return false;
+  };
+  C2AudioBuffer.prototype.hasFailedToLoad = function () {
+    switch (this.myapi) {
+      case API_HTML5:
+        return !!this.bufferObject["error"];
+      case API_WEBAUDIO:
+        return this.failedToLoad;
+    }
+    return false;
+  };
+  function C2AudioInstance(buffer_, tag_) {
+    var self = this;
+    this.tag = tag_;
+    this.fresh = true;
+    this.stopped = true;
+    this.src = buffer_.src;
+    this.buffer = buffer_;
+    this.myapi = api;
+    this.is_music = buffer_.is_music;
+    this.playbackRate = 1;
+    this.hasPlaybackEnded = true; // ended flag
+    this.resume_me = false; // make sure resumes when leaving suspend
+    this.is_paused = false;
+    this.resume_position = 0; // for web audio api to resume from correct playback position
+    this.looping = false;
+    this.is_muted = false;
+    this.is_silent = false;
+    this.volume = 1;
+    this.onended_handler = function (e) {
+      if (self.is_paused || self.resume_me) return;
+      var bufferThatEnded = this;
+      if (!bufferThatEnded) bufferThatEnded = e.target;
+      if (bufferThatEnded !== self.active_buffer) return;
+      self.hasPlaybackEnded = true;
+      self.stopped = true;
+      audTag = self.tag;
+      audRuntime.trigger(cr.plugins_.Audio.prototype.cnds.OnEnded, audInst);
+    };
+    this.active_buffer = null;
+    this.isTimescaled =
+      (timescale_mode === 1 && !this.is_music) || timescale_mode === 2;
+    this.mutevol = 1;
+    this.startTime = this.isTimescaled
+      ? audRuntime.kahanTime.sum
+      : audRuntime.wallTime.sum;
+    this.gainNode = null;
+    this.pannerNode = null;
+    this.pannerEnabled = false;
+    this.objectTracker = null;
+    this.panX = 0;
+    this.panY = 0;
+    this.panAngle = 0;
+    this.panConeInner = 0;
+    this.panConeOuter = 0;
+    this.panConeOuterGain = 0;
+    this.instanceObject = null;
+    var add_end_listener = false;
+    if (
+      this.myapi === API_WEBAUDIO &&
+      this.buffer.myapi === API_HTML5 &&
+      !this.buffer.supportWebAudioAPI
+    )
+      this.myapi = API_HTML5;
+    switch (this.myapi) {
+      case API_HTML5:
+        if (this.is_music) {
+          this.instanceObject = buffer_.bufferObject;
+          add_end_listener = !buffer_.added_end_listener;
+          buffer_.added_end_listener = true;
+        } else {
+          this.instanceObject = new Audio();
+          this.instanceObject.crossOrigin = "anonymous";
+          this.instanceObject.autoplay = false;
+          this.instanceObject.src = buffer_.bufferObject.src;
+          add_end_listener = true;
+        }
+        if (add_end_listener) {
+          this.instanceObject.addEventListener("ended", function () {
+            audTag = self.tag;
+            self.stopped = true;
+            audRuntime.trigger(
+              cr.plugins_.Audio.prototype.cnds.OnEnded,
+              audInst
+            );
+          });
+        }
+        break;
+      case API_WEBAUDIO:
+        this.gainNode = createGain();
+        this.gainNode["connect"](getDestinationForTag(tag_));
+        if (this.buffer.myapi === API_WEBAUDIO) {
+          if (buffer_.bufferObject) {
+            this.instanceObject = context["createBufferSource"]();
+            this.instanceObject["buffer"] = buffer_.bufferObject;
+            this.instanceObject["connect"](this.gainNode);
+          }
+        }
+        else {
+          this.instanceObject = this.buffer.bufferObject; // reference the audio element
+          this.buffer.outNode["connect"](this.gainNode);
+          if (!this.buffer.added_end_listener) {
+            this.buffer.added_end_listener = true;
+            this.buffer.bufferObject.addEventListener("ended", function () {
+              audTag = self.tag;
+              self.stopped = true;
+              audRuntime.trigger(
+                cr.plugins_.Audio.prototype.cnds.OnEnded,
+                audInst
+              );
+            });
+          }
+        }
+        break;
+      case API_CORDOVA:
+        this.instanceObject = new window["Media"](
+          appPath + this.src,
+          null,
+          null,
+          function (status) {
+            if (status === window["Media"]["MEDIA_STOPPED"]) {
+              self.hasPlaybackEnded = true;
+              self.stopped = true;
+              audTag = self.tag;
+              audRuntime.trigger(
+                cr.plugins_.Audio.prototype.cnds.OnEnded,
+                audInst
+              );
+            }
+          }
+        );
+        break;
+      case API_APPMOBI:
+        this.instanceObject = true;
+        break;
+    }
+  }
+  C2AudioInstance.prototype.hasEnded = function () {
+    var time;
+    switch (this.myapi) {
+      case API_HTML5:
+        return this.instanceObject.ended;
+      case API_WEBAUDIO:
+        if (this.buffer.myapi === API_WEBAUDIO) {
+          if (!this.fresh && !this.stopped && this.instanceObject["loop"])
+            return false;
+          if (this.is_paused) return false;
+          return this.hasPlaybackEnded;
+        } else return this.instanceObject.ended;
+      case API_CORDOVA:
+        return this.hasPlaybackEnded;
+      case API_APPMOBI:
+        true; // recycling an AppMobi sound does not matter because it will just do another throwaway playSound
+    }
+    return true;
+  };
+  C2AudioInstance.prototype.canBeRecycled = function () {
+    if (this.fresh || this.stopped) return true; // not yet used or is not playing
+    return this.hasEnded();
+  };
+  C2AudioInstance.prototype.setPannerEnabled = function (enable_) {
+    if (api !== API_WEBAUDIO) return;
+    if (!this.pannerEnabled && enable_) {
+      if (!this.gainNode) return;
+      if (!this.pannerNode) {
+        this.pannerNode = context["createPanner"]();
+        if (typeof this.pannerNode["panningModel"] === "number")
+          this.pannerNode["panningModel"] = panningModel;
+        else
+          this.pannerNode["panningModel"] = [
+            "equalpower",
+            "HRTF",
+            "soundfield",
+          ][panningModel];
+        if (typeof this.pannerNode["distanceModel"] === "number")
+          this.pannerNode["distanceModel"] = distanceModel;
+        else
+          this.pannerNode["distanceModel"] = [
+            "linear",
+            "inverse",
+            "exponential",
+          ][distanceModel];
+        this.pannerNode["refDistance"] = refDistance;
+        this.pannerNode["maxDistance"] = maxDistance;
+        this.pannerNode["rolloffFactor"] = rolloffFactor;
+      }
+      this.gainNode["disconnect"]();
+      this.gainNode["connect"](this.pannerNode);
+      this.pannerNode["connect"](getDestinationForTag(this.tag));
+      this.pannerEnabled = true;
+    }
+    else if (this.pannerEnabled && !enable_) {
+      if (!this.gainNode) return;
+      this.pannerNode["disconnect"]();
+      this.gainNode["disconnect"]();
+      this.gainNode["connect"](getDestinationForTag(this.tag));
+      this.pannerEnabled = false;
+    }
+  };
+  C2AudioInstance.prototype.setPan = function (
+    x,
+    y,
+    angle,
+    innerangle,
+    outerangle,
+    outergain
+  ) {
+    if (!this.pannerEnabled || api !== API_WEBAUDIO) return;
+    this.pannerNode["setPosition"](x, y, 0);
+    this.pannerNode["setOrientation"](
+      Math.cos(cr.to_radians(angle)),
+      Math.sin(cr.to_radians(angle)),
+      0
+    );
+    this.pannerNode["coneInnerAngle"] = innerangle;
+    this.pannerNode["coneOuterAngle"] = outerangle;
+    this.pannerNode["coneOuterGain"] = outergain;
+    this.panX = x;
+    this.panY = y;
+    this.panAngle = angle;
+    this.panConeInner = innerangle;
+    this.panConeOuter = outerangle;
+    this.panConeOuterGain = outergain;
+  };
+  C2AudioInstance.prototype.setObject = function (o) {
+    if (!this.pannerEnabled || api !== API_WEBAUDIO) return;
+    if (!this.objectTracker) this.objectTracker = new ObjectTracker();
+    this.objectTracker.setObject(o);
+  };
+  C2AudioInstance.prototype.tick = function (dt) {
+    if (
+      !this.pannerEnabled ||
+      api !== API_WEBAUDIO ||
+      !this.objectTracker ||
+      !this.objectTracker.hasObject() ||
+      !this.isPlaying()
+    ) {
+      return;
+    }
+    this.objectTracker.tick(dt);
+    var inst = this.objectTracker.obj;
+    var px = cr.rotatePtAround(
+      inst.x,
+      inst.y,
+      -inst.layer.getAngle(),
+      listenerX,
+      listenerY,
+      true
+    );
+    var py = cr.rotatePtAround(
+      inst.x,
+      inst.y,
+      -inst.layer.getAngle(),
+      listenerX,
+      listenerY,
+      false
+    );
+    this.pannerNode["setPosition"](px, py, 0);
+    var a = 0;
+    if (typeof this.objectTracker.obj.angle !== "undefined") {
+      a = inst.angle - inst.layer.getAngle();
+      this.pannerNode["setOrientation"](Math.cos(a), Math.sin(a), 0);
+    }
+  };
+  C2AudioInstance.prototype.play = function (
+    looping,
+    vol,
+    fromPosition,
+    scheduledTime
+  ) {
+    var instobj = this.instanceObject;
+    this.looping = looping;
+    this.volume = vol;
+    var seekPos = fromPosition || 0;
+    scheduledTime = scheduledTime || 0;
+    switch (this.myapi) {
+      case API_HTML5:
+        if (instobj.playbackRate !== 1.0) instobj.playbackRate = 1.0;
+        if (instobj.volume !== vol * masterVolume)
+          instobj.volume = vol * masterVolume;
+        if (instobj.loop !== looping) instobj.loop = looping;
+        if (instobj.muted) instobj.muted = false;
+        if (instobj.currentTime !== seekPos) {
+          try {
+            instobj.currentTime = seekPos;
+          } catch (err) {
 ;
-				}
-			}
-			tryPlayAudioElement(this);
-			break;
-		case API_WEBAUDIO:
-			this.muted = false;
-			this.mutevol = 1;
-			if (this.buffer.myapi === API_WEBAUDIO)
-			{
-				this.gainNode["gain"]["value"] = vol * masterVolume;
-				if (!this.fresh)
-				{
-					this.instanceObject = context["createBufferSource"]();
-					this.instanceObject["buffer"] = this.buffer.bufferObject;
-					this.instanceObject["connect"](this.gainNode);
-				}
-				this.instanceObject["onended"] = this.onended_handler;
-				this.active_buffer = this.instanceObject;
-				this.instanceObject.loop = looping;
-				this.hasPlaybackEnded = false;
-				if (seekPos === 0)
-					startSource(this.instanceObject, scheduledTime);
-				else
-					startSourceAt(this.instanceObject, seekPos, this.getDuration(), scheduledTime);
-			}
-			else
-			{
-				if (instobj.playbackRate !== 1.0)
-					instobj.playbackRate = 1.0;
-				if (instobj.loop !== looping)
-					instobj.loop = looping;
-				instobj.volume = vol * masterVolume;
-				if (instobj.currentTime !== seekPos)
-				{
-					try {
-						instobj.currentTime = seekPos;
-					}
-					catch (err)
-					{
+          }
+        }
+        tryPlayAudioElement(this);
+        break;
+      case API_WEBAUDIO:
+        this.muted = false;
+        this.mutevol = 1;
+        if (this.buffer.myapi === API_WEBAUDIO) {
+          this.gainNode["gain"]["value"] = vol * masterVolume;
+          if (!this.fresh) {
+            this.instanceObject = context["createBufferSource"]();
+            this.instanceObject["buffer"] = this.buffer.bufferObject;
+            this.instanceObject["connect"](this.gainNode);
+          }
+          this.instanceObject["onended"] = this.onended_handler;
+          this.active_buffer = this.instanceObject;
+          this.instanceObject.loop = looping;
+          this.hasPlaybackEnded = false;
+          if (seekPos === 0) startSource(this.instanceObject, scheduledTime);
+          else
+            startSourceAt(
+              this.instanceObject,
+              seekPos,
+              this.getDuration(),
+              scheduledTime
+            );
+        } else {
+          if (instobj.playbackRate !== 1.0) instobj.playbackRate = 1.0;
+          if (instobj.loop !== looping) instobj.loop = looping;
+          instobj.volume = vol * masterVolume;
+          if (instobj.currentTime !== seekPos) {
+            try {
+              instobj.currentTime = seekPos;
+            } catch (err) {
 ;
-					}
-				}
-				tryPlayAudioElement(this);
-			}
-			break;
-		case API_CORDOVA:
-			if ((!this.fresh && this.stopped) || seekPos !== 0)
-				instobj["seekTo"](seekPos);
-			instobj["play"]();
-			this.hasPlaybackEnded = false;
-			break;
-		case API_APPMOBI:
-			if (audRuntime.isDirectCanvas)
-				AppMobi["context"]["playSound"](this.src, looping);
-			else
-				AppMobi["player"]["playSound"](this.src, looping);
-			break;
-		}
-		this.playbackRate = 1;
-		this.startTime = (this.isTimescaled ? audRuntime.kahanTime.sum : audRuntime.wallTime.sum) - seekPos;
-		this.fresh = false;
-		this.stopped = false;
-		this.is_paused = false;
-	};
-	C2AudioInstance.prototype.stop = function ()
-	{
-		switch (this.myapi) {
-		case API_HTML5:
-			if (!this.instanceObject.paused)
-				this.instanceObject.pause();
-			break;
-		case API_WEBAUDIO:
-			if (this.buffer.myapi === API_WEBAUDIO)
-				stopSource(this.instanceObject);
-			else
-			{
-				if (!this.instanceObject.paused)
-					this.instanceObject.pause();
-			}
-			break;
-		case API_CORDOVA:
-			this.instanceObject["stop"]();
-			break;
-		case API_APPMOBI:
-			if (audRuntime.isDirectCanvas)
-				AppMobi["context"]["stopSound"](this.src);
-			break;
-		}
-		this.stopped = true;
-		this.is_paused = false;
-	};
-	C2AudioInstance.prototype.pause = function ()
-	{
-		if (this.fresh || this.stopped || this.hasEnded() || this.is_paused)
-			return;
-		switch (this.myapi) {
-		case API_HTML5:
-			if (!this.instanceObject.paused)
-				this.instanceObject.pause();
-			break;
-		case API_WEBAUDIO:
-			if (this.buffer.myapi === API_WEBAUDIO)
-			{
-				this.resume_position = this.getPlaybackTime(true);
-				if (this.looping)
-					this.resume_position = this.resume_position % this.getDuration();
-				this.is_paused = true;
-				stopSource(this.instanceObject);
-			}
-			else
-			{
-				if (!this.instanceObject.paused)
-					this.instanceObject.pause();
-			}
-			break;
-		case API_CORDOVA:
-			this.instanceObject["pause"]();
-			break;
-		case API_APPMOBI:
-			if (audRuntime.isDirectCanvas)
-				AppMobi["context"]["stopSound"](this.src);
-			break;
-		}
-		this.is_paused = true;
-	};
-	C2AudioInstance.prototype.resume = function ()
-	{
-		if (this.fresh || this.stopped || this.hasEnded() || !this.is_paused)
-			return;
-		switch (this.myapi) {
-		case API_HTML5:
-			tryPlayAudioElement(this);
-			break;
-		case API_WEBAUDIO:
-			if (this.buffer.myapi === API_WEBAUDIO)
-			{
-				this.instanceObject = context["createBufferSource"]();
-				this.instanceObject["buffer"] = this.buffer.bufferObject;
-				this.instanceObject["connect"](this.gainNode);
-				this.instanceObject["onended"] = this.onended_handler;
-				this.active_buffer = this.instanceObject;
-				this.instanceObject.loop = this.looping;
-				this.gainNode["gain"]["value"] = masterVolume * this.volume * this.mutevol;
-				this.updatePlaybackRate();
-				this.startTime = (this.isTimescaled ? audRuntime.kahanTime.sum : audRuntime.wallTime.sum) - (this.resume_position / (this.playbackRate || 0.001));
-				startSourceAt(this.instanceObject, this.resume_position, this.getDuration());
-			}
-			else
-			{
-				tryPlayAudioElement(this);
-			}
-			break;
-		case API_CORDOVA:
-			this.instanceObject["play"]();
-			break;
-		case API_APPMOBI:
-			if (audRuntime.isDirectCanvas)
-				AppMobi["context"]["resumeSound"](this.src);
-			break;
-		}
-		this.is_paused = false;
-	};
-	C2AudioInstance.prototype.seek = function (pos)
-	{
-		if (this.fresh || this.stopped || this.hasEnded())
-			return;
-		switch (this.myapi) {
-		case API_HTML5:
-			try {
-				this.instanceObject.currentTime = pos;
-			}
-			catch (e) {}
-			break;
-		case API_WEBAUDIO:
-			if (this.buffer.myapi === API_WEBAUDIO)
-			{
-				if (this.is_paused)
-					this.resume_position = pos;
-				else
-				{
-					this.pause();
-					this.resume_position = pos;
-					this.resume();
-				}
-			}
-			else
-			{
-				try {
-					this.instanceObject.currentTime = pos;
-				}
-				catch (e) {}
-			}
-			break;
-		case API_CORDOVA:
-			break;
-		case API_APPMOBI:
-			if (audRuntime.isDirectCanvas)
-				AppMobi["context"]["seekSound"](this.src, pos);
-			break;
-		}
-	};
-	C2AudioInstance.prototype.reconnect = function (toNode)
-	{
-		if (this.myapi !== API_WEBAUDIO)
-			return;
-		if (this.pannerEnabled)
-		{
-			this.pannerNode["disconnect"]();
-			this.pannerNode["connect"](toNode);
-		}
-		else
-		{
-			this.gainNode["disconnect"]();
-			this.gainNode["connect"](toNode);
-		}
-	};
-	C2AudioInstance.prototype.getDuration = function (applyPlaybackRate)
-	{
-		var ret = 0;
-		switch (this.myapi) {
-		case API_HTML5:
-			if (typeof this.instanceObject.duration !== "undefined")
-				ret = this.instanceObject.duration;
-			break;
-		case API_WEBAUDIO:
-			ret = this.buffer.bufferObject["duration"];
-			break;
-		case API_CORDOVA:
-			ret = this.instanceObject["getDuration"]();
-			break;
-		case API_APPMOBI:
-			if (audRuntime.isDirectCanvas)
-				ret = AppMobi["context"]["getDurationSound"](this.src);
-			break;
-		}
-		if (applyPlaybackRate)
-			ret /= (this.playbackRate || 0.001);		// avoid divide-by-zero
-		return ret;
-	};
-	C2AudioInstance.prototype.getPlaybackTime = function (applyPlaybackRate)
-	{
-		var duration = this.getDuration();
-		var ret = 0;
-		switch (this.myapi) {
-		case API_HTML5:
-			if (typeof this.instanceObject.currentTime !== "undefined")
-				ret = this.instanceObject.currentTime;
-			break;
-		case API_WEBAUDIO:
-			if (this.buffer.myapi === API_WEBAUDIO)
-			{
-				if (this.is_paused)
-					return this.resume_position;
-				else
-					ret = (this.isTimescaled ? audRuntime.kahanTime.sum : audRuntime.wallTime.sum) - this.startTime;
-			}
-			else if (typeof this.instanceObject.currentTime !== "undefined")
-				ret = this.instanceObject.currentTime;
-			break;
-		case API_CORDOVA:
-			break;
-		case API_APPMOBI:
-			if (audRuntime.isDirectCanvas)
-				ret = AppMobi["context"]["getPlaybackTimeSound"](this.src);
-			break;
-		}
-		if (applyPlaybackRate)
-			ret *= this.playbackRate;
-		if (!this.looping && ret > duration)
-			ret = duration;
-		return ret;
-	};
-	C2AudioInstance.prototype.isPlaying = function ()
-	{
-		return !this.is_paused && !this.fresh && !this.stopped && !this.hasEnded();
-	};
-	C2AudioInstance.prototype.shouldSave = function ()
-	{
-		return !this.fresh && !this.stopped && !this.hasEnded();
-	};
-	C2AudioInstance.prototype.setVolume = function (v)
-	{
-		this.volume = v;
-		this.updateVolume();
-	};
-	C2AudioInstance.prototype.updateVolume = function ()
-	{
-		var volToSet = this.volume * masterVolume;
-		if (!isFinite(volToSet))
-			volToSet = 0;		// HTMLMediaElement throws if setting non-finite volume
-		switch (this.myapi) {
-		case API_HTML5:
-			if (typeof this.instanceObject.volume !== "undefined" && this.instanceObject.volume !== volToSet)
-				this.instanceObject.volume = volToSet;
-			break;
-		case API_WEBAUDIO:
-			if (this.buffer.myapi === API_WEBAUDIO)
-			{
-				this.gainNode["gain"]["value"] = volToSet * this.mutevol;
-			}
-			else
-			{
-				if (typeof this.instanceObject.volume !== "undefined" && this.instanceObject.volume !== volToSet)
-					this.instanceObject.volume = volToSet;
-			}
-			break;
-		case API_CORDOVA:
-			break;
-		case API_APPMOBI:
-			break;
-		}
-	};
-	C2AudioInstance.prototype.getVolume = function ()
-	{
-		return this.volume;
-	};
-	C2AudioInstance.prototype.doSetMuted = function (m)
-	{
-		switch (this.myapi) {
-		case API_HTML5:
-			if (this.instanceObject.muted !== !!m)
-				this.instanceObject.muted = !!m;
-			break;
-		case API_WEBAUDIO:
-			if (this.buffer.myapi === API_WEBAUDIO)
-			{
-				this.mutevol = (m ? 0 : 1);
-				this.gainNode["gain"]["value"] = masterVolume * this.volume * this.mutevol;
-			}
-			else
-			{
-				if (this.instanceObject.muted !== !!m)
-					this.instanceObject.muted = !!m;
-			}
-			break;
-		case API_CORDOVA:
-			break;
-		case API_APPMOBI:
-			break;
-		}
-	};
-	C2AudioInstance.prototype.setMuted = function (m)
-	{
-		this.is_muted = !!m;
-		this.doSetMuted(this.is_muted || this.is_silent);
-	};
-	C2AudioInstance.prototype.setSilent = function (m)
-	{
-		this.is_silent = !!m;
-		this.doSetMuted(this.is_muted || this.is_silent);
-	};
-	C2AudioInstance.prototype.setLooping = function (l)
-	{
-		this.looping = l;
-		switch (this.myapi) {
-		case API_HTML5:
-			if (this.instanceObject.loop !== !!l)
-				this.instanceObject.loop = !!l;
-			break;
-		case API_WEBAUDIO:
-			if (this.instanceObject.loop !== !!l)
-				this.instanceObject.loop = !!l;
-			break;
-		case API_CORDOVA:
-			break;
-		case API_APPMOBI:
-			if (audRuntime.isDirectCanvas)
-				AppMobi["context"]["setLoopingSound"](this.src, l);
-			break;
-		}
-	};
-	C2AudioInstance.prototype.setPlaybackRate = function (r)
-	{
-		this.playbackRate = r;
-		this.updatePlaybackRate();
-	};
-	C2AudioInstance.prototype.updatePlaybackRate = function ()
-	{
-		var r = this.playbackRate;
-		if (this.isTimescaled)
-			r *= audRuntime.timescale;
-		switch (this.myapi) {
-		case API_HTML5:
-			if (this.instanceObject.playbackRate !== r)
-				this.instanceObject.playbackRate = r;
-			break;
-		case API_WEBAUDIO:
-			if (this.buffer.myapi === API_WEBAUDIO)
-			{
-				if (this.instanceObject["playbackRate"]["value"] !== r)
-					this.instanceObject["playbackRate"]["value"] = r;
-			}
-			else
-			{
-				if (this.instanceObject.playbackRate !== r)
-					this.instanceObject.playbackRate = r;
-			}
-			break;
-		case API_CORDOVA:
-			break;
-		case API_APPMOBI:
-			break;
-		}
-	};
-	C2AudioInstance.prototype.setSuspended = function (s)
-	{
-		switch (this.myapi) {
-		case API_HTML5:
-			if (s)
-			{
-				if (this.isPlaying())
-				{
-					this.resume_me = true;
-					this.instanceObject["pause"]();
-				}
-				else
-					this.resume_me = false;
-			}
-			else
-			{
-				if (this.resume_me)
-				{
-					this.instanceObject["play"]();
-					this.resume_me = false;
-				}
-			}
-			break;
-		case API_WEBAUDIO:
-			if (s)
-			{
-				if (this.isPlaying())
-				{
-					this.resume_me = true;
-					if (this.buffer.myapi === API_WEBAUDIO)
-					{
-						this.resume_position = this.getPlaybackTime(true);
-						if (this.looping)
-							this.resume_position = this.resume_position % this.getDuration();
-						stopSource(this.instanceObject);
-					}
-					else
-						this.instanceObject["pause"]();
-				}
-				else
-					this.resume_me = false;
-			}
-			else
-			{
-				if (this.resume_me)
-				{
-					if (this.buffer.myapi === API_WEBAUDIO)
-					{
-						this.instanceObject = context["createBufferSource"]();
-						this.instanceObject["buffer"] = this.buffer.bufferObject;
-						this.instanceObject["connect"](this.gainNode);
-						this.instanceObject["onended"] = this.onended_handler;
-						this.active_buffer = this.instanceObject;
-						this.instanceObject.loop = this.looping;
-						this.gainNode["gain"]["value"] = masterVolume * this.volume * this.mutevol;
-						this.updatePlaybackRate();
-						this.startTime = (this.isTimescaled ? audRuntime.kahanTime.sum : audRuntime.wallTime.sum) - (this.resume_position / (this.playbackRate || 0.001));
-						startSourceAt(this.instanceObject, this.resume_position, this.getDuration());
-					}
-					else
-					{
-						this.instanceObject["play"]();
-					}
-					this.resume_me = false;
-				}
-			}
-			break;
-		case API_CORDOVA:
-			if (s)
-			{
-				if (this.isPlaying())
-				{
-					this.instanceObject["pause"]();
-					this.resume_me = true;
-				}
-				else
-					this.resume_me = false;
-			}
-			else
-			{
-				if (this.resume_me)
-				{
-					this.resume_me = false;
-					this.instanceObject["play"]();
-				}
-			}
-			break;
-		case API_APPMOBI:
-			break;
-		}
-	};
-	pluginProto.Instance = function(type)
-	{
-		this.type = type;
-		this.runtime = type.runtime;
-		audRuntime = this.runtime;
-		audInst = this;
-		this.listenerTracker = null;
-		this.listenerZ = -600;
-		if (this.runtime.isWKWebView)
-			playMusicAsSoundWorkaround = true;
-		if ((this.runtime.isiOS || (this.runtime.isAndroid && (this.runtime.isChrome || this.runtime.isAndroidStockBrowser))) && !this.runtime.isCrosswalk && !this.runtime.isDomFree && !this.runtime.isAmazonWebApp && !playMusicAsSoundWorkaround)
-		{
-			useNextTouchWorkaround = true;
-		}
-		context = null;
-		if (typeof AudioContext !== "undefined")
-		{
-			api = API_WEBAUDIO;
-			context = new AudioContext();
-		}
-		else if (typeof webkitAudioContext !== "undefined")
-		{
-			api = API_WEBAUDIO;
-			context = new webkitAudioContext();
-		}
-		if (this.runtime.isiOS && context)
-		{
-			if (context.close)
-				context.close();
-			if (typeof AudioContext !== "undefined")
-				context = new AudioContext();
-			else if (typeof webkitAudioContext !== "undefined")
-				context = new webkitAudioContext();
-		}
-		if (api !== API_WEBAUDIO)
-		{
-			if (this.runtime.isCordova && typeof window["Media"] !== "undefined")
-				api = API_CORDOVA;
-			else if (this.runtime.isAppMobi)
-				api = API_APPMOBI;
-		}
-		if (api === API_CORDOVA)
-		{
-			appPath = location.href;
-			var i = appPath.lastIndexOf("/");
-			if (i > -1)
-				appPath = appPath.substr(0, i + 1);
-			appPath = appPath.replace("file://", "");
-		}
-		if (this.runtime.isSafari && this.runtime.isWindows && typeof Audio === "undefined")
-		{
-			alert("It looks like you're using Safari for Windows without Quicktime.  Audio cannot be played until Quicktime is installed.");
-			this.runtime.DestroyInstance(this);
-		}
-		else
-		{
-			if (this.runtime.isDirectCanvas)
-				useOgg = this.runtime.isAndroid;		// AAC on iOS, OGG on Android
-			else
-			{
-				try {
-					useOgg = !!(new Audio().canPlayType('audio/ogg; codecs="vorbis"')) &&
-								!this.runtime.isWindows10;
-				}
-				catch (e)
-				{
-					useOgg = false;
-				}
-			}
-			switch (api) {
-			case API_HTML5:
+            }
+          }
+          tryPlayAudioElement(this);
+        }
+        break;
+      case API_CORDOVA:
+        if ((!this.fresh && this.stopped) || seekPos !== 0)
+          instobj["seekTo"](seekPos);
+        instobj["play"]();
+        this.hasPlaybackEnded = false;
+        break;
+      case API_APPMOBI:
+        if (audRuntime.isDirectCanvas)
+          AppMobi["context"]["playSound"](this.src, looping);
+        else AppMobi["player"]["playSound"](this.src, looping);
+        break;
+    }
+    this.playbackRate = 1;
+    this.startTime =
+      (this.isTimescaled ? audRuntime.kahanTime.sum : audRuntime.wallTime.sum) -
+      seekPos;
+    this.fresh = false;
+    this.stopped = false;
+    this.is_paused = false;
+  };
+  C2AudioInstance.prototype.stop = function () {
+    switch (this.myapi) {
+      case API_HTML5:
+        if (!this.instanceObject.paused) this.instanceObject.pause();
+        break;
+      case API_WEBAUDIO:
+        if (this.buffer.myapi === API_WEBAUDIO) stopSource(this.instanceObject);
+        else {
+          if (!this.instanceObject.paused) this.instanceObject.pause();
+        }
+        break;
+      case API_CORDOVA:
+        this.instanceObject["stop"]();
+        break;
+      case API_APPMOBI:
+        if (audRuntime.isDirectCanvas)
+          AppMobi["context"]["stopSound"](this.src);
+        break;
+    }
+    this.stopped = true;
+    this.is_paused = false;
+  };
+  C2AudioInstance.prototype.pause = function () {
+    if (this.fresh || this.stopped || this.hasEnded() || this.is_paused) return;
+    switch (this.myapi) {
+      case API_HTML5:
+        if (!this.instanceObject.paused) this.instanceObject.pause();
+        break;
+      case API_WEBAUDIO:
+        if (this.buffer.myapi === API_WEBAUDIO) {
+          this.resume_position = this.getPlaybackTime(true);
+          if (this.looping)
+            this.resume_position = this.resume_position % this.getDuration();
+          this.is_paused = true;
+          stopSource(this.instanceObject);
+        } else {
+          if (!this.instanceObject.paused) this.instanceObject.pause();
+        }
+        break;
+      case API_CORDOVA:
+        this.instanceObject["pause"]();
+        break;
+      case API_APPMOBI:
+        if (audRuntime.isDirectCanvas)
+          AppMobi["context"]["stopSound"](this.src);
+        break;
+    }
+    this.is_paused = true;
+  };
+  C2AudioInstance.prototype.resume = function () {
+    if (this.fresh || this.stopped || this.hasEnded() || !this.is_paused)
+      return;
+    switch (this.myapi) {
+      case API_HTML5:
+        tryPlayAudioElement(this);
+        break;
+      case API_WEBAUDIO:
+        if (this.buffer.myapi === API_WEBAUDIO) {
+          this.instanceObject = context["createBufferSource"]();
+          this.instanceObject["buffer"] = this.buffer.bufferObject;
+          this.instanceObject["connect"](this.gainNode);
+          this.instanceObject["onended"] = this.onended_handler;
+          this.active_buffer = this.instanceObject;
+          this.instanceObject.loop = this.looping;
+          this.gainNode["gain"]["value"] =
+            masterVolume * this.volume * this.mutevol;
+          this.updatePlaybackRate();
+          this.startTime =
+            (this.isTimescaled
+              ? audRuntime.kahanTime.sum
+              : audRuntime.wallTime.sum) -
+            this.resume_position / (this.playbackRate || 0.001);
+          startSourceAt(
+            this.instanceObject,
+            this.resume_position,
+            this.getDuration()
+          );
+        } else {
+          tryPlayAudioElement(this);
+        }
+        break;
+      case API_CORDOVA:
+        this.instanceObject["play"]();
+        break;
+      case API_APPMOBI:
+        if (audRuntime.isDirectCanvas)
+          AppMobi["context"]["resumeSound"](this.src);
+        break;
+    }
+    this.is_paused = false;
+  };
+  C2AudioInstance.prototype.seek = function (pos) {
+    if (this.fresh || this.stopped || this.hasEnded()) return;
+    switch (this.myapi) {
+      case API_HTML5:
+        try {
+          this.instanceObject.currentTime = pos;
+        } catch (e) {}
+        break;
+      case API_WEBAUDIO:
+        if (this.buffer.myapi === API_WEBAUDIO) {
+          if (this.is_paused) this.resume_position = pos;
+          else {
+            this.pause();
+            this.resume_position = pos;
+            this.resume();
+          }
+        } else {
+          try {
+            this.instanceObject.currentTime = pos;
+          } catch (e) {}
+        }
+        break;
+      case API_CORDOVA:
+        break;
+      case API_APPMOBI:
+        if (audRuntime.isDirectCanvas)
+          AppMobi["context"]["seekSound"](this.src, pos);
+        break;
+    }
+  };
+  C2AudioInstance.prototype.reconnect = function (toNode) {
+    if (this.myapi !== API_WEBAUDIO) return;
+    if (this.pannerEnabled) {
+      this.pannerNode["disconnect"]();
+      this.pannerNode["connect"](toNode);
+    } else {
+      this.gainNode["disconnect"]();
+      this.gainNode["connect"](toNode);
+    }
+  };
+  C2AudioInstance.prototype.getDuration = function (applyPlaybackRate) {
+    var ret = 0;
+    switch (this.myapi) {
+      case API_HTML5:
+        if (typeof this.instanceObject.duration !== "undefined")
+          ret = this.instanceObject.duration;
+        break;
+      case API_WEBAUDIO:
+        ret = this.buffer.bufferObject["duration"];
+        break;
+      case API_CORDOVA:
+        ret = this.instanceObject["getDuration"]();
+        break;
+      case API_APPMOBI:
+        if (audRuntime.isDirectCanvas)
+          ret = AppMobi["context"]["getDurationSound"](this.src);
+        break;
+    }
+    if (applyPlaybackRate) ret /= this.playbackRate || 0.001; // avoid divide-by-zero
+    return ret;
+  };
+  C2AudioInstance.prototype.getPlaybackTime = function (applyPlaybackRate) {
+    var duration = this.getDuration();
+    var ret = 0;
+    switch (this.myapi) {
+      case API_HTML5:
+        if (typeof this.instanceObject.currentTime !== "undefined")
+          ret = this.instanceObject.currentTime;
+        break;
+      case API_WEBAUDIO:
+        if (this.buffer.myapi === API_WEBAUDIO) {
+          if (this.is_paused) return this.resume_position;
+          else
+            ret =
+              (this.isTimescaled
+                ? audRuntime.kahanTime.sum
+                : audRuntime.wallTime.sum) - this.startTime;
+        } else if (typeof this.instanceObject.currentTime !== "undefined")
+          ret = this.instanceObject.currentTime;
+        break;
+      case API_CORDOVA:
+        break;
+      case API_APPMOBI:
+        if (audRuntime.isDirectCanvas)
+          ret = AppMobi["context"]["getPlaybackTimeSound"](this.src);
+        break;
+    }
+    if (applyPlaybackRate) ret *= this.playbackRate;
+    if (!this.looping && ret > duration) ret = duration;
+    return ret;
+  };
+  C2AudioInstance.prototype.isPlaying = function () {
+    return !this.is_paused && !this.fresh && !this.stopped && !this.hasEnded();
+  };
+  C2AudioInstance.prototype.shouldSave = function () {
+    return !this.fresh && !this.stopped && !this.hasEnded();
+  };
+  C2AudioInstance.prototype.setVolume = function (v) {
+    this.volume = v;
+    this.updateVolume();
+  };
+  C2AudioInstance.prototype.updateVolume = function () {
+    var volToSet = this.volume * masterVolume;
+    if (!isFinite(volToSet)) volToSet = 0; // HTMLMediaElement throws if setting non-finite volume
+    switch (this.myapi) {
+      case API_HTML5:
+        if (
+          typeof this.instanceObject.volume !== "undefined" &&
+          this.instanceObject.volume !== volToSet
+        )
+          this.instanceObject.volume = volToSet;
+        break;
+      case API_WEBAUDIO:
+        if (this.buffer.myapi === API_WEBAUDIO) {
+          this.gainNode["gain"]["value"] = volToSet * this.mutevol;
+        } else {
+          if (
+            typeof this.instanceObject.volume !== "undefined" &&
+            this.instanceObject.volume !== volToSet
+          )
+            this.instanceObject.volume = volToSet;
+        }
+        break;
+      case API_CORDOVA:
+        break;
+      case API_APPMOBI:
+        break;
+    }
+  };
+  C2AudioInstance.prototype.getVolume = function () {
+    return this.volume;
+  };
+  C2AudioInstance.prototype.doSetMuted = function (m) {
+    switch (this.myapi) {
+      case API_HTML5:
+        if (this.instanceObject.muted !== !!m) this.instanceObject.muted = !!m;
+        break;
+      case API_WEBAUDIO:
+        if (this.buffer.myapi === API_WEBAUDIO) {
+          this.mutevol = m ? 0 : 1;
+          this.gainNode["gain"]["value"] =
+            masterVolume * this.volume * this.mutevol;
+        } else {
+          if (this.instanceObject.muted !== !!m)
+            this.instanceObject.muted = !!m;
+        }
+        break;
+      case API_CORDOVA:
+        break;
+      case API_APPMOBI:
+        break;
+    }
+  };
+  C2AudioInstance.prototype.setMuted = function (m) {
+    this.is_muted = !!m;
+    this.doSetMuted(this.is_muted || this.is_silent);
+  };
+  C2AudioInstance.prototype.setSilent = function (m) {
+    this.is_silent = !!m;
+    this.doSetMuted(this.is_muted || this.is_silent);
+  };
+  C2AudioInstance.prototype.setLooping = function (l) {
+    this.looping = l;
+    switch (this.myapi) {
+      case API_HTML5:
+        if (this.instanceObject.loop !== !!l) this.instanceObject.loop = !!l;
+        break;
+      case API_WEBAUDIO:
+        if (this.instanceObject.loop !== !!l) this.instanceObject.loop = !!l;
+        break;
+      case API_CORDOVA:
+        break;
+      case API_APPMOBI:
+        if (audRuntime.isDirectCanvas)
+          AppMobi["context"]["setLoopingSound"](this.src, l);
+        break;
+    }
+  };
+  C2AudioInstance.prototype.setPlaybackRate = function (r) {
+    this.playbackRate = r;
+    this.updatePlaybackRate();
+  };
+  C2AudioInstance.prototype.updatePlaybackRate = function () {
+    var r = this.playbackRate;
+    if (this.isTimescaled) r *= audRuntime.timescale;
+    switch (this.myapi) {
+      case API_HTML5:
+        if (this.instanceObject.playbackRate !== r)
+          this.instanceObject.playbackRate = r;
+        break;
+      case API_WEBAUDIO:
+        if (this.buffer.myapi === API_WEBAUDIO) {
+          if (this.instanceObject["playbackRate"]["value"] !== r)
+            this.instanceObject["playbackRate"]["value"] = r;
+        } else {
+          if (this.instanceObject.playbackRate !== r)
+            this.instanceObject.playbackRate = r;
+        }
+        break;
+      case API_CORDOVA:
+        break;
+      case API_APPMOBI:
+        break;
+    }
+  };
+  C2AudioInstance.prototype.setSuspended = function (s) {
+    switch (this.myapi) {
+      case API_HTML5:
+        if (s) {
+          if (this.isPlaying()) {
+            this.resume_me = true;
+            this.instanceObject["pause"]();
+          } else this.resume_me = false;
+        } else {
+          if (this.resume_me) {
+            this.instanceObject["play"]();
+            this.resume_me = false;
+          }
+        }
+        break;
+      case API_WEBAUDIO:
+        if (s) {
+          if (this.isPlaying()) {
+            this.resume_me = true;
+            if (this.buffer.myapi === API_WEBAUDIO) {
+              this.resume_position = this.getPlaybackTime(true);
+              if (this.looping)
+                this.resume_position =
+                  this.resume_position % this.getDuration();
+              stopSource(this.instanceObject);
+            } else this.instanceObject["pause"]();
+          } else this.resume_me = false;
+        } else {
+          if (this.resume_me) {
+            if (this.buffer.myapi === API_WEBAUDIO) {
+              this.instanceObject = context["createBufferSource"]();
+              this.instanceObject["buffer"] = this.buffer.bufferObject;
+              this.instanceObject["connect"](this.gainNode);
+              this.instanceObject["onended"] = this.onended_handler;
+              this.active_buffer = this.instanceObject;
+              this.instanceObject.loop = this.looping;
+              this.gainNode["gain"]["value"] =
+                masterVolume * this.volume * this.mutevol;
+              this.updatePlaybackRate();
+              this.startTime =
+                (this.isTimescaled
+                  ? audRuntime.kahanTime.sum
+                  : audRuntime.wallTime.sum) -
+                this.resume_position / (this.playbackRate || 0.001);
+              startSourceAt(
+                this.instanceObject,
+                this.resume_position,
+                this.getDuration()
+              );
+            } else {
+              this.instanceObject["play"]();
+            }
+            this.resume_me = false;
+          }
+        }
+        break;
+      case API_CORDOVA:
+        if (s) {
+          if (this.isPlaying()) {
+            this.instanceObject["pause"]();
+            this.resume_me = true;
+          } else this.resume_me = false;
+        } else {
+          if (this.resume_me) {
+            this.resume_me = false;
+            this.instanceObject["play"]();
+          }
+        }
+        break;
+      case API_APPMOBI:
+        break;
+    }
+  };
+  pluginProto.Instance = function (type) {
+    this.type = type;
+    this.runtime = type.runtime;
+    audRuntime = this.runtime;
+    audInst = this;
+    this.listenerTracker = null;
+    this.listenerZ = -600;
+    if (this.runtime.isWKWebView) playMusicAsSoundWorkaround = true;
+    if (
+      (this.runtime.isiOS ||
+        (this.runtime.isAndroid &&
+          (this.runtime.isChrome || this.runtime.isAndroidStockBrowser))) &&
+      !this.runtime.isCrosswalk &&
+      !this.runtime.isDomFree &&
+      !this.runtime.isAmazonWebApp &&
+      !playMusicAsSoundWorkaround
+    ) {
+      useNextTouchWorkaround = true;
+    }
+    context = null;
+    if (typeof AudioContext !== "undefined") {
+      api = API_WEBAUDIO;
+      context = new AudioContext();
+    } else if (typeof webkitAudioContext !== "undefined") {
+      api = API_WEBAUDIO;
+      context = new webkitAudioContext();
+    }
+    if (this.runtime.isiOS && context) {
+      if (context.close) context.close();
+      if (typeof AudioContext !== "undefined") context = new AudioContext();
+      else if (typeof webkitAudioContext !== "undefined")
+        context = new webkitAudioContext();
+    }
+    if (api !== API_WEBAUDIO) {
+      if (this.runtime.isCordova && typeof window["Media"] !== "undefined")
+        api = API_CORDOVA;
+      else if (this.runtime.isAppMobi) api = API_APPMOBI;
+    }
+    if (api === API_CORDOVA) {
+      appPath = location.href;
+      var i = appPath.lastIndexOf("/");
+      if (i > -1) appPath = appPath.substr(0, i + 1);
+      appPath = appPath.replace("file://", "");
+    }
+    if (
+      this.runtime.isSafari &&
+      this.runtime.isWindows &&
+      typeof Audio === "undefined"
+    ) {
+      alert(
+        "It looks like you're using Safari for Windows without Quicktime.  Audio cannot be played until Quicktime is installed."
+      );
+      this.runtime.DestroyInstance(this);
+    } else {
+      if (this.runtime.isDirectCanvas) useOgg = this.runtime.isAndroid;
+      else {
+        try {
+          useOgg =
+            !!new Audio().canPlayType('audio/ogg; codecs="vorbis"') &&
+            !this.runtime.isWindows10;
+        } catch (e) {
+          useOgg = false;
+        }
+      }
+      switch (api) {
+        case API_HTML5:
 ;
-				break;
-			case API_WEBAUDIO:
+          break;
+        case API_WEBAUDIO:
 ;
-				break;
-			case API_CORDOVA:
+          break;
+        case API_CORDOVA:
 ;
-				break;
-			case API_APPMOBI:
+          break;
+        case API_APPMOBI:
 ;
-				break;
-			default:
+          break;
+        default:
 ;
-			}
-		this.runtime.tickMe(this);
-		}
-	};
-	var instanceProto = pluginProto.Instance.prototype;
-	instanceProto.onCreate = function ()
-	{
-		this.runtime.audioInstance = this;
-		timescale_mode = this.properties[0];	// 0 = off, 1 = sounds only, 2 = all
-		this.saveload = this.properties[1];		// 0 = all, 1 = sounds only, 2 = music only, 3 = none
-		this.playinbackground = (this.properties[2] !== 0);
-		this.nextPlayTime = 0;
-		panningModel = this.properties[3];		// 0 = equalpower, 1 = hrtf, 3 = soundfield
-		distanceModel = this.properties[4];		// 0 = linear, 1 = inverse, 2 = exponential
-		this.listenerZ = -this.properties[5];
-		refDistance = this.properties[6];
-		maxDistance = this.properties[7];
-		rolloffFactor = this.properties[8];
-		this.listenerTracker = new ObjectTracker();
-		var draw_width = (this.runtime.draw_width || this.runtime.width);
-		var draw_height = (this.runtime.draw_height || this.runtime.height);
-		if (api === API_WEBAUDIO)
-		{
-			context["listener"]["setPosition"](draw_width / 2, draw_height / 2, this.listenerZ);
-			context["listener"]["setOrientation"](0, 0, 1, 0, -1, 0);
-			window["c2OnAudioMicStream"] = function (localMediaStream, tag)
-			{
-				if (micSource)
-					micSource["disconnect"]();
-				micTag = tag.toLowerCase();
-				micSource = context["createMediaStreamSource"](localMediaStream);
-				micSource["connect"](getDestinationForTag(micTag));
-			};
-		}
-		this.runtime.addSuspendCallback(function(s)
-		{
-			audInst.onSuspend(s);
-		});
-		var self = this;
-		this.runtime.addDestroyCallback(function (inst)
-		{
-			self.onInstanceDestroyed(inst);
-		});
-	};
-	instanceProto.onInstanceDestroyed = function (inst)
-	{
-		var i, len, a;
-		for (i = 0, len = audioInstances.length; i < len; i++)
-		{
-			a = audioInstances[i];
-			if (a.objectTracker)
-			{
-				if (a.objectTracker.obj === inst)
-				{
-					a.objectTracker.obj = null;
-					if (a.pannerEnabled && a.isPlaying() && a.looping)
-						a.stop();
-				}
-			}
-		}
-		if (this.listenerTracker.obj === inst)
-			this.listenerTracker.obj = null;
-	};
-	instanceProto.saveToJSON = function ()
-	{
-		var o = {
-			"silent": silent,
-			"masterVolume": masterVolume,
-			"listenerZ": this.listenerZ,
-			"listenerUid": this.listenerTracker.hasObject() ? this.listenerTracker.obj.uid : -1,
-			"playing": [],
-			"effects": {}
-		};
-		var playingarr = o["playing"];
-		var i, len, a, d, p, panobj, playbackTime;
-		for (i = 0, len = audioInstances.length; i < len; i++)
-		{
-			a = audioInstances[i];
-			if (!a.shouldSave())
-				continue;				// no need to save stopped sounds
-			if (this.saveload === 3)	// not saving/loading any sounds/music
-				continue;
-			if (a.is_music && this.saveload === 1)	// not saving/loading music
-				continue;
-			if (!a.is_music && this.saveload === 2)	// not saving/loading sound
-				continue;
-			playbackTime = a.getPlaybackTime();
-			if (a.looping)
-				playbackTime = playbackTime % a.getDuration();
-			d = {
-				"tag": a.tag,
-				"buffersrc": a.buffer.src,
-				"is_music": a.is_music,
-				"playbackTime": playbackTime,
-				"volume": a.volume,
-				"looping": a.looping,
-				"muted": a.is_muted,
-				"playbackRate": a.playbackRate,
-				"paused": a.is_paused,
-				"resume_position": a.resume_position
-			};
-			if (a.pannerEnabled)
-			{
-				d["pan"] = {};
-				panobj = d["pan"];
-				if (a.objectTracker && a.objectTracker.hasObject())
-				{
-					panobj["objUid"] = a.objectTracker.obj.uid;
-				}
-				else
-				{
-					panobj["x"] = a.panX;
-					panobj["y"] = a.panY;
-					panobj["a"] = a.panAngle;
-				}
-				panobj["ia"] = a.panConeInner;
-				panobj["oa"] = a.panConeOuter;
-				panobj["og"] = a.panConeOuterGain;
-			}
-			playingarr.push(d);
-		}
-		var fxobj = o["effects"];
-		var fxarr;
-		for (p in effects)
-		{
-			if (effects.hasOwnProperty(p))
-			{
-				fxarr = [];
-				for (i = 0, len = effects[p].length; i < len; i++)
-				{
-					fxarr.push({ "type": effects[p][i].type, "params": effects[p][i].params });
-				}
-				fxobj[p] = fxarr;
-			}
-		}
-		return o;
-	};
-	var objectTrackerUidsToLoad = [];
-	instanceProto.loadFromJSON = function (o)
-	{
-		var setSilent = o["silent"];
-		masterVolume = o["masterVolume"];
-		this.listenerZ = o["listenerZ"];
-		this.listenerTracker.setObject(null);
-		var listenerUid = o["listenerUid"];
-		if (listenerUid !== -1)
-		{
-			this.listenerTracker.loadUid = listenerUid;
-			objectTrackerUidsToLoad.push(this.listenerTracker);
-		}
-		var playingarr = o["playing"];
-		var i, len, d, src, is_music, tag, playbackTime, looping, vol, b, a, p, pan, panObjUid;
-		if (this.saveload !== 3)
-		{
-			for (i = 0, len = audioInstances.length; i < len; i++)
-			{
-				a = audioInstances[i];
-				if (a.is_music && this.saveload === 1)
-					continue;		// only saving/loading sound: leave music playing
-				if (!a.is_music && this.saveload === 2)
-					continue;		// only saving/loading music: leave sound playing
-				a.stop();
-			}
-		}
-		var fxarr, fxtype, fxparams, fx;
-		for (p in effects)
-		{
-			if (effects.hasOwnProperty(p))
-			{
-				for (i = 0, len = effects[p].length; i < len; i++)
-					effects[p][i].remove();
-			}
-		}
-		cr.wipe(effects);
-		for (p in o["effects"])
-		{
-			if (o["effects"].hasOwnProperty(p))
-			{
-				fxarr = o["effects"][p];
-				for (i = 0, len = fxarr.length; i < len; i++)
-				{
-					fxtype = fxarr[i]["type"];
-					fxparams = fxarr[i]["params"];
-					switch (fxtype) {
-					case "filter":
-						addEffectForTag(p, new FilterEffect(fxparams[0], fxparams[1], fxparams[2], fxparams[3], fxparams[4], fxparams[5]));
-						break;
-					case "delay":
-						addEffectForTag(p, new DelayEffect(fxparams[0], fxparams[1], fxparams[2]));
-						break;
-					case "convolve":
-						src = fxparams[2];
-						b = this.getAudioBuffer(src, false);
-						if (b.bufferObject)
-						{
-							fx = new ConvolveEffect(b.bufferObject, fxparams[0], fxparams[1], src);
-						}
-						else
-						{
-							fx = new ConvolveEffect(null, fxparams[0], fxparams[1], src);
-							b.normalizeWhenReady = fxparams[0];
-							b.convolveWhenReady = fx;
-						}
-						addEffectForTag(p, fx);
-						break;
-					case "flanger":
-						addEffectForTag(p, new FlangerEffect(fxparams[0], fxparams[1], fxparams[2], fxparams[3], fxparams[4]));
-						break;
-					case "phaser":
-						addEffectForTag(p, new PhaserEffect(fxparams[0], fxparams[1], fxparams[2], fxparams[3], fxparams[4], fxparams[5]));
-						break;
-					case "gain":
-						addEffectForTag(p, new GainEffect(fxparams[0]));
-						break;
-					case "tremolo":
-						addEffectForTag(p, new TremoloEffect(fxparams[0], fxparams[1]));
-						break;
-					case "ringmod":
-						addEffectForTag(p, new RingModulatorEffect(fxparams[0], fxparams[1]));
-						break;
-					case "distortion":
-						addEffectForTag(p, new DistortionEffect(fxparams[0], fxparams[1], fxparams[2], fxparams[3], fxparams[4]));
-						break;
-					case "compressor":
-						addEffectForTag(p, new CompressorEffect(fxparams[0], fxparams[1], fxparams[2], fxparams[3], fxparams[4]));
-						break;
-					case "analyser":
-						addEffectForTag(p, new AnalyserEffect(fxparams[0], fxparams[1]));
-						break;
-					}
-				}
-			}
-		}
-		for (i = 0, len = playingarr.length; i < len; i++)
-		{
-			if (this.saveload === 3)	// not saving/loading any sounds/music
-				continue;
-			d = playingarr[i];
-			src = d["buffersrc"];
-			is_music = d["is_music"];
-			tag = d["tag"];
-			playbackTime = d["playbackTime"];
-			looping = d["looping"];
-			vol = d["volume"];
-			pan = d["pan"];
-			panObjUid = (pan && pan.hasOwnProperty("objUid")) ? pan["objUid"] : -1;
-			if (is_music && this.saveload === 1)	// not saving/loading music
-				continue;
-			if (!is_music && this.saveload === 2)	// not saving/loading sound
-				continue;
-			a = this.getAudioInstance(src, tag, is_music, looping, vol);
-			if (!a)
-			{
-				b = this.getAudioBuffer(src, is_music);
-				b.seekWhenReady = playbackTime;
-				b.pauseWhenReady = d["paused"];
-				if (pan)
-				{
-					if (panObjUid !== -1)
-					{
-						b.panWhenReady.push({ objUid: panObjUid, ia: pan["ia"], oa: pan["oa"], og: pan["og"], thistag: tag });
-					}
-					else
-					{
-						b.panWhenReady.push({ x: pan["x"], y: pan["y"], a: pan["a"], ia: pan["ia"], oa: pan["oa"], og: pan["og"], thistag: tag });
-					}
-				}
-				continue;
-			}
-			a.resume_position = d["resume_position"];
-			a.setPannerEnabled(!!pan);
-			a.play(looping, vol, playbackTime);
-			a.updatePlaybackRate();
-			a.updateVolume();
-			a.doSetMuted(a.is_muted || a.is_silent);
-			if (d["paused"])
-				a.pause();
-			if (d["muted"])
-				a.setMuted(true);
-			a.doSetMuted(a.is_muted || a.is_silent);
-			if (pan)
-			{
-				if (panObjUid !== -1)
-				{
-					a.objectTracker = a.objectTracker || new ObjectTracker();
-					a.objectTracker.loadUid = panObjUid;
-					objectTrackerUidsToLoad.push(a.objectTracker);
-				}
-				else
-				{
-					a.setPan(pan["x"], pan["y"], pan["a"], pan["ia"], pan["oa"], pan["og"]);
-				}
-			}
-		}
-		if (setSilent && !silent)			// setting silent
-		{
-			for (i = 0, len = audioInstances.length; i < len; i++)
-				audioInstances[i].setSilent(true);
-			silent = true;
-		}
-		else if (!setSilent && silent)		// setting not silent
-		{
-			for (i = 0, len = audioInstances.length; i < len; i++)
-				audioInstances[i].setSilent(false);
-			silent = false;
-		}
-	};
-	instanceProto.afterLoad = function ()
-	{
-		var i, len, ot, inst;
-		for (i = 0, len = objectTrackerUidsToLoad.length; i < len; i++)
-		{
-			ot = objectTrackerUidsToLoad[i];
-			inst = this.runtime.getObjectByUID(ot.loadUid);
-			ot.setObject(inst);
-			ot.loadUid = -1;
-			if (inst)
-			{
-				listenerX = inst.x;
-				listenerY = inst.y;
-			}
-		}
-		cr.clearArray(objectTrackerUidsToLoad);
-	};
-	instanceProto.onSuspend = function (s)
-	{
-		if (this.playinbackground)
-			return;
-		if (!s && context && context["resume"])
-		{
-			context["resume"]();
-			isContextSuspended = false;
-		}
-		var i, len;
-		for (i = 0, len = audioInstances.length; i < len; i++)
-			audioInstances[i].setSuspended(s);
-		if (s && context && context["suspend"])
-		{
-			context["suspend"]();
-			isContextSuspended = true;
-		}
-	};
-	instanceProto.tick = function ()
-	{
-		var dt = this.runtime.dt;
-		var i, len, a;
-		for (i = 0, len = audioInstances.length; i < len; i++)
-		{
-			a = audioInstances[i];
-			a.tick(dt);
-			if (timescale_mode !== 0)
-				a.updatePlaybackRate();
-		}
-		var p, arr, f;
-		for (p in effects)
-		{
-			if (effects.hasOwnProperty(p))
-			{
-				arr = effects[p];
-				for (i = 0, len = arr.length; i < len; i++)
-				{
-					f = arr[i];
-					if (f.tick)
-						f.tick();
-				}
-			}
-		}
-		if (api === API_WEBAUDIO && this.listenerTracker.hasObject())
-		{
-			this.listenerTracker.tick(dt);
-			listenerX = this.listenerTracker.obj.x;
-			listenerY = this.listenerTracker.obj.y;
-			context["listener"]["setPosition"](this.listenerTracker.obj.x, this.listenerTracker.obj.y, this.listenerZ);
-		}
-	};
-	var preload_list = [];
-	instanceProto.setPreloadList = function (arr)
-	{
-		var i, len, p, filename, size, isOgg;
-		var total_size = 0;
-		for (i = 0, len = arr.length; i < len; ++i)
-		{
-			p = arr[i];
-			filename = p[0];
-			size = p[1] * 2;
-			isOgg = (filename.length > 4 && filename.substr(filename.length - 4) === ".ogg");
-			if ((isOgg && useOgg) || (!isOgg && !useOgg))
-			{
-				preload_list.push({
-					filename: filename,
-					size: size,
-					obj: null
-				});
-				total_size += size;
-			}
-		}
-		return total_size;
-	};
-	instanceProto.startPreloads = function ()
-	{
-		var i, len, p, src;
-		for (i = 0, len = preload_list.length; i < len; ++i)
-		{
-			p = preload_list[i];
-			src = this.runtime.files_subfolder + p.filename;
-			p.obj = this.getAudioBuffer(src, false);
-		}
-	};
-	instanceProto.getPreloadedSize = function ()
-	{
-		var completed = 0;
-		var i, len, p;
-		for (i = 0, len = preload_list.length; i < len; ++i)
-		{
-			p = preload_list[i];
-			if (p.obj.isLoadedAndDecoded() || p.obj.hasFailedToLoad() || this.runtime.isDomFree || this.runtime.isAndroidStockBrowser)
-			{
-				completed += p.size;
-			}
-			else if (p.obj.isLoaded())	// downloaded but not decoded: only happens in Web Audio API, count as half-way progress
-			{
-				completed += Math.floor(p.size / 2);
-			}
-		};
-		return completed;
-	};
-	instanceProto.releaseAllMusicBuffers = function ()
-	{
-		var i, len, j, b;
-		for (i = 0, j = 0, len = audioBuffers.length; i < len; ++i)
-		{
-			b = audioBuffers[i];
-			audioBuffers[j] = b;
-			if (b.is_music)
-				b.release();
-			else
-				++j;		// keep
-		}
-		audioBuffers.length = j;
-	};
-	instanceProto.getAudioBuffer = function (src_, is_music, dont_create)
-	{
-		var i, len, a, ret = null, j, k, lenj, ai;
-		for (i = 0, len = audioBuffers.length; i < len; i++)
-		{
-			a = audioBuffers[i];
-			if (a.src === src_)
-			{
-				ret = a;
-				break;
-			}
-		}
-		if (!ret && !dont_create)
-		{
-			if (playMusicAsSoundWorkaround && is_music)
-				this.releaseAllMusicBuffers();
-			ret = new C2AudioBuffer(src_, is_music);
-			audioBuffers.push(ret);
-		}
-		return ret;
-	};
-	instanceProto.getAudioInstance = function (src_, tag, is_music, looping, vol)
-	{
-		var i, len, a;
-		for (i = 0, len = audioInstances.length; i < len; i++)
-		{
-			a = audioInstances[i];
-			if (a.src === src_ && (a.canBeRecycled() || is_music))
-			{
-				a.tag = tag;
-				return a;
-			}
-		}
-		var b = this.getAudioBuffer(src_, is_music);
-		if (!b.bufferObject)
-		{
-			if (tag !== "<preload>")
-			{
-				b.playTagWhenReady = tag;
-				b.loopWhenReady = looping;
-				b.volumeWhenReady = vol;
-			}
-			return null;
-		}
-		a = new C2AudioInstance(b, tag);
-		audioInstances.push(a);
-		return a;
-	};
-	var taggedAudio = [];
-	function SortByIsPlaying(a, b)
-	{
-		var an = a.isPlaying() ? 1 : 0;
-		var bn = b.isPlaying() ? 1 : 0;
-		if (an === bn)
-			return 0;
-		else if (an < bn)
-			return 1;
-		else
-			return -1;
-	};
-	function getAudioByTag(tag, sort_by_playing)
-	{
-		cr.clearArray(taggedAudio);
-		if (!tag.length)
-		{
-			if (!lastAudio || lastAudio.hasEnded())
-				return;
-			else
-			{
-				cr.clearArray(taggedAudio);
-				taggedAudio[0] = lastAudio;
-				return;
-			}
-		}
-		var i, len, a;
-		for (i = 0, len = audioInstances.length; i < len; i++)
-		{
-			a = audioInstances[i];
-			if (cr.equals_nocase(tag, a.tag))
-				taggedAudio.push(a);
-		}
-		if (sort_by_playing)
-			taggedAudio.sort(SortByIsPlaying);
-	};
-	function reconnectEffects(tag)
-	{
-		var i, len, arr, n, toNode = context["destination"];
-		if (effects.hasOwnProperty(tag))
-		{
-			arr = effects[tag];
-			if (arr.length)
-			{
-				toNode = arr[0].getInputNode();
-				for (i = 0, len = arr.length; i < len; i++)
-				{
-					n = arr[i];
-					if (i + 1 === len)
-						n.connectTo(context["destination"]);
-					else
-						n.connectTo(arr[i + 1].getInputNode());
-				}
-			}
-		}
-		getAudioByTag(tag);
-		for (i = 0, len = taggedAudio.length; i < len; i++)
-			taggedAudio[i].reconnect(toNode);
-		if (micSource && micTag === tag)
-		{
-			micSource["disconnect"]();
-			micSource["connect"](toNode);
-		}
-	};
-	function addEffectForTag(tag, fx)
-	{
-		if (!effects.hasOwnProperty(tag))
-			effects[tag] = [fx];
-		else
-			effects[tag].push(fx);
-		reconnectEffects(tag);
-	};
-	function Cnds() {};
-	Cnds.prototype.OnEnded = function (t)
-	{
-		return cr.equals_nocase(audTag, t);
-	};
-	Cnds.prototype.PreloadsComplete = function ()
-	{
-		var i, len;
-		for (i = 0, len = audioBuffers.length; i < len; i++)
-		{
-			if (!audioBuffers[i].isLoadedAndDecoded() && !audioBuffers[i].hasFailedToLoad())
-				return false;
-		}
-		return true;
-	};
-	Cnds.prototype.AdvancedAudioSupported = function ()
-	{
-		return api === API_WEBAUDIO;
-	};
-	Cnds.prototype.IsSilent = function ()
-	{
-		return silent;
-	};
-	Cnds.prototype.IsAnyPlaying = function ()
-	{
-		var i, len;
-		for (i = 0, len = audioInstances.length; i < len; i++)
-		{
-			if (audioInstances[i].isPlaying())
-				return true;
-		}
-		return false;
-	};
-	Cnds.prototype.IsTagPlaying = function (tag)
-	{
-		getAudioByTag(tag);
-		var i, len;
-		for (i = 0, len = taggedAudio.length; i < len; i++)
-		{
-			if (taggedAudio[i].isPlaying())
-				return true;
-		}
-		return false;
-	};
-	pluginProto.cnds = new Cnds();
-	function Acts() {};
-	Acts.prototype.Play = function (file, looping, vol, tag)
-	{
-		if (silent)
-			return;
-		var v = dbToLinear(vol);
-		var is_music = file[1];
-		var src = this.runtime.files_subfolder + file[0] + (useOgg ? ".ogg" : ".m4a");
-		lastAudio = this.getAudioInstance(src, tag, is_music, looping!==0, v);
-		if (!lastAudio)
-			return;
-		lastAudio.setPannerEnabled(false);
-		lastAudio.play(looping!==0, v, 0, this.nextPlayTime);
-		this.nextPlayTime = 0;
-	};
-	Acts.prototype.PlayAtPosition = function (file, looping, vol, x_, y_, angle_, innerangle_, outerangle_, outergain_, tag)
-	{
-		if (silent)
-			return;
-		var v = dbToLinear(vol);
-		var is_music = file[1];
-		var src = this.runtime.files_subfolder + file[0] + (useOgg ? ".ogg" : ".m4a");
-		lastAudio = this.getAudioInstance(src, tag, is_music, looping!==0, v);
-		if (!lastAudio)
-		{
-			var b = this.getAudioBuffer(src, is_music);
-			b.panWhenReady.push({ x: x_, y: y_, a: angle_, ia: innerangle_, oa: outerangle_, og: dbToLinear(outergain_), thistag: tag });
-			return;
-		}
-		lastAudio.setPannerEnabled(true);
-		lastAudio.setPan(x_, y_, angle_, innerangle_, outerangle_, dbToLinear(outergain_));
-		lastAudio.play(looping!==0, v, 0, this.nextPlayTime);
-		this.nextPlayTime = 0;
-	};
-	Acts.prototype.PlayAtObject = function (file, looping, vol, obj, innerangle, outerangle, outergain, tag)
-	{
-		if (silent || !obj)
-			return;
-		var inst = obj.getFirstPicked();
-		if (!inst)
-			return;
-		var v = dbToLinear(vol);
-		var is_music = file[1];
-		var src = this.runtime.files_subfolder + file[0] + (useOgg ? ".ogg" : ".m4a");
-		lastAudio = this.getAudioInstance(src, tag, is_music, looping!==0, v);
-		if (!lastAudio)
-		{
-			var b = this.getAudioBuffer(src, is_music);
-			b.panWhenReady.push({ obj: inst, ia: innerangle, oa: outerangle, og: dbToLinear(outergain), thistag: tag });
-			return;
-		}
-		lastAudio.setPannerEnabled(true);
-		var px = cr.rotatePtAround(inst.x, inst.y, -inst.layer.getAngle(), listenerX, listenerY, true);
-		var py = cr.rotatePtAround(inst.x, inst.y, -inst.layer.getAngle(), listenerX, listenerY, false);
-		lastAudio.setPan(px, py, cr.to_degrees(inst.angle - inst.layer.getAngle()), innerangle, outerangle, dbToLinear(outergain));
-		lastAudio.setObject(inst);
-		lastAudio.play(looping!==0, v, 0, this.nextPlayTime);
-		this.nextPlayTime = 0;
-	};
-	Acts.prototype.PlayByName = function (folder, filename, looping, vol, tag)
-	{
-		if (silent)
-			return;
-		var v = dbToLinear(vol);
-		var is_music = (folder === 1);
-		var src = this.runtime.files_subfolder + filename.toLowerCase() + (useOgg ? ".ogg" : ".m4a");
-		lastAudio = this.getAudioInstance(src, tag, is_music, looping!==0, v);
-		if (!lastAudio)
-			return;
-		lastAudio.setPannerEnabled(false);
-		lastAudio.play(looping!==0, v, 0, this.nextPlayTime);
-		this.nextPlayTime = 0;
-	};
-	Acts.prototype.PlayAtPositionByName = function (folder, filename, looping, vol, x_, y_, angle_, innerangle_, outerangle_, outergain_, tag)
-	{
-		if (silent)
-			return;
-		var v = dbToLinear(vol);
-		var is_music = (folder === 1);
-		var src = this.runtime.files_subfolder + filename.toLowerCase() + (useOgg ? ".ogg" : ".m4a");
-		lastAudio = this.getAudioInstance(src, tag, is_music, looping!==0, v);
-		if (!lastAudio)
-		{
-			var b = this.getAudioBuffer(src, is_music);
-			b.panWhenReady.push({ x: x_, y: y_, a: angle_, ia: innerangle_, oa: outerangle_, og: dbToLinear(outergain_), thistag: tag });
-			return;
-		}
-		lastAudio.setPannerEnabled(true);
-		lastAudio.setPan(x_, y_, angle_, innerangle_, outerangle_, dbToLinear(outergain_));
-		lastAudio.play(looping!==0, v, 0, this.nextPlayTime);
-		this.nextPlayTime = 0;
-	};
-	Acts.prototype.PlayAtObjectByName = function (folder, filename, looping, vol, obj, innerangle, outerangle, outergain, tag)
-	{
-		if (silent || !obj)
-			return;
-		var inst = obj.getFirstPicked();
-		if (!inst)
-			return;
-		var v = dbToLinear(vol);
-		var is_music = (folder === 1);
-		var src = this.runtime.files_subfolder + filename.toLowerCase() + (useOgg ? ".ogg" : ".m4a");
-		lastAudio = this.getAudioInstance(src, tag, is_music, looping!==0, v);
-		if (!lastAudio)
-		{
-			var b = this.getAudioBuffer(src, is_music);
-			b.panWhenReady.push({ obj: inst, ia: innerangle, oa: outerangle, og: dbToLinear(outergain), thistag: tag });
-			return;
-		}
-		lastAudio.setPannerEnabled(true);
-		var px = cr.rotatePtAround(inst.x, inst.y, -inst.layer.getAngle(), listenerX, listenerY, true);
-		var py = cr.rotatePtAround(inst.x, inst.y, -inst.layer.getAngle(), listenerX, listenerY, false);
-		lastAudio.setPan(px, py, cr.to_degrees(inst.angle - inst.layer.getAngle()), innerangle, outerangle, dbToLinear(outergain));
-		lastAudio.setObject(inst);
-		lastAudio.play(looping!==0, v, 0, this.nextPlayTime);
-		this.nextPlayTime = 0;
-	};
-	Acts.prototype.SetLooping = function (tag, looping)
-	{
-		getAudioByTag(tag);
-		var i, len;
-		for (i = 0, len = taggedAudio.length; i < len; i++)
-			taggedAudio[i].setLooping(looping === 0);
-	};
-	Acts.prototype.SetMuted = function (tag, muted)
-	{
-		getAudioByTag(tag);
-		var i, len;
-		for (i = 0, len = taggedAudio.length; i < len; i++)
-			taggedAudio[i].setMuted(muted === 0);
-	};
-	Acts.prototype.SetVolume = function (tag, vol)
-	{
-		getAudioByTag(tag);
-		var v = dbToLinear(vol);
-		var i, len;
-		for (i = 0, len = taggedAudio.length; i < len; i++)
-			taggedAudio[i].setVolume(v);
-	};
-	Acts.prototype.Preload = function (file)
-	{
-		if (silent)
-			return;
-		var is_music = file[1];
-		var src = this.runtime.files_subfolder + file[0] + (useOgg ? ".ogg" : ".m4a");
-		if (api === API_APPMOBI)
-		{
-			if (this.runtime.isDirectCanvas)
-				AppMobi["context"]["loadSound"](src);
-			else
-				AppMobi["player"]["loadSound"](src);
-			return;
-		}
-		else if (api === API_CORDOVA)
-		{
-			return;
-		}
-		this.getAudioInstance(src, "<preload>", is_music, false);
-	};
-	Acts.prototype.PreloadByName = function (folder, filename)
-	{
-		if (silent)
-			return;
-		var is_music = (folder === 1);
-		var src = this.runtime.files_subfolder + filename.toLowerCase() + (useOgg ? ".ogg" : ".m4a");
-		if (api === API_APPMOBI)
-		{
-			if (this.runtime.isDirectCanvas)
-				AppMobi["context"]["loadSound"](src);
-			else
-				AppMobi["player"]["loadSound"](src);
-			return;
-		}
-		else if (api === API_CORDOVA)
-		{
-			return;
-		}
-		this.getAudioInstance(src, "<preload>", is_music, false);
-	};
-	Acts.prototype.SetPlaybackRate = function (tag, rate)
-	{
-		getAudioByTag(tag);
-		if (rate < 0.0)
-			rate = 0;
-		var i, len;
-		for (i = 0, len = taggedAudio.length; i < len; i++)
-			taggedAudio[i].setPlaybackRate(rate);
-	};
-	Acts.prototype.Stop = function (tag)
-	{
-		getAudioByTag(tag);
-		var i, len;
-		for (i = 0, len = taggedAudio.length; i < len; i++)
-			taggedAudio[i].stop();
-	};
-	Acts.prototype.StopAll = function ()
-	{
-		var i, len;
-		for (i = 0, len = audioInstances.length; i < len; i++)
-			audioInstances[i].stop();
-	};
-	Acts.prototype.SetPaused = function (tag, state)
-	{
-		getAudioByTag(tag);
-		var i, len;
-		for (i = 0, len = taggedAudio.length; i < len; i++)
-		{
-			if (state === 0)
-				taggedAudio[i].pause();
-			else
-				taggedAudio[i].resume();
-		}
-	};
-	Acts.prototype.Seek = function (tag, pos)
-	{
-		getAudioByTag(tag);
-		var i, len;
-		for (i = 0, len = taggedAudio.length; i < len; i++)
-		{
-			taggedAudio[i].seek(pos);
-		}
-	};
-	Acts.prototype.SetSilent = function (s)
-	{
-		var i, len;
-		if (s === 2)					// toggling
-			s = (silent ? 1 : 0);		// choose opposite state
-		if (s === 0 && !silent)			// setting silent
-		{
-			for (i = 0, len = audioInstances.length; i < len; i++)
-				audioInstances[i].setSilent(true);
-			silent = true;
-		}
-		else if (s === 1 && silent)		// setting not silent
-		{
-			for (i = 0, len = audioInstances.length; i < len; i++)
-				audioInstances[i].setSilent(false);
-			silent = false;
-		}
-	};
-	Acts.prototype.SetMasterVolume = function (vol)
-	{
-		masterVolume = dbToLinear(vol);
-		var i, len;
-		for (i = 0, len = audioInstances.length; i < len; i++)
-			audioInstances[i].updateVolume();
-	};
-	Acts.prototype.AddFilterEffect = function (tag, type, freq, detune, q, gain, mix)
-	{
-		if (api !== API_WEBAUDIO || type < 0 || type >= filterTypes.length || !context["createBiquadFilter"])
-			return;
-		tag = tag.toLowerCase();
-		mix = mix / 100;
-		if (mix < 0) mix = 0;
-		if (mix > 1) mix = 1;
-		addEffectForTag(tag, new FilterEffect(type, freq, detune, q, gain, mix));
-	};
-	Acts.prototype.AddDelayEffect = function (tag, delay, gain, mix)
-	{
-		if (api !== API_WEBAUDIO)
-			return;
-		tag = tag.toLowerCase();
-		mix = mix / 100;
-		if (mix < 0) mix = 0;
-		if (mix > 1) mix = 1;
-		addEffectForTag(tag, new DelayEffect(delay, dbToLinear(gain), mix));
-	};
-	Acts.prototype.AddFlangerEffect = function (tag, delay, modulation, freq, feedback, mix)
-	{
-		if (api !== API_WEBAUDIO || !context["createOscillator"])
-			return;
-		tag = tag.toLowerCase();
-		mix = mix / 100;
-		if (mix < 0) mix = 0;
-		if (mix > 1) mix = 1;
-		addEffectForTag(tag, new FlangerEffect(delay / 1000, modulation / 1000, freq, feedback / 100, mix));
-	};
-	Acts.prototype.AddPhaserEffect = function (tag, freq, detune, q, mod, modfreq, mix)
-	{
-		if (api !== API_WEBAUDIO || !context["createOscillator"])
-			return;
-		tag = tag.toLowerCase();
-		mix = mix / 100;
-		if (mix < 0) mix = 0;
-		if (mix > 1) mix = 1;
-		addEffectForTag(tag, new PhaserEffect(freq, detune, q, mod, modfreq, mix));
-	};
-	Acts.prototype.AddConvolutionEffect = function (tag, file, norm, mix)
-	{
-		if (api !== API_WEBAUDIO || !context["createConvolver"])
-			return;
-		var doNormalize = (norm === 0);
-		var src = this.runtime.files_subfolder + file[0] + (useOgg ? ".ogg" : ".m4a");
-		var b = this.getAudioBuffer(src, false);
-		tag = tag.toLowerCase();
-		mix = mix / 100;
-		if (mix < 0) mix = 0;
-		if (mix > 1) mix = 1;
-		var fx;
-		if (b.bufferObject)
-		{
-			fx = new ConvolveEffect(b.bufferObject, doNormalize, mix, src);
-		}
-		else
-		{
-			fx = new ConvolveEffect(null, doNormalize, mix, src);
-			b.normalizeWhenReady = doNormalize;
-			b.convolveWhenReady = fx;
-		}
-		addEffectForTag(tag, fx);
-	};
-	Acts.prototype.AddGainEffect = function (tag, g)
-	{
-		if (api !== API_WEBAUDIO)
-			return;
-		tag = tag.toLowerCase();
-		addEffectForTag(tag, new GainEffect(dbToLinear(g)));
-	};
-	Acts.prototype.AddMuteEffect = function (tag)
-	{
-		if (api !== API_WEBAUDIO)
-			return;
-		tag = tag.toLowerCase();
-		addEffectForTag(tag, new GainEffect(0));	// re-use gain effect with 0 gain
-	};
-	Acts.prototype.AddTremoloEffect = function (tag, freq, mix)
-	{
-		if (api !== API_WEBAUDIO || !context["createOscillator"])
-			return;
-		tag = tag.toLowerCase();
-		mix = mix / 100;
-		if (mix < 0) mix = 0;
-		if (mix > 1) mix = 1;
-		addEffectForTag(tag, new TremoloEffect(freq, mix));
-	};
-	Acts.prototype.AddRingModEffect = function (tag, freq, mix)
-	{
-		if (api !== API_WEBAUDIO || !context["createOscillator"])
-			return;
-		tag = tag.toLowerCase();
-		mix = mix / 100;
-		if (mix < 0) mix = 0;
-		if (mix > 1) mix = 1;
-		addEffectForTag(tag, new RingModulatorEffect(freq, mix));
-	};
-	Acts.prototype.AddDistortionEffect = function (tag, threshold, headroom, drive, makeupgain, mix)
-	{
-		if (api !== API_WEBAUDIO || !context["createWaveShaper"])
-			return;
-		tag = tag.toLowerCase();
-		mix = mix / 100;
-		if (mix < 0) mix = 0;
-		if (mix > 1) mix = 1;
-		addEffectForTag(tag, new DistortionEffect(threshold, headroom, drive, makeupgain, mix));
-	};
-	Acts.prototype.AddCompressorEffect = function (tag, threshold, knee, ratio, attack, release)
-	{
-		if (api !== API_WEBAUDIO || !context["createDynamicsCompressor"])
-			return;
-		tag = tag.toLowerCase();
-		addEffectForTag(tag, new CompressorEffect(threshold, knee, ratio, attack / 1000, release / 1000));
-	};
-	Acts.prototype.AddAnalyserEffect = function (tag, fftSize, smoothing)
-	{
-		if (api !== API_WEBAUDIO)
-			return;
-		tag = tag.toLowerCase();
-		addEffectForTag(tag, new AnalyserEffect(fftSize, smoothing));
-	};
-	Acts.prototype.RemoveEffects = function (tag)
-	{
-		if (api !== API_WEBAUDIO)
-			return;
-		tag = tag.toLowerCase();
-		var i, len, arr;
-		if (effects.hasOwnProperty(tag))
-		{
-			arr = effects[tag];
-			if (arr.length)
-			{
-				for (i = 0, len = arr.length; i < len; i++)
-					arr[i].remove();
-				cr.clearArray(arr);
-				reconnectEffects(tag);
-			}
-		}
-	};
-	Acts.prototype.SetEffectParameter = function (tag, index, param, value, ramp, time)
-	{
-		if (api !== API_WEBAUDIO)
-			return;
-		tag = tag.toLowerCase();
-		index = Math.floor(index);
-		var arr;
-		if (!effects.hasOwnProperty(tag))
-			return;
-		arr = effects[tag];
-		if (index < 0 || index >= arr.length)
-			return;
-		arr[index].setParam(param, value, ramp, time);
-	};
-	Acts.prototype.SetListenerObject = function (obj_)
-	{
-		if (!obj_ || api !== API_WEBAUDIO)
-			return;
-		var inst = obj_.getFirstPicked();
-		if (!inst)
-			return;
-		this.listenerTracker.setObject(inst);
-		listenerX = inst.x;
-		listenerY = inst.y;
-	};
-	Acts.prototype.SetListenerZ = function (z)
-	{
-		this.listenerZ = z;
-	};
-	Acts.prototype.ScheduleNextPlay = function (t)
-	{
-		if (!context)
-			return;		// needs Web Audio API
-		this.nextPlayTime = t;
-	};
-	Acts.prototype.UnloadAudio = function (file)
-	{
-		var is_music = file[1];
-		var src = this.runtime.files_subfolder + file[0] + (useOgg ? ".ogg" : ".m4a");
-		var b = this.getAudioBuffer(src, is_music, true /* don't create if missing */);
-		if (!b)
-			return;		// not loaded
-		b.release();
-		cr.arrayFindRemove(audioBuffers, b);
-	};
-	Acts.prototype.UnloadAudioByName = function (folder, filename)
-	{
-		var is_music = (folder === 1);
-		var src = this.runtime.files_subfolder + filename.toLowerCase() + (useOgg ? ".ogg" : ".m4a");
-		var b = this.getAudioBuffer(src, is_music, true /* don't create if missing */);
-		if (!b)
-			return;		// not loaded
-		b.release();
-		cr.arrayFindRemove(audioBuffers, b);
-	};
-	Acts.prototype.UnloadAll = function ()
-	{
-		var i, len;
-		for (i = 0, len = audioBuffers.length; i < len; ++i)
-		{
-			audioBuffers[i].release();
-		};
-		cr.clearArray(audioBuffers);
-	};
-	pluginProto.acts = new Acts();
-	function Exps() {};
-	Exps.prototype.Duration = function (ret, tag)
-	{
-		getAudioByTag(tag, true);
-		if (taggedAudio.length)
-			ret.set_float(taggedAudio[0].getDuration());
-		else
-			ret.set_float(0);
-	};
-	Exps.prototype.PlaybackTime = function (ret, tag)
-	{
-		getAudioByTag(tag, true);
-		if (taggedAudio.length)
-			ret.set_float(taggedAudio[0].getPlaybackTime(true));
-		else
-			ret.set_float(0);
-	};
-	Exps.prototype.Volume = function (ret, tag)
-	{
-		getAudioByTag(tag, true);
-		if (taggedAudio.length)
-		{
-			var v = taggedAudio[0].getVolume();
-			ret.set_float(linearToDb(v));
-		}
-		else
-			ret.set_float(0);
-	};
-	Exps.prototype.MasterVolume = function (ret)
-	{
-		ret.set_float(linearToDb(masterVolume));
-	};
-	Exps.prototype.EffectCount = function (ret, tag)
-	{
-		tag = tag.toLowerCase();
-		var arr = null;
-		if (effects.hasOwnProperty(tag))
-			arr = effects[tag];
-		ret.set_int(arr ? arr.length : 0);
-	};
-	function getAnalyser(tag, index)
-	{
-		var arr = null;
-		if (effects.hasOwnProperty(tag))
-			arr = effects[tag];
-		if (arr && index >= 0 && index < arr.length && arr[index].freqBins)
-			return arr[index];
-		else
-			return null;
-	};
-	Exps.prototype.AnalyserFreqBinCount = function (ret, tag, index)
-	{
-		tag = tag.toLowerCase();
-		index = Math.floor(index);
-		var analyser = getAnalyser(tag, index);
-		ret.set_int(analyser ? analyser.node["frequencyBinCount"] : 0);
-	};
-	Exps.prototype.AnalyserFreqBinAt = function (ret, tag, index, bin)
-	{
-		tag = tag.toLowerCase();
-		index = Math.floor(index);
-		bin = Math.floor(bin);
-		var analyser = getAnalyser(tag, index);
-		if (!analyser)
-			ret.set_float(0);
-		else if (bin < 0 || bin >= analyser.node["frequencyBinCount"])
-			ret.set_float(0);
-		else
-			ret.set_float(analyser.freqBins[bin]);
-	};
-	Exps.prototype.AnalyserPeakLevel = function (ret, tag, index)
-	{
-		tag = tag.toLowerCase();
-		index = Math.floor(index);
-		var analyser = getAnalyser(tag, index);
-		if (analyser)
-			ret.set_float(analyser.peak);
-		else
-			ret.set_float(0);
-	};
-	Exps.prototype.AnalyserRMSLevel = function (ret, tag, index)
-	{
-		tag = tag.toLowerCase();
-		index = Math.floor(index);
-		var analyser = getAnalyser(tag, index);
-		if (analyser)
-			ret.set_float(analyser.rms);
-		else
-			ret.set_float(0);
-	};
-	Exps.prototype.SampleRate = function (ret)
-	{
-		ret.set_int(context ? context.sampleRate : 0);
-	};
-	Exps.prototype.CurrentTime = function (ret)
-	{
-		ret.set_float(context ? context.currentTime : cr.performance_now());
-	};
-	pluginProto.exps = new Exps();
-}());
+      }
+      this.runtime.tickMe(this);
+    }
+  };
+  var instanceProto = pluginProto.Instance.prototype;
+  instanceProto.onCreate = function () {
+    this.runtime.audioInstance = this;
+    timescale_mode = this.properties[0]; // 0 = off, 1 = sounds only, 2 = all
+    this.saveload = this.properties[1]; // 0 = all, 1 = sounds only, 2 = music only, 3 = none
+    this.playinbackground = this.properties[2] !== 0;
+    this.nextPlayTime = 0;
+    panningModel = this.properties[3]; // 0 = equalpower, 1 = hrtf, 3 = soundfield
+    distanceModel = this.properties[4]; // 0 = linear, 1 = inverse, 2 = exponential
+    this.listenerZ = -this.properties[5];
+    refDistance = this.properties[6];
+    maxDistance = this.properties[7];
+    rolloffFactor = this.properties[8];
+    this.listenerTracker = new ObjectTracker();
+    var draw_width = this.runtime.draw_width || this.runtime.width;
+    var draw_height = this.runtime.draw_height || this.runtime.height;
+    if (api === API_WEBAUDIO) {
+      context["listener"]["setPosition"](
+        draw_width / 2,
+        draw_height / 2,
+        this.listenerZ
+      );
+      context["listener"]["setOrientation"](0, 0, 1, 0, -1, 0);
+      window["c2OnAudioMicStream"] = function (localMediaStream, tag) {
+        if (micSource) micSource["disconnect"]();
+        micTag = tag.toLowerCase();
+        micSource = context["createMediaStreamSource"](localMediaStream);
+        micSource["connect"](getDestinationForTag(micTag));
+      };
+    }
+    this.runtime.addSuspendCallback(function (s) {
+      audInst.onSuspend(s);
+    });
+    var self = this;
+    this.runtime.addDestroyCallback(function (inst) {
+      self.onInstanceDestroyed(inst);
+    });
+  };
+  instanceProto.onInstanceDestroyed = function (inst) {
+    var i, len, a;
+    for (i = 0, len = audioInstances.length; i < len; i++) {
+      a = audioInstances[i];
+      if (a.objectTracker) {
+        if (a.objectTracker.obj === inst) {
+          a.objectTracker.obj = null;
+          if (a.pannerEnabled && a.isPlaying() && a.looping) a.stop();
+        }
+      }
+    }
+    if (this.listenerTracker.obj === inst) this.listenerTracker.obj = null;
+  };
+  instanceProto.saveToJSON = function () {
+    var o = {
+      silent: silent,
+      masterVolume: masterVolume,
+      listenerZ: this.listenerZ,
+      listenerUid: this.listenerTracker.hasObject()
+        ? this.listenerTracker.obj.uid
+        : -1,
+      playing: [],
+      effects: {},
+    };
+    var playingarr = o["playing"];
+    var i, len, a, d, p, panobj, playbackTime;
+    for (i = 0, len = audioInstances.length; i < len; i++) {
+      a = audioInstances[i];
+      if (!a.shouldSave()) continue; // no need to save stopped sounds
+      if (this.saveload === 3)
+        continue;
+      if (a.is_music && this.saveload === 1)
+        continue;
+      if (!a.is_music && this.saveload === 2)
+        continue;
+      playbackTime = a.getPlaybackTime();
+      if (a.looping) playbackTime = playbackTime % a.getDuration();
+      d = {
+        tag: a.tag,
+        buffersrc: a.buffer.src,
+        is_music: a.is_music,
+        playbackTime: playbackTime,
+        volume: a.volume,
+        looping: a.looping,
+        muted: a.is_muted,
+        playbackRate: a.playbackRate,
+        paused: a.is_paused,
+        resume_position: a.resume_position,
+      };
+      if (a.pannerEnabled) {
+        d["pan"] = {};
+        panobj = d["pan"];
+        if (a.objectTracker && a.objectTracker.hasObject()) {
+          panobj["objUid"] = a.objectTracker.obj.uid;
+        } else {
+          panobj["x"] = a.panX;
+          panobj["y"] = a.panY;
+          panobj["a"] = a.panAngle;
+        }
+        panobj["ia"] = a.panConeInner;
+        panobj["oa"] = a.panConeOuter;
+        panobj["og"] = a.panConeOuterGain;
+      }
+      playingarr.push(d);
+    }
+    var fxobj = o["effects"];
+    var fxarr;
+    for (p in effects) {
+      if (effects.hasOwnProperty(p)) {
+        fxarr = [];
+        for (i = 0, len = effects[p].length; i < len; i++) {
+          fxarr.push({
+            type: effects[p][i].type,
+            params: effects[p][i].params,
+          });
+        }
+        fxobj[p] = fxarr;
+      }
+    }
+    return o;
+  };
+  var objectTrackerUidsToLoad = [];
+  instanceProto.loadFromJSON = function (o) {
+    var setSilent = o["silent"];
+    masterVolume = o["masterVolume"];
+    this.listenerZ = o["listenerZ"];
+    this.listenerTracker.setObject(null);
+    var listenerUid = o["listenerUid"];
+    if (listenerUid !== -1) {
+      this.listenerTracker.loadUid = listenerUid;
+      objectTrackerUidsToLoad.push(this.listenerTracker);
+    }
+    var playingarr = o["playing"];
+    var i,
+      len,
+      d,
+      src,
+      is_music,
+      tag,
+      playbackTime,
+      looping,
+      vol,
+      b,
+      a,
+      p,
+      pan,
+      panObjUid;
+    if (this.saveload !== 3) {
+      for (i = 0, len = audioInstances.length; i < len; i++) {
+        a = audioInstances[i];
+        if (a.is_music && this.saveload === 1) continue; // only saving/loading sound: leave music playing
+        if (!a.is_music && this.saveload === 2) continue; // only saving/loading music: leave sound playing
+        a.stop();
+      }
+    }
+    var fxarr, fxtype, fxparams, fx;
+    for (p in effects) {
+      if (effects.hasOwnProperty(p)) {
+        for (i = 0, len = effects[p].length; i < len; i++)
+          effects[p][i].remove();
+      }
+    }
+    cr.wipe(effects);
+    for (p in o["effects"]) {
+      if (o["effects"].hasOwnProperty(p)) {
+        fxarr = o["effects"][p];
+        for (i = 0, len = fxarr.length; i < len; i++) {
+          fxtype = fxarr[i]["type"];
+          fxparams = fxarr[i]["params"];
+          switch (fxtype) {
+            case "filter":
+              addEffectForTag(
+                p,
+                new FilterEffect(
+                  fxparams[0],
+                  fxparams[1],
+                  fxparams[2],
+                  fxparams[3],
+                  fxparams[4],
+                  fxparams[5]
+                )
+              );
+              break;
+            case "delay":
+              addEffectForTag(
+                p,
+                new DelayEffect(fxparams[0], fxparams[1], fxparams[2])
+              );
+              break;
+            case "convolve":
+              src = fxparams[2];
+              b = this.getAudioBuffer(src, false);
+              if (b.bufferObject) {
+                fx = new ConvolveEffect(
+                  b.bufferObject,
+                  fxparams[0],
+                  fxparams[1],
+                  src
+                );
+              }
+              else {
+                fx = new ConvolveEffect(null, fxparams[0], fxparams[1], src);
+                b.normalizeWhenReady = fxparams[0];
+                b.convolveWhenReady = fx;
+              }
+              addEffectForTag(p, fx);
+              break;
+            case "flanger":
+              addEffectForTag(
+                p,
+                new FlangerEffect(
+                  fxparams[0],
+                  fxparams[1],
+                  fxparams[2],
+                  fxparams[3],
+                  fxparams[4]
+                )
+              );
+              break;
+            case "phaser":
+              addEffectForTag(
+                p,
+                new PhaserEffect(
+                  fxparams[0],
+                  fxparams[1],
+                  fxparams[2],
+                  fxparams[3],
+                  fxparams[4],
+                  fxparams[5]
+                )
+              );
+              break;
+            case "gain":
+              addEffectForTag(p, new GainEffect(fxparams[0]));
+              break;
+            case "tremolo":
+              addEffectForTag(p, new TremoloEffect(fxparams[0], fxparams[1]));
+              break;
+            case "ringmod":
+              addEffectForTag(
+                p,
+                new RingModulatorEffect(fxparams[0], fxparams[1])
+              );
+              break;
+            case "distortion":
+              addEffectForTag(
+                p,
+                new DistortionEffect(
+                  fxparams[0],
+                  fxparams[1],
+                  fxparams[2],
+                  fxparams[3],
+                  fxparams[4]
+                )
+              );
+              break;
+            case "compressor":
+              addEffectForTag(
+                p,
+                new CompressorEffect(
+                  fxparams[0],
+                  fxparams[1],
+                  fxparams[2],
+                  fxparams[3],
+                  fxparams[4]
+                )
+              );
+              break;
+            case "analyser":
+              addEffectForTag(p, new AnalyserEffect(fxparams[0], fxparams[1]));
+              break;
+          }
+        }
+      }
+    }
+    for (i = 0, len = playingarr.length; i < len; i++) {
+      if (this.saveload === 3)
+        continue;
+      d = playingarr[i];
+      src = d["buffersrc"];
+      is_music = d["is_music"];
+      tag = d["tag"];
+      playbackTime = d["playbackTime"];
+      looping = d["looping"];
+      vol = d["volume"];
+      pan = d["pan"];
+      panObjUid = pan && pan.hasOwnProperty("objUid") ? pan["objUid"] : -1;
+      if (is_music && this.saveload === 1)
+        continue;
+      if (!is_music && this.saveload === 2)
+        continue;
+      a = this.getAudioInstance(src, tag, is_music, looping, vol);
+      if (!a) {
+        b = this.getAudioBuffer(src, is_music);
+        b.seekWhenReady = playbackTime;
+        b.pauseWhenReady = d["paused"];
+        if (pan) {
+          if (panObjUid !== -1) {
+            b.panWhenReady.push({
+              objUid: panObjUid,
+              ia: pan["ia"],
+              oa: pan["oa"],
+              og: pan["og"],
+              thistag: tag,
+            });
+          } else {
+            b.panWhenReady.push({
+              x: pan["x"],
+              y: pan["y"],
+              a: pan["a"],
+              ia: pan["ia"],
+              oa: pan["oa"],
+              og: pan["og"],
+              thistag: tag,
+            });
+          }
+        }
+        continue;
+      }
+      a.resume_position = d["resume_position"];
+      a.setPannerEnabled(!!pan);
+      a.play(looping, vol, playbackTime);
+      a.updatePlaybackRate();
+      a.updateVolume();
+      a.doSetMuted(a.is_muted || a.is_silent);
+      if (d["paused"]) a.pause();
+      if (d["muted"]) a.setMuted(true);
+      a.doSetMuted(a.is_muted || a.is_silent);
+      if (pan) {
+        if (panObjUid !== -1) {
+          a.objectTracker = a.objectTracker || new ObjectTracker();
+          a.objectTracker.loadUid = panObjUid;
+          objectTrackerUidsToLoad.push(a.objectTracker);
+        } else {
+          a.setPan(
+            pan["x"],
+            pan["y"],
+            pan["a"],
+            pan["ia"],
+            pan["oa"],
+            pan["og"]
+          );
+        }
+      }
+    }
+    if (setSilent && !silent) {
+      for (i = 0, len = audioInstances.length; i < len; i++)
+        audioInstances[i].setSilent(true);
+      silent = true;
+    } else if (!setSilent && silent) {
+      for (i = 0, len = audioInstances.length; i < len; i++)
+        audioInstances[i].setSilent(false);
+      silent = false;
+    }
+  };
+  instanceProto.afterLoad = function () {
+    var i, len, ot, inst;
+    for (i = 0, len = objectTrackerUidsToLoad.length; i < len; i++) {
+      ot = objectTrackerUidsToLoad[i];
+      inst = this.runtime.getObjectByUID(ot.loadUid);
+      ot.setObject(inst);
+      ot.loadUid = -1;
+      if (inst) {
+        listenerX = inst.x;
+        listenerY = inst.y;
+      }
+    }
+    cr.clearArray(objectTrackerUidsToLoad);
+  };
+  instanceProto.onSuspend = function (s) {
+    if (this.playinbackground) return;
+    if (!s && context && context["resume"]) {
+      context["resume"]();
+      isContextSuspended = false;
+    }
+    var i, len;
+    for (i = 0, len = audioInstances.length; i < len; i++)
+      audioInstances[i].setSuspended(s);
+    if (s && context && context["suspend"]) {
+      context["suspend"]();
+      isContextSuspended = true;
+    }
+  };
+  instanceProto.tick = function () {
+    var dt = this.runtime.dt;
+    var i, len, a;
+    for (i = 0, len = audioInstances.length; i < len; i++) {
+      a = audioInstances[i];
+      a.tick(dt);
+      if (timescale_mode !== 0) a.updatePlaybackRate();
+    }
+    var p, arr, f;
+    for (p in effects) {
+      if (effects.hasOwnProperty(p)) {
+        arr = effects[p];
+        for (i = 0, len = arr.length; i < len; i++) {
+          f = arr[i];
+          if (f.tick) f.tick();
+        }
+      }
+    }
+    if (api === API_WEBAUDIO && this.listenerTracker.hasObject()) {
+      this.listenerTracker.tick(dt);
+      listenerX = this.listenerTracker.obj.x;
+      listenerY = this.listenerTracker.obj.y;
+      context["listener"]["setPosition"](
+        this.listenerTracker.obj.x,
+        this.listenerTracker.obj.y,
+        this.listenerZ
+      );
+    }
+  };
+  var preload_list = [];
+  instanceProto.setPreloadList = function (arr) {
+    var i, len, p, filename, size, isOgg;
+    var total_size = 0;
+    for (i = 0, len = arr.length; i < len; ++i) {
+      p = arr[i];
+      filename = p[0];
+      size = p[1] * 2;
+      isOgg =
+        filename.length > 4 && filename.substr(filename.length - 4) === ".ogg";
+      if ((isOgg && useOgg) || (!isOgg && !useOgg)) {
+        preload_list.push({
+          filename: filename,
+          size: size,
+          obj: null,
+        });
+        total_size += size;
+      }
+    }
+    return total_size;
+  };
+  instanceProto.startPreloads = function () {
+    var i, len, p, src;
+    for (i = 0, len = preload_list.length; i < len; ++i) {
+      p = preload_list[i];
+      src = this.runtime.files_subfolder + p.filename;
+      p.obj = this.getAudioBuffer(src, false);
+    }
+  };
+  instanceProto.getPreloadedSize = function () {
+    var completed = 0;
+    var i, len, p;
+    for (i = 0, len = preload_list.length; i < len; ++i) {
+      p = preload_list[i];
+      if (
+        p.obj.isLoadedAndDecoded() ||
+        p.obj.hasFailedToLoad() ||
+        this.runtime.isDomFree ||
+        this.runtime.isAndroidStockBrowser
+      ) {
+        completed += p.size;
+      } else if (p.obj.isLoaded()) {
+        completed += Math.floor(p.size / 2);
+      }
+    }
+    return completed;
+  };
+  instanceProto.releaseAllMusicBuffers = function () {
+    var i, len, j, b;
+    for (i = 0, j = 0, len = audioBuffers.length; i < len; ++i) {
+      b = audioBuffers[i];
+      audioBuffers[j] = b;
+      if (b.is_music) b.release();
+      else ++j; // keep
+    }
+    audioBuffers.length = j;
+  };
+  instanceProto.getAudioBuffer = function (src_, is_music, dont_create) {
+    var i,
+      len,
+      a,
+      ret = null,
+      j,
+      k,
+      lenj,
+      ai;
+    for (i = 0, len = audioBuffers.length; i < len; i++) {
+      a = audioBuffers[i];
+      if (a.src === src_) {
+        ret = a;
+        break;
+      }
+    }
+    if (!ret && !dont_create) {
+      if (playMusicAsSoundWorkaround && is_music) this.releaseAllMusicBuffers();
+      ret = new C2AudioBuffer(src_, is_music);
+      audioBuffers.push(ret);
+    }
+    return ret;
+  };
+  instanceProto.getAudioInstance = function (
+    src_,
+    tag,
+    is_music,
+    looping,
+    vol
+  ) {
+    var i, len, a;
+    for (i = 0, len = audioInstances.length; i < len; i++) {
+      a = audioInstances[i];
+      if (a.src === src_ && (a.canBeRecycled() || is_music)) {
+        a.tag = tag;
+        return a;
+      }
+    }
+    var b = this.getAudioBuffer(src_, is_music);
+    if (!b.bufferObject) {
+      if (tag !== "<preload>") {
+        b.playTagWhenReady = tag;
+        b.loopWhenReady = looping;
+        b.volumeWhenReady = vol;
+      }
+      return null;
+    }
+    a = new C2AudioInstance(b, tag);
+    audioInstances.push(a);
+    return a;
+  };
+  var taggedAudio = [];
+  function SortByIsPlaying(a, b) {
+    var an = a.isPlaying() ? 1 : 0;
+    var bn = b.isPlaying() ? 1 : 0;
+    if (an === bn) return 0;
+    else if (an < bn) return 1;
+    else return -1;
+  }
+  function getAudioByTag(tag, sort_by_playing) {
+    cr.clearArray(taggedAudio);
+    if (!tag.length) {
+      if (!lastAudio || lastAudio.hasEnded()) return;
+      else {
+        cr.clearArray(taggedAudio);
+        taggedAudio[0] = lastAudio;
+        return;
+      }
+    }
+    var i, len, a;
+    for (i = 0, len = audioInstances.length; i < len; i++) {
+      a = audioInstances[i];
+      if (cr.equals_nocase(tag, a.tag)) taggedAudio.push(a);
+    }
+    if (sort_by_playing) taggedAudio.sort(SortByIsPlaying);
+  }
+  function reconnectEffects(tag) {
+    var i,
+      len,
+      arr,
+      n,
+      toNode = context["destination"];
+    if (effects.hasOwnProperty(tag)) {
+      arr = effects[tag];
+      if (arr.length) {
+        toNode = arr[0].getInputNode();
+        for (i = 0, len = arr.length; i < len; i++) {
+          n = arr[i];
+          if (i + 1 === len) n.connectTo(context["destination"]);
+          else n.connectTo(arr[i + 1].getInputNode());
+        }
+      }
+    }
+    getAudioByTag(tag);
+    for (i = 0, len = taggedAudio.length; i < len; i++)
+      taggedAudio[i].reconnect(toNode);
+    if (micSource && micTag === tag) {
+      micSource["disconnect"]();
+      micSource["connect"](toNode);
+    }
+  }
+  function addEffectForTag(tag, fx) {
+    if (!effects.hasOwnProperty(tag)) effects[tag] = [fx];
+    else effects[tag].push(fx);
+    reconnectEffects(tag);
+  }
+  function Cnds() {}
+  Cnds.prototype.OnEnded = function (t) {
+    return cr.equals_nocase(audTag, t);
+  };
+  Cnds.prototype.PreloadsComplete = function () {
+    var i, len;
+    for (i = 0, len = audioBuffers.length; i < len; i++) {
+      if (
+        !audioBuffers[i].isLoadedAndDecoded() &&
+        !audioBuffers[i].hasFailedToLoad()
+      )
+        return false;
+    }
+    return true;
+  };
+  Cnds.prototype.AdvancedAudioSupported = function () {
+    return api === API_WEBAUDIO;
+  };
+  Cnds.prototype.IsSilent = function () {
+    return silent;
+  };
+  Cnds.prototype.IsAnyPlaying = function () {
+    var i, len;
+    for (i = 0, len = audioInstances.length; i < len; i++) {
+      if (audioInstances[i].isPlaying()) return true;
+    }
+    return false;
+  };
+  Cnds.prototype.IsTagPlaying = function (tag) {
+    getAudioByTag(tag);
+    var i, len;
+    for (i = 0, len = taggedAudio.length; i < len; i++) {
+      if (taggedAudio[i].isPlaying()) return true;
+    }
+    return false;
+  };
+  pluginProto.cnds = new Cnds();
+  function Acts() {}
+  Acts.prototype.Play = function (file, looping, vol, tag) {
+    if (silent) return;
+    var v = dbToLinear(vol);
+    var is_music = file[1];
+    var src =
+      this.runtime.files_subfolder + file[0] + (useOgg ? ".ogg" : ".m4a");
+    lastAudio = this.getAudioInstance(src, tag, is_music, looping !== 0, v);
+    if (!lastAudio) return;
+    lastAudio.setPannerEnabled(false);
+    lastAudio.play(looping !== 0, v, 0, this.nextPlayTime);
+    this.nextPlayTime = 0;
+  };
+  Acts.prototype.PlayAtPosition = function (
+    file,
+    looping,
+    vol,
+    x_,
+    y_,
+    angle_,
+    innerangle_,
+    outerangle_,
+    outergain_,
+    tag
+  ) {
+    if (silent) return;
+    var v = dbToLinear(vol);
+    var is_music = file[1];
+    var src =
+      this.runtime.files_subfolder + file[0] + (useOgg ? ".ogg" : ".m4a");
+    lastAudio = this.getAudioInstance(src, tag, is_music, looping !== 0, v);
+    if (!lastAudio) {
+      var b = this.getAudioBuffer(src, is_music);
+      b.panWhenReady.push({
+        x: x_,
+        y: y_,
+        a: angle_,
+        ia: innerangle_,
+        oa: outerangle_,
+        og: dbToLinear(outergain_),
+        thistag: tag,
+      });
+      return;
+    }
+    lastAudio.setPannerEnabled(true);
+    lastAudio.setPan(
+      x_,
+      y_,
+      angle_,
+      innerangle_,
+      outerangle_,
+      dbToLinear(outergain_)
+    );
+    lastAudio.play(looping !== 0, v, 0, this.nextPlayTime);
+    this.nextPlayTime = 0;
+  };
+  Acts.prototype.PlayAtObject = function (
+    file,
+    looping,
+    vol,
+    obj,
+    innerangle,
+    outerangle,
+    outergain,
+    tag
+  ) {
+    if (silent || !obj) return;
+    var inst = obj.getFirstPicked();
+    if (!inst) return;
+    var v = dbToLinear(vol);
+    var is_music = file[1];
+    var src =
+      this.runtime.files_subfolder + file[0] + (useOgg ? ".ogg" : ".m4a");
+    lastAudio = this.getAudioInstance(src, tag, is_music, looping !== 0, v);
+    if (!lastAudio) {
+      var b = this.getAudioBuffer(src, is_music);
+      b.panWhenReady.push({
+        obj: inst,
+        ia: innerangle,
+        oa: outerangle,
+        og: dbToLinear(outergain),
+        thistag: tag,
+      });
+      return;
+    }
+    lastAudio.setPannerEnabled(true);
+    var px = cr.rotatePtAround(
+      inst.x,
+      inst.y,
+      -inst.layer.getAngle(),
+      listenerX,
+      listenerY,
+      true
+    );
+    var py = cr.rotatePtAround(
+      inst.x,
+      inst.y,
+      -inst.layer.getAngle(),
+      listenerX,
+      listenerY,
+      false
+    );
+    lastAudio.setPan(
+      px,
+      py,
+      cr.to_degrees(inst.angle - inst.layer.getAngle()),
+      innerangle,
+      outerangle,
+      dbToLinear(outergain)
+    );
+    lastAudio.setObject(inst);
+    lastAudio.play(looping !== 0, v, 0, this.nextPlayTime);
+    this.nextPlayTime = 0;
+  };
+  Acts.prototype.PlayByName = function (folder, filename, looping, vol, tag) {
+    if (silent) return;
+    var v = dbToLinear(vol);
+    var is_music = folder === 1;
+    var src =
+      this.runtime.files_subfolder +
+      filename.toLowerCase() +
+      (useOgg ? ".ogg" : ".m4a");
+    lastAudio = this.getAudioInstance(src, tag, is_music, looping !== 0, v);
+    if (!lastAudio) return;
+    lastAudio.setPannerEnabled(false);
+    lastAudio.play(looping !== 0, v, 0, this.nextPlayTime);
+    this.nextPlayTime = 0;
+  };
+  Acts.prototype.PlayAtPositionByName = function (
+    folder,
+    filename,
+    looping,
+    vol,
+    x_,
+    y_,
+    angle_,
+    innerangle_,
+    outerangle_,
+    outergain_,
+    tag
+  ) {
+    if (silent) return;
+    var v = dbToLinear(vol);
+    var is_music = folder === 1;
+    var src =
+      this.runtime.files_subfolder +
+      filename.toLowerCase() +
+      (useOgg ? ".ogg" : ".m4a");
+    lastAudio = this.getAudioInstance(src, tag, is_music, looping !== 0, v);
+    if (!lastAudio) {
+      var b = this.getAudioBuffer(src, is_music);
+      b.panWhenReady.push({
+        x: x_,
+        y: y_,
+        a: angle_,
+        ia: innerangle_,
+        oa: outerangle_,
+        og: dbToLinear(outergain_),
+        thistag: tag,
+      });
+      return;
+    }
+    lastAudio.setPannerEnabled(true);
+    lastAudio.setPan(
+      x_,
+      y_,
+      angle_,
+      innerangle_,
+      outerangle_,
+      dbToLinear(outergain_)
+    );
+    lastAudio.play(looping !== 0, v, 0, this.nextPlayTime);
+    this.nextPlayTime = 0;
+  };
+  Acts.prototype.PlayAtObjectByName = function (
+    folder,
+    filename,
+    looping,
+    vol,
+    obj,
+    innerangle,
+    outerangle,
+    outergain,
+    tag
+  ) {
+    if (silent || !obj) return;
+    var inst = obj.getFirstPicked();
+    if (!inst) return;
+    var v = dbToLinear(vol);
+    var is_music = folder === 1;
+    var src =
+      this.runtime.files_subfolder +
+      filename.toLowerCase() +
+      (useOgg ? ".ogg" : ".m4a");
+    lastAudio = this.getAudioInstance(src, tag, is_music, looping !== 0, v);
+    if (!lastAudio) {
+      var b = this.getAudioBuffer(src, is_music);
+      b.panWhenReady.push({
+        obj: inst,
+        ia: innerangle,
+        oa: outerangle,
+        og: dbToLinear(outergain),
+        thistag: tag,
+      });
+      return;
+    }
+    lastAudio.setPannerEnabled(true);
+    var px = cr.rotatePtAround(
+      inst.x,
+      inst.y,
+      -inst.layer.getAngle(),
+      listenerX,
+      listenerY,
+      true
+    );
+    var py = cr.rotatePtAround(
+      inst.x,
+      inst.y,
+      -inst.layer.getAngle(),
+      listenerX,
+      listenerY,
+      false
+    );
+    lastAudio.setPan(
+      px,
+      py,
+      cr.to_degrees(inst.angle - inst.layer.getAngle()),
+      innerangle,
+      outerangle,
+      dbToLinear(outergain)
+    );
+    lastAudio.setObject(inst);
+    lastAudio.play(looping !== 0, v, 0, this.nextPlayTime);
+    this.nextPlayTime = 0;
+  };
+  Acts.prototype.SetLooping = function (tag, looping) {
+    getAudioByTag(tag);
+    var i, len;
+    for (i = 0, len = taggedAudio.length; i < len; i++)
+      taggedAudio[i].setLooping(looping === 0);
+  };
+  Acts.prototype.SetMuted = function (tag, muted) {
+    getAudioByTag(tag);
+    var i, len;
+    for (i = 0, len = taggedAudio.length; i < len; i++)
+      taggedAudio[i].setMuted(muted === 0);
+  };
+  Acts.prototype.SetVolume = function (tag, vol) {
+    getAudioByTag(tag);
+    var v = dbToLinear(vol);
+    var i, len;
+    for (i = 0, len = taggedAudio.length; i < len; i++)
+      taggedAudio[i].setVolume(v);
+  };
+  Acts.prototype.Preload = function (file) {
+    if (silent) return;
+    var is_music = file[1];
+    var src =
+      this.runtime.files_subfolder + file[0] + (useOgg ? ".ogg" : ".m4a");
+    if (api === API_APPMOBI) {
+      if (this.runtime.isDirectCanvas) AppMobi["context"]["loadSound"](src);
+      else AppMobi["player"]["loadSound"](src);
+      return;
+    } else if (api === API_CORDOVA) {
+      return;
+    }
+    this.getAudioInstance(src, "<preload>", is_music, false);
+  };
+  Acts.prototype.PreloadByName = function (folder, filename) {
+    if (silent) return;
+    var is_music = folder === 1;
+    var src =
+      this.runtime.files_subfolder +
+      filename.toLowerCase() +
+      (useOgg ? ".ogg" : ".m4a");
+    if (api === API_APPMOBI) {
+      if (this.runtime.isDirectCanvas) AppMobi["context"]["loadSound"](src);
+      else AppMobi["player"]["loadSound"](src);
+      return;
+    } else if (api === API_CORDOVA) {
+      return;
+    }
+    this.getAudioInstance(src, "<preload>", is_music, false);
+  };
+  Acts.prototype.SetPlaybackRate = function (tag, rate) {
+    getAudioByTag(tag);
+    if (rate < 0.0) rate = 0;
+    var i, len;
+    for (i = 0, len = taggedAudio.length; i < len; i++)
+      taggedAudio[i].setPlaybackRate(rate);
+  };
+  Acts.prototype.Stop = function (tag) {
+    getAudioByTag(tag);
+    var i, len;
+    for (i = 0, len = taggedAudio.length; i < len; i++) taggedAudio[i].stop();
+  };
+  Acts.prototype.StopAll = function () {
+    var i, len;
+    for (i = 0, len = audioInstances.length; i < len; i++)
+      audioInstances[i].stop();
+  };
+  Acts.prototype.SetPaused = function (tag, state) {
+    getAudioByTag(tag);
+    var i, len;
+    for (i = 0, len = taggedAudio.length; i < len; i++) {
+      if (state === 0) taggedAudio[i].pause();
+      else taggedAudio[i].resume();
+    }
+  };
+  Acts.prototype.Seek = function (tag, pos) {
+    getAudioByTag(tag);
+    var i, len;
+    for (i = 0, len = taggedAudio.length; i < len; i++) {
+      taggedAudio[i].seek(pos);
+    }
+  };
+  Acts.prototype.SetSilent = function (s) {
+    var i, len;
+    if (s === 2)
+      s = silent ? 1 : 0; // choose opposite state
+    if (s === 0 && !silent) {
+      for (i = 0, len = audioInstances.length; i < len; i++)
+        audioInstances[i].setSilent(true);
+      silent = true;
+    } else if (s === 1 && silent) {
+      for (i = 0, len = audioInstances.length; i < len; i++)
+        audioInstances[i].setSilent(false);
+      silent = false;
+    }
+  };
+  Acts.prototype.SetMasterVolume = function (vol) {
+    masterVolume = dbToLinear(vol);
+    var i, len;
+    for (i = 0, len = audioInstances.length; i < len; i++)
+      audioInstances[i].updateVolume();
+  };
+  Acts.prototype.AddFilterEffect = function (
+    tag,
+    type,
+    freq,
+    detune,
+    q,
+    gain,
+    mix
+  ) {
+    if (
+      api !== API_WEBAUDIO ||
+      type < 0 ||
+      type >= filterTypes.length ||
+      !context["createBiquadFilter"]
+    )
+      return;
+    tag = tag.toLowerCase();
+    mix = mix / 100;
+    if (mix < 0) mix = 0;
+    if (mix > 1) mix = 1;
+    addEffectForTag(tag, new FilterEffect(type, freq, detune, q, gain, mix));
+  };
+  Acts.prototype.AddDelayEffect = function (tag, delay, gain, mix) {
+    if (api !== API_WEBAUDIO) return;
+    tag = tag.toLowerCase();
+    mix = mix / 100;
+    if (mix < 0) mix = 0;
+    if (mix > 1) mix = 1;
+    addEffectForTag(tag, new DelayEffect(delay, dbToLinear(gain), mix));
+  };
+  Acts.prototype.AddFlangerEffect = function (
+    tag,
+    delay,
+    modulation,
+    freq,
+    feedback,
+    mix
+  ) {
+    if (api !== API_WEBAUDIO || !context["createOscillator"]) return;
+    tag = tag.toLowerCase();
+    mix = mix / 100;
+    if (mix < 0) mix = 0;
+    if (mix > 1) mix = 1;
+    addEffectForTag(
+      tag,
+      new FlangerEffect(
+        delay / 1000,
+        modulation / 1000,
+        freq,
+        feedback / 100,
+        mix
+      )
+    );
+  };
+  Acts.prototype.AddPhaserEffect = function (
+    tag,
+    freq,
+    detune,
+    q,
+    mod,
+    modfreq,
+    mix
+  ) {
+    if (api !== API_WEBAUDIO || !context["createOscillator"]) return;
+    tag = tag.toLowerCase();
+    mix = mix / 100;
+    if (mix < 0) mix = 0;
+    if (mix > 1) mix = 1;
+    addEffectForTag(tag, new PhaserEffect(freq, detune, q, mod, modfreq, mix));
+  };
+  Acts.prototype.AddConvolutionEffect = function (tag, file, norm, mix) {
+    if (api !== API_WEBAUDIO || !context["createConvolver"]) return;
+    var doNormalize = norm === 0;
+    var src =
+      this.runtime.files_subfolder + file[0] + (useOgg ? ".ogg" : ".m4a");
+    var b = this.getAudioBuffer(src, false);
+    tag = tag.toLowerCase();
+    mix = mix / 100;
+    if (mix < 0) mix = 0;
+    if (mix > 1) mix = 1;
+    var fx;
+    if (b.bufferObject) {
+      fx = new ConvolveEffect(b.bufferObject, doNormalize, mix, src);
+    }
+    else {
+      fx = new ConvolveEffect(null, doNormalize, mix, src);
+      b.normalizeWhenReady = doNormalize;
+      b.convolveWhenReady = fx;
+    }
+    addEffectForTag(tag, fx);
+  };
+  Acts.prototype.AddGainEffect = function (tag, g) {
+    if (api !== API_WEBAUDIO) return;
+    tag = tag.toLowerCase();
+    addEffectForTag(tag, new GainEffect(dbToLinear(g)));
+  };
+  Acts.prototype.AddMuteEffect = function (tag) {
+    if (api !== API_WEBAUDIO) return;
+    tag = tag.toLowerCase();
+    addEffectForTag(tag, new GainEffect(0)); // re-use gain effect with 0 gain
+  };
+  Acts.prototype.AddTremoloEffect = function (tag, freq, mix) {
+    if (api !== API_WEBAUDIO || !context["createOscillator"]) return;
+    tag = tag.toLowerCase();
+    mix = mix / 100;
+    if (mix < 0) mix = 0;
+    if (mix > 1) mix = 1;
+    addEffectForTag(tag, new TremoloEffect(freq, mix));
+  };
+  Acts.prototype.AddRingModEffect = function (tag, freq, mix) {
+    if (api !== API_WEBAUDIO || !context["createOscillator"]) return;
+    tag = tag.toLowerCase();
+    mix = mix / 100;
+    if (mix < 0) mix = 0;
+    if (mix > 1) mix = 1;
+    addEffectForTag(tag, new RingModulatorEffect(freq, mix));
+  };
+  Acts.prototype.AddDistortionEffect = function (
+    tag,
+    threshold,
+    headroom,
+    drive,
+    makeupgain,
+    mix
+  ) {
+    if (api !== API_WEBAUDIO || !context["createWaveShaper"]) return;
+    tag = tag.toLowerCase();
+    mix = mix / 100;
+    if (mix < 0) mix = 0;
+    if (mix > 1) mix = 1;
+    addEffectForTag(
+      tag,
+      new DistortionEffect(threshold, headroom, drive, makeupgain, mix)
+    );
+  };
+  Acts.prototype.AddCompressorEffect = function (
+    tag,
+    threshold,
+    knee,
+    ratio,
+    attack,
+    release
+  ) {
+    if (api !== API_WEBAUDIO || !context["createDynamicsCompressor"]) return;
+    tag = tag.toLowerCase();
+    addEffectForTag(
+      tag,
+      new CompressorEffect(
+        threshold,
+        knee,
+        ratio,
+        attack / 1000,
+        release / 1000
+      )
+    );
+  };
+  Acts.prototype.AddAnalyserEffect = function (tag, fftSize, smoothing) {
+    if (api !== API_WEBAUDIO) return;
+    tag = tag.toLowerCase();
+    addEffectForTag(tag, new AnalyserEffect(fftSize, smoothing));
+  };
+  Acts.prototype.RemoveEffects = function (tag) {
+    if (api !== API_WEBAUDIO) return;
+    tag = tag.toLowerCase();
+    var i, len, arr;
+    if (effects.hasOwnProperty(tag)) {
+      arr = effects[tag];
+      if (arr.length) {
+        for (i = 0, len = arr.length; i < len; i++) arr[i].remove();
+        cr.clearArray(arr);
+        reconnectEffects(tag);
+      }
+    }
+  };
+  Acts.prototype.SetEffectParameter = function (
+    tag,
+    index,
+    param,
+    value,
+    ramp,
+    time
+  ) {
+    if (api !== API_WEBAUDIO) return;
+    tag = tag.toLowerCase();
+    index = Math.floor(index);
+    var arr;
+    if (!effects.hasOwnProperty(tag)) return;
+    arr = effects[tag];
+    if (index < 0 || index >= arr.length) return;
+    arr[index].setParam(param, value, ramp, time);
+  };
+  Acts.prototype.SetListenerObject = function (obj_) {
+    if (!obj_ || api !== API_WEBAUDIO) return;
+    var inst = obj_.getFirstPicked();
+    if (!inst) return;
+    this.listenerTracker.setObject(inst);
+    listenerX = inst.x;
+    listenerY = inst.y;
+  };
+  Acts.prototype.SetListenerZ = function (z) {
+    this.listenerZ = z;
+  };
+  Acts.prototype.ScheduleNextPlay = function (t) {
+    if (!context) return; // needs Web Audio API
+    this.nextPlayTime = t;
+  };
+  Acts.prototype.UnloadAudio = function (file) {
+    var is_music = file[1];
+    var src =
+      this.runtime.files_subfolder + file[0] + (useOgg ? ".ogg" : ".m4a");
+    var b = this.getAudioBuffer(
+      src,
+      is_music,
+      true /* don't create if missing */
+    );
+    if (!b) return; // not loaded
+    b.release();
+    cr.arrayFindRemove(audioBuffers, b);
+  };
+  Acts.prototype.UnloadAudioByName = function (folder, filename) {
+    var is_music = folder === 1;
+    var src =
+      this.runtime.files_subfolder +
+      filename.toLowerCase() +
+      (useOgg ? ".ogg" : ".m4a");
+    var b = this.getAudioBuffer(
+      src,
+      is_music,
+      true /* don't create if missing */
+    );
+    if (!b) return; // not loaded
+    b.release();
+    cr.arrayFindRemove(audioBuffers, b);
+  };
+  Acts.prototype.UnloadAll = function () {
+    var i, len;
+    for (i = 0, len = audioBuffers.length; i < len; ++i) {
+      audioBuffers[i].release();
+    }
+    cr.clearArray(audioBuffers);
+  };
+  pluginProto.acts = new Acts();
+  function Exps() {}
+  Exps.prototype.Duration = function (ret, tag) {
+    getAudioByTag(tag, true);
+    if (taggedAudio.length) ret.set_float(taggedAudio[0].getDuration());
+    else ret.set_float(0);
+  };
+  Exps.prototype.PlaybackTime = function (ret, tag) {
+    getAudioByTag(tag, true);
+    if (taggedAudio.length) ret.set_float(taggedAudio[0].getPlaybackTime(true));
+    else ret.set_float(0);
+  };
+  Exps.prototype.Volume = function (ret, tag) {
+    getAudioByTag(tag, true);
+    if (taggedAudio.length) {
+      var v = taggedAudio[0].getVolume();
+      ret.set_float(linearToDb(v));
+    } else ret.set_float(0);
+  };
+  Exps.prototype.MasterVolume = function (ret) {
+    ret.set_float(linearToDb(masterVolume));
+  };
+  Exps.prototype.EffectCount = function (ret, tag) {
+    tag = tag.toLowerCase();
+    var arr = null;
+    if (effects.hasOwnProperty(tag)) arr = effects[tag];
+    ret.set_int(arr ? arr.length : 0);
+  };
+  function getAnalyser(tag, index) {
+    var arr = null;
+    if (effects.hasOwnProperty(tag)) arr = effects[tag];
+    if (arr && index >= 0 && index < arr.length && arr[index].freqBins)
+      return arr[index];
+    else return null;
+  }
+  Exps.prototype.AnalyserFreqBinCount = function (ret, tag, index) {
+    tag = tag.toLowerCase();
+    index = Math.floor(index);
+    var analyser = getAnalyser(tag, index);
+    ret.set_int(analyser ? analyser.node["frequencyBinCount"] : 0);
+  };
+  Exps.prototype.AnalyserFreqBinAt = function (ret, tag, index, bin) {
+    tag = tag.toLowerCase();
+    index = Math.floor(index);
+    bin = Math.floor(bin);
+    var analyser = getAnalyser(tag, index);
+    if (!analyser) ret.set_float(0);
+    else if (bin < 0 || bin >= analyser.node["frequencyBinCount"])
+      ret.set_float(0);
+    else ret.set_float(analyser.freqBins[bin]);
+  };
+  Exps.prototype.AnalyserPeakLevel = function (ret, tag, index) {
+    tag = tag.toLowerCase();
+    index = Math.floor(index);
+    var analyser = getAnalyser(tag, index);
+    if (analyser) ret.set_float(analyser.peak);
+    else ret.set_float(0);
+  };
+  Exps.prototype.AnalyserRMSLevel = function (ret, tag, index) {
+    tag = tag.toLowerCase();
+    index = Math.floor(index);
+    var analyser = getAnalyser(tag, index);
+    if (analyser) ret.set_float(analyser.rms);
+    else ret.set_float(0);
+  };
+  Exps.prototype.SampleRate = function (ret) {
+    ret.set_int(context ? context.sampleRate : 0);
+  };
+  Exps.prototype.CurrentTime = function (ret) {
+    ret.set_float(context ? context.currentTime : cr.performance_now());
+  };
+  pluginProto.exps = new Exps();
+})();
 ;
 ;
 cr.plugins_.Browser = function(runtime)
@@ -25555,422 +25389,6 @@ cr.plugins_.Particles = function(runtime)
 	Exps.prototype.Timeout = function (ret)
 	{
 		ret.set_float(this.timeout);
-	};
-	pluginProto.exps = new Exps();
-}());
-;
-;
-cr.plugins_.ScrollableTiledBg = function(runtime)
-{
-	this.runtime = runtime;
-};
-(function ()
-{
-	var pluginProto = cr.plugins_.ScrollableTiledBg.prototype;
-	pluginProto.Type = function(plugin)
-	{
-		this.plugin = plugin;
-		this.runtime = plugin.runtime;
-	};
-	var typeProto = pluginProto.Type.prototype;
-	typeProto.onCreate = function()
-	{
-		if (this.is_family)
-			return;
-		this.texture_img = new Image();
-		this.texture_img.cr_filesize = this.texture_filesize;
-		this.runtime.waitForImageLoad(this.texture_img, this.texture_file);
-		this.pattern = null;
-		this.webGL_texture = null;
-	};
-	typeProto.onLostWebGLContext = function ()
-	{
-		if (this.is_family)
-			return;
-		this.webGL_texture = null;
-	};
-	typeProto.onRestoreWebGLContext = function ()
-	{
-		if (this.is_family || !this.instances.length)
-			return;
-		if (!this.webGL_texture)
-		{
-			this.webGL_texture = this.runtime.glwrap.loadTexture(this.texture_img, true, this.runtime.linearSampling, this.texture_pixelformat);
-		}
-		var i, len;
-		for (i = 0, len = this.instances.length; i < len; i++)
-			this.instances[i].webGL_texture = this.webGL_texture;
-	};
-	typeProto.loadTextures = function ()
-	{
-		if (this.is_family || this.webGL_texture || !this.runtime.glwrap)
-			return;
-		this.webGL_texture = this.runtime.glwrap.loadTexture(this.texture_img, true, this.runtime.linearSampling, this.texture_pixelformat);
-	};
-	typeProto.unloadTextures = function ()
-	{
-		if (this.is_family || this.instances.length || !this.webGL_texture)
-			return;
-		this.runtime.glwrap.deleteTexture(this.webGL_texture);
-		this.webGL_texture = null;
-	};
-	typeProto.preloadCanvas2D = function (ctx)
-	{
-		ctx.drawImage(this.texture_img, 0, 0);
-	};
-	pluginProto.Instance = function(type)
-	{
-		this.type = type;
-		this.runtime = type.runtime;
-	};
-	var instanceProto = pluginProto.Instance.prototype;
-	instanceProto.onCreate = function()
-	{
-		this.visible = (this.properties[0] === 0);							// 0=visible, 1=invisible
-		this.offsetX = this.properties[2];
-		this.offsetY = this.properties[3];
-		this.rcTex = new cr.rect(0, 0, 0, 0);
-		this.has_own_texture = false;										// true if a texture loaded in from URL
-		this.texture_img = this.type.texture_img;
-		if (this.runtime.glwrap)
-		{
-			this.type.loadTextures();
-			this.webGL_texture = this.type.webGL_texture;
-		}
-		else
-		{
-			if (!this.type.pattern)
-				this.type.pattern = this.runtime.ctx.createPattern(this.type.texture_img, "repeat");
-			this.pattern = this.type.pattern;
-		}
-	};
-	instanceProto.afterLoad = function ()
-	{
-		this.has_own_texture = false;
-		this.texture_img = this.type.texture_img;
-	};
-	instanceProto.onDestroy = function ()
-	{
-		if (this.runtime.glwrap && this.has_own_texture && this.webGL_texture)
-		{
-			this.runtime.glwrap.deleteTexture(this.webGL_texture);
-			this.webGL_texture = null;
-		}
-	};
-	instanceProto.draw = function(ctx)
-	{
-		ctx.globalAlpha = this.opacity;
-		ctx.save();
-		ctx.fillStyle = this.pattern;
-		var myx = this.x;
-		var myy = this.y;
-		if (this.runtime.pixel_rounding)
-		{
-			myx = Math.round(myx);
-			myy = Math.round(myy);
-		}
-		var drawX = -(this.hotspotX * this.width);
-		var drawY = -(this.hotspotY * this.height);
-		var offX = drawX % this.texture_img.width;
-		var offY = drawY % this.texture_img.height;
-		if (offX < 0)
-			offX += this.texture_img.width;
-		if (offY < 0)
-			offY += this.texture_img.height;
-		ctx.translate(myx, myy);
-		ctx.rotate(this.angle);
-		ctx.translate(offX, offY);
-		offX = this.offsetX/this.texture_img.width;
-		offY = this.offsetY/this.texture_img.height;
-		ctx.translate(offX, offY);
-		ctx.fillRect(drawX - offX,
-					 drawY - offY,
-					 this.width,
-					 this.height);
-		ctx.restore();
-	};
-	instanceProto.drawGL_earlyZPass = function(glw)
-	{
-		this.drawGL(glw);
-	};
-	instanceProto.drawGL = function(glw)
-	{
-		glw.setTexture(this.webGL_texture);
-		glw.setOpacity(this.opacity);
-		var rcTex = this.rcTex;
-		rcTex.right = this.width / this.texture_img.width;
-		rcTex.bottom = this.height / this.texture_img.height;
-		var offX = this.offsetX/this.texture_img.width;
-		var offY = this.offsetY/this.texture_img.height;
-		rcTex.offset(-offX, -offY);
-		var q = this.bquad;
-		if (this.runtime.pixel_rounding)
-		{
-			var ox = Math.round(this.x) - this.x;
-			var oy = Math.round(this.y) - this.y;
-			glw.quadTex(q.tlx + ox, q.tly + oy, q.trx + ox, q.try_ + oy, q.brx + ox, q.bry + oy, q.blx + ox, q.bly + oy, rcTex);
-		}
-		else {
-			glw.quadTex(q.tlx, q.tly, q.trx, q.try_, q.brx, q.bry, q.blx, q.bly, rcTex);
-		}
-		rcTex.offset(offX, offY);
-	};
-	function Cnds() {};
-	Cnds.prototype.OnURLLoaded = function ()
-	{
-		return true;
-	};
-	pluginProto.cnds = new Cnds();
-	function Acts() {};
-	Acts.prototype.SetEffect = function (effect)
-	{
-		this.blend_mode = effect;
-		this.compositeOp = cr.effectToCompositeOp(effect);
-		cr.setGLBlend(this, effect, this.runtime.gl);
-		this.runtime.redraw = true;
-	};
-	Acts.prototype.LoadURL = function (url_, crossOrigin_)
-	{
-		var img = new Image();
-		var self = this;
-		img.onload = function ()
-		{
-			self.texture_img = img;
-			if (self.runtime.glwrap)
-			{
-				if (self.has_own_texture && self.webGL_texture)
-					self.runtime.glwrap.deleteTexture(self.webGL_texture);
-				self.webGL_texture = self.runtime.glwrap.loadTexture(img, true, self.runtime.linearSampling);
-			}
-			else
-			{
-				self.pattern = self.runtime.ctx.createPattern(img, "repeat");
-			}
-			self.has_own_texture = true;
-			self.runtime.redraw = true;
-			self.runtime.trigger(cr.plugins_.ScrollableTiledBg.prototype.cnds.OnURLLoaded, self);
-		};
-		if (url_.substr(0, 5) !== "data:" && crossOrigin_ === 0)
-			img.crossOrigin = "anonymous";
-		this.runtime.setImageSrc(img, url_);
-	};
-	Acts.prototype.SetOffsetX = function (x) {
-		this.offsetX = x;
-	}
-	Acts.prototype.SetOffsetY = function (y) {
-		this.offsetY = y;
-	}
-	Acts.prototype.SetOffsetXY = function (x, y) {
-		this.offsetX = x;
-		this.offsetY = y;
-	}
-	pluginProto.acts = new Acts();
-	function Exps() {};
-	Exps.prototype.ImageWidth = function (ret)
-	{
-		ret.set_float(this.texture_img.width);
-	};
-	Exps.prototype.ImageHeight = function (ret)
-	{
-		ret.set_float(this.texture_img.height);
-	};
-	Exps.prototype.ImageOffsetX = function (ret)
-	{
-		ret.set_float(this.offsetX);
-	};
-	Exps.prototype.ImageOffsetY = function (ret)
-	{
-		ret.set_float(this.offsetY);
-	};
-	pluginProto.exps = new Exps();
-}());
-;
-;
-cr.plugins_.SkymenBackground = function(runtime)
-{
-	this.runtime = runtime;
-};
-(function ()
-{
-	var pluginProto = cr.plugins_.SkymenBackground.prototype;
-	pluginProto.Type = function(plugin)
-	{
-		this.plugin = plugin;
-		this.runtime = plugin.runtime;
-	};
-	var typeProto = pluginProto.Type.prototype;
-	typeProto.onCreate = function()
-	{
-		if (this.is_family)
-			return;
-		this.texture_img = new Image();
-		this.texture_img.cr_filesize = this.texture_filesize;
-		this.runtime.waitForImageLoad(this.texture_img, this.texture_file);
-		this.pattern = null;
-		this.webGL_texture = null;
-	};
-	typeProto.onLostWebGLContext = function ()
-	{
-		if (this.is_family)
-			return;
-		this.webGL_texture = null;
-	};
-	typeProto.onRestoreWebGLContext = function ()
-	{
-		if (this.is_family || !this.instances.length)
-			return;
-		if (!this.webGL_texture)
-		{
-			this.webGL_texture = this.runtime.glwrap.loadTexture(this.texture_img, true, this.runtime.linearSampling, this.texture_pixelformat);
-		}
-		var i, len;
-		for (i = 0, len = this.instances.length; i < len; i++)
-			this.instances[i].webGL_texture = this.webGL_texture;
-	};
-	typeProto.loadTextures = function ()
-	{
-		if (this.is_family || this.webGL_texture || !this.runtime.glwrap)
-			return;
-		this.webGL_texture = this.runtime.glwrap.loadTexture(this.texture_img, true, this.runtime.linearSampling, this.texture_pixelformat);
-	};
-	typeProto.unloadTextures = function ()
-	{
-		if (this.is_family || this.instances.length || !this.webGL_texture)
-			return;
-		this.runtime.glwrap.deleteTexture(this.webGL_texture);
-		this.webGL_texture = null;
-	};
-	typeProto.preloadCanvas2D = function (ctx)
-	{
-		ctx.drawImage(this.texture_img, 0, 0);
-	};
-	pluginProto.Instance = function(type)
-	{
-		this.type = type;
-		this.runtime = type.runtime;
-	};
-	var instanceProto = pluginProto.Instance.prototype;
-	instanceProto.onCreate = function()
-	{
-		this.visible = (this.properties[0] === 0);							// 0=visible, 1=invisible
-		this.rcTex = new cr.rect(0, 0, 0, 0);
-		this.has_own_texture = false;										// true if a texture loaded in from URL
-		this.texture_img = this.type.texture_img;
-		if (this.runtime.glwrap)
-		{
-			this.type.loadTextures();
-			this.webGL_texture = this.type.webGL_texture;
-		}
-		else
-		{
-			if (!this.type.pattern)
-				this.type.pattern = this.runtime.ctx.createPattern(this.type.texture_img, "repeat");
-			this.pattern = this.type.pattern;
-		}
-	};
-	instanceProto.afterLoad = function ()
-	{
-		this.has_own_texture = false;
-		this.texture_img = this.type.texture_img;
-	};
-	instanceProto.onDestroy = function ()
-	{
-		if (this.runtime.glwrap && this.has_own_texture && this.webGL_texture)
-		{
-			this.runtime.glwrap.deleteTexture(this.webGL_texture);
-			this.webGL_texture = null;
-		}
-	};
-	instanceProto.draw = function(ctx)
-	{
-		ctx.globalAlpha = this.opacity;
-		ctx.save();
-		var myx = this.x;
-		var myy = this.y;
-		if (this.runtime.pixel_rounding) {
-			myx = Math.round(myx);
-			myy = Math.round(myy);
-		}
-		ctx.translate(myx, myy);
-		var widthfactor = this.width > 0 ? 1 : -1;
-		var heightfactor = this.height > 0 ? 1 : -1;
-		if (widthfactor !== 1 || heightfactor !== 1)
-			ctx.scale(widthfactor, heightfactor);
-		ctx.drawImage(this.texture_img,
-			0 - (this.hotspotX * cr.abs(this.width)),
-			0 - (this.hotspotY * cr.abs(this.height)),
-			cr.abs(this.width),
-			cr.abs(this.height));
-		ctx.restore();
-	};
-	instanceProto.drawGL_earlyZPass = function(glw)
-	{
-		this.drawGL(glw);
-	};
-	instanceProto.drawGL = function(glw)
-	{
-		glw.setBlend(this.srcBlend, this.destBlend);
-		if (!this.tex) {
-			this.tex = glw.loadTexture(this.texture_img, false, this.runtime.linearSampling);
-		}
-		glw.setTexture(this.tex);
-		glw.setOpacity(this.opacity);
-		var q = this.bquad;
-		if (this.runtime.pixel_rounding) {
-			var ox = Math.round(this.x) - this.x;
-			var oy = Math.round(this.y) - this.y;
-			glw.quad(q.tlx + ox, q.tly + oy, q.trx + ox, q.try_ + oy, q.brx + ox, q.bry + oy, q.blx + ox, q.bly + oy);
-		} else
-			glw.quad(q.tlx, q.tly, q.trx, q.try_, q.brx, q.bry, q.blx, q.bly);
-	};
-	function Cnds() {};
-	Cnds.prototype.OnURLLoaded = function ()
-	{
-		return true;
-	};
-	pluginProto.cnds = new Cnds();
-	function Acts() {};
-	Acts.prototype.SetEffect = function (effect)
-	{
-		this.blend_mode = effect;
-		this.compositeOp = cr.effectToCompositeOp(effect);
-		cr.setGLBlend(this, effect, this.runtime.gl);
-		this.runtime.redraw = true;
-	};
-	Acts.prototype.LoadURL = function (url_, crossOrigin_)
-	{
-		var img = new Image();
-		var self = this;
-		img.onload = function ()
-		{
-			self.texture_img = img;
-			if (self.runtime.glwrap)
-			{
-				if (self.has_own_texture && self.webGL_texture)
-					self.runtime.glwrap.deleteTexture(self.webGL_texture);
-				self.webGL_texture = self.runtime.glwrap.loadTexture(img, true, self.runtime.linearSampling);
-			}
-			else
-			{
-				self.pattern = self.runtime.ctx.createPattern(img, "repeat");
-			}
-			self.has_own_texture = true;
-			self.runtime.redraw = true;
-			self.runtime.trigger(cr.plugins_.SkymenBackground.prototype.cnds.OnURLLoaded, self);
-		};
-		if (url_.substr(0, 5) !== "data:" && crossOrigin_ === 0)
-			img.crossOrigin = "anonymous";
-		this.runtime.setImageSrc(img, url_);
-	};
-	pluginProto.acts = new Acts();
-	function Exps() {};
-	Exps.prototype.ImageWidth = function (ret)
-	{
-		ret.set_float(this.texture_img.width);
-	};
-	Exps.prototype.ImageHeight = function (ret)
-	{
-		ret.set_float(this.texture_img.height);
 	};
 	pluginProto.exps = new Exps();
 }());
@@ -38050,803 +37468,6 @@ cr.plugins_.rojoPaster = function(runtime)
 }());
 ;
 ;
-cr.plugins_.shadowlight = function(runtime)
-{
-	this.runtime = runtime;
-};
-(function ()
-{
-	var pluginProto = cr.plugins_.shadowlight.prototype;
-	pluginProto.Type = function(plugin)
-	{
-		this.plugin = plugin;
-		this.runtime = plugin.runtime;
-	};
-	var typeProto = pluginProto.Type.prototype;
-	var loaded_penumbra_img = false;
-	var penumbra_img = null;
-	var penumbra_data = null;
-	typeProto.onCreate = function()
-	{
-		if (this.is_family)
-			return;
-		if (!loaded_penumbra_img)
-		{
-			loaded_penumbra_img = true;
-			penumbra_img = new Image();
-			penumbra_img.cr_filesize = 15000;
-			this.runtime.waitForImageLoad(penumbra_img, "penumbra.png");
-		}
-	};
-	typeProto.onLostWebGLContext = function ()
-	{
-		if (this.is_family)
-			return;
-		this.webGL_texture = null;
-		this.penumbra_texture = null;
-		var i, len, inst;
-		for (i = 0, len = this.instances.length; i < len; ++i)
-		{
-			inst = this.instances[i];
-			inst.webGL_texture = null;
-			inst.penumbra_texture = null;
-		}
-	};
-	typeProto.onRestoreWebGLContext = function ()
-	{
-		if (this.is_family)
-			return;
-		var i, len;
-		for (i = 0, len = this.instances.length; i < len; ++i)
-		{
-			this.instances[i].createTextures();
-		}
-	};
-	pluginProto.Instance = function(type)
-	{
-		this.type = type;
-		this.runtime = type.runtime;
-	};
-	var instanceProto = pluginProto.Instance.prototype;
-	instanceProto.onCreate = function()
-	{
-		maybeGetPenumbraData();		// get the pixel data for the penumbra image
-		this.lightX = this.x;
-		this.lightY = this.y;
-		this.lightZ = this.properties[0];
-		this.max_extrude = 1000;
-		this.lightRadius = this.properties[1];
-		this.castFrom = this.properties[2];		// 0 = all, 1 = same tag, 2 = different tag
-		this.tag = this.properties[3];
-		this.lightR = 0;
-		this.lightG = 0;
-		this.lightB = 0;
-		this.lastKnownX = this.x;
-		this.lastKnownY = this.y;
-		this.webGL_texture = null;
-		this.penumbra_texture = null;
-		if (this.runtime.glwrap)
-		{
-			this.createTextures();
-		}
-		else
-			this.lightRadius = 0;		// cannot use light radius in canvas2d mode
-		this.runtime.tick2Me(this);
-	};
-	instanceProto.castsFrom = function (othertag)
-	{
-		if (this.castFrom === 1)		// same tag
-			return cr.equals_nocase(this.tag, othertag);
-		else if (this.castFrom === 2)	// different tag
-			return !cr.equals_nocase(this.tag, othertag);
-		else							// all
-			return true;
-	};
-	instanceProto.tick2 = function ()
-	{
-		if (this.lastKnownX !== this.x || this.lastKnownY !== this.y)
-		{
-			this.lightX = this.x;
-			this.lightY = this.y;
-		}
-		var layer = this.layer;
-		var newx = (layer.viewLeft + layer.viewRight) / 2;
-		var newy = (layer.viewTop + layer.viewBottom) / 2;
-		var neww = (layer.viewRight - layer.viewLeft) + this.max_extrude;
-		var newh = (layer.viewBottom - layer.viewTop) + this.max_extrude;
-		if (newx !== this.x || newy !== this.y || neww !== this.width || newh !== this.height)
-		{
-			this.x = newx;
-			this.y = newy;
-			this.width = neww;
-			this.height = newh;
-			this.set_bbox_changed();
-		}
-		this.lastKnownX = this.x;
-		this.lastKnownY = this.y;
-		this.max_extrude = cr.distanceTo(layer.viewLeft, layer.viewTop, layer.viewRight, layer.viewBottom) * 15;
-	};
-	instanceProto.onDestroy = function ()
-	{
-		if (!this.runtime.glwrap)
-			return;		// not WebGL mode
-		if (this.webGL_texture)
-		{
-			this.runtime.glwrap.deleteTexture(this.webGL_texture);
-			this.webGL_texture = null;
-		}
-		if (this.penumbra_texture)
-		{
-			this.runtime.glwrap.deleteTexture(this.penumbra_texture);
-			this.penumbra_texture = null;
-		}
-	};
-	instanceProto.saveToJSON = function ()
-	{
-		return {
-		};
-	};
-	instanceProto.loadFromJSON = function (o)
-	{
-	};
-	var casters = [];
-	var collrect_candidates = [];
-	instanceProto.getShadowCasterCandidates = function ()
-	{
-		if (!this.runtime.shadowcasterBehavior)
-			return;
-		this.runtime.getTypesCollisionCandidates(this.layer, this.runtime.shadowcasterBehavior.myTypes, this.bbox, casters);
-		cr.removeArrayDuplicates(casters);
-	};
-	var poly_pts = [];
-	var poly_len = 0;
-	var back_faces1 = [];
-	var back_faces2 = [];
-	var cw_edge1 = -1;		// index of clockwise edge face
-	var cw_edge2 = -1;
-	var acw_edge1 = -1;		// index of anticlockwise edge face
-	var acw_edge2 = -1;
-	var midx = 0;
-	var midy = 0;
-	var umbra_pts = [];
-	var cw_umbra_rootx = 0;
-	var cw_umbra_rooty = 0;
-	var cw_umbra_projx = 0;
-	var cw_umbra_projy = 0;
-	var acw_umbra_rootx = 0;
-	var acw_umbra_rooty = 0;
-	var acw_umbra_projx = 0;
-	var acw_umbra_projy = 0;
-	var temp_poly = new cr.CollisionPoly([]);
-	instanceProto.draw = function (ctx)
-	{
-		this.getShadowCasterCandidates();
-		ctx.save();
-		ctx.fillStyle = "rgba(" + this.lightR + "," + this.lightG + "," + this.lightB + "," + this.opacity + ")";
-		var i, len, inst, j, lenj, k, lenk, h, poly, tmx, tmy, offx, offy, c, tilerc;
-		for (i = 0, len = casters.length; i < len; ++i)
-		{
-			inst = casters[i];
-			if (!inst.extra["shadowcasterEnabled"] || !this.castsFrom(inst.extra["shadowcasterTag"]))
-				continue;
-			inst.update_bbox();
-			h = inst.extra["shadowcasterHeight"];
-			if (inst.tilemap_exists)
-			{
-				inst.getCollisionRectCandidates(this.bbox, collrect_candidates);
-				tmx = inst.x;
-				tmy = inst.y;
-				for (j = 0, lenj = collrect_candidates.length; j < lenj; ++j)
-				{
-					c = collrect_candidates[j];
-					tilerc = c.rc;
-					poly = null;
-					if (c.poly)
-					{
-						poly = c.poly;
-						offx = tilerc.left;
-						offy = tilerc.top;
-					}
-					else
-					{
-						temp_poly.set_from_rect(tilerc, 0, 0);
-						poly = temp_poly;
-						offx = 0;
-						offy = 0;
-					}
-					this.calcShadow(poly, tmx + offx, tmy + offy, h, false);
-					ctx.beginPath();
-					ctx.moveTo(umbra_pts[0], umbra_pts[1]);
-					for (k = 2, lenk = umbra_pts.length; k < lenk; k += 2)
-					{
-						ctx.lineTo(umbra_pts[k], umbra_pts[k + 1]);
-					}
-					ctx.closePath();
-					ctx.fill();
-					cr.clearArray(back_faces1);
-					cr.clearArray(umbra_pts);
-				}
-				cr.clearArray(collrect_candidates);
-			}
-			else
-			{
-				poly = null;
-				if (inst.collision_poly && !inst.collision_poly.is_empty())
-				{
-					inst.collision_poly.cache_poly(inst.width, inst.height, inst.angle);
-					poly = inst.collision_poly;
-				}
-				else
-				{
-					temp_poly.set_from_quad(inst.bquad, inst.x, inst.y, inst.width, inst.height);
-					poly = temp_poly;
-				}
-				this.calcShadow(poly, inst.x, inst.y, h, cr.xor(inst.width < 0, inst.height < 0));
-				ctx.beginPath();
-				ctx.moveTo(umbra_pts[0], umbra_pts[1]);
-				for (j = 2, lenj = umbra_pts.length; j < lenj; j += 2)
-				{
-					ctx.lineTo(umbra_pts[j], umbra_pts[j + 1]);
-				}
-				ctx.closePath();
-				ctx.fill();
-				cr.clearArray(back_faces1);
-				cr.clearArray(umbra_pts);
-			}
-		}
-		ctx.restore();
-		cr.clearArray(casters);
-	};
-	instanceProto.getPolyPoints = function (poly, instx, insty, flipped)
-	{
-		poly_len = poly.pts_count;
-		cr.clearArray(poly_pts);
-		var x, y;
-		var pts = poly.pts_cache;
-		midx = 0;
-		midy = 0;
-		var i, i2;
-		for (i = 0; i < poly_len; ++i)
-		{
-			i2 = i * 2;
-			x = pts[i2] + instx;
-			y = pts[i2+1] + insty;
-			if (flipped)
-			{
-				poly_pts.unshift(y);
-				poly_pts.unshift(x);
-			}
-			else
-			{
-				poly_pts.push(x);
-				poly_pts.push(y);
-			}
-			midx += x;
-			midy += y;
-		}
-		midx /= poly_len;
-		midy /= poly_len;
-	};
-	instanceProto.calcShadow = function (poly, instx, insty, h, flipped)
-	{
-		this.getPolyPoints(poly, instx, insty, flipped);
-		var i, i2;
-		var polyx, polyy;
-		cr.clearArray(back_faces1);
-		cr.clearArray(back_faces2);
-		cr.clearArray(umbra_pts);
-		cw_edge1 = -1;
-		acw_edge1 = -1;
-		cw_edge2 = -1;
-		acw_edge2 = -1;
-		var Lx = this.lightX;
-		var Ly = this.lightY;
-		if (this.lightRadius > 0)
-		{
-			this.calcBackFaces(-this.lightRadius);
-			findEdges();
-			cr.shallowAssignArray(back_faces2, back_faces1);
-			cw_edge2 = cw_edge1;
-			acw_edge2 = acw_edge1;
-			cr.clearArray(back_faces1);
-			cw_edge1 = -1;
-			acw_edge1 = -1;
-			this.calcBackFaces(this.lightRadius);
-			findEdges();
-			if (cw_edge1 === -1 || acw_edge1 === -1 || cw_edge2 === -1 || acw_edge2 === -1)
-				return;
-			this.calcUmbraWithRadius(h);
-		}
-		else
-		{
-			this.calcBackFaces(0);
-			findEdges();
-			for (i = 0; i < poly_len; ++i)
-			{
-				i2 = i*2;
-				polyx = poly_pts[i2];
-				polyy = poly_pts[i2+1];
-				this.calcShadowSegment(i, Lx, Ly, polyx, polyy, h);
-			}
-		}
-	};
-	instanceProto.calcShadowSegment = function (i, Lx, Ly, px, py, h)
-	{
-		var ap, dp, e, x, y, Lx, Ly;
-		var isBackFace = back_faces1[i];
-		var lastBackFace = back_faces1[wrapBackFace(i - 1)];
-		var isClockwiseEdge = (i === cw_edge1);
-		var isAnticlockwiseEdge = (i === acw_edge1);
-		if (isBackFace || lastBackFace)
-		{
-			ap = cr.angleTo(Lx, Ly, px, py);
-			dp = cr.distanceTo(Lx, Ly, px, py);
-			e = this.calculateExtrusion(Lx, Ly, px, py, h);
-			x = Lx + Math.cos(ap) * (dp + e);
-			y = Ly + Math.sin(ap) * (dp + e);
-		}
-		else
-		{
-			x = px;
-			y = py;
-		}
-		if (isAnticlockwiseEdge)
-		{
-			umbra_pts.push(px);
-			umbra_pts.push(py);
-		}
-		umbra_pts.push(x);
-		umbra_pts.push(y);
-		if (isClockwiseEdge)
-		{
-			umbra_pts.push(px);
-			umbra_pts.push(py);
-		}
-	};
-	function isBackFace(Lx, Ly, px, py, qx, qy)
-	{
-		var n = cr.angleTo(px, py, qx, qy) - Math.PI / 2;
-		var a = cr.angleTo(px, py, Lx, Ly);
-		return (cr.angleDiff(a, n) >= Math.PI / 2);
-	};
-	function wrapBackFace(index)
-	{
-		index %= back_faces1.length;
-		if (index < 0)
-			index += back_faces1.length;
-		return index;
-	};
-	instanceProto.calcBackFaces = function (r)
-	{
-		var OLx = this.lightX;
-		var OLy = this.lightY;
-		var Lx = OLx;
-		var Ly = OLy;
-		var i, i2, imod, polyx, polyy, nextx, nexty, a;
-		for (i = 0; i < poly_len; ++i)
-		{
-			i2 = i*2;
-			imod = i+1;
-			imod = (imod === poly_len ? 0 : imod * 2);
-			polyx = poly_pts[i2];
-			polyy = poly_pts[i2+1];
-			nextx = poly_pts[imod];
-			nexty = poly_pts[imod+1];
-			if (r !== 0)
-			{
-				a = cr.angleTo(OLx, OLy, midx, midy) - Math.PI / 2;
-				Lx = OLx + Math.cos(a) * r;
-				Ly = OLy + Math.sin(a) * r;
-			}
-			back_faces1.push(isBackFace(Lx, Ly, polyx, polyy, nextx, nexty));
-		}
-	};
-	function findEdges()
-	{
-		var i, len, isBackFace, lastBackFace;
-		for (i = 0, len = back_faces1.length; i < len; ++i)
-		{
-			isBackFace = back_faces1[i];
-			lastBackFace = back_faces1[wrapBackFace(i - 1)];
-			if (lastBackFace && !isBackFace)
-				cw_edge1 = i;
-			if (!lastBackFace && isBackFace)
-				acw_edge1 = i;
-		}
-	};
-	var intersect_x = 0;
-	var intersect_y = 0;
-	function segment_intersection_at(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y)
-	{
-		var s1_x, s1_y, s2_x, s2_y, s, t, div;
-		s1_x = p1_x - p0_x;
-		s1_y = p1_y - p0_y;
-		s2_x = p3_x - p2_x;
-		s2_y = p3_y - p2_y;
-		div = (-s2_x * s1_y + s1_x * s2_y);
-		if (div === 0)
-			return false;
-		s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / div;
-		div = (-s2_x * s1_y + s1_x * s2_y);
-		if (div === 0)
-			return false;
-		t = ( s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / div;
-		if (s >= 0 && s <= 1 && t >= 0 && t <= 1)
-		{
-			intersect_x = p0_x + (t * s1_x);
-			intersect_y = p0_y + (t * s1_y);
-			return true;
-		}
-		return false;
-	}
-	instanceProto.calcUmbraWithRadius = function (h)
-	{
-		var i = cw_edge2;
-		var i2, polyx, polyy;
-		for ( ; ; ++i)
-		{
-			i = i % poly_len;
-			i2 = i * 2;
-			polyx = poly_pts[i2];
-			polyy = poly_pts[i2+1];
-			umbra_pts.push(polyx);
-			umbra_pts.push(polyy);
-			if (i === acw_edge1)
-				break;
-		}
-		var r = this.lightRadius;
-		var acw_x = polyx;
-		var acw_y = polyy;
-		var a = cr.angleTo(this.lightX, this.lightY, midx, midy);
-		var L1x = this.lightX + Math.cos(a - Math.PI / 2) * r;
-		var L1y = this.lightY + Math.sin(a - Math.PI / 2) * r;
-		var ap = cr.angleTo(L1x, L1y, acw_x, acw_y);
-		var ad = cr.distanceTo(L1x, L1y, acw_x, acw_y);
-		var u1x = L1x + Math.cos(ap) * (ad + this.max_extrude);
-		var u1y = L1y + Math.sin(ap) * (ad + this.max_extrude);
-		i2 = cw_edge2 * 2;
-		var cw_x = poly_pts[i2];
-		var cw_y = poly_pts[i2+1];
-		a = cr.angleTo(this.lightX, this.lightY, midx, midy);
-		var L2x = this.lightX + Math.cos(a + Math.PI / 2) * r;
-		var L2y = this.lightY + Math.sin(a + Math.PI / 2) * r;
-		ap = cr.angleTo(L2x, L2y, cw_x, cw_y);
-		ad = cr.distanceTo(L2x, L2y, cw_x, cw_y);
-		var u2x = L2x + Math.cos(ap) * (ad + this.max_extrude);
-		var u2y = L2y + Math.sin(ap) * (ad + this.max_extrude);
-		acw_umbra_rootx = acw_x;
-		acw_umbra_rooty = acw_y;
-		cw_umbra_rootx = cw_x;
-		cw_umbra_rooty = cw_y;
-		if (segment_intersection_at(acw_x, acw_y, u1x, u1y, cw_x, cw_y, u2x, u2y))
-		{
-			umbra_pts.push(intersect_x);
-			umbra_pts.push(intersect_y);
-			acw_umbra_projx = intersect_x;
-			acw_umbra_projy = intersect_y;
-			cw_umbra_projx = intersect_x;
-			cw_umbra_projy = intersect_y;
-		}
-		else
-		{
-			umbra_pts.push(u1x);
-			umbra_pts.push(u1y);
-			umbra_pts.push(u2x);
-			umbra_pts.push(u2y);
-			acw_umbra_projx = u1x;
-			acw_umbra_projy = u1y;
-			cw_umbra_projx = u2x;
-			cw_umbra_projy = u2y;
-		}
-	};
-	instanceProto.calculateExtrusion = function (Lx, Ly, x, y, h)
-	{
-		if (h >= this.lightZ)
-			return this.max_extrude;
-		if (h <= 0)
-			return 0;
-		var dist = cr.distanceTo(Lx, Ly, x, y);
-		var a = Math.atan(dist / (this.lightZ - h));
-		var e = h * Math.tan(a);
-		if (e >= this.max_extrude)
-			e = this.max_extrude;
-		if (e < 0)
-			e = 0;
-		return e;
-	};
-	instanceProto.drawGL = function (glw)
-	{
-		glw.setOpacity(this.opacity);
-		this.getShadowCasterCandidates();
-		var i, len, j, lenj, inst, h, poly, tmx, tmy, c, tilerc, offx, offy;
-		for (i = 0, len = casters.length; i < len; ++i)
-		{
-			inst = casters[i];
-			if (!inst.extra["shadowcasterEnabled"] || !this.castsFrom(inst.extra["shadowcasterTag"]))
-				continue;
-			inst.update_bbox();
-			h = inst.extra["shadowcasterHeight"];
-			if (inst.tilemap_exists)
-			{
-				inst.getCollisionRectCandidates(this.bbox, collrect_candidates);
-				tmx = inst.x;
-				tmy = inst.y;
-				for (j = 0, lenj = collrect_candidates.length; j < lenj; ++j)
-				{
-					c = collrect_candidates[j];
-					tilerc = c.rc;
-					poly = null;
-					if (c.poly)
-					{
-						poly = c.poly;
-						offx = tilerc.left;
-						offy = tilerc.top;
-					}
-					else
-					{
-						temp_poly.set_from_rect(tilerc, 0, 0);
-						poly = temp_poly;
-						offx = 0;
-						offy = 0;
-					}
-					this.calcShadow(poly, tmx + offx, tmy + offy, h, false);
-					if (umbra_pts.length < 6)
-						continue;		// could not get at least an umbra triangle
-					glw.setTexture(this.webGL_texture);
-					glw.convexPoly(umbra_pts);
-					if (cw_edge1 > -1 && cw_edge2 > -1)
-					{
-						glw.setTexture(this.penumbra_texture);
-						this.drawPenumbraGL(glw, true);
-					}
-					if (acw_edge1 > -1 && acw_edge2 > -1)
-					{
-						glw.setTexture(this.penumbra_texture);
-						this.drawPenumbraGL(glw, false);
-					}
-					cr.clearArray(back_faces1);
-					cr.clearArray(umbra_pts);
-				}
-				cr.clearArray(collrect_candidates);
-			}
-			else
-			{
-				poly = null;
-				if (inst.collision_poly && !inst.collision_poly.is_empty())
-				{
-					inst.collision_poly.cache_poly(inst.width, inst.height, inst.angle);
-					poly = inst.collision_poly;
-				}
-				else
-				{
-					temp_poly.set_from_quad(inst.bquad, inst.x, inst.y, inst.width, inst.height);
-					poly = temp_poly;
-				}
-				this.calcShadow(poly, inst.x, inst.y, h, cr.xor(inst.width < 0, inst.height < 0));
-				if (umbra_pts.length < 6)
-					continue;		// could not get at least an umbra triangle
-				glw.setTexture(this.webGL_texture);
-				glw.convexPoly(umbra_pts);
-				if (cw_edge1 > -1 && cw_edge2 > -1)
-				{
-					glw.setTexture(this.penumbra_texture);
-					this.drawPenumbraGL(glw, true);
-				}
-				if (acw_edge1 > -1 && acw_edge2 > -1)
-				{
-					glw.setTexture(this.penumbra_texture);
-					this.drawPenumbraGL(glw, false);
-				}
-				cr.clearArray(back_faces1);
-				cr.clearArray(umbra_pts);
-			}
-		}
-		cr.clearArray(casters);
-	};
-	instanceProto.drawPenumbraGL = function (glw, clockwise)
-	{
-		var Lx = this.lightX;
-		var Ly = this.lightY;
-		var secx, secy;
-		var rootx, rooty, innerx, innery;
-		if (clockwise)
-		{
-			rootx = cw_umbra_rootx;
-			rooty = cw_umbra_rooty;
-			innerx = cw_umbra_projx;
-			innery = cw_umbra_projy;
-		}
-		else
-		{
-			rootx = acw_umbra_rootx;
-			rooty = acw_umbra_rooty;
-			innerx = acw_umbra_projx;
-			innery = acw_umbra_projy;
-		}
-		var r = this.lightRadius;
-		var a = cr.angleTo(Lx, Ly, midx, midy);
-		var oa = Math.PI / 2;
-		if (clockwise)
-			oa = -oa;
-		Lx += Math.cos(a + oa) * r;
-		Ly += Math.sin(a + oa) * r;
-		var twopart = false;
-		if (clockwise)
-		{
-			twopart = (cw_edge1 !== cw_edge2);
-			if (twopart)
-			{
-				secx = poly_pts[cw_edge1*2];
-				secy = poly_pts[cw_edge1*2+1];
-			}
-		}
-		else
-		{
-			twopart = (acw_edge1 !== acw_edge2);
-			if (twopart)
-			{
-				secx = poly_pts[acw_edge2*2];
-				secy = poly_pts[acw_edge2*2+1];
-			}
-		}
-		if (twopart)
-		{
-			a = cr.angleTo(secx, secy, rootx, rooty);
-		}
-		else
-		{
-			a = cr.angleTo(Lx, Ly, rootx, rooty);
-		}
-		var Ux = rootx + Math.cos(a) * this.max_extrude;
-		var Uy = rooty + Math.sin(a) * this.max_extrude;
-		var U2x, U2y, a3, a2, a1;
-		var umbra_factor = 0;
-		var rootu = 0;
-		var rootv = 1;
-		if (twopart)
-		{
-			a3 = cr.angleTo(Lx, Ly, secx, secy);
-			var U2x = secx + Math.cos(a3) * this.max_extrude;
-			var U2y = secy + Math.sin(a3) * this.max_extrude;
-			a2 = a;		// angle of middle edge
-			a1 = cr.angleTo(rootx, rooty, innerx, innery);
-			umbra_factor = (cr.angleDiff(a2, a3) / cr.angleDiff(a1, a3));
-			var side_dist = cr.distanceTo(secx, secy, rootx, rooty);
-			var inner_root_factor = (side_dist / (side_dist + this.max_extrude));
-			var sega = cr.angleTo(0, 1, umbra_factor, 0);
-			var segd = cr.distanceTo(0, 1, umbra_factor, 0);
-			rootu += Math.cos(sega) * inner_root_factor * segd;
-			rootv += Math.sin(sega) * inner_root_factor * segd;
-		}
-		glw.quadTexUV(rootx, rooty, innerx, innery, Ux, Uy, Ux, Uy, rootu, rootv, 1, 0, umbra_factor, 0, umbra_factor, 0);
-		if (twopart)
-		{
-			glw.quadTexUV(secx, secy, Ux, Uy, U2x, U2y, U2x, U2y, 0, 1, umbra_factor, 0, 0, 0, 0, 0);
-		}
-	};
-	function maybeGetPenumbraData()
-	{
-		if (penumbra_data)
-			return;		// already got data
-		var w = penumbra_img.width;
-		var h = penumbra_img.height;
-		var canvas = document.createElement("canvas");
-		canvas.width = w;
-		canvas.height = h;
-		var ctx = canvas.getContext("2d");
-		ctx.clearRect(0, 0, w, h);
-		ctx.drawImage(penumbra_img, 0, 0, w, h);
-		penumbra_data = ctx.getImageData(0, 0, w, h).data;
-	};
-	instanceProto.createTextures = function ()
-	{
-		if (!this.runtime.glwrap)
-			return;		// not WebGL mode
-		if (this.webGL_texture)
-		{
-			this.runtime.glwrap.deleteTexture(this.webGL_texture);
-			this.webGL_texture = null;
-		}
-		if (this.penumbra_texture)
-		{
-			this.runtime.glwrap.deleteTexture(this.penumbra_texture);
-			this.penumbra_texture = null;
-		}
-		this.createFillTexture();
-		this.createPenumbraTexture();
-	};
-	instanceProto.createFillTexture = function ()
-	{
-		var canvas = document.createElement("canvas");
-		canvas.width = 16;
-		canvas.height = 16;
-		var ctx = canvas.getContext("2d");
-		ctx.fillStyle = "rgb(" + this.lightR + "," + this.lightG + "," + this.lightB + ")";
-		ctx.fillRect(0, 0, 16, 16);
-		this.webGL_texture = this.runtime.glwrap.createEmptyTexture(16, 16, false, false, true);
-		this.runtime.glwrap.videoToTexture(canvas, this.webGL_texture);
-	};
-	instanceProto.createPenumbraTexture = function ()
-	{
-		var w = penumbra_img.width;
-		var h = penumbra_img.height;
-		var r = this.lightR, g = this.lightG, b = this.lightB;
-		var src_data = penumbra_data;
-		var canvas = document.createElement("canvas");
-		canvas.width = w;
-		canvas.height = h;
-		var ctx = canvas.getContext("2d");
-		var imgdata = ctx.createImageData(w, h);
-		var arr = imgdata.data;
-		var i, len;
-		for (i = 0, len = arr.length; i < len; i += 4)
-		{
-			arr[i] = r;
-			arr[i+1] = g;
-			arr[i+2] = b;
-			arr[i+3] = src_data[i+3];		// copy alpha from original
-		}
-		ctx.putImageData(imgdata, 0, 0);
-		this.penumbra_texture = this.runtime.glwrap.createEmptyTexture(w, h, this.runtime.linearSampling, false, false);
-		this.runtime.glwrap.videoToTexture(canvas, this.penumbra_texture);
-	};
-	function Cnds() {};
-	/*
-	Cnds.prototype.MyCondition = function (myparam)
-	{
-		return myparam >= 0;
-	};
-	*/
-	pluginProto.cnds = new Cnds();
-	function Acts() {};
-	Acts.prototype.SetLightHeight = function (z)
-	{
-		if (this.lightZ !== z)
-		{
-			this.lightZ = z;
-			this.runtime.redraw = true;
-		}
-	};
-	Acts.prototype.SetLightColor = function (rgb)
-	{
-		var r = cr.GetRValue(rgb);
-		var g = cr.GetGValue(rgb);
-		var b = cr.GetBValue(rgb);
-		if (this.lightR !== r || this.lightG !== g || this.lightB !== b)
-		{
-			this.lightR = r;
-			this.lightG = g;
-			this.lightB = b;
-			this.createTextures();
-			this.runtime.redraw = true;
-		}
-	};
-	Acts.prototype.SetTag = function (tag_)
-	{
-		if (this.tag !== tag_)
-		{
-			this.tag = tag_;
-			this.runtime.redraw = true;
-		}
-	};
-	pluginProto.acts = new Acts();
-	function Exps() {};
-	Exps.prototype.LightX = function (ret)
-	{
-		ret.set_float(this.lightX);
-	};
-	Exps.prototype.LightY = function (ret)
-	{
-		ret.set_float(this.lightY);
-	};
-	Exps.prototype.Tag = function (ret)
-	{
-		ret.set_string(this.tag);
-	};
-	pluginProto.exps = new Exps();
-}());
-;
-;
 cr.plugins_.sirg_notifications = function(runtime)
 {
 	this.runtime = runtime;
@@ -41564,133 +40185,6 @@ cr.behaviors.Platform = function(runtime)
 	{
 		ret.set_float(this.jumpSustain * 1000);		// convert back to ms
 	};
-	behaviorProto.exps = new Exps();
-}());
-;
-;
-cr.behaviors.Rex_Tween2Effect = function(runtime)
-{
-	this.runtime = runtime;
-};
-(function ()
-{
-	var behaviorProto = cr.behaviors.Rex_Tween2Effect.prototype;
-	behaviorProto.Type = function(behavior, objtype)
-	{
-		this.behavior = behavior;
-		this.objtype = objtype;
-		this.runtime = behavior.runtime;
-	};
-	var behtypeProto = behaviorProto.Type.prototype;
-	behtypeProto.onCreate = function()
-	{
-	    this.plug_proto = (cr.plugins_.Sprite)?   cr.plugins_.Sprite:
-	                      (cr.plugins_.c2canvas)? cr.plugins_.c2canvas:
-	                                              null;
-	};
-	behaviorProto.Instance = function(type, inst)
-	{
-		this.type = type;
-		this.behavior = type.behavior;
-		this.inst = inst;
-		this.runtime = type.runtime;
-	};
-	var behinstProto = behaviorProto.Instance.prototype;
-	var TARGET_INSTANCE = 0;
-	var TARGET_LAYER = 1;
-	var TARGET_LAYOUT = 2;
-	behinstProto.onCreate = function()
-	{
-	    this.effect_name = this.properties[0];
-	    this.effect_param_index = this.properties[1];
-	    this.tween_target = this.properties[2];
-	    this.tween_behavior_inst = this.get_tween_behavior_inst();
-	    switch(this.tween_target)
-	    {
-        case TARGET_INSTANCE:
-            this.set_param_fn = this.type.plug_proto.prototype.acts.SetEffectParam;
-        break;
-        case TARGET_LAYER:
-            this.set_param_fn = cr.system_object.prototype.acts.SetLayerEffectParam;
-        break;
-        case TARGET_LAYOUT:
-            this.set_param_fn = cr.system_object.prototype.acts.SetLayoutEffectParam;
-        break;
-	    }
-	};
-	var TWEEN_INVALID = 0;
-	var TWEEN_LITETWEEN = 1;
-	var TWEEN_TWEEN = 2;
-	var TWEEN_TWEENMOD = 3;
-	behinstProto.tick = function ()
-	{
-	    if (this.tween_behavior_inst == null)
-	        return;
-        if ((this.tween_target == TARGET_INSTANCE) && (this.type.plug_proto == null))
-            return;
-	    if (!this.tween_behavior_inst.active)
-	        return;
-        switch (this.tween_target)
-        {
-        case TARGET_INSTANCE:
-	        this.set_param_fn.call(
-	            this.inst,                         // this_
-	            this.effect_name,                  // name
-	            this.effect_param_index,           // param index
-	            this.tween_behavior_inst.value     // value
-	        );
-        break;
-        case TARGET_LAYER:
-	        this.set_param_fn.call(
-	            this.runtime.system,               // this_
-	            this.inst.layer,                   // layer
-	            this.effect_name,                  // name
-	            this.effect_param_index,           // param index
-	            this.tween_behavior_inst.value     // value
-	        );
-        break;
-        case TARGET_LAYOUT:
-	        this.set_param_fn.call(
-	            this.runtime.system,               // this_
-	            this.effect_name,                  // name
-	            this.effect_param_index,           // param index
-	            this.tween_behavior_inst.value     // value
-	        );
-        break;
-        }
-	};
-	behinstProto.get_tween_behavior_inst = function ()
-    {
-        var has_lunarray_LiteTween_behavior = (cr.behaviors.lunarray_LiteTween != null);
-        var has_lunarray_Tween_behavior = (cr.behaviors.lunarray_Tween != null);
-        var has_rex_lunarray_Tween_mod_behavior = (cr.behaviors.rex_lunarray_Tween_mod != null);
-        var has_tween_behavior = (has_lunarray_LiteTween_behavior ||
-                                  has_lunarray_Tween_behavior ||
-                                  has_rex_lunarray_Tween_mod_behavior);
-;
-        var i = this.type.objtype.getBehaviorIndexByName(this.type.name);
-        var tween_behavior_inst = this.inst.behavior_insts[i-1];
-;
-        var is_lunarray_LiteTween_behavior = has_lunarray_LiteTween_behavior &&
-                                             (tween_behavior_inst instanceof cr.behaviors.lunarray_LiteTween.prototype.Instance);
-        var is_lunarray_Tween_behavior = has_lunarray_Tween_behavior &&
-                                         (tween_behavior_inst instanceof cr.behaviors.lunarray_Tween.prototype.Instance);
-        var is_rex_lunarray_Tween_behavior = has_rex_lunarray_Tween_mod_behavior &&
-                                             (tween_behavior_inst instanceof cr.behaviors.rex_lunarray_Tween_mod.prototype.Instance);
-        this.tween_behavior_type = (is_lunarray_LiteTween_behavior)? TWEEN_LITETWEEN:
-                                   (is_lunarray_Tween_behavior)?     TWEEN_TWEEN:
-                                   (is_rex_lunarray_Tween_behavior)? TWEEN_TWEENMOD:
-                                                                     TWEEN_INVALID;
-;
-        if (this.tween_behavior_type == TWEEN_INVALID)
-            return null;
-        return tween_behavior_inst;
-    };
-	function Cnds() {};
-	behaviorProto.cnds = new Cnds();
-	function Acts() {};
-	behaviorProto.acts = new Acts();
-	function Exps() {};
 	behaviorProto.exps = new Exps();
 }());
 ;
@@ -48453,6 +46947,7 @@ var TweenObject = function()
     this.pingpong = 1.0;
     this.flipEase = false;
     this.easingparam = [];
+    this.lastState = 1;
     for (var i=0; i<28; i++) {
       this.easingparam[i] = {};
       this.easingparam[i].a = 0.0;
@@ -48682,7 +47177,6 @@ cr.behaviors.lunarray_LiteTween = function(runtime)
 	{
     var x = JSON.parse(o["tweenlist"]);
     var tempObj = TweenObject.Load(x, x.name, x.tweened, x.easefunc, x.initialparam1+","+x.initialparam2, x.targetparam1+","+x.targetparam2, x.duration, x.enforce);
-    console.log(tempObj);
 		this.tween_list["default"] = tempObj;
 	  this.playmode = o["playmode"];
 		this.active = o["active"];
@@ -48727,7 +47221,7 @@ cr.behaviors.lunarray_LiteTween = function(runtime)
         inst.state = 1;
       }
       if (startMode === 1) {
-        inst.state = 1;
+        inst.state = inst.lastState;
       }
       if ((startMode === 2) || (startMode === 4)) {
         inst.progress = 0.000001;
@@ -48750,6 +47244,8 @@ cr.behaviors.lunarray_LiteTween = function(runtime)
 	{
     for (var i in this.tween_list) {
       var inst = this.tween_list[i];
+      if ((inst.state != 3) && (inst.state != 0)) //don't save paused/seek state
+        inst.lastState = inst.state;
       if (stopMode === 1) inst.progress = 0.0;
       if (stopMode === 2) inst.progress = inst.duration;
       inst.state = 3;
@@ -50735,27 +49231,25 @@ cr.behaviors.solid = function(runtime)
 cr.getObjectRefTable = function () { return [
 	cr.plugins_.NinePatch,
 	cr.plugins_.AJAX,
-	cr.plugins_.Arr,
 	cr.plugins_.Audio,
-	cr.plugins_.filechooser,
-	cr.plugins_.Button,
-	cr.plugins_.Browser,
+	cr.plugins_.Arr,
 	cr.plugins_.Function,
-	cr.plugins_.LocalStorage,
-	cr.plugins_.Particles,
-	cr.plugins_.Mouse,
-	cr.plugins_.NodeWebkit,
+	cr.plugins_.Browser,
+	cr.plugins_.Button,
+	cr.plugins_.filechooser,
 	cr.plugins_.Keyboard,
 	cr.plugins_.gamepad,
-	cr.plugins_.ScrollableTiledBg,
-	cr.plugins_.shadowlight,
+	cr.plugins_.NodeWebkit,
+	cr.plugins_.Mouse,
+	cr.plugins_.LocalStorage,
 	cr.plugins_.Touch,
+	cr.plugins_.TextBox,
+	cr.plugins_.Particles,
 	cr.plugins_.aekiro_model,
 	cr.plugins_.aekiro_proui2,
-	cr.plugins_.Sprite,
 	cr.plugins_.TiledBg,
+	cr.plugins_.Sprite,
 	cr.plugins_.Text,
-	cr.plugins_.TextBox,
 	cr.plugins_.c2canvas,
 	cr.plugins_.GameAnalytics,
 	cr.plugins_.Globals,
@@ -50763,19 +49257,18 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.hmmg_layoutTransition_v2,
 	cr.plugins_.jcw_trace,
 	cr.plugins_.JSON,
-	cr.plugins_.MagiCam,
 	cr.plugins_.HTML_Div_Pode,
+	cr.plugins_.MagiCam,
 	cr.plugins_.rojoPaster,
 	cr.plugins_.sirg_notifications,
-	cr.plugins_.SkymenBackground,
-	cr.plugins_.SkymenSFPlusPLus,
 	cr.plugins_.TR_ClockParser,
 	cr.plugins_.skymen_minifunctioncallback,
-	cr.plugins_.skymen_skinsCore,
-	cr.plugins_.SyncStorage,
-	cr.plugins_.TextModded,
-	cr.plugins_.TR_AdBlockDetector,
 	cr.plugins_.skymen_siteLock,
+	cr.plugins_.SkymenSFPlusPLus,
+	cr.plugins_.skymen_skinsCore,
+	cr.plugins_.TextModded,
+	cr.plugins_.SyncStorage,
+	cr.plugins_.TR_AdBlockDetector,
 	cr.plugins_.ValerypopoffJSPlugin,
 	cr.plugins_.skymenhowlerjs,
 	cr.behaviors.Platform,
@@ -50804,7 +49297,6 @@ cr.getObjectRefTable = function () { return [
 	cr.behaviors.aekiro_checkbox,
 	cr.behaviors.aekiro_sliderbar,
 	cr.behaviors.lunarray_Tween,
-	cr.behaviors.Rex_Tween2Effect,
 	cr.behaviors.scrollto,
 	cr.behaviors.lunarray_LiteTween,
 	cr.behaviors.SkymenSkin,
@@ -50816,6 +49308,7 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Sprite.prototype.cnds.IsOverlapping,
 	cr.plugins_.Sprite.prototype.cnds.IsBoolInstanceVarSet,
 	cr.plugins_.Sprite.prototype.acts.AddInstanceVar,
+	cr.system_object.prototype.exps.dt,
 	cr.plugins_.Function.prototype.acts.CallFunction,
 	cr.plugins_.Sprite.prototype.acts.Destroy,
 	cr.plugins_.Sprite.prototype.acts.SetInstanceVar,
@@ -50852,6 +49345,7 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.SyncStorage.prototype.acts.SaveData,
 	cr.plugins_.Sprite.prototype.acts.SetBoolInstanceVar,
 	cr.plugins_.Sprite.prototype.acts.SetAnimFrame,
+	cr.plugins_.Sprite.prototype.cnds.IsVisible,
 	cr.system_object.prototype.cnds.ForEach,
 	cr.behaviors.SkymenPin.prototype.acts.Pin,
 	cr.behaviors.Rex_Zigzag.prototype.acts.Start,
@@ -50893,7 +49387,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.SkymenSFPlusPLus.prototype.acts.SetText,
 	cr.plugins_.Sprite.prototype.acts.SetMirrored,
 	cr.plugins_.Sprite.prototype.cnds.IsOverlappingOffset,
-	cr.system_object.prototype.exps.dt,
 	cr.behaviors.Platform.prototype.exps.VectorY,
 	cr.plugins_.Sprite.prototype.cnds.PickDistance,
 	cr.plugins_.Function.prototype.exps.Call,
@@ -50934,6 +49427,7 @@ cr.getObjectRefTable = function () { return [
 	cr.system_object.prototype.exps.windowwidth,
 	cr.system_object.prototype.exps.windowheight,
 	cr.plugins_.Globals.prototype.acts.SetBoolInstanceVar,
+	cr.plugins_.Browser.prototype.acts.ExecJs,
 	cr.plugins_.Sprite.prototype.cnds.IsOutsideLayout,
 	cr.behaviors.Bullet.prototype.acts.SetAcceleration,
 	cr.behaviors.Fade.prototype.exps.FadeOutTime,
@@ -50979,23 +49473,12 @@ cr.getObjectRefTable = function () { return [
 	cr.system_object.prototype.cnds.Every,
 	cr.plugins_.Arr.prototype.exps.At,
 	cr.plugins_.Arr.prototype.acts.Pop,
-	cr.system_object.prototype.acts.CreateObject,
-	cr.plugins_.Sprite.prototype.exps.BBoxLeft,
-	cr.plugins_.Sprite.prototype.exps.BBoxTop,
-	cr.plugins_.c2canvas.prototype.acts.SetSize,
-	cr.plugins_.Sprite.prototype.exps.BBoxRight,
-	cr.plugins_.Sprite.prototype.exps.BBoxBottom,
-	cr.behaviors.SkymenSkin.prototype.cnds.IsDefault,
-	cr.plugins_.c2canvas.prototype.acts.PasteObject,
-	cr.plugins_.c2canvas.prototype.acts.SetOpacity,
-	cr.plugins_.c2canvas.prototype.acts.ZMoveToObject,
-	cr.behaviors.Sin.prototype.acts.SetPhase,
 	cr.behaviors.Timer.prototype.acts.StopTimer,
+	cr.plugins_.Sprite.prototype.acts.SetAnim,
+	cr.plugins_.Sprite.prototype.cnds.IsAnimPlaying,
 	cr.behaviors.Platform.prototype.acts.SetMaxFallSpeed,
 	cr.plugins_.MagiCam.prototype.acts.ShakeCamera,
 	cr.plugins_.Sprite.prototype.cnds.IsBetweenAngles,
-	cr.plugins_.Audio.prototype.acts.Play,
-	cr.plugins_.Audio.prototype.exps.Volume,
 	cr.behaviors.Platform.prototype.cnds.OnLand,
 	cr.plugins_.Arr.prototype.exps.Width,
 	cr.system_object.prototype.cnds.While,
@@ -51012,6 +49495,7 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.SkymenSFPlusPLus.prototype.acts.SetOpacity,
 	cr.behaviors.Platform.prototype.acts.SetDoubleJumpEnabled,
 	cr.plugins_.SkymenSFPlusPLus.prototype.exps.Count,
+	cr.system_object.prototype.acts.CreateObject,
 	cr.plugins_.SkymenSFPlusPLus.prototype.exps.LayerName,
 	cr.plugins_.SkymenSFPlusPLus.prototype.exps.X,
 	cr.plugins_.SkymenSFPlusPLus.prototype.exps.BBoxBottom,
@@ -51022,24 +49506,25 @@ cr.getObjectRefTable = function () { return [
 	cr.system_object.prototype.acts.SetGroupActive,
 	cr.plugins_.TiledBg.prototype.acts.SetSize,
 	cr.system_object.prototype.exps.layoutwidth,
+	cr.plugins_.TiledBg.prototype.acts.MoveToBottom,
 	cr.plugins_.TiledBg.prototype.acts.SetOpacity,
 	cr.system_object.prototype.exps.layoutheight,
 	cr.plugins_.TiledBg.prototype.acts.SetAngle,
 	cr.plugins_.Browser.prototype.exps.Domain,
 	cr.plugins_.ValerypopoffJSPlugin.prototype.exps.JSCodeValue,
-	cr.plugins_.Browser.prototype.acts.ExecJs,
 	cr.behaviors.aekiro_dialog.prototype.acts.Open,
-	cr.plugins_.ScrollableTiledBg.prototype.acts.SetOffsetXY,
 	cr.plugins_.Keyboard.prototype.cnds.OnKey,
+	cr.plugins_.Browser.prototype.acts.ConsoleLog,
+	cr.plugins_.SkymenSFPlusPLus.prototype.cnds.OnCreated,
 	cr.plugins_.Browser.prototype.cnds.OnPageHidden,
 	cr.plugins_.ValerypopoffJSPlugin.prototype.acts.ExecuteJSWithParams,
 	cr.plugins_.Browser.prototype.cnds.OnPageVisible,
 	cr.plugins_.skymenhowlerjs.prototype.cnds.IsPlaying,
 	cr.plugins_.skymenhowlerjs.prototype.acts.PlayByName,
+	cr.plugins_.skymenhowlerjs.prototype.acts.Mute,
 	cr.plugins_.SyncStorage.prototype.cnds.IsLoaded,
 	cr.plugins_.skymenhowlerjs.prototype.acts.LinearVolume,
 	cr.plugins_.SyncStorage.prototype.cnds.CompareData,
-	cr.plugins_.skymenhowlerjs.prototype.acts.Mute,
 	cr.plugins_.skymenhowlerjs.prototype.acts.Unmute,
 	cr.system_object.prototype.exps.choose,
 	cr.system_object.prototype.exps.str,
@@ -51066,7 +49551,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.AJAX.prototype.cnds.OnError,
 	cr.plugins_.SyncStorage.prototype.cnds.OnDataMissing,
 	cr.plugins_.SyncStorage.prototype.cnds.OnLoaded,
-	cr.plugins_.Browser.prototype.acts.ConsoleLog,
 	cr.plugins_.Globals.prototype.acts.LoadVariables,
 	cr.plugins_.skymenhowlerjs.prototype.acts.Volume,
 	cr.plugins_.skymenhowlerjs.prototype.exps.LinearVolume,
@@ -51110,7 +49594,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.TextModded.prototype.exps.FaceSize,
 	cr.plugins_.TextModded.prototype.exps.Width,
 	cr.plugins_.TextModded.prototype.exps.Height,
-	cr.plugins_.SkymenSFPlusPLus.prototype.cnds.OnCreated,
 	cr.plugins_.SkymenSFPlusPLus.prototype.acts.SetInstanceVar,
 	cr.plugins_.SkymenSFPlusPLus.prototype.exps.CharacterScale,
 	cr.plugins_.TextModded.prototype.acts.SetWebFont,
@@ -51119,7 +49602,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.SkymenSFPlusPLus.prototype.acts.SetVisible,
 	cr.plugins_.ValerypopoffJSPlugin.prototype.cnds.CompareStoredReturnValue,
 	cr.plugins_.SkymenSFPlusPLus.prototype.exps.Text,
-	cr.plugins_.Browser.prototype.acts.Alert,
 	cr.plugins_.SkymenSFPlusPLus.prototype.exps.LayerNumber,
 	cr.behaviors.aekiro_gameobject2.prototype.exps.global,
 	cr.plugins_.TextModded.prototype.acts.SetSize,
@@ -51163,11 +49645,10 @@ cr.getObjectRefTable = function () { return [
 	cr.system_object.prototype.exps.zeropad,
 	cr.behaviors.aekiro_button.prototype.acts.setEnabled,
 	cr.plugins_.aekiro_model.prototype.cnds.IsEmpty,
-	cr.plugins_.Sprite.prototype.cnds.IsAnimPlaying,
 	cr.plugins_.Sprite.prototype.acts.SetX,
 	cr.plugins_.Sprite.prototype.acts.SetWidth,
 	cr.behaviors.aekiro_gameobject2.prototype.exps.parent,
-	cr.plugins_.Sprite.prototype.acts.SetAnim,
+	cr.plugins_.Sprite.prototype.exps.BBoxRight,
 	cr.system_object.prototype.exps.replace,
 	cr.plugins_.AJAX.prototype.acts.Request,
 	cr.plugins_.Text.prototype.cnds.OnCreated,
@@ -51194,13 +49675,15 @@ cr.getObjectRefTable = function () { return [
 	cr.behaviors.lunarray_LiteTween.prototype.acts.SetParameter,
 	cr.behaviors.lunarray_LiteTween.prototype.acts.Start,
 	cr.plugins_.SkymenSFPlusPLus.prototype.acts.SetPosToObject,
-	cr.plugins_.Sprite.prototype.cnds.IsVisible,
+	cr.plugins_.Sprite.prototype.exps.BBoxLeft,
+	cr.plugins_.Sprite.prototype.exps.BBoxTop,
 	cr.system_object.prototype.exps.viewportright,
 	cr.system_object.prototype.exps.viewportleft,
 	cr.system_object.prototype.exps.viewportbottom,
 	cr.system_object.prototype.exps.viewporttop,
 	cr.system_object.prototype.acts.SetLayerOpacity,
 	cr.system_object.prototype.exps.unlerp,
+	cr.plugins_.Sprite.prototype.exps.BBoxBottom,
 	cr.plugins_.Particles.prototype.acts.SetRate,
 	cr.system_object.prototype.exps.canvastolayerx,
 	cr.plugins_.Touch.prototype.exps.AbsoluteX,

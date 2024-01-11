@@ -1776,6 +1776,7 @@ globalThis.HowlerAudioPlayer = {
   loadedAudio: {},
   paused: {},
   volumes: {},
+  muted: {},
   init(runtime) {
     this.runtime = runtime;
   },
@@ -1817,7 +1818,7 @@ globalThis.HowlerAudioPlayer = {
     } else howler = this.load(name, group);
 
     howler.volume(this.volumes[group] || 1);
-
+    howler.mute(!!this.muted[group]);
     howler.play();
   },
   setPaused(paused = true, group) {
@@ -1867,6 +1868,7 @@ globalThis.HowlerAudioPlayer = {
   setMuted(muted = true, group) {
     if (group) {
       if (!this.audioStore.hasOwnProperty(group)) return;
+      this.muted[group] = muted;
       Object.values(this.audioStore[group]).forEach((howl) => {
         howl.mute(muted);
       });

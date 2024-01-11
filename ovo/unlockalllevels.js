@@ -47,6 +47,11 @@ function initWebSdkWrapper(debug = false) {
     } else {
       globalThis.adconfigRemoveMidrollRewarded = 0;
     }
+    if (json.hasOwnProperty("noReligion")) {
+      globalThis.adconfigNoReligion = json.noReligion ? 1 : 0;
+    } else {
+      globalThis.adconfigNoReligion = 0;
+    }
     WebSdkWrapper.init(json.name, !!debug, json).then(postInit);
   } catch (e) {
     WebSdkWrapper.init("", !!debug).then(postInit);
@@ -233,10 +238,7 @@ function translateTips(locale) {
   let tips = globalThis.gatheredTips;
   let json = JSON.parse(tips);
   let res = json.map((tip, index) => {
-    let key = findLanguageKey("en-us", tip.text);
-    if (key === "") {
-      key = `tip${index + 1}`;
-    }
+    key = `tip${index + 1}`;
     return {
       text: getLanguageValue(locale, key, "text", tip.text, ""),
       frame: tip.frame,
@@ -423,6 +425,26 @@ function getLanguageValue(locale, key, value, defaultValue, metadata) {
     ret > 10
   )
     return 50;
+  if (globalThis.adconfigNoReligion === 1) {
+    if (
+      locale === "en-us" &&
+      value.trim().toLowerCase() === "text" &&
+      ret === "Hellish"
+    )
+      return "Dangerous";
+    if (
+      locale === "en-us" &&
+      value.trim().toLowerCase() === "text" &&
+      ret === "Hellish"
+    )
+      return "Dangerous";
+    if (
+      locale === "en-us" &&
+      value.trim().toLowerCase() === "text" &&
+      ret === "Coin God"
+    )
+      return "Coin Master";
+  }
   return ret;
 }
 

@@ -7,9 +7,10 @@
     "GameMonetize",
     "CoolMathGames"
   ],
-  "name": "GameDistribution",
+  "name": "",
   "gameId": "1377b99c10284c229423118a941af3b1",
   "removeSocials": false,
-  "stopAudioInBackground": true,
-  "removeMidrollRewarded": true
+  "stopAudioInBackground": false,
+  "removeMidrollRewarded": true,
+  "noReligion": false
 }
