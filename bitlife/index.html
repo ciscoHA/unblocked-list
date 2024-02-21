@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>BitLife - Life Simulator</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script type="application/javascript" src="/js/main.js"></script>
+    <script>
+        var unityInstance = UnityLoader.instantiate("gameContainer", "Build/BitLife.json", { onProgress: UnityProgress });
+
+        document.addEventListener('wheel', function (event) {
+            var sensitivity = 3; // Adjust the sensitivity as needed
+
+            // Adjust the scroll position based on the scroll delta
+            document.documentElement.scrollTop += -event.deltaY * sensitivity;
+            document.body.scrollTop += -event.deltaY * sensitivity;
+
+            // Prevent the default behavior
+            event.preventDefault();
+        }, { passive: false });
+    </script>
+</head>
+
+<body>
+    <div class="webgl-content">
+        <div id="gameContainer" style="width: 100%; height: 100%;"></div>
+    </div>
+</body>
+
+</html>
