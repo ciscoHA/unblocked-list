@@ -1,0 +1,176 @@
+@import url('/fonts/fonts.css');
+
+.title-bar {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-weight: bold;
+  text-align: left;
+  padding: 10px 20px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  position: relative;
+  margin-top: 0px;
+  width: auto; /* Set width to auto */
+}
+
+.title-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title-bar h2 {
+  margin: 0;
+  font-size: xx-large;
+}
+
+.title-bar p {
+  margin: 0;
+  font-size: large;
+}
+
+.title-bar a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.title-bar a:hover {
+  text-decoration: underline;
+}
+
+/* Fullscreen buttons */
+.fullscreen-buttons {
+  position: absolute;
+  padding-right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0; /* Align to the right edge */
+}
+
+.fullscreen-buttons img {
+  padding-right: 6px;
+  width: 48px; /* Adjust size as needed */
+  height: 48px ; /* Adjust size as needed */
+}
+
+.fullscreen-button-1, 
+.fullscreen-button-2 {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 48px; /* Adjust size as needed */
+  height: 48px ; /* Adjust size as needed */
+}
+
+/* Total scrollbar width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px; /* For horizontal scrollbar */
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+  background: #3c3c3c; 
+  border-radius: 0px;
+}
+
+/* Scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background: #8b8b8b; 
+  border-radius: 10px;
+}
+
+/* Scrollbar handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #9d9d9d; 
+}
+
+/* Scrollbar corner (for both horizontal and vertical scrollbars) */
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.description {
+  font-size: large;
+  margin-top: -15px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-weight: bold;
+  text-align: left;
+  padding: 0px 20px;
+  border-radius: 15px;
+  position: relative;
+  width: auto; /* Set width to auto */
+}
+
+
+
+#navbar-container {
+  width: 100%;
+}
+
+body {
+  background-image: url("/ .png");
+  font-family: "M Plus Rounded 1c", sans-serif;
+  background-position: center;
+  background-color: #141414;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  /* Enable scrolling for the entire page */
+}
+
+.navbar-spacer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  /* Adjust to account for fixed navbar */
+  padding: 10px;
+  /* Reduce padding to minimize empty space */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  /* Reduce margin to minimize empty space */
+}
+
+button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: 2px solid var(--secondary-color);
+  border-radius: 5px;
+  background-color: transparent;
+  color: var(--secondary-color);
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+  width: 220px;
+  height: 50px;
+  text-align: center;
+}
+
+.selected {
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
+  text-decoration: underline !important;
+}
+
+button:hover {
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
+}
+
+iframe {
+  border: 0;
+  background-image: url('/loading.png');
+  background-size: auto;
+  background-position: 50%;
+}
