@@ -1,0 +1,271 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	transform: scale(2);
+	
+	overflow: hidden;
+	background: #D6EAF8;
+}
+body, table, input {
+	font-size: 11px;
+	line-height: 1.2em;
+	font-family: tahoma;
+	color: #5D6D7E;
+}
+
+#tetris {
+	position: relative;
+	width: 300px;
+	height: 309px;
+	background: #fff;
+	border: #85C1E9 1px solid;
+}
+
+#tetris .left {
+	background: #EBF5FB;
+	position: absolute;
+	width: 131px;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+}
+.left-border {
+	background: #AED6F1;
+	position: absolute;
+	z-index: 100;
+	top: 0px;
+	left: 130px;
+	width: 1px;
+	height: 100%;
+}
+
+#tetris-area {
+	background: #fff;
+	position: absolute;
+	width: 167px;
+	height: 307px;
+	left: 132px;
+	top: 1px;
+	overflow: hidden;
+}
+
+.grid1, .grid2, .grid3, .grid4, .grid5, .grid6 {
+	z-index: 10;
+	position: absolute;
+	top: 0px;
+	width: 13px;
+	height: 307px;
+	background: #EAF2F8;
+}
+.grid1 { left: 14px; }
+.grid2 { left: 42px; }
+.grid3 { left: 70px; }
+.grid4 { left: 98px; }
+.grid5 { left: 126px; }
+.grid6 { left: 154px; }
+
+#tetris .block0,
+#tetris .block1,
+#tetris .block2,
+#tetris .block3,
+#tetris .block4,
+#tetris .block5,
+#tetris .block6 {
+	z-index: 1000;
+	font-size: 10px;
+	line-height: 1em;
+	font-family: arial;
+	position: absolute;
+	width: 13px;
+	height: 13px;
+	border: 0.5px solid #ffffff;
+}
+
+#tetris .left h1, #tetris .left h2 {
+	color: #5D6D7E;
+	font-size: 11px;
+	font-family: "trebuchet ms", arial;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#tetris .left h1 a {
+	color: #2874A6;
+	text-decoration: none;
+}
+#tetris .left h1 a:hover {
+	color: #1F618D;
+	text-decoration: none;
+}
+
+#tetris .left .menu {
+	margin-top: 1em;
+}
+#tetris .menu a, #tetris .menu a:visited {
+	display: block;
+	text-decoration: none;
+	color: #1B4F72;
+	background: #D6EAF8;
+	border-width: 1px;
+	margin-bottom: -1px;
+	border-style: solid;
+	border-color: #85C1E9;
+	cursor: pointer;
+	text-align: left;
+	padding-left: 10px;
+	height: 19px;
+	line-height: 19px;
+	width: 78px;
+	padding-bottom: 1px;
+	margin-left: 20px;
+}
+#tetris .menu a:hover {
+	background: #A9CCE3;
+}
+
+#tetris-gameover {
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	text-align: center;
+	font-weight: bold;
+	display: none;
+}
+
+#tetris-nextpuzzle {
+	position: absolute;
+	top: 47%;
+	left: 35%;
+	background: #ffffff;
+	overflow: visible;
+	display: none;
+}
+#tetris-keys {
+	position: absolute;
+	left: 25px;
+	top: 135px;
+}
+#tetris div.h5 {
+	margin-bottom: 0.5em;
+	display: block;
+	font-weight: bold;
+}
+#tetris-keys td {
+	padding-right: 1px;
+	padding-bottom: 1px;
+}
+#tetris-keys img {
+	border-width: 0px;
+}
+
+#tetris .left .stats {
+	position: absolute;
+	left: 25px;
+	bottom: 5px;
+}
+#tetris .stats td {
+	padding-bottom: 1px;
+	line-height: 1.25em;
+}
+
+#tetris .stats .level {
+	text-align: left;
+	padding-right: 5px;
+}
+#tetris-stats-level {
+	font-weight: bold;
+}
+
+#tetris .stats .time {
+	text-align: left;
+	padding-right: 5px;
+}
+#tetris-stats-time {
+	font-weight: bold;
+}
+
+#tetris .stats .apm {
+	text-align: left;
+	padding-right: 5px;
+}
+#tetris-stats-apm {
+	font-weight: bold;
+}
+
+#tetris .stats .lines {
+	text-align: left;
+	padding-right: 5px;
+}
+#tetris-stats-lines {
+	font-weight: bold;
+}
+
+#tetris .stats .score {
+	text-align: left;
+	padding-right: 5px;
+}
+#tetris-stats-score {
+	font-weight: bold;
+}
+
+#tetris .block1 { background: #3498DB; }
+
+#tetris .block0 { background: #28B463; }
+
+#tetris .block2 { background: #F4D03F; }
+
+#tetris .block3 { background: #F39C12; }
+
+#tetris .block4 { background: #8E44AD; }
+
+#tetris .block5 { background: #BDC3C7; }
+
+#tetris .block6 { background: #E74C3C; }
+
+#tetris .window {
+	background: #D6EAF8;
+	position: absolute;
+	width: 167px;
+	height: 307px;
+	left: 132px;
+	top: 1px;
+	z-index: 50000;
+	display: none;
+}
+#tetris .window .top {
+	position: relative;
+	background: #AED6F1;
+	color: #5D6D7E;
+	letter-spacing: +1px;
+	height: 20px;
+	line-height: 20px;
+	vertical-align: middle;
+	border-bottom: 1px solid #ffffff;
+	text-indent: 10px;
+}
+#tetris .window .top .close {
+	position: absolute;
+	background: #AED6F1;
+	font-family: verdana;
+	font-weight: bold;
+	right: 0px;
+	top: 0px;
+	height: 20px;
+	line-height: 19px;
+	text-indent: 7px;
+	width: 21px;
+	border-left: 1px solid #ffffff;
+	cursor: pointer;
+}
+#tetris .window .top .close:hover {
+	background: #D6EAF8;
+}
+#tetris .window .content {
+	margin: 10px;
+}
+#tetris .window .content table {
+}
