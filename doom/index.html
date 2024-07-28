@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Game Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #141414; /* Dark background color */
+            color: #58AAFC; /* Accent color */
+        }
+        .button-container {
+            background-color: #1e1e1e; /* Dark grey background for container */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .play-button {
+            background-color: #1e1e1e; /* Grey button color */
+            color: #58AAFC; /* Blue text color */
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            text-transform: none; /* No text transform */
+            transition: background-color 0.3s, color 0.3s, transform 0.2s;
+        }
+        .play-button:hover {
+            background-color: #58AAFC; /* Blue button color on hover */
+            color: #141414; /* Dark text color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="play-button" onclick="window.open('https://raz0red.github.io/webprboom/', '_blank')">Play Game on raz0red.github.io</button>
+    </div>
+</body>
+</html>
