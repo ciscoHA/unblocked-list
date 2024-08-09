@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quake3</title>
+    <style>
+        body, html {
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: black; /* Ensure visibility */
+        }
+
+        .content {
+            position: relative;
+            width: 75vw; /* Adjust width to maintain 4:3 aspect ratio */
+            height: 56.25vw; /* 75vw * (3 / 4) = 56.25vw */
+            max-width: 100vw;
+            max-height: 100vh;
+        }
+
+        .content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="content">
+            <iframe src="Quake3.htm" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        function resizeContent() {
+            const container = document.getElementById('container');
+            const aspectRatio = 4 / 3;
+
+            // Get viewport dimensions
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+            // Calculate new dimensions to maintain 4:3 aspect ratio
+            if (viewportWidth / viewportHeight > aspectRatio) {
+                // Viewport is wider than 4:3, so scale based on height
+                container.style.width = `${viewportHeight * aspectRatio}px`;
+                container.style.height = `${viewportHeight}px`;
+            } else {
+                // Viewport is taller or equal in aspect ratio, so scale based on width
+                container.style.width = `${viewportWidth}px`;
+                container.style.height = `${viewportWidth / aspectRatio}px`;
+            }
+        }
+
+        window.addEventListener('resize', resizeContent);
+        window.addEventListener('load', resizeContent);
+    </script>
+</body>
+</html>

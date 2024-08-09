@@ -1,8 +1,21 @@
 	<!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8">
 		<title>Quake III Arena</title>
+		<script>
+			// Get the HTML body element
+var body = document.body;
+
+// Get the current width and height of the viewport
+var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+// Calculate the new width to achieve a 4:3 aspect ratio
+var newWidth = (viewportHeight * 4) / 3;
+
+// Set the new width for the body element
+body.style.width = newWidth + 'px';
+		</script>
 		<style>
 			html,body{height:100%;padding:0;margin:0;background:#000;overflow:hidden;-webkit-user-select:none;-moz-user-select:none;user-select:none;touch-action:none}
 			#viewport-frame{position:absolute;top:0;left:0;bottom:0;right:0;overflow:hidden}
