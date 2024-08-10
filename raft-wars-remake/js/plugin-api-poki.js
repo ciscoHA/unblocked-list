@@ -30,7 +30,7 @@ Phaser.Plugin.API_POKI.prototype.initAPI = function(api_GamePause, api_GameConti
         }
     );
 
-    //this.api_GamePause = api_GamePause;
+    this.api_GamePause = api_GamePause;
     this.api_GameContinue = api_GameContinue;
 
     // PokiSDK.setDebug(true);
@@ -53,15 +53,15 @@ Phaser.Plugin.API_POKI.prototype.gameplayStart = function() {
 };
 
 Phaser.Plugin.API_POKI.prototype.gameplayStop = function() {
-    //PokiSDK.gameplayStop();
+    PokiSDK.gameplayStop();
 };
 
 Phaser.Plugin.API_POKI.prototype.happyTime = function(value) {
-   // PokiSDK.happyTime(value);
+    PokiSDK.happyTime(value);
 };
 
 Phaser.Plugin.API_POKI.prototype.commercialBreak = function() {
-    //this.api_GamePause();
+    this.api_GamePause();
 
     PokiSDK.commercialBreak().then(
         () => {
@@ -85,7 +85,7 @@ Phaser.Plugin.API_POKI.prototype.rewardedBreak = function() {
 
 Phaser.Plugin.API_POKI.prototype.displayAd = function() {
     if(this.isBannerAdded) return;
-    PokiSDK.destroyAd(this.bannerContainer);
+    PokiSDK.displayAd(this.bannerContainer, '320x50');
     // PokiSDK.displayAd(this.bannerContainer, '728x90');
     this.isBannerAdded = true;
 }
