@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>js-dos 8.xx</title>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script type="module" crossorigin src="/latest/js-dos.js"></script>
+  <link rel="stylesheet" crossorigin href="/latest/js-dos.css">
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    const params = new URLSearchParams(location.search);
+    document.addEventListener("DOMContentLoaded", () => {
+      /* eslint-disable max-len */
+      /* eslint-enable max-len */
+      const props = Dos(document.getElementById("app"),
+        {
+          // url: decodeURIComponent("https%3A%2F%2Fcdn.dos.zone%2Fcustom%2Fdos%2Fdoom_dm.jsdos"),
+          // url: decodeURIComponent("https%3A%2F%2Fcdn.dos.zone%2Fcustom%2Fdos%2Fhomm2_netbios.jsdos"),
+          // url: "https://cdn.dos.zone/original/2X/2/24b00b14f118580763440ecaddcc948f8cb94f14.jsdos", // digger
+          // url: "https://cdn.dos.zone/custom/dos/doom.jsdos",
+          // url: "https://cdn.dos.zone/custom/dos/duke3d_ipx.jsdos",
+          // url: "https://br.cdn.dos.zone/ipx/duke3d/duke3d_ipx.jsdos",
+          // url: "https://br.cdn.dos.zone/ipx/doom_dm/doom_dm.jsdos",
+          // url: "https://cdn.dos.zone/original/2X/b/b4b5275904d86a4ab8a20917b2b7e34f0df47bf7.jsdos", // dhry2
+          // url: "https://cdn.dos.zone/original/2X/7/744842062905f72648a4d492ccc2526d039b3702.jsdos", // sim-city
+          // url: "https://cdn.dos.zone/custom/dos/war2.jsdos", // warcraft-2
+          // url: "https://cdn.dos.zone/original/2X/5/5f21f221e023bbca253396824c5f652438eeef8c.jsdos", // поле чудес
+          // url: "https://cdn.dos.zone/custom/dos/homm_2.jsdos",
+          // dosboxConf: diabloConf,
+          // loginUrl: "http://localhost:8080/subscription.html",
+          // autoStart: true,
+          // kiosk: true,
+          pathPrefix: "/emulators/",
+          server: params.get("server"),
+          room: params.get("room"),
+          //backendHardware: (backend) => {
+          //  console.log("Hardware backend for", backend);
+          //  return Promise.resolve("ws://127.0.0.1:8080");
+          //},
+          // sockdriveBackend: {
+          //   name: "makevm",
+          //   host: "backend.make-vm.com:8001",
+          // },
+          // noNetworking: true,
+          // noCloud: true,
+          // noCursor: true,
+          onEvent: (event, ci) => {
+            console.log("Event", event)
+            if (event === "ci-ready") {
+              window.ci = ci;
+              // props.setFrame("network");
+              // props.setFullScreen(true);
+            }
+          },
+          // renderAspect: "1/1",
+          // renderBackend: "webgl",
+          // imageRendering: "smooth",
+        });
+        
+        window.props = props;
+    });
+
+    const diabloConf = `
+[sdl]
+autolock=false
+mouse_emulation=integration
+
+[dosbox]
+title=Windows 95
+memsize=128
+
+[video]
+vmemsize=8
+vesa modelist width limit=0
+vesa modelist height limit=0
+
+[dos]
+ver=7.1
+hard drive data rate limit=0
+floppy drive data rate limit=0
+
+[cpu]
+cputype=pentium_mmx
+core=auto 
+integration device=true
+
+[sblaster]
+sbtype=sb16vibra
+
+[fdc, primary]
+int13fakev86io=true
+
+[ide, primary]
+int13fakeio=true
+int13fakev86io=true
+
+[ide, secondary]
+int13fakeio=true
+int13fakev86io=true
+cd-rom insertion delay=4000
+
+[render]
+scaler=none
+
+[autoexec]
+echo off
+imgmount 2 sockdrive wss://sockdrive.js-dos.com:8001 dos.zone diablo_109_c
+imgmount 3 sockdrive wss://sockdrive.js-dos.com:8001 dos.zone diablo_109_d
+boot c:
+`;
+  </script>
+</body>
+
+</html>
