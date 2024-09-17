@@ -3,47 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Cool Unblocked Games | coolubg.github.io -->
     <title>DOOM Mode Select</title>
+    <!-- Cool Unblocked Games | coolubg.github.io -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --left-width: 0.6fr;
+            --middle-width: 1.7fr;
+            --right-width: 2.2fr;
+            --middle-bg-color: #000000;
+            --left-btn-bg-color: #131313;
+            --gradient-start-color: #0d0d0d;
+            --gradient-end-color: rgba(0, 0, 0, 0);
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: 'Bebas Neue', sans-serif;
             margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: var(--left-width) var(--middle-width) var(--right-width);
             background-color: #141414;
-            color: #58AAFC;
+            max-width: 100vw;
+            width: 100%;
         }
-        .link-container {
+
+        .left-section {
             display: flex;
-            gap: 20px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             background-color: #1e1e1e;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 0;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            height: 100%;
         }
-        .link-container a {
+
+        .left-section a {
             text-decoration: none;
+            color: transparent !important;
+            font-size: 3vw;  /* Dynamic font size based on viewport width */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2vw;
+            background-color: #1B1212;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            background-size: 25vh;
+            background-repeat: no-repeat;
+            background-position: center;
+            outline: none;
+            transition: background-size 0.25s ease, background-color 0.25s ease;
+        }
+
+        .left-section a.selected {
+            background-color: #000000;
+            animation: pulseImage 0.5s ease;
+        }
+
+        @keyframes pulseImage {
+            0% {
+                background-size: 25vh;
+            }
+            50% {
+                background-size: 28vh;
+            }
+            100% {
+                background-size: 25vh;
+            }
+        }
+
+        .middle-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 2vw;
+            text-align: left;
+            background-color: var(--middle-bg-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .middle-section h1 {
+            color: white !important;
+            font-size: 3vw;  /* Dynamic font size */
+            font-weight: 400; 
+            letter-spacing: 0.25px;
+        }
+
+        .middle-section h2 {
+            margin-top: -2vw;
+            font-size: 2.5vw;  /* Dynamic font size */
+            color: #bbbbbb !important;
+            font-weight: 400;
+            letter-spacing: 0.25px;
+        }
+
+        .middle-section p {
+            color: #bbbbbb !important;
+            font-size: 2vw;  /* Dynamic font size */
+            line-height: 1.6;
+            font-weight: 400;
+            letter-spacing: 0.25px;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #1e1e1e;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .right-section img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%; 
+            width: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .right-section img.current {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .right-section img.new {
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 30%;
+            background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, #000000 100%);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1e1e1e;
             color: #58AAFC;
-            font-size: 18px;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
+            padding: 5vw; /* Dynamic padding */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            text-align: center;
+            font-size: 4vw; /* Dynamic font size */
         }
-        .link-container a:hover {
-            background-color: #58AAFC;
-            color: #141414;
+
+        .popup.active {
+            display: block;
         }
+
     </style>
 </head>
 <body>
-    <div class="link-container">
-        <a href="doom1.html">DOOM Episode 1 (shareware)</a>
-        <a href="sigil.html">Sigil 1 and Sigil 2</a>
-        <a href="freedoom.html">Freedoom Phase 1</a>
-        <a href="freedoom-2.html">Freedoom Phase 2</a>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="left-section">
+        <a href="doom1.html" data-title="DOOM Episode 1 (shareware)" data-subtitle="December 10, 1993" data-text=" The player assumes the role of a space marine, later unofficially referred to as Doomguy, fighting through hordes of undead humans and invading demons. The game begins on the moons of Mars and finishes in hell, with the player traversing each level to find its exit or defeat its final boss." data-image="doom1-image.png" style="background-image: url('doom-logo.png');">DOOM Episode 1 (shareware)</a>
+        <a href="sigil.html" data-title="Sigil 1 and Sigil 2" data-subtitle="May 31, 2019 | December 10, 2023" data-text="Sigil 1 & Sigil 2 are the unofficial fifth and sixth episodes of the 1993 video game Doom. Published by Romero Games on May 31, 2019, the Megawad was created by an original co-creator of Doom, John Romero. It has nine missions, each with a deathmatch version, and a new soundtrack created by James Paddock and Buckethead." data-image="sigil1&2-image.png" style="background-image: url('sigil1&2-logo.png');">Sigil 1 and Sigil 2</a>
+        <a href="freedoom.html" data-title="Freedoom Phase 1" data-subtitle="January 29, 2024" data-text="In 1999 id Software released the source code to their classic game Doom (under the GNU General Public License). The game as a whole did not get this treatment, however, which means that while the program code that powers Doom is free, the actual content of Doom - graphics, audio, levels, setting and characters - remains proprietary. The Freedoom project aims to fill this gap and create a complete free and libre first person shooter game." data-image="freedoom1-image.png" style="background-image: url('freedoom-logo.png');">Freedoom Phase 1</a>
+        <a href="freedoom-2.html" data-title="Freedoom Phase 2" data-subtitle="January 29, 2024" data-text="In 1999 id Software released the source code to their classic game Doom (under the GNU General Public License). The game as a whole did not get this treatment, however, which means that while the program code that powers Doom is free, the actual content of Doom - graphics, audio, levels, setting and characters - remains proprietary. The Freedoom project aims to fill this gap and create a complete free and libre first person shooter game." data-image="freedoom2-image.png" style="background-image: url('freedoom2-logo.png');">Freedoom Phase 2</a>
     </div>
+
+    <div class="middle-section">
+        <h1>Freedoom Phase 1</h1>
+        <h2>Sample Subtitle</h2>
+        <p>
+            This is where you can place body text related to the content of Freedoom Phase 1.
+            You can add any information or details that you'd like here, and it will adjust dynamically
+            to fit within the middle section.
+        </p>
+    </div>
+
+    <div class="right-section">
+        <img src="" alt="Freedoom Image" id="right-image-1" class="current">
+        <img src="" alt="New Image" id="right-image-2" class="new">
+        <div class="gradient-overlay"></div>
+    </div>
+
+    <div id="confirmationPopup" class="popup">
+        <p>Would you like to continue (Y/n)?</p>
+    </div>
+
+    <script>
+        const links = document.querySelectorAll('.left-section a');
+        const titleElement = document.querySelector('.middle-section h1');
+        const subtitleElement = document.querySelector('.middle-section h2');
+        const textElement = document.querySelector('.middle-section p');
+        const rightImage1 = document.getElementById('right-image-1');
+        const rightImage2 = document.getElementById('right-image-2');
+        const overlay = document.getElementById('overlay');
+        const popup = document.getElementById('confirmationPopup');
+        let currentIndex = 0; 
+        let isEnterHeld = false;
+        let isKeyboardActive = false;
+
+        function updateContent(link) {
+            titleElement.textContent = link.getAttribute('data-title');
+            subtitleElement.textContent = link.getAttribute('data-subtitle');
+            textElement.textContent = link.getAttribute('data-text');
+
+            const newImageSrc = link.getAttribute('data-image');
+            rightImage1.src = newImageSrc;
+            rightImage1.classList.add('current');
+            rightImage2.classList.remove('current');
+
+            rightImage2.src = newImageSrc;
+            rightImage2.classList.add('new');
+
+            console.log('Current image source:', rightImage1.src);
+            console.log('New image source:', rightImage2.src);
+        }
+
+        function selectLink(index) {
+            links.forEach((link, i) => {
+                link.classList.toggle('selected', i === index);
+            });
+            updateContent(links[index]);
+            currentIndex = index;
+        }
+
+        function handleArrowKeys(event) {
+            if (popup.classList.contains('active')) return;
+
+            if (event.key === 'ArrowDown') {
+                currentIndex = (currentIndex + 1) % links.length;
+            } else if (event.key === 'ArrowUp') {
+                currentIndex = (currentIndex - 1 + links.length) % links.length;
+            } else if (event.key === 'Enter') {
+                if (!isEnterHeld) {
+                    isEnterHeld = true;
+                    overlay.classList.add('active');
+                    popup.classList.add('active');
+                }
+                return;
+            }
+            isKeyboardActive = true;
+            selectLink(currentIndex);
+        }
+
+        function handleMouseMove(event) {
+            if (event.target.tagName === 'A') {
+                const index = Array.from(links).indexOf(event.target);
+                if (index !== -1) {
+                    currentIndex = index; 
+                    selectLink(index);
+                }
+                isKeyboardActive = false;
+            }
+        }
+
+        function handlePopupKey(event) {
+            if (event.key === 'y') {
+                window.location.href = links[currentIndex].href;
+            } else if (event.key === 'n') {
+                overlay.classList.remove('active');
+                popup.classList.remove('active');
+                isEnterHeld = false;
+            }
+        }
+
+        document.addEventListener('keydown', (event) => {
+            handleArrowKeys(event);
+            handlePopupKey(event);
+        });
+
+        document.addEventListener('mousemove', handleMouseMove);
+
+        overlay.addEventListener('click', () => {
+            overlay.classList.remove('active');
+            popup.classList.remove('active');
+            isEnterHeld = false;
+        });
+
+        selectLink(0);
+    </script>
 </body>
 </html>

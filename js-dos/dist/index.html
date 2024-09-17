@@ -12,8 +12,8 @@
       height: 100%;
     }
   </style>
-  <script type="module" crossorigin src="/latest/js-dos.js"></script>
-  <link rel="stylesheet" crossorigin href="/latest/js-dos.css">
+  <script type="module" crossorigin src="js-dos.js"></script>
+  <link rel="stylesheet" crossorigin href="js-dos.css">
 </head>
 
 <body>
@@ -25,6 +25,7 @@
       /* eslint-enable max-len */
       const props = Dos(document.getElementById("app"),
         {
+          // url: "https://cdn.dos.zone/custom/dos/QB45.jsdos", // qbasic
           // url: decodeURIComponent("https%3A%2F%2Fcdn.dos.zone%2Fcustom%2Fdos%2Fdoom_dm.jsdos"),
           // url: decodeURIComponent("https%3A%2F%2Fcdn.dos.zone%2Fcustom%2Fdos%2Fhomm2_netbios.jsdos"),
           // url: "https://cdn.dos.zone/original/2X/2/24b00b14f118580763440ecaddcc948f8cb94f14.jsdos", // digger
@@ -37,17 +38,27 @@
           // url: "https://cdn.dos.zone/custom/dos/war2.jsdos", // warcraft-2
           // url: "https://cdn.dos.zone/original/2X/5/5f21f221e023bbca253396824c5f652438eeef8c.jsdos", // поле чудес
           // url: "https://cdn.dos.zone/custom/dos/homm_2.jsdos",
+          // dosboxConf: `
+          //   [autoexec]
+          //   mount c .
+          //   c:
+          // `,
+          // initFs: [
+          //   { path: "1.txt", contents: new TextEncoder().encode("123") },
+          //   { path: "D/2.txt", contents: new TextEncoder().encode("345") },
+          // ],
           // dosboxConf: diabloConf,
           // loginUrl: "http://localhost:8080/subscription.html",
           // autoStart: true,
           // kiosk: true,
-          pathPrefix: "/emulators/",
+          pathPrefix: "emulators/",
           server: params.get("server"),
           room: params.get("room"),
-          //backendHardware: (backend) => {
+          // backendHardware: (backend) => {
           //  console.log("Hardware backend for", backend);
-          //  return Promise.resolve("ws://127.0.0.1:8080");
-          //},
+          //  return Promise.resolve("ws://127.0.0.1:8888");
+          // },
+          // backendHardware: window.backendHardware,
           // sockdriveBackend: {
           //   name: "makevm",
           //   host: "backend.make-vm.com:8001",
@@ -55,6 +66,27 @@
           // noNetworking: true,
           // noCloud: true,
           // noCursor: true,
+          // softKeyboardLayout: [
+          //   "q w e r t",
+          //   "{up} {down}",
+          //   "{left} {right}",
+          //   "⎘"
+          // ],
+          // softKeyboardSymbols: [
+          //   {
+          //       "{up}": "↑",
+          //       "{down}": "↓",
+          //       "{left}": "←",
+          //       "{right}": "→",
+          //   },
+          //   {
+          //       "{up}": "↑",
+          //       "{down}": "↓",
+          //       "{left}": "←",
+          //       "{right}": "→",
+          //       "q": "й", "w": "ц", "e": "у", "r": "к", "t": "е",
+          //   },
+          // ],
           onEvent: (event, ci) => {
             console.log("Event", event)
             if (event === "ci-ready") {
