@@ -1,0 +1,9 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "gamma23.data.unityweb",
+"asmCodeUrl": "gamma23.asm.code.unityweb",
+"asmMemoryUrl": "gamma23.asm.memory.unityweb",
+"asmFrameworkUrl": "gamma23.asm.framework.unityweb",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#222C36"
+}
