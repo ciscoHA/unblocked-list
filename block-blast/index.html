@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+  <title>Block Blast Puzzle</title>
+  <!-- Cool Unblocked Games | coolubg.github.io --> 
+  <link rel="shortcut icon" href="TemplateData/favicon.ico">
+  <link rel="stylesheet" href="TemplateData/style.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <style>
+    /* Ensure the canvas fits all screen sizes and scales dynamically */
+    body {
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: black;
+    }
+
+    #unity-canvas {
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      /* Prevent default touch behaviors */
+    }
+
+    #unity-loading-bar {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      display: none;
+      /* Hide after loading */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="unity-container">
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+    <div id="unity-loading-bar">
+      <div id="unity-logo"></div>
+      <div id="unity-progress-bar-empty">
+        <div id="unity-progress-bar-full"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Unity WebGL game
+    window.addEventListener("load", function () {
+      const canvas = document.getElementById("unity-canvas");
+      const loadingBar = document.getElementById("unity-loading-bar");
+      const progressBarFull = document.getElementById("unity-progress-bar-full");
+
+      // Dynamic canvas sizing
+      function resizeCanvas() {
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
+      }
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+
+      // Unity loader
+      const buildUrl = "Build";
+      const config = {
+        dataUrl: `${buildUrl}/BlockBlast1.1-8.data.unityweb`,
+        frameworkUrl: `${buildUrl}/BlockBlast1.1-8.framework.js.unityweb`,
+        codeUrl: `${buildUrl}/BlockBlast1.1-8.wasm.unityweb`,
+        companyName: "reun",
+        productName: "Block Blast Puzzle",
+        productVersion: "1.1",
+      };
+
+      loadingBar.style.display = "block";
+
+      const script = document.createElement("script");
+      script.src = `${buildUrl}/BlockBlast1.1-8.loader.js`;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = `${100 * progress}%`;
+        }).then(() => {
+          loadingBar.style.display = "none";
+        }).catch((message) => {
+          console.error(message);
+          alert("Failed to load the game. Check console for details.");
+        });
+      };
+      document.body.appendChild(script);
+    });
+  </script>
+</body>
+
+</html>

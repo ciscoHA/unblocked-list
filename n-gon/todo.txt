@@ -1,23 +1,40 @@
 ******************************************************** NEXT PATCH **************************************************
 
-subway
-  2 new subway stations
-  more visible button graphics on subway
+new level substructure
+  featured element - motion triggered lasers
 
-new constraints
-  no health bars
-  no pause while choosing
+futures exchange 5->6% duplication per cancel
+plasma torch coupling 0.015->0.025x damage per coupling
+Gibbs free energy  1.005->1.006x damage per missing energy
+compound lens arc adds 25->30 degrees
+instability 2->2.5x damage when damage taken is 1x
+constraint: after 30->40 seconds spawn WIMPs
+constraint: 0.1->0.3x damage after getting power ups
+renamed holographic principle -> charmed baryons
 
-tech: coherence - past choices are added to all future tech
-  requires decoherence
-  research and cancel buttons have a sticky scroll positioning
-eternalism: you can't pause while choosing, but you can otherwise pause now
-  1.25->1.3 damage
+updates to community map: downpour
+updated lasers in labs and testChamber to the new more realistic laser
 
 bugs
-  MIRV missiles now interact with time dilation properly
+  returning to the old console.log system from last patch
+    I rather read bugs in the browser console not the n-gon console
+  bots properly follow player when level flips vertically
+  community map: arena's sword is properly removed at end of level
+  rewrote shaped charge to be better at protecting you from all explosions
+  pause correctly lists both mobs types for the level
+  for quasiparticles "boost" replaces ammo in more edge cases
+  bug with removing surfactant setting b.activeGun false and crashing game with checking active gun
+    not sure if this is fixed or not?
 
 ******************************************************** BUGS ********************************************************
+
+  couple reports of crashes from many-worlds
+    around level 5-7
+    for me crash on factory level 7
+    might be linked to having all the guns?
+    the crash was in matter.js something about collisions and undefined
+      maybe too many things were spawned in the same spot?
+    also occurs when you just gain many random tech in testing mode
 
 figure out why seeded random isn't making runs the same:
   shuffle is being used for a wide variety of things that don't need a seeded random
@@ -47,29 +64,41 @@ player can become crouched while not touching the ground if they exit the ground
 
 *********************************************************** TODO *****************************************************
 
+rework focuser mobs to fire blue laser instead of charging player
+  like in classic 7-1-2017
+  this makes more sense that a bean is focusing
+
+
+!!conformal - similar rules for small and big scales  linked to holographic principle
+!!holonomy - parallel transport of a vector leads to movement (applies to curved space)
+  when far away from your wormhole regenerate 1% of your max energy per second
+  when far away from your wormhole reduce damage taken
+  heal last hit damage after enter wormhole
+!!quasar - plasma torch from both ends
+  only after wormhole eats a block fire?
+    or just increase plasma length after eating block?
+
+
+new level element - motion trigger for laser
+new level heist
+  above - a building with rooms and doors like office/warehouse
+  below - long indoor tunnels like sewers
+    dark colors
+    narrow branching paths
+  elements
+    motion triggered lasers
+    doors opened by buttons
+      button that opens 1 door, but closes another when down
+        make the button down state easier, have extra power ups
+
+
+make a text orb for JUNK text to make JUNK more clear
+
+extended vertical flip to edge cases:
+  !!stored circular graphics     simulation.drawList.push
+
 procedural animation 
   https://www.youtube.com/watch?v=qlfh_rv6khY
-
-maybe no constraints on final boss and reactor?
-
-constraints balance
-  40% JUNK chance
-  -1 choice
-  no health bars
-  4x shielded mob chance
-  +33% chance for mobs to respawn
-  2x ammo costs
-    too hard
-  0 duplication
-  power ups in stasis
-  0.1x damage after a power up
-  0.5x energy regen
-  50% max energy
-  50% max health
-  bots follow slow
-  periodically spawn WIMPs
-  mob death heals mobs
-  mobs heal for your lost health
 
 not implemented random constraint ideas________________________
   mob death spawns something
@@ -83,21 +112,10 @@ not implemented random constraint ideas________________________
   can't have more then 15 bullets
     how to code?
   remove 2 random tech and return them next level
-  too niche
-    player damage is 0.25x while player is invulnerable
-    all hazards: lasers and slime do 3x damage
-    player lasers and radiation do 0.5x damage
-    explosions do 0.5x damage
-    freeze effects last 0.25x time
 
 tech: ice-VII - 1.5x duration for ice-IX
 
-tech: - freezing grenades/explosions
-
-tech: - randomize constraints somehow
-    in pause interface or power up selection menu?
-    each time you research the current constraints also randomize?
-    only allowed if difficulty is high enough
+tech:  - freezing grenades/explosions
 
 tech:  - when you get a bot, get a second bot
 
@@ -107,9 +125,7 @@ tech:  - after killing a Boss
 
 new level - rework testChamber
 
-skin with wheel instead of legs
-
-Boss (or mob) that quickly moves towards player, but they moves perpendicularly to player, like dodging
+Boss (or mob) that quickly moves towards player, but then moves perpendicularly to player, like dodging
   could respond to when player presses fire key or to when it takes damage
 
 new snakeBoss type that eats mobs
@@ -155,30 +171,9 @@ increase mass and movement speed at the same time
   possible player.mass bad interactions
     grapple
 
-JUNK tech - player takes damage from block collisions
-  is this gonna contribute to lag?
-
-bullets should trigger shrinking platforms level element?
-
-level element - player activated elevators
-  could be fast and throw player
-  could just rise up slow (slow might have a bad jerky animation)
-
 rework energy and health HUD
   make both diegetic?
     how?  not sure there is a good way to do this...
-  should health be red or green?
-
-flip player upside down
-  how 
-    rotate player in matter.js
-      make sure floor sensor works
-    flip player crouch direction
-    redraw legs, orb
-    flip gravity
-  when to use?
-    fieldTech: negative mass?
-    effect in level
 
 tech - after a power up is duplicated
   update text to random effect after choosing tech, or after each trigger, or on first display of tech
@@ -188,12 +183,6 @@ tech - after a power up is duplicated
     2x current energy
     gain 1.01x damage permanently
   cool name: 
-
-field tech: negative mass - quickly pull/teleport in all nearby blocks and then fire them away from player
-  how does player triggers effect?
-    picking up a block pulls in all nearby blocks, throwing block fires all nearby blocks
-    taking damage
-  auto aim 50% of blocks at mobs
 
 after picking up heals gain ____
   0.1x damage taken for 12s
@@ -889,9 +878,6 @@ mob/boss that fires a laser at player, but give player time to avoid
   they target where player was 1 second ago
   they turn to face player?
 
-tech rocket jump - jumping produces an explosion at your feet that lets you jump extra high, but does some damage
-  require electric reactive armor?
-
 Plasma Burner: upgrade for plasma torch, basically just a jet engine. does high damage, but short range, mostly for player movement.
   maybe reduce gravity to really low then apply a vector away from mouse direction
 
@@ -900,17 +886,6 @@ auto-gon - auto battler with n-gon mob AI and tech
     they fight other mobs and bosses
   similar research and tech system to n-gon
   some mobs can fire player weapons
-
-tech: relativistic jets:
-  small particles that shot out from front and back poles and end up in a wide variety of spirals
-    slow trickle when charging and several more when firing
-  
-Tech: Make player smol
-
-adapt the cloaking graphics to make a flashlight cone visual effect
-  put code in level.do?
-
-be nice if block throwing had a projected path
 
 Pilot wave tech
   Energy use is increased, but you can now shape blocks using pressure
@@ -1284,11 +1259,8 @@ look up sci-fi science ideas here  https://projectrho.com/public_html/rocket/
 
 possible names for tech
   sidereal - with respect to the stars  (an extra rotation for time keeping)
-  holonomy -  parallel transport of a vector leads to movement (applies to curved space)
-  holographic - 2-D surface can predict the 3-D space behind it?  I think
   entropic gravity - gravity is emergent in a holographic way
     (maybe a field tech for negative mass)
-  conformal - similar rules for small and big scales  linked to holographic principle
   hypergolic - A hypergolic propellant combination used in a rocket engine is one whose components spontaneously ignite when they come into contact with each other.
   swarm intelligence - for a drone tech
   metaheuristic - is a higher-level procedure or heuristic designed to find, generate, or select a heuristic (partial search algorithm) that may provide a sufficiently good solution to an optimization problem, especially with incomplete or imperfect information or limited computation capacity
@@ -1357,6 +1329,11 @@ possible names for tech
   cork - used as a heat shield for rockets
   P = NP - something with speeding up calculation times
   transistivity - something where a>b and b>c ->  a>c
+  lenticular - looks different from different angles (lasers?, cloaking?)
+    every few seconds pick a random skin tech?
+  De Sitter space - simple model of universe related to general relativity (mass-energy?)
+  active optics - something with lasers?  maybe something with diffuse beam getting smaller
+  Quintessence - related to dark energy
 
 ******************************************************* DESIGN ******************************************************
 
@@ -1381,3 +1358,23 @@ list of powerful synergies
   electronegativity and high energy?
     electronegativity + anyon + duplication + Maxwells demon + interest + pair production
   chain reaction + invulnerable + Abelian group + parasitism = clear all mobs on level
+
+
+************************************************* COMMUNITY LINKS *************************************************
+
+load old commits
+  www.cornbread2100.com/n-gon-loader
+
+n-gon fork
+  kgurchiek.github.io/n-gon-portal-gun
+  3xiondev.github.io/n-gon-upgraded
+  coaldeficit.github.io/c-gon
+  c-rxxp-y.github.io/n-gon-enhanced
+
+bookmarlet
+  github.com/Whyisthisnotavalable/n-scythe
+  github.com/kgurchiek/n-gon-mobile
+  github.com/kgurchiek/n-gon-controller
+text
+  ngon.fandom.com/wiki/N-gon
+  github.com/3xionDev/n-docs

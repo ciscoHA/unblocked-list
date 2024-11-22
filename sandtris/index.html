@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <title>SANDTRIS</title>
+   <!-- Cool Unblocked Games | coolubg.github.io --> 
+   <style>
+      html,
+      body {
+         overflow: hidden;
+         background-color: black;
+      }
+   </style>
+   <script src="hammer.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+   <link rel="icon" type="image/x-icon" href="favicon.png">
+   <link rel="stylesheet" type="text/css" href="style.css">
+   <meta charset="utf-8" />
+</head>
+
+<body>
+   <script src="sketch.js"></script>
+   <center>
+      <br />
+      <h1>SANDTRIS</h1>
+      <dialog id="aboutpage" class="page" close>
+         <div class="box">
+            <br />
+            <div class="logo is-animation">
+               <span>S</span>
+               <span>A</span>
+               <span>N</span>
+               <span>D</span>
+               <span>T</span>
+               <span>R</span>
+               <span>I</span>
+               <span>S</span>
+            </div>
+            <p>MADE BY <a href="https://francomiranda.com/" target="_blank">FRANCO MIRANDA</a> USING P5.JS</p>
+            <p>INSPIRED BY SETRIS/SANDTRIX BY
+               <a href="https://itch.io/profile/mslivo" target="_blank">MSLIVO</a>
+            </p>
+            <br />
+            <u>CONTROLS</u>
+            <p>Move Block: Left/Right Arrows</p>
+            <p>Move Down Faster: Down Arrow</p>
+            <p>Spin Block: Up Arrow</p>
+            <p>Pause: P</p>
+            <br />
+            <p>Connect the same color <br> across the screen to clear lines!</p>
+            <br />
+            <p>NOT AFFILIATED WITH Tetris®</p>
+            <br />
+            <button type="button" class="aboutbutton" onClick="toggleAbout()">X</button>
+         </div>
+      </dialog>
+      <dialog id="startpage" class="page" open>
+         <div class="box">
+            <br />
+            Welcome to
+            <div class="logo is-animation">
+               <span>S</span>
+               <span>A</span>
+               <span>N</span>
+               <span>D</span>
+               <span>T</span>
+               <span>R</span>
+               <span>I</span>
+               <span>S</span>
+            </div>
+            <br />
+            <button type="button" onClick="startGame()">START</button>
+            <br /><br />
+            <p id="levelText" style="margin:0px; padding:0px;">Level: </p>
+            <input type="range" min="1" max="10" value="1" class="slider" id="lvlSlider"
+               onchange="adjustDifficulty(this.value)" />
+            <br /><br />
+            MUS
+            <input style="width:80px" type="range" min="0" max="10" value="0.5" class="slider" id="mus1Slider"
+               onchange="MUSvolume(this.value)" />
+            <br />
+            SFX
+            <input style="width:80px" type="range" min="0" max="10" value="0.5" class="slider" id="sfx1Slider"
+               onchange="SFXvolume(this.value)" />
+            <br /><br />
+            <button type="button" class="aboutbutton" onClick="toggleAbout()">?</button>
+         </div>
+      </dialog>
+      <dialog id="pausepage" class="page" close>
+         <div class="box">
+            <br />
+            PAUSED
+            <br /><br />
+            <button type="button" onClick="unpauseGame()">RESUME</button>
+            <br /><br />
+            <button type="button" class="smallbutton" onClick="newGame()">NEW GAME</button>
+            <br /><br />
+            MUS
+            <input style="width:80px" type="range" min="0" max="10" value="1" class="slider" id="mus2Slider"
+               onchange="MUSvolume(this.value)" />
+            <br />
+            SFX
+            <input style="width:80px" type="range" min="0" max="10" value="0.5" class="slider" id="sfx2Slider"
+               onchange="SFXvolume(this.value)" />
+         </div>
+      </dialog>
+      <dialog id="gameoverpage" class="page" close>
+         <div class="box">
+            <br />
+            GAME OVER
+            <br />
+            <p id="gameoverText"></p>
+            <button type="button" onClick="newGame()">NEW GAME</button>
+            <br /><br />
+            <button type="button" class="sharebutton" onClick="shareText()">share</button>
+         </div>
+      </dialog>
+      <table id="main2" cellpadding=10>
+         <tr>
+            <td>
+               <div id="cnv">
+                  <div id="p5_loading">LOADING</div>
+               </div>
+            </td>
+         </tr>
+      </table>
+   </center>
+</body>
+
+</html>

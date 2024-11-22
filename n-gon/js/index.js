@@ -13,7 +13,9 @@ Math.hash = s => {
 // document.getElementById("seed").placeholder = Math.initialSeed = Math.floor(Date.now() % 100000) //random every time:  just the time in milliseconds UTC
 
 window.addEventListener('error', error => {
-    simulation.inGameConsole(`<strong style='color:red;'>ERROR:</strong> ${error.message}  <u>${error.filename}:${error.lineno}</u>`)
+    // simulation.inGameConsole(`<strong style='color:red;'>ERROR:</strong> ${error.message}  <u>${error.filename}:${error.lineno}</u>`)
+    simulation.inGameConsole(`<strong style='color:red;'>ERROR:</strong> ${(error.stack && error.stack.replace(/\n/g, "<br>")) || (error.message + ` <u>${error.filename}:${error.lineno}</u>`)}`);
+
 });
 
 document.getElementById("seed").placeholder = Math.initialSeed = String(Math.floor(Date.now() % 100000))
@@ -324,6 +326,11 @@ function setupCanvas() {
     ctx.lineJoin = "round";
     ctx.lineCap = "round";
     simulation.setZoom();
+
+    if (simulation.isInvertedVertical) {
+        ctx.translate(0, canvas.height); // Move the origin down to the bottom
+        ctx.scale(1, -1); // Flip vertically
+    }
 }
 setupCanvas();
 window.onresize = () => {
@@ -469,12 +476,13 @@ const build = {
 
         // <strong class='color-g'>${b.activeGun === null || b.activeGun === undefined ? "undefined" : b.guns[b.activeGun].name}</strong> (${b.activeGun === null || b.activeGun === undefined ? "0" : b.guns[b.activeGun].ammo})
 
+        // <br>
+        // <input onclick="build.showImages('pause')" type="checkbox" id="hide-images-pause" name="hide-images-pause" ${localSettings.isHideImages ? "checked" : ""}>
+        // <label for="hide-images-pause" title="hide images for fields, guns, and tech" style="font-size:1.15em;" >hide images</label>
+
         let text = `<div class="pause-grid-module" style="padding: 8px;">
 <span style="font-size:1.4em;font-weight: 600; float: left;">PAUSED</span> 
 <em style="float: right;color:#ccc;">press ${input.key.pause} to resume</em>
-<br>
-<input onclick="build.showImages('pause')" type="checkbox" id="hide-images-pause" name="hide-images-pause" ${localSettings.isHideImages ? "checked" : ""}>
-<label for="hide-images-pause" title="hide images for fields, guns, and tech" style="font-size:1.15em;" >hide images</label>
 <br>
 <button onclick="build.shareURL(false)" class='sort-button' style="font-size:1em;float: right;">copy build URL</button>
 <input onclick="build.hideHUD('settings')" type="checkbox" id="hide-hud" name="hide-hud" ${localSettings.isHideHUD ? "checked" : ""}>
@@ -506,7 +514,7 @@ ${botText}
 <span style="float: right;">mouse (${simulation.mouseInGame.x.toFixed(0)}, ${simulation.mouseInGame.y.toFixed(0)})</span>
 <br>cycles ${m.cycle}
 <span style="float: right;">velocity (${player.velocity.x.toFixed(2)}, ${player.velocity.y.toFixed(2)})</span>
-<br>mobs ${mob.length} (${spawn.pickList[0]},  ${spawn.pickList[0]})
+<br>mobs ${mob.length} (${spawn.pickList[0]},  ${spawn.pickList[1]})
 <span style="float: right;">blocks ${body.length}</span>
 <br>bullets ${bullet.length}
 <span style="float: right;">power ups ${powerUp.length}</span>
@@ -519,16 +527,17 @@ ${simulation.isCheating ? "<br><br><em>lore disabled</em>" : ""}
 <details id="difficulty-parameters-details" style="padding: 0 8px;">
 <summary>difficulty parameters</summary>
 <div class="pause-details">
-        ${simulation.difficultyMode > 0 ? `<div class="pause-difficulty-row"><strong>0.87x</strong> <strong class='color-d'>damage</strong>, <strong>1.2x</strong> <strong class='color-defense'>damage taken</strong> per level<br><strong>+1</strong> boss on each level</div>` : " "}
-        ${simulation.difficultyMode > 1 ? `<div class="pause-difficulty-row"><strong>more</strong> mob per level<br><strong>faster</strong> mobs per level</div>` : " "}
-        ${simulation.difficultyMode > 2 ? `<div class="pause-difficulty-row"><strong>0.87x</strong> <strong class='color-d'>damage</strong>, <strong>1.2x</strong> <strong class='color-defense'>damage taken</strong> per level<br><strong>+1</strong> random <strong class="constraint">constraint</strong> on each level</div>` : " "}
-        ${simulation.difficultyMode > 3 ? `<div class="pause-difficulty-row"><strong>+1</strong> boss on each level<br>bosses spawn <strong>1</strong> fewer ${powerUps.orb.tech()}</div>` : " "}
-        ${simulation.difficultyMode > 4 ? `<div class="pause-difficulty-row"><strong>0.87x</strong> <strong class='color-d'>damage</strong>, <strong>1.2x</strong> <strong class='color-defense'>damage taken</strong> per level<br><strong>+1</strong> random <strong class="constraint">constraint</strong> on each level</div>` : " "}
+        ${simulation.difficultyMode > 0 ? `<div class="pause-difficulty-row"><strong>0.85x</strong> <strong class='color-d'>damage</strong> per level<br><strong>1.25x</strong> <strong class='color-defense'>damage taken</strong> per level</div>` : " "}
+        ${simulation.difficultyMode > 1 ? `<div class="pause-difficulty-row">spawn <strong>more</strong> mobs<br>mobs move <strong>faster</strong></div>` : " "}
+        ${simulation.difficultyMode > 2 ? `<div class="pause-difficulty-row">spawn a <strong>2nd</strong> boss each level<br>bosses spawn <strong>0.5x</strong> power ups</div>` : " "}
+        ${simulation.difficultyMode > 3 ? `<div class="pause-difficulty-row"><strong>0.85x</strong> <strong class='color-d'>damage</strong> per level<br><strong>1.25x</strong> <strong class='color-defense'>damage taken</strong> per level</div>` : " "}
+        ${simulation.difficultyMode > 4 ? `<div class="pause-difficulty-row"><strong>+1</strong> random <strong class="constraint">constraint</strong> each level<br>fewer initial power ups</div>` : " "}
         ${simulation.difficultyMode > 5 ? `<div class="pause-difficulty-row"><strong>0.5x</strong> initial <strong class='color-d'>damage</strong><br><strong>2x</strong> initial <strong class='color-defense'>damage taken</strong></div>` : " "}        
+        ${simulation.difficultyMode > 6 ? `<div class="pause-difficulty-row"><strong>+1</strong> random <strong class="constraint">constraint</strong> each level<br>fewer ${powerUps.orb.tech()} spawn</div>` : " "}        
 </div>
 </details>
-${simulation.difficultyMode > 2 ? `<details id="constraints-details" style="padding: 0 8px;"><summary>active constraints</summary><div class="pause-details"><span class="constraint">${level.constraintDescription1}<br>${level.constraintDescription2}</span></div></details>` : ""}
- </div>`
+${simulation.difficultyMode > 4 ? `<details id="constraints-details" style="padding: 0 8px;"><summary>active constraints</summary><div class="pause-details"><span class="constraint">${level.constraintDescription1}<br>${level.constraintDescription2}</span></div></details>` : ""}
+</div>`
         if (!localSettings.isHideHUD) text += `<div class="pause-grid-module card-background" style="height:auto;">
 <details id = "console-log-details" style="padding: 0 8px;">
 <summary>console log</summary>
@@ -754,7 +763,7 @@ ${simulation.difficultyMode > 2 ? `<details id="constraints-details" style="padd
         if (tech.isEnergyHealth) {
             document.getElementById("health").style.display = "none"
             document.getElementById("health-bg").style.display = "none"
-        } else {
+        } else if (!level.isHideHealth) {
             document.getElementById("health").style.display = "inline"
             document.getElementById("health-bg").style.display = "inline"
         }
@@ -1019,7 +1028,6 @@ ${simulation.difficultyMode > 2 ? `<details id="constraints-details" style="padd
         document.getElementById("experiment-grid").innerHTML = text
 
 
-
         //add event listener for pressing enter key when in sort
         function pressEnterSort(event) {
             if (event.key === 'Enter') {
@@ -1029,14 +1037,6 @@ ${simulation.difficultyMode > 2 ? `<details id="constraints-details" style="padd
         }
         document.getElementById("sort-input").addEventListener('keydown', pressEnterSort);
 
-        // document.getElementById("difficulty-select-experiment").value = document.getElementById("difficulty-select").value
-        // document.getElementById("difficulty-select-experiment").addEventListener("input", () => {
-        //     simulation.difficultyMode = Number(document.getElementById("difficulty-select-experiment").value)
-        //     lore.setTechGoal()
-        //     localSettings.difficultyMode = Number(document.getElementById("difficulty-select-experiment").value)
-        //     document.getElementById("difficulty-select").value = document.getElementById("difficulty-select-experiment").value
-        //     if (localSettings.isAllowed) localStorage.setItem("localSettings", JSON.stringify(localSettings)); //update local storage
-        // });
         //add tooltips
         for (let i = 0, len = tech.tech.length; i < len; i++) {
             if (document.getElementById(`tech-${i}`)) {
@@ -1066,8 +1066,8 @@ ${simulation.difficultyMode > 2 ? `<details id="constraints-details" style="padd
         b.activeGun = null;
         b.inventoryGun = 0;
         simulation.makeGunHUD();
-        m.resetSkin()
         tech.setupAllTech();
+        m.resetSkin();
         build.populateGrid();
         document.getElementById("field-0").classList.add("build-field-selected");
         document.getElementById("experiment-grid").style.display = "grid"
@@ -1695,9 +1695,13 @@ window.addEventListener("keydown", function (event) {
     }
 });
 //mouse move input
-document.body.addEventListener("mousemove", (e) => {
+function mouseMoveDefault(e) {
     simulation.mouse.x = e.clientX;
     simulation.mouse.y = e.clientY;
+}
+let mouseMove = mouseMoveDefault
+document.body.addEventListener("mousemove", (e) => {
+    mouseMove(e)
 });
 
 document.body.addEventListener("mouseup", (e) => {
@@ -1830,12 +1834,13 @@ if (localSettings.isAllowed && !localSettings.isEmpty) {
     }
     if (localSettings.isHideImages === undefined) localSettings.isHideImages = true //default to hide images
     document.getElementById("hide-images").checked = localSettings.isHideImages
+    // localSettings.isHideImages = true //no images
 
     if (localSettings.isHideHUD === undefined) localSettings.isHideHUD = true
     document.getElementById("hide-hud").checked = localSettings.isHideHUD
 
     if (localSettings.difficultyCompleted === undefined) {
-        localSettings.difficultyCompleted = [null, false, false, false, false, false, false] //null because there isn't a difficulty zero
+        localSettings.difficultyCompleted = [null, false, false, false, false, false, false, false] //null because there isn't a difficulty zero
         localStorage.setItem("localSettings", JSON.stringify(localSettings)); //update local storage
     }
 
@@ -1857,7 +1862,7 @@ if (localSettings.isAllowed && !localSettings.isEmpty) {
         isJunkExperiment: false,
         isCommunityMaps: false,
         difficultyMode: '2',
-        difficultyCompleted: [null, false, false, false, false, false, false],
+        difficultyCompleted: [null, false, false, false, false, false, false, false],
         fpsCapDefault: 'max',
         runCount: 0,
         isTrainingNotAttempted: true,

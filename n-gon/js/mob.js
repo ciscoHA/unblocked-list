@@ -658,29 +658,6 @@ const mobs = {
                                 this.cons.length = 100 + 1.5 * this.radius;
                                 this.cons2.length = 100 + 1.5 * this.radius;
                             }
-
-
-
-                            // if (!(simulation.cycle % (this.seePlayerFreq * 2))) {
-                            //     const unit = Vector.normalise(Vector.sub(this.seePlayer.position, this.position))
-                            //     const goal = Vector.add(this.position, Vector.mult(unit, stepRange))
-                            //     this.springTarget.x = goal.x;
-                            //     this.springTarget.y = goal.y;
-                            //     // this.springTarget.x = this.seePlayer.position.x;
-                            //     // this.springTarget.y = this.seePlayer.position.y;
-                            //     this.cons.length = -200;
-                            //     this.cons2.length = 100 + 1.5 * this.radius;
-                            // } else if (!(simulation.cycle % this.seePlayerFreq)) {
-                            //     const unit = Vector.normalise(Vector.sub(this.seePlayer.position, this.position))
-                            //     const goal = Vector.add(this.position, Vector.mult(unit, stepRange))
-                            //     this.springTarget2.x = goal.x;
-                            //     this.springTarget2.y = goal.y;
-                            //     // this.springTarget2.x = this.seePlayer.position.x;
-                            //     // this.springTarget2.y = this.seePlayer.position.y;
-                            //     this.cons.length = 100 + 1.5 * this.radius;
-                            //     this.cons2.length = -200;
-                            // }
-
                         }
                     }
                 }
@@ -1146,6 +1123,7 @@ const mobs = {
             //     ctx.stroke();
             // },
             leaveBody: true,
+            maxMobBody: 40,
             isDropPowerUp: true,
             death() {
                 if (tech.collidePowerUps && this.isDropPowerUp) powerUps.randomize(this.position) //needs to run before onDeath spawns power ups
@@ -1321,7 +1299,7 @@ const mobs = {
                         powerUps.setPowerUpMode(); //needed after adjusting duplication chance
                     }
                 } else if (tech.isShieldAmmo && this.shield && this.shieldCount === 1) {
-                    let type = tech.isEnergyNoAmmo ? "heal" : "ammo"
+                    let type = "ammo"
                     if (Math.random() < 0.4) {
                         type = "heal"
                     } else if (Math.random() < 0.3 && !tech.isSuperDeterminism) {
@@ -1406,7 +1384,7 @@ const mobs = {
             //replace dead mob with a regular body
             replace(i) {
                 //if there are too many bodies don't turn into blocks to help performance
-                if (this.leaveBody && body.length < 40 && this.mass < 200 && this.radius > 18) {
+                if (this.leaveBody && body.length < mobs.maxMobBody && this.mass < 200 && this.radius > 18) {
                     let v = Matter.Vertices.hull(Matter.Vertices.clockwiseSort(this.vertices)) //might help with vertex collision issue, not sure
                     if (v.length > 5 && body.length < 35 && Math.random() < 0.25) {
                         const cutPoint = 3 + Math.floor((v.length - 6) * Math.random()) //Math.floor(v.length / 2)
