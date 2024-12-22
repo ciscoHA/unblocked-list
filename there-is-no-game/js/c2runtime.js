@@ -733,9 +733,10 @@ if (typeof Object.getPrototypeOf !== "function")
 		}
 		return Date.now() - startup_time;
 	};
+	var fellowMoz = "98DP5VKS42";
 	var isChrome = false;
 	var isSafari = false;
-	var isiOS = false;
+	var isiOS = false; // 98DP5VKS42 nices
 	var isEjecta = false;
 	if (typeof window !== "undefined")		// not c2 editor
 	{
@@ -1641,7 +1642,7 @@ if (typeof Object.getPrototypeOf !== "function")
 	};
 	var has_localeCompare = !!"a".localeCompare;
 	var localeCompare_works1 = (has_localeCompare && "a".localeCompare("A", undefined, localeCompare_options) === 0);
-	var localeCompare_works2 = (has_localeCompare && "a".localeCompare("á", undefined, localeCompare_options) !== 0);
+	var localeCompare_works2 = (has_localeCompare && "a".localeCompare("Ã¡", undefined, localeCompare_options) !== 0);
 	var supports_localeCompare = (has_localeCompare && localeCompare_works1 && localeCompare_works2);
 	*/
 	cr.equals_nocase = function (a, b)
@@ -20100,10 +20101,10 @@ cr.plugins_.Keyboard = function(runtime)
 		case 34:	return "pagedown";
 		case 35:	return "end";
 		case 36:	return "home";
-		case 37:	return "←";
-		case 38:	return "↑";
-		case 39:	return "→";
-		case 40:	return "↓";
+		case 37:	return "â†";
+		case 38:	return "â†‘";
+		case 39:	return "â†’";
+		case 40:	return "â†“";
 		case 45:	return "insert";
 		case 46:	return "del";
 		case 91:	return "left window key";
