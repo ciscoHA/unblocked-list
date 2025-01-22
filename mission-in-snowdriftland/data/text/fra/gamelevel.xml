@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="gamelevel_finished_01_headline"><![CDATA[BIEN JOUÉ !<br />VOUS AVEZ AIDÉ CHUBBY À RETROUVER LES<br />FICHIERS DE "<games_name>".<br />DIRIGEZ-VOUS MAINTENANT VERS LE LABORATOIRE<br />POUR RÉCLAMER VOTRE RÉCOMPENSE !]]></text>
+	<text name="gamelevel_24finished_01_elpix"><![CDATA[IL NE TE RESTE PLUS QU’A VAINCRE EL PIX, IL SE CACHE DANS LA GRANDE SCULPTURE DE NEIGE ! ATTRAPE-LE !]]></text>
+	<text name="gamelevel_tipp_01"><![CDATA[ASTUCE : trop lent? Ca marche mieux avec Microsoft Internet Explorer®.]]></text>
+	
+	<text name="gamelevel_hints_01_headline"><![CDATA[ASTUCE N°1]]></text>
+	<text name="gamelevel_hints_02_copy"><![CDATA[VOUS POUVEZ GRIMPER SUR DE FORMATIONS DE GLACE POUR TROUVER DES TRÉSORS CACHÉS.]]></text>
+	<text name="gamelevel_hints_03_headline"><![CDATA[ASTUCE N°2]]></text>
+	<text name="gamelevel_hints_04_copy"><![CDATA[RAMASSEZ TOUS LES CRISTAUX DE GLACE QUE LE CALENDRIER CONTIENT POUR DÉBLOQUER UN OBJET BONUS EN PROVENANCE DE SNOWDRIFTLAND.]]></text>
+	<text name="gamelevel_hints_05_headline"><![CDATA[ASTUCE N°3]]></text>
+	<text name="gamelevel_hints_06_copy"><![CDATA[SAUTEZ SUR VOS ADVERSAIRES POUR LES ASSOMMER.]]></text>
+	<text name="gamelevel_hints_07_headline"><![CDATA[ASTUCE N°4]]></text>
+	<text name="gamelevel_hints_08_copy"><![CDATA[VOUS POUVEZ DÉVALER LES PENTES EN APPUYANT SUR LA FLÈCHE BAS.]]></text>
+	<text name="gamelevel_hints_09_headline"><![CDATA[ASTUCE N°5]]></text>
+	<text name="gamelevel_hints_10_copy"><![CDATA[VOUS POUVEZ TROUVER LES FICHIERS DE JEUX VOLÉS DANS UN COFFRE, VERS LA FIN DES NIVEAUX.]]></text>
+	<text name="gamelevel_hints_11_headline"><![CDATA[ASTUCE N°6]]></text>
+	<text name="gamelevel_hints_12_copy"><![CDATA[SI VOUS MAINTENEZ LA TOUCHE MARCHER ENFONCÉE, CHUBBY SE MET À COURIR, IL PEUT ALORS SAUTER PLUS HAUT.]]></text>
+	<text name="gamelevel_hints_13_headline"><![CDATA[ASTUCE N°7]]></text>
+	<text name="gamelevel_hints_14_copy"><![CDATA[VOUS POUVEZ PROTÉGER CHUBBY DES ATTAQUES EN APPUYANT SUR LA TOUCHE PERMETTANT DE SE BAISSER.]]></text>
+	<text name="gamelevel_hints_15_headline"><![CDATA[ASTUCE N°8]]></text>
+	<text name="gamelevel_hints_16_copy"><![CDATA[LE NIVEAU D'ÉNERGIE DE CHUBBY EST AFFICHÉ EN NOMBRE DE CŒURS. VOUS POUVEZ LUI DONNER PLUS D'ÉNERGIE EN TROUVANT LES CŒURS CACHÉS DANS LES NIVEAUX.]]></text>
+	
+</texte>

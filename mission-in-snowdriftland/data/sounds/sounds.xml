@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sounds>
+	<sound name="player" type="string">player.swf</sound>
+	<kb name="player_kb" type="int">120</kb>	
+	<sound name="track01" type="string">track01a.swf</sound>
+	<kb name="track01_kb" type="int">217</kb>	
+	<sound name="track02" type="string">track01b.swf</sound>
+	<kb name="track02_kb" type="int">217</kb>	
+	<sound name="track03" type="string">track01c.swf</sound>
+	<kb name="track03_kb" type="int">217</kb>	
+	<sound name="track02a" type="string">track02a.swf</sound>
+	<kb name="track02a_kb" type="int">271</kb>	
+	<sound name="track02b" type="string">track02b.swf</sound>
+	<kb name="track02b_kb" type="int">271</kb>	
+	<sound name="track02c" type="string">track02c.swf</sound>
+	<kb name="track02c_kb" type="int">271</kb>	
+	<sound name="track03a" type="string">track03a.swf</sound>
+	<kb name="track03a_kb" type="int">244</kb>	
+	<sound name="track03b" type="string">track03b.swf</sound>
+	<kb name="track03b_kb" type="int">244</kb>	
+	<sound name="track03c" type="string">track03c.swf</sound>
+	<kb name="track03c_kb" type="int">244</kb>	
+	<sound name="track04a" type="string">track04a.swf</sound>
+	<kb name="track04a_kb" type="int">230</kb>	
+	<sound name="track04b" type="string">track04b.swf</sound>
+	<kb name="track04b_kb" type="int">257</kb>	
+	<sound name="track04c" type="string">track04c.swf</sound>
+	<kb name="track04c_kb" type="int">230</kb>	
+	<sound name="track_boss" type="string">track_boss.swf</sound>
+	<kb name="track_boss_kb" type="int">230</kb>	
+	<sound name="credits" type="string">credits.swf</sound>
+	<kb name="credits_kb" type="int">256</kb>	
+	<sound name="lake" type="string">lake.swf</sound>
+	<kb name="lake_kb" type="int">29</kb>	
+	<sound name="forest" type="string">forest.swf</sound>
+	<kb name="forest_kb" type="int">29</kb>		
+	<sound name="mountains" type="string">mountains.swf</sound>
+	<kb name="mountains_kb" type="int">30</kb>		
+	<sound name="cave" type="string">cave.swf</sound>
+	<kb name="cave_kb" type="int">38</kb>		
+</sounds>
+

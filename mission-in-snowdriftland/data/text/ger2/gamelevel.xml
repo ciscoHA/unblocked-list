@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="gamelevel_finished_01_headline"><![CDATA[SUPER CHUBBY!<br />MIT DEINER HILFE HABEN WIR DAS SPIELMATERIAL FÜR "<games_name>" SICHERGESTELLT.<br />DU KANNST ES DIR IM LABOR ANSCHAUEN.]]></text>
+	<text name="gamelevel_24finished_01_elpix"><![CDATA[JETZT MUSST DU NUR NOCH EL PIX BESIEGEN, ER<br />VERSTECKT SICH IN DER GROSSEN SCHNEESTATUE!<br /><br />SCHNAPP IHN DIR!]]></text>
+	<text name="gamelevel_tipp_01"><![CDATA[TIPP: Spiel zu langsam? Beste Performance mit dem Microsoft Internet Explorer®.]]></text>
+	
+	<text name="gamelevel_hints_01_headline"><![CDATA[TIPP #1]]></text>
+	<text name="gamelevel_hints_02_copy"><![CDATA[AN STABILEN EISFORMATIONEN KANNST DU HOCHKLETTERN UM VERSTECKTE SCHÄTZE ZU FINDEN.]]></text>
+	<text name="gamelevel_hints_03_headline"><![CDATA[TIPP #2]]></text>
+	<text name="gamelevel_hints_04_copy"><![CDATA[SAMMLE ALLE EISKRISTALLE IM ADVENTSKALENDER AUF UM EINEN BONUS-DOWNLOAD MIT MOTIVEN AUS SNOWDRIFTLAND FREIZUSCHALTEN.]]></text>
+	<text name="gamelevel_hints_05_headline"><![CDATA[TIPP #3]]></text>
+	<text name="gamelevel_hints_06_copy"><![CDATA[SPRINGE AUF DEINE GEGNER UM SIE AUSZUSCHALTEN.]]></text>
+	<text name="gamelevel_hints_07_headline"><![CDATA[TIPP #4]]></text>
+	<text name="gamelevel_hints_08_copy"><![CDATA[AN SCHRÄGEN KANNST DU HERUNTERRUTSCHEN, INDEM DU DIE DUCKEN-TASTE DRÜCKST.]]></text>
+	<text name="gamelevel_hints_09_headline"><![CDATA[TIPP #5]]></text>
+	<text name="gamelevel_hints_10_copy"><![CDATA[DAS GESTOHLENE SPIELMATERIAL BEFINDET SICH EINER TRUHE, DIE AM ENDE DES LEVELS STEHT.]]></text>
+	<text name="gamelevel_hints_11_headline"><![CDATA[TIPP #6]]></text>
+	<text name="gamelevel_hints_12_copy"><![CDATA[HÄLTST DU DIE LAUFEN-TASTE GEDRÜCKT, FÄNGT CHUBBY NACH KURZER ZEIT ZU RENNEN AN UND KANN SO HÖHER SPRINGEN.]]></text>
+	<text name="gamelevel_hints_13_headline"><![CDATA[TIPP #7]]></text>
+	<text name="gamelevel_hints_14_copy"><![CDATA[IN MANCHEN SITUATIONEN KANNST DU CHUBBY DURCH DRÜCKEN DER DUCKEN-TASTE VOR ANGRIFFEN SCHÜTZEN.]]></text>
+	<text name="gamelevel_hints_15_headline"><![CDATA[TIPP #8]]></text>
+	<text name="gamelevel_hints_16_copy"><![CDATA[CHUBBYS ENERGIE KANNST DU AN DER ANZAHL DER HERZEN ABLESEN. IN DEN SPIELLEVELS SIND EINIGE HERZEN VERSTECKT, MIT DENEN DU SEINE ENERGIE ERHÖHEN KANNST.]]></text>
+	
+</texte>

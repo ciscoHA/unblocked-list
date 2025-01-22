@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<path name="path" type="string">data/</path>
+	<path name="text" type="string">text/</path>
+	<path name="sounds" type="string">sounds/</path>
+	<path name="media" type="string">media/</path>	
+	<xml name="worldmapxml" type="string">mainmap.xml</xml>
+	<xml name="impressumxml" type="string">impressum.xml</xml>
+	<xml name="introxml" type="string">intro.xml</xml>	
+	<xml name="contentxml" type="string">content.xml</xml>		
+	<movie name="loader" type="string">preloader.swf</movie>	
+	<movie name="main" type="string">worldmap.swf</movie>		
+	<movie name="main_kb" type="int">510</movie>		
+	<movie name="lab" type="string">lab.swf</movie>		
+	<movie name="lab_kb" type="int">100</movie>		
+</config>
+

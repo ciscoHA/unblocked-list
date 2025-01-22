@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="mainmap_buttons_01_intro"><![CDATA[INTRO]]></text>
+	<text name="mainmap_buttons_02_help"><![CDATA[HELP]]></text>
+	<text name="mainmap_buttons_03_labor"><![CDATA[LABORATORY]]></text>
+	<text name="mainmap_buttons_04_feedback"><![CDATA[FEEDBACK]]></text>
+	<text name="mainmap_buttons_05_mainmap"><![CDATA[OVERVIEW]]></text>
+	<text name="mainmap_buttons_06_credits"><![CDATA[CREDITS]]></text>
+
+	<text name="mainmap_info_01_date"><![CDATA[Don’t worry - Mission in Snowdriftland will be available online until January 14th.]]></text>
+	
+	<text name="mainmap_footer_01_impressum"><![CDATA[TERMS OF USE]]></text>
+	<text name="mainmap_footer_02_copyright"><![CDATA[© 2000-2006 NINTENDO AND EXTRA TOXIC. ALL RIGHTS RESERVED.]]></text>
+	
+	<text name="mainmap_feedback_01_head"><![CDATA[If you want to, you can now to tell us what you like about the Advent calendar, or what you don't like so much. We appreciate all your comments!]]></text>
+	<text name="mainmap_feedback_02_name"><![CDATA[YOUR NAME]]></text>
+	<text name="mainmap_feedback_03_hinweis"><![CDATA[If you send us your email address, we'll respond to your message (optional).]]></text>
+	<text name="mainmap_feedback_04_send"><![CDATA[SEND]]></text>
+	<text name="mainmap_feedback_05_email"><![CDATA[YOUR EMAIL ADDRESS]]></text>
+	<text name="mainmap_feedback_06_danke"><![CDATA[Thanks for your comments!]]></text>
+	
+	<text name="mainmap_credits_01a_schwabbel"><![CDATA[WOW! GREAT JOB CHUBBY! EL PIX HAS BEEN KNOCKED OUT AND THE GAME FILES ARE SECURED.]]></text>
+	<text name="mainmap_credits_01b_schwabbel"><![CDATA[YOU ARE THE BRAVEST LITTLE SNOWMAN IN THE VIDEO GAME WORLD! UPIXO FOUND THEIR NEW HERO!]]></text>	
+	<text name="mainmap_credits_02_danke"><![CDATA[MANY THANKS FOR PLAYING! MERRY CHRISTMAS AND HAPPY NEW YEAR TO ALL THE PEOPLE WHO JOINED CHUBBY ON HIS MISSION IN SNOWDRIFTLAND!]]></text>
+	<text name="mainmap_credits_03_extratoxic"><![CDATA[IDEA, CONCEPT, REALIZATION:]]></text>
+	<text name="mainmap_credits_04_steve"><![CDATA[DEVELOPMENT, LEVEL DESIGN:<br /><font color="#666666">STEVE WELZ</font>]]></text>
+	<text name="mainmap_credits_05_bogac"><![CDATA[GRAPHICS, DESIGN, ANIMATION:<br /><font color="#666666">BOGAC SARIAYDIN</font>]]></text>
+	<text name="mainmap_credits_06_christiane"><![CDATA[PROJECT MANAGEMENT, COPY:<br /><font color="#666666">CHRISTIANE FRITSCH</font>]]></text>
+	<text name="mainmap_credits_07_fabian"><![CDATA[MUSIC AND SOUND EFFECTS:<br /><font color="#666666">FABIAN DEL PRIORE (DYNAMEDION)</font>]]></text>
+	<text name="mainmap_credits_08_nintendo"><![CDATA[MISSION IN SNOWDRIFTLAND WAS BROUGHT TO YOU BY]]></text>
+	<text name="mainmap_credits_09_creditsheadline"><![CDATA[SPECIAL THANKS GO TO:]]></text>
+	<text name="mainmap_credits_10_credits01"><![CDATA[<font color="#666666">CHRISTINE RICHTER (NINTENDO)</font><br /><font color="#000000">FOR THE SENSATIONAL COLLABORATION</font>]]></text>
+	<text name="mainmap_credits_11_credits02"><![CDATA[<font color="#666666">CARSTEN URBANSKI (PING247)</font><br /><font color="#000000">FOR LOAD BALANCING AND SERVERS</font>]]></text>
+	<text name="mainmap_credits_12_credits03"><![CDATA[<font color="#666666">JAKKAS</font><br /><font color="#000000">GUEST CONCEPT ARTIST FOR THE CAVE SCORPION</font><br /><font color="#666666">"SPECIALNE POZDROWIONKA DLA UCZNIÓW Z WAGROWIECKIEJ TRÓJKI"</font>]]></text>
+	<text name="mainmap_credits_13_credits04"><![CDATA[<font color="#666666">GINA</font><br /><font color="#000000">FOR CORRECTING OUR POOR ENGLISH TRANSLATIONS</font>]]></text>
+	<text name="mainmap_credits_14_credits05"><![CDATA[<font color="#666666">BEYCE</font><br /><font color="#000000">FOR EXTENSIVE BETA TESTING AND AS GUEST CONCEPT ARTIST FOR THE "BEYCNAKE"</font>]]></text>
+	<text name="mainmap_credits_15_credits06"><![CDATA[<font color="#666666">MARGIT</font><br /><font color="#000000">FOR HER GREAT CAKES</font>]]></text>
+	<text name="mainmap_credits_16_credits07"><![CDATA[<font color="#666666">CARSTEN</font><br /><font color="#000000">FOR THE FIVE STAR MEALS HE SERVED THE HARD WORKING EXTRA TOXIC TEAM</font>]]></text>
+	<text name="mainmap_credits_17_credits08"><![CDATA[<font color="#666666">STEVE'S GRANNY</font><br /><font color="#000000">FOR HER EXTREMELY YUMMY COOKIES</font>]]></text>
+	<text name="mainmap_credits_18_credits09"><![CDATA[<font color="#666666">CHRISTIAN</font><br /><font color="#000000">FOR THE HELPFUL TIPS CONCERNING LEVEL DESIGN</font>]]></text>
+	<text name="mainmap_credits_19_credits10"><![CDATA[<font color="#666666">HYVER AND EVA</font><br /><font color="#000000">FOR THEIR HELP WITH A LITTLE DUTCH AND FRENCH TRANSLATION</font>]]></text>
+	<text name="mainmap_credits_20_credits11"><![CDATA[<font color="#666666">ALL THE FANS</font><br /><font color="#000000">THAT SENT US SUCH GREAT FEEDBACK AND EXTENSIVE BUG REPORTS</font>]]></text>
+	<text name="mainmap_credits_21_upixoheadline"><![CDATA[<font color="#666666">AND WHAT ARE THE UPIXO HEROES DOING AFTER THIS ADVENTURE?</font>]]></text>
+	<text name="mainmap_credits_22_upixo1"><![CDATA[EL PIX GOT A GRAPHICS PATCH, WHICH CORRECTED THE PIXEL BUGS IN HIS HEAD. HE AND CHUBBY ARE NOW THE MOST REQUESTED VIDEO GAME HEROES AT UPIXO.]]></text>
+	<text name="mainmap_credits_23_upixo2"><![CDATA[PROFESSOR SCHWABBEL AND THE PENGUIN MOTHER ARE ENGAGED AND ARE PLANNING THEIR WEDDING.]]></text>
+	<text name="mainmap_credits_24_upixo3"><![CDATA[THE CAVE UR-PENGUINS WERE OFFERED A WELL-PAID JOB AT THE PIXEL CIRCUS.]]></text>
+	<text name="mainmap_credits_25_download"><![CDATA[SPECIAL BONUS DOWNLOAD!]]></text>
+	<text name="mainmap_credits_26_watchagain"><![CDATA[WATCH AGAIN]]></text>
+
+</texte>

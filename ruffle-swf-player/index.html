@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruffle SWF Player</title>
+    <!-- Cool Unblocked Games | coolubg.github.io -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffad33;
+            background-color: #37528c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ensure the body fills the full height */
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Centered container with no background or shadow */
+        #ui-container {
+            left: 50%;
+            transform: translateX(50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            background-color: transparent;
+        }
+
+        h1 img {
+            max-width: 100%;
+            height: 80px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        h1 img:hover {
+            filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.4));
+            transform: scale(1.05);
+        }
+
+        /* Custom file input */
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload, button {
+            margin: 15px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffad33;
+            color: #37528c;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            text-align: center;
+            width: 300px;
+        }
+
+        .custom-file-upload:hover, button:hover {
+            background-color: #e69a2d;
+            transform: scale(1.05);
+        }
+
+        #player-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden; /* Hide the container initially */
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="ui-container">
+        <!-- Logo positioned at the top -->
+        <h1>
+            <a href="https://ruffle.rs" target="_blank"><img src="https://ruffle.rs/logo.svg" alt="Ruffle Logo"></a>
+        </h1>
+
+        <!-- Custom file input with a label for styling -->
+        <button class="custom-file-upload" id="file-upload-label">
+            Choose File (.swf)
+        </button>
+        <input type="file" id="file-input" accept=".swf">
+
+        <!-- Always visible start button -->
+        <button id="start-button">Start</button>
+        <h1>
+            <a href="https://coolubg.github.io" target="_blank"><img src="https://coolubg2.github.io/logo.png" alt="Ruffle Logo"></a>
+        </h1>
+    </div>
+
+    <div id="player-container"></div>
+
+    <script>
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                history.replaceState(null, '', window.location.pathname); // Remove the hash from the URL
+            }
+        });
+
+        const fileInput = document.getElementById('file-input');
+        const startButton = document.getElementById('start-button');
+        const fileUploadLabel = document.getElementById('file-upload-label');
+        const playerContainer = document.getElementById('player-container');
+        const uiContainer = document.getElementById('ui-container');
+        const body = document.body;
+
+        // Initialize Ruffle
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+
+        let selectedFile = null;
+
+        // Handle file input click behavior through the custom button
+        fileUploadLabel.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Handle file input change event
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+
+            if (file && file.name.endsWith('.swf')) {
+                selectedFile = file;
+                const fileNameWithoutExtension = file.name.replace(/\.swf$/, '');
+
+                // Update the label to show the selected file with .swf extension
+                fileUploadLabel.textContent = `Selected: ${fileNameWithoutExtension}.swf`;
+
+                // Update URL with the SWF file name
+                const newUrl = `${window.location.pathname}#${fileNameWithoutExtension}`;
+                window.history.pushState({}, '', newUrl);
+            }
+        });
+
+        // Start the SWF player when the "Start" button is clicked
+        startButton.addEventListener('click', () => {
+            if (selectedFile) {
+                // Remove any existing embed before creating a new one
+                const existingEmbed = playerContainer.querySelector('embed');
+                if (existingEmbed) {
+                    existingEmbed.remove();
+                }
+
+                // Create a new embed element
+                const embed = document.createElement('embed');
+                embed.setAttribute('type', 'application/x-shockwave-flash');
+                embed.style.width = '100vw';
+                embed.style.height = '100vh';
+                embed.style.border = 'none';
+
+                // Set the src of the embed to the SWF file
+                const fileUrl = URL.createObjectURL(selectedFile);
+                embed.setAttribute('src', fileUrl);
+
+                // Append the embed to the player container
+                playerContainer.appendChild(embed);
+
+                // Ensure the game is rendered by adjusting player size and UI visibility
+                playerContainer.style.visibility = 'visible'; // Make the container visible once the game starts
+                uiContainer.classList.add('hidden');
+                document.body.style.backgroundColor = 'black'; // Set background to black
+
+                // Set the page ID based on the selected file
+                const fileNameWithoutExtension = selectedFile.name.replace(/\.swf$/, '');
+                body.id = fileNameWithoutExtension;
+            } else {
+                // If no file is selected, change button text briefly
+                startButton.textContent = "Select a File";
+
+                // Reset the button text after 2 seconds
+                setTimeout(() => {
+                    startButton.textContent = "Start";
+                }, 500);
+
+                // Remove the page ID if no game is running
+                body.removeAttribute('id');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="labor_greeting_01_headline"><![CDATA[BONJOUR CHUBBY SNOW !]]></text>
+	<text name="labor_greeting_02_copy"><![CDATA[POUR L'INSTANT, VOUS AVEZ<br />RÉCUPÉRÉ <games_number> DES 24 FICHIERS.]]></text>
+	<text name="labor_greeting_03_elpix"><![CDATA[SUPER, CHUBBY ! NOUS AVONS RECUPERE TOUT LE MATERIEL DE JEU.]]></text>
+	
+	<text name="labor_downloads_01_headline"><![CDATA[MERCI D'AVOIR AIDÉ CHUBBY !]]></text>
+	<text name="labor_downloads_02_copy"><![CDATA[TÉLÉCHARGEZ VOS RÉCOMPENSES ICI :]]></text>
+	<text name="labor_downloads_03_wallpaper1"><![CDATA[VOUS AVEZ GAGNÉ DE MAGNIFIQUES<br />FONDS D'ÉCRAN POUR VOTRE<br />ORDINATEUR.]]></text>
+	<text name="labor_downloads_04_wallpaper2"><![CDATA[SÉLECTIONNEZ LA RÉSOLUTION<br />CORRESPONDANT À VOTRE ÉCRAN.]]></text>
+	<text name="labor_downloads_05_mp3"><![CDATA[VOILÀ UN MP3 QUI<br />IMPRESSIONNERA TOUS VOS AMIS !]]></text>
+	<text name="labor_downloads_06_icon"><![CDATA[CES PETITES ICÔNES DEVRAIENT<br />FAIRE DES MERVEILLES SUR VOTRE<br />ÉCRAN D'ORDINATEUR !]]></text>
+
+	<text name="labor_downloads576_01_wallpaper1"><![CDATA[FOND D’ECRAN DE SNOWDRIFTLAND, A TELECHARGER ICI EN EXCLUSIVITE.]]></text>
+	<text name="labor_downloads576_02_wallpaper2"><![CDATA[SÉLECTIONNEZ LA RÉSOLUTION<br />CORRESPONDANT À VOTRE ÉCRAN.]]></text>
+	<text name="labor_downloads576_03_mp3"><![CDATA[NOËL PASSE MAIS CETTE MUSIQUE TE RAPPELLERA TOUJOURS SNOWDRIFTLAND.]]></text>
+	<text name="labor_downloads576_04_icon"><![CDATA[GRACE A CES ICONES DU BUREAU, TON ECRAN AURA LE LOOK DE SNOWDRIFTLAND.]]></text>
+	
+	<text name="labor_main_01_info"><![CDATA[INFOS]]></text>
+	<text name="labor_main_02_screenshot"><![CDATA[CAPTURES D'ECRAN]]></text>
+	<text name="labor_main_03_video"><![CDATA[VIDEOS]]></text>
+
+</texte>

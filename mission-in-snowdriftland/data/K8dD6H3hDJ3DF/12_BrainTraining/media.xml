@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<media>
+	<platform name="platform">ds</platform>
+	<wallpaper name="wallpaper_language">true</wallpaper>
+	<wallpaper name="800x600">BrainTraining_WP_800x600</wallpaper>
+	<wallpaper name="1024x768">BrainTraining_WP_1024x768</wallpaper>
+	<wallpaper name="1280x1024">BrainTraining_WP_1280x1024</wallpaper>
+	<artwork name="artwork">12_BrainTraining.jpg</artwork>
+	<screenshot name="ss_format">wii</screenshot>
+	<screenshot name="1">ss_12_BrainTraining_01.jpg</screenshot>
+	<screenshot name="2">ss_12_BrainTraining_02.jpg</screenshot>
+	<screenshot name="3">ss_12_BrainTraining_03.jpg</screenshot>
+	<screenshot name="4">ss_12_BrainTraining_04.jpg</screenshot>
+	<screenshot name="5">ss_12_BrainTraining_05.jpg</screenshot>
+	<screenshot name="6">ss_12_BrainTraining_06.jpg</screenshot>
+	<video name="video">BrainTraining_video</video>
+</media>

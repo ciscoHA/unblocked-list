@@ -1,0 +1,38 @@
+The target system is: Emscripten - 1 - x86
+The host system is: Linux - 6.6.43-chrultrabook - x86_64
+Determining if the function atoll exists passed with the following output:
+Change Dir: /media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-9I0vh3
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b20ea/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b20ea.dir/build.make CMakeFiles/cmTC_b20ea.dir/build
+gmake[1]: Entering directory '/media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-9I0vh3'
+Building C object CMakeFiles/cmTC_b20ea.dir/CheckFunctionExists.c.o
+/media/cisco/SHARED/emsdk/upstream/emscripten/emcc   -D__EMSCRIPTEN__ -sUSE_SDL=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_NET=2 -sUSE_ZLIB -sUSE_BZIP2 -sUSE_LIBJPEG -sDISABLE_EXCEPTION_CATCHING=0 -O0 -g -DCHECK_FUNCTION_EXISTS=atoll -MD -MT CMakeFiles/cmTC_b20ea.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_b20ea.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_b20ea.dir/CheckFunctionExists.c.o -c /media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-9I0vh3/CheckFunctionExists.c
+Linking C executable cmTC_b20ea.js
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b20ea.dir/link.txt --verbose=1
+/media/cisco/SHARED/emsdk/upstream/emscripten/emcc  -D__EMSCRIPTEN__ -sUSE_SDL=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_NET=2 -sUSE_ZLIB -sUSE_BZIP2 -sUSE_LIBJPEG -sDISABLE_EXCEPTION_CATCHING=0 -O0 -g -DCHECK_FUNCTION_EXISTS=atoll  -D__EMSCRIPTEN__ -sUSE_SDL=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_NET=2 -sUSE_ZLIB -sUSE_BZIP2 -sUSE_LIBJPEG -sDISABLE_EXCEPTION_CATCHING=0 -O0 -g -sENVIRONMENT=web -sINITIAL_MEMORY=48MB -sASYNCIFY -sASYNCIFY_STACK_SIZE=16384 -sMALLOC=emmalloc -lidbfs.js --pre-js "/media/cisco/SHARED/coolubg-games/ecwolf-js/src/emscripten/js/setupPreRun.js" --preload-file "/media/cisco/SHARED/coolubg-games/ecwolf-js/js-static/ecwolf.pk3@ecwolf.pk3" --preload-file "/media/cisco/SHARED/coolubg-games/ecwolf-js/js-static/iwad@/" --emrun  @CMakeFiles/cmTC_b20ea.dir/objects1 -o cmTC_b20ea.js 
+wasm-ld: warning: function signature mismatch: atoll
+>>> defined as () -> i32 in CMakeFiles/cmTC_b20ea.dir/CheckFunctionExists.c.o
+>>> defined as (i32) -> i64 in /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libc-debug.a(atoll.o)
+emcc: warning: running limited binaryen optimizations because DWARF info requested (or indirectly required) [-Wlimited-postlink-optimizations]
+gmake[1]: Leaving directory '/media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-9I0vh3'
+
+
+
+Performing C++ SOURCE FILE Test HAS_VA_COPY succeeded with the following output:
+Change Dir: /media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-TchbUX
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_1248e/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_1248e.dir/build.make CMakeFiles/cmTC_1248e.dir/build
+gmake[1]: Entering directory '/media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-TchbUX'
+Building CXX object CMakeFiles/cmTC_1248e.dir/src.cxx.o
+/media/cisco/SHARED/emsdk/upstream/emscripten/em++ -DHAS_VA_COPY  -D__EMSCRIPTEN__ -sUSE_SDL=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_NET=2 -sUSE_ZLIB -sUSE_BZIP2 -sUSE_LIBJPEG -sDISABLE_EXCEPTION_CATCHING=0 -O0 -g  -MD -MT CMakeFiles/cmTC_1248e.dir/src.cxx.o -MF CMakeFiles/cmTC_1248e.dir/src.cxx.o.d -o CMakeFiles/cmTC_1248e.dir/src.cxx.o -c /media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-TchbUX/src.cxx
+Linking CXX executable cmTC_1248e.js
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1248e.dir/link.txt --verbose=1
+/media/cisco/SHARED/emsdk/upstream/emscripten/em++  -D__EMSCRIPTEN__ -sUSE_SDL=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_NET=2 -sUSE_ZLIB -sUSE_BZIP2 -sUSE_LIBJPEG -sDISABLE_EXCEPTION_CATCHING=0 -O0 -g   -D__EMSCRIPTEN__ -sUSE_SDL=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_NET=2 -sUSE_ZLIB -sUSE_BZIP2 -sUSE_LIBJPEG -sDISABLE_EXCEPTION_CATCHING=0 -O0 -g -sENVIRONMENT=web -sINITIAL_MEMORY=48MB -sASYNCIFY -sASYNCIFY_STACK_SIZE=16384 -sMALLOC=emmalloc -lidbfs.js --pre-js "/media/cisco/SHARED/coolubg-games/ecwolf-js/src/emscripten/js/setupPreRun.js" --preload-file "/media/cisco/SHARED/coolubg-games/ecwolf-js/js-static/ecwolf.pk3@ecwolf.pk3" --preload-file "/media/cisco/SHARED/coolubg-games/ecwolf-js/js-static/iwad@/" --emrun  @CMakeFiles/cmTC_1248e.dir/objects1 -o cmTC_1248e.js 
+em++: warning: running limited binaryen optimizations because DWARF info requested (or indirectly required) [-Wlimited-postlink-optimizations]
+gmake[1]: Leaving directory '/media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-TchbUX'
+
+
+Source file was:
+#include <stdarg.h>
+	int main() { va_list list1, list2; va_copy(list1, list2); return 0; }
+

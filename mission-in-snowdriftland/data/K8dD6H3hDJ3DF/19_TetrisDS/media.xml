@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<media>
+	<platform name="platform">ds</platform>
+	<wallpaper name="wallpaper_language">false</wallpaper>
+	<wallpaper name="800x600">TetrisDS_WP_800x600</wallpaper>
+	<wallpaper name="1024x768">TetrisDS_WP_1024x768</wallpaper>
+	<wallpaper name="1280x1024">TetrisDS_WP_1280x1024</wallpaper>
+	<download name="icons">TetrisDS_DesktopIcons.zip</download>
+	<artwork name="artwork">19_TetrisDS.jpg</artwork>
+	<screenshot name="1">ss_19_TetrisDS_01.jpg</screenshot>
+	<screenshot name="2">ss_19_TetrisDS_02.jpg</screenshot>
+	<screenshot name="3">ss_19_TetrisDS_03.jpg</screenshot>
+	<screenshot name="4">ss_19_TetrisDS_04.jpg</screenshot>
+	<screenshot name="5">ss_19_TetrisDS_05.jpg</screenshot>
+	<screenshot name="6">ss_19_TetrisDS_06.jpg</screenshot>
+	<video name="video">TetrisDS_video.flv</video>
+</media>

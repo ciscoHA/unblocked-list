@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="help_story_01_headline"><![CDATA[La mission périlleuse de Chubby Snow!]]></text>
+	<text name="help_story_02_copy1"><![CDATA[L' United Pixel Heroes Organisation (UPIXO) a confié à Chubby Snow une mission des plus délicates : localiser le sinistre El Pix dans son fief de Snowdriftland  et rapporter tous les fichiers des jeux que le terrible pingouin a dérobé dans le monde des humains.<br /><br />Mais pour cela, Chubby a besoin de votre aide ! Un niveau de plateforme à vous donner des frissons vous attend tous les jours, avec notre héros glacé, du 1er au 24 décembre. Si vous réussissez à trouver les fichiers de jeux cachés dans ces niveaux, ce sera un pas de plus de franchi pour l'UPIXO dans sa lutte contre le maléfique El Pix.]]></text>
+	<text name="help_story_03_copy2"><![CDATA[Parce que vous aidez Chubby dans sa dangereuse mission, vous serez récompensé(e) par de superbes téléchargements ! Il vous suffit de suivre les instructions sur le laboratoire de l'UPIXO pour trouver des bonus et toutes sortes d'informations sur les fichiers de jeux que vous avez cherchés.<br /><br />Lorsque vous aurez récupéré avec Chubby tous les fichiers de jeux volés et atteint le dernier niveau, le 24 décembre, une bataille finale palpitante vous attend, pour mettre un terme au fléau du pingouin.]]></text>
+
+	<text name="help_legende_01_headline"><![CDATA[Légende]]></text>
+	<text name="help_legende_02_kristall"><![CDATA[24 cristaux de glace sont cachés dans chaque niveau. Si vous parvenez à collecter les 576 cristaux de glace dissimulés dans tout le calendrier, vous débloquerez un bonus spécial de Snowdriftland à télécharger.]]></text>	
+	<text name="help_legende_03_tuer"><![CDATA[Chaque porte du calendrier de l'Avent affiche la date à laquelle elle a été ouverte.]]></text>
+	<text name="help_legende_04_tuerkristall"><![CDATA[Lorsque vous avez terminé un niveau en prenant les fichiers de jeu situés dans les coffres et en collectant tous les cristaux de glace, la porte ouverte sera ornée d'un cristal de glace.]]></text>
+	<text name="help_legende_05_tueroffen"><![CDATA[Les portes ouvertes indiquent que vous avez collecté tous les fichiers des jeux dérobés dans ce niveau mais vous n'avez pas encore trouvé tous les cristaux de glace.]]></text>
+	<text name="help_legende_06_labor"><![CDATA[Dans le laboratoire, vous trouverez tous les fichiers des jeux que Chubby a retrouvés. C'est là que vous pouvez également télécharger les récompenses que vous avez méritées en retrouvant les fichiers volés.]]></text>
+	<text name="help_legende_07_feedback"><![CDATA[Si vous le souhaitez, vous pouvez utiliser l'icône "votre avis" pour nous dire ce qui vous a plu dans la mission de Chubby ou ce qui vous a déplu. Tous les commentaires sont les bienvenus !]]></text>
+
+	<text name="help_anzeige_01_headline"><![CDATA[Instructions de mission]]></text>
+	<text name="help_anzeige_02_copy"><![CDATA[Le meilleur moyen d'aider Chubby dans sa Mission in Snowdriftland consiste à utiliser Microsoft Internet Explorer® et une résolution d'écran de 1024x768.]]></text>
+
+</texte>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="help_story_01_headline"><![CDATA[Chubby Snow in gefährlicher Mission!]]></text>
+	<text name="help_story_02_copy1"><![CDATA[Die United Pixelheroes Organisation, kurz UPIXO, hat dem kleinen Schneemann Chubby Snow einen waghalsigen Auftrag gegeben: Er soll den Bösewicht El Pix in seinem Reich Snowdriftland aufspüren und das gesamte Spielmaterial zurückholen, das der fiese Pinguin aus der Welt der Menschen gestohlen hat.<br /><br />Chubby kann seinen Auftrag aber nur mit deiner Hilfe erfüllen, denn vom 1. bis 24. Dezember wartet jeden Tag ein spannendes Jump’n’Run Level auf dich und den kleinen Schneemann. Wenn du das darin versteckte Spielmaterial findest, ist UPIXO einem Sieg über den Bösewicht El Pix einen Schritt näher gekommen.]]></text>
+	<text name="help_story_03_copy2"><![CDATA[Und weil du Chubby bei seiner schwierigen Aufgabe unterstützt, wirst du mit exklusiven Downloads belohnt. Dazu musst du einfach dem Wegweiser ins UPIXO Labor folgen, wo du deine Geschenke und jede Menge Informationen über das gerettete Spielmaterial finden kannst.<br /><br />Hast du am 24. Dezember alle Level mit Chubby gemeinsam gelöst und das gestohlene Spielmaterial zurück erobert, erwartet dich schließlich der spannende Kampf gegen den fiesen Pinguin selbst.]]></text>
+
+	<text name="help_legende_01_headline"><![CDATA[Legende]]></text>
+	<text name="help_legende_02_kristall"><![CDATA[In jedem Spiellevel sind 24 Eiskristalle versteckt. Wenn du alle Kristalle im Kalender einsammelst (insgesamt 576), kannst du einen Bonus-Download mit Motiven aus Snowdriftland freischalten.]]></text>	
+	<text name="help_legende_03_tuer"><![CDATA[Auf den Adventskalender-Türchen steht das Datum, ab dem sie sich öffnen lassen.]]></text>
+	<text name="help_legende_04_tuerkristall"><![CDATA[Hast du ein Level komplett gelöst, d.h. das Spielmaterial aus der Truhe befreit und alle Eiskristalle eingesammelt, ist das Türchen offen und trägt ein Eiskristall.]]></text>
+	<text name="help_legende_05_tueroffen"><![CDATA[Eine geöffnete Tür zeigt dir, dass du in diesem Level zwar das gestohlene Spielmaterial befreit, aber noch nicht alle Eiskristalle gefunden hast.]]></text>
+	<text name="help_legende_06_labor"><![CDATA[Im Labor findest du alle Spielmaterialien, die Chubby zurückerobert hat. Außerdem kannst du hier deine Belohnungen herunterladen.]]></text>
+	<text name="help_legende_07_feedback"><![CDATA[Wenn du möchtest, kannst du uns über das Feedback Formular mitteilen, was dir an dem Adventkalender gefällt oder was dich stört. Wir freuen uns über jede Nachricht von dir!]]></text>
+
+	<text name="help_anzeige_01_headline"><![CDATA[Hinweise zur optimalen Anzeige]]></text>
+	<text name="help_anzeige_02_copy"><![CDATA[Am besten kannst du Chubby Snow auf seiner Mission in Snowdriftland begleiten, wenn du an deinem Monitor eine Auflösung von 1024x768 Pixel eingestellt hast und den Microsoft Internet Explorer® benutzt.]]></text>
+
+</texte>

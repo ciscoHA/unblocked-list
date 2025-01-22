@@ -1,0 +1,34 @@
+deps/textscreen/CMakeFiles/textscreen.dir/txt_utf8.c.o: \
+  /media/cisco/SHARED/coolubg-games/ecwolf-js/deps/textscreen/txt_utf8.c \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/stdio.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/wasi/api.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/stddef.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/stddef.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_header_macro.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_ptrdiff_t.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_size_t.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_wchar_t.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_null.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_max_align_t.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_offsetof.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/stdint.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/stdint.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/bits/alltypes.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/bits/stdint.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/features.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/compat/stdlib.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/stdlib.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/alloca.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/compat/string.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/string.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/strings.h \
+  /media/cisco/SHARED/coolubg-games/ecwolf-js/deps/textscreen/txt_utf8.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/compat/stdarg.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/stdarg.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/stdarg.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stdarg_header_macro.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stdarg___gnuc_va_list.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stdarg_va_list.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stdarg_va_arg.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stdarg___va_copy.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stdarg_va_copy.h

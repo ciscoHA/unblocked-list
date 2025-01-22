@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<level background="bosscave" music="track_boss" effects="cave" sx="97" sy="298" d="659" sh="50">
+	<layer name="base" source="boss.swf" x="0" y="0" width="480" height="360">
+		<t id="bh" x="15" y="298" w="104" h="308" d="631" o="" />
+		<t id="bh" x="35" y="-10" w="104" h="308" d="635" o="" />
+		<t id="bh" x="550" y="-10" w="104" h="308" d="637" o="" />
+		<t id="bh" x="570" y="298" w="104" h="308" d="633" o="" />
+		<t id="e" x="250" y="100" w="17" h="16" d="647" o="" />
+		<t id="e" x="450" y="100" w="17" h="16" d="643" o="" />
+		<t id="e" x="50" y="100" w="17" h="16" d="639" o="" />
+		<t id="elpix" x="242" y="155" w="536" h="308" d="651" o="0" />
+		<t id="f_b" x="482" y="401" w="484" h="105" d="617" o="" />
+		<t id="l_b" x="537" y="389" w="600" h="61" d="661" o="" /> 
+	</layer>
+</level>

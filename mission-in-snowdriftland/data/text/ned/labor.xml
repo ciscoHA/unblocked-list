@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="labor_greeting_01_headline"><![CDATA[HA DIE CHUBBY SNOW!]]></text>
+	<text name="labor_greeting_02_copy"><![CDATA[TOT NU TOE HEB JE CHUBBY<br />GEHOLPEN OM <games_number> VAN DE 24<br />SPELBESTANDEN TERUG TE VINDEN.]]></text>
+	<text name="labor_greeting_03_elpix"><![CDATA[GOED WERK CHUBBY! MET JOUW HULP<br />HEBBEN WE IEDER<br />ONTBREKEND SPELBESTAND<br />GEVONDEN.]]></text>
+	
+	<text name="labor_downloads_01_headline"><![CDATA[BEDANKT DAT JE CHUBBY MEEHELPT!]]></text>
+	<text name="labor_downloads_02_copy"><![CDATA[DOWNLOAD JE BELONINGEN HIER:]]></text>
+	<text name="labor_downloads_03_wallpaper1"><![CDATA[JE KRIJGT EEN PAAR COOLE<br />BUREAUBLADACHTERGRONDEN VOOR<br />JE COMPUTER.]]></text>
+	<text name="labor_downloads_04_wallpaper2"><![CDATA[SELECTEER JE SCHERMRESOLUTIE.]]></text>
+	<text name="labor_downloads_05_mp3"><![CDATA[HIER HEB JE EEN COOLE MP3 VOOR<br />TIJDENS DE KOELE<br />WINTERMAANDEN!]]></text>
+	<text name="labor_downloads_06_icon"><![CDATA[DEZE KLEINE ICOONTJES HEBBEN<br />EEN GROOT EFFECT OP JE<br />BUREAUBLAD!]]></text>
+	
+	<text name="labor_downloads576_01_wallpaper1"><![CDATA[BUREAUBLADACHTERGRONDEN UIT SNOWDRIFTLAND – DOWNLOADS HIER EXCLUSIEF VERKRIJGBAAR.]]></text>
+	<text name="labor_downloads576_02_wallpaper2"><![CDATA[SELECTEER JE SCHERMRESOLUTIE.]]></text>
+	<text name="labor_downloads576_03_mp3"><![CDATA[ZELFS WANNEER KERST AL LANG VOORBIJ IS ZULLEN DEZE DEUNTJES JE ALTIJD AAN SNOWDRIFTLAND HERINNEREN.]]></text>
+	<text name="labor_downloads576_04_icon"><![CDATA[GEEF JE BUREAUBLAD DE SNOWDRIFTLAND LOOK EN SFEER MET DEZE BUREAUBLAD ICOONTJES.]]></text>
+	
+	<text name="labor_main_01_info"><![CDATA[INFORMATIE]]></text>
+	<text name="labor_main_02_screenshot"><![CDATA[SCREENSHOTS]]></text>
+	<text name="labor_main_03_video"><![CDATA[FILMPJES]]></text>
+
+</texte>

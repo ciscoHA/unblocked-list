@@ -1,0 +1,44 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Awesome Planes</title>
+    <!-- Cool Unblocked Games | coolubg.github.io -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <style>
+        body {
+            background: #000000;
+            color: #cccccc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #flash-container {
+            width: 100%;
+            height: 100%;
+            max-width: 833px; /* Maximum width of your content */
+            max-height: 833px; /* Maximum height of your content */
+            margin: auto; /* Center the container horizontally */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        object {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="flash-container">
+        <!-- Embed the SWF content with Ruffle emulator and set the scale to fit the container -->
+        <object data="awesome-planes.swf" type="application/x-shockwave-flash" width="100%" height="100%">
+        </object>
+    </div>
+</body>
+</html>

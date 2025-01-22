@@ -1,0 +1,31 @@
+deps/gdtoa/CMakeFiles/gdtoa.dir/dtoa.c.o: \
+  /media/cisco/SHARED/coolubg-games/ecwolf-js/deps/gdtoa/dtoa.c \
+  /media/cisco/SHARED/coolubg-games/ecwolf-js/deps/gdtoa/gdtoaimp.h \
+  /media/cisco/SHARED/coolubg-games/ecwolf-js/deps/gdtoa/gdtoa.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/stddef.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/stddef.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_header_macro.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_ptrdiff_t.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_size_t.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_wchar_t.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_null.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_max_align_t.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_offsetof.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/compat/stdlib.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/stdlib.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/features.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/bits/alltypes.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/alloca.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/compat/string.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/string.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/strings.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/errno.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/bits/errno.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/wasi/api.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/stdint.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/stdint.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/bits/stdint.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/float.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/float.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/compat/math.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/math.h

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<media>
+	<platform name="platform">wii</platform>
+	<wallpaper name="wallpaper_language">false</wallpaper>
+	<wallpaper name="800x600">WiiSports_WP_800x600</wallpaper>
+	<wallpaper name="1024x768">WiiSports_WP_1024x768</wallpaper>
+	<wallpaper name="1280x1024">WiiSports_WP_1280x1024</wallpaper>
+	<artwork name="artwork">15_WiiSports.jpg</artwork>
+	<screenshot name="1">ss_15_WiiSports_01.jpg</screenshot>
+	<screenshot name="2">ss_15_WiiSports_02.jpg</screenshot>
+	<screenshot name="3">ss_15_WiiSports_03.jpg</screenshot>
+	<screenshot name="4">ss_15_WiiSports_04.jpg</screenshot>
+	<screenshot name="5">ss_15_WiiSports_05.jpg</screenshot>
+	<screenshot name="6">ss_15_WiiSports_06.jpg</screenshot>
+	<video name="video">WiiSports_video.flv</video>
+</media>

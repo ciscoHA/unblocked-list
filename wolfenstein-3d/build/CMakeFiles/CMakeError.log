@@ -1,0 +1,53 @@
+Determining if the function stricmp exists failed with the following output:
+Change Dir: /media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-3WlQDl
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a2b48/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a2b48.dir/build.make CMakeFiles/cmTC_a2b48.dir/build
+gmake[1]: Entering directory '/media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-3WlQDl'
+Building C object CMakeFiles/cmTC_a2b48.dir/CheckFunctionExists.c.o
+/media/cisco/SHARED/emsdk/upstream/emscripten/emcc   -D__EMSCRIPTEN__ -sUSE_SDL=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_NET=2 -sUSE_ZLIB -sUSE_BZIP2 -sUSE_LIBJPEG -sDISABLE_EXCEPTION_CATCHING=0 -O0 -g -DCHECK_FUNCTION_EXISTS=stricmp -MD -MT CMakeFiles/cmTC_a2b48.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_a2b48.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_a2b48.dir/CheckFunctionExists.c.o -c /media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-3WlQDl/CheckFunctionExists.c
+ports:INFO: retrieving port: bzip2 from https://github.com/emscripten-ports/bzip2/archive/1.0.6.zip
+ports:INFO: unpacking port: bzip2
+cache:INFO: generating port: sysroot/lib/wasm32-emscripten/libbz2.a... (this will be cached in "/media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libbz2.a" for subsequent builds)
+system_libs:INFO: compiled 7 inputs in 4.93s
+cache:INFO:  - ok
+ports:INFO: retrieving port: sdl2_net from https://github.com/emscripten-ports/SDL2_net/archive/version_2.zip
+ports:INFO: unpacking port: sdl2_net
+cache:INFO: generating port: sysroot/lib/wasm32-emscripten/libSDL2_net.a... (this will be cached in "/media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libSDL2_net.a" for subsequent builds)
+system_libs:INFO: compiled 4 inputs in 1.77s
+cache:INFO:  - ok
+ports:INFO: retrieving port: sdl2_mixer from https://github.com/libsdl-org/SDL_mixer/archive/release-2.8.0.zip
+ports:INFO: unpacking port: sdl2_mixer
+cache:INFO: generating port: sysroot/lib/wasm32-emscripten/libSDL2_mixer_ogg.a... (this will be cached in "/media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libSDL2_mixer_ogg.a" for subsequent builds)
+system_libs:INFO: compiled 34 inputs in 9.29s
+cache:INFO:  - ok
+Linking C executable cmTC_a2b48.js
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2b48.dir/link.txt --verbose=1
+/media/cisco/SHARED/emsdk/upstream/emscripten/emcc  -D__EMSCRIPTEN__ -sUSE_SDL=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_NET=2 -sUSE_ZLIB -sUSE_BZIP2 -sUSE_LIBJPEG -sDISABLE_EXCEPTION_CATCHING=0 -O0 -g -DCHECK_FUNCTION_EXISTS=stricmp  -D__EMSCRIPTEN__ -sUSE_SDL=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_NET=2 -sUSE_ZLIB -sUSE_BZIP2 -sUSE_LIBJPEG -sDISABLE_EXCEPTION_CATCHING=0 -O0 -g -sENVIRONMENT=web -sINITIAL_MEMORY=48MB -sASYNCIFY -sASYNCIFY_STACK_SIZE=16384 -sMALLOC=emmalloc -lidbfs.js --pre-js "/media/cisco/SHARED/coolubg-games/ecwolf-js/src/emscripten/js/setupPreRun.js" --preload-file "/media/cisco/SHARED/coolubg-games/ecwolf-js/js-static/ecwolf.pk3@ecwolf.pk3" --preload-file "/media/cisco/SHARED/coolubg-games/ecwolf-js/js-static/iwad@/" --emrun  @CMakeFiles/cmTC_a2b48.dir/objects1 -o cmTC_a2b48.js 
+cache:INFO: generating system asset: symbol_lists/573583190ab9b865f0668a855dba26dd4de8e9a1.json... (this will be cached in "/media/cisco/SHARED/emsdk/upstream/emscripten/cache/symbol_lists/573583190ab9b865f0668a855dba26dd4de8e9a1.json" for subsequent builds)
+cache:INFO:  - ok
+wasm-ld: error: CMakeFiles/cmTC_a2b48.dir/CheckFunctionExists.c.o: undefined symbol: stricmp
+emcc: error: '/media/cisco/SHARED/emsdk/upstream/bin/wasm-ld -o cmTC_a2b48.wasm -L/media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten CMakeFiles/cmTC_a2b48.dir/CheckFunctionExists.c.o /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libSDL2_mixer_ogg.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libSDL2_net.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libSDL2.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libbz2.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libjpeg.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libz.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libvorbis.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libogg.a -lGL-getprocaddr -lal -lhtml5 -lstubs-debug -lc-debug -lemmalloc -lcompiler_rt -lc++ -lc++abi-debug -lsockets -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-cxx-exceptions -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr /tmp/tmpvymufu9ylibemscripten_js_symbols.so --export=emscripten_stack_get_end --export=emscripten_stack_get_free --export=emscripten_stack_get_base --export=emscripten_stack_get_current --export=emscripten_stack_init --export=_emscripten_stack_alloc --export=__get_temp_ret --export=__set_temp_ret --export=__funcs_on_exit --export=__cxa_can_catch --export=__cxa_increment_exception_refcount --export=__cxa_decrement_exception_refcount --export=setThrew --export=__cxa_free_exception --export=__wasm_call_ctors --export=_emscripten_stack_restore --export=strerror --export=malloc --export=free --export=__get_exception_message --export-if-defined=__start_em_asm --export-if-defined=__stop_em_asm --export-if-defined=__start_em_lib_deps --export-if-defined=__stop_em_lib_deps --export-if-defined=__start_em_js --export-if-defined=__stop_em_js --export-if-defined=main --export-if-defined=__main_argc_argv --export-if-defined=fflush --export-table -z stack-size=65536 --no-growable-memory --initial-memory=50331648 --no-entry --stack-first --table-base=1' failed (returned 1)
+gmake[1]: *** [CMakeFiles/cmTC_a2b48.dir/build.make:101: cmTC_a2b48.js] Error 1
+gmake[1]: Leaving directory '/media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-3WlQDl'
+gmake: *** [Makefile:127: cmTC_a2b48/fast] Error 2
+
+
+
+Determining if the function strnicmp exists failed with the following output:
+Change Dir: /media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-zOLxfr
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_53143/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_53143.dir/build.make CMakeFiles/cmTC_53143.dir/build
+gmake[1]: Entering directory '/media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-zOLxfr'
+Building C object CMakeFiles/cmTC_53143.dir/CheckFunctionExists.c.o
+/media/cisco/SHARED/emsdk/upstream/emscripten/emcc   -D__EMSCRIPTEN__ -sUSE_SDL=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_NET=2 -sUSE_ZLIB -sUSE_BZIP2 -sUSE_LIBJPEG -sDISABLE_EXCEPTION_CATCHING=0 -O0 -g -DCHECK_FUNCTION_EXISTS=strnicmp -MD -MT CMakeFiles/cmTC_53143.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_53143.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_53143.dir/CheckFunctionExists.c.o -c /media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-zOLxfr/CheckFunctionExists.c
+Linking C executable cmTC_53143.js
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_53143.dir/link.txt --verbose=1
+/media/cisco/SHARED/emsdk/upstream/emscripten/emcc  -D__EMSCRIPTEN__ -sUSE_SDL=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_NET=2 -sUSE_ZLIB -sUSE_BZIP2 -sUSE_LIBJPEG -sDISABLE_EXCEPTION_CATCHING=0 -O0 -g -DCHECK_FUNCTION_EXISTS=strnicmp  -D__EMSCRIPTEN__ -sUSE_SDL=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_NET=2 -sUSE_ZLIB -sUSE_BZIP2 -sUSE_LIBJPEG -sDISABLE_EXCEPTION_CATCHING=0 -O0 -g -sENVIRONMENT=web -sINITIAL_MEMORY=48MB -sASYNCIFY -sASYNCIFY_STACK_SIZE=16384 -sMALLOC=emmalloc -lidbfs.js --pre-js "/media/cisco/SHARED/coolubg-games/ecwolf-js/src/emscripten/js/setupPreRun.js" --preload-file "/media/cisco/SHARED/coolubg-games/ecwolf-js/js-static/ecwolf.pk3@ecwolf.pk3" --preload-file "/media/cisco/SHARED/coolubg-games/ecwolf-js/js-static/iwad@/" --emrun  @CMakeFiles/cmTC_53143.dir/objects1 -o cmTC_53143.js 
+wasm-ld: error: CMakeFiles/cmTC_53143.dir/CheckFunctionExists.c.o: undefined symbol: strnicmp
+emcc: error: '/media/cisco/SHARED/emsdk/upstream/bin/wasm-ld -o cmTC_53143.wasm -L/media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten CMakeFiles/cmTC_53143.dir/CheckFunctionExists.c.o /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libSDL2_mixer_ogg.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libSDL2_net.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libSDL2.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libbz2.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libjpeg.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libz.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libvorbis.a /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/lib/wasm32-emscripten/libogg.a -lGL-getprocaddr -lal -lhtml5 -lstubs-debug -lc-debug -lemmalloc -lcompiler_rt -lc++ -lc++abi-debug -lsockets -mllvm -combiner-global-alias-analysis=false -mllvm -enable-emscripten-cxx-exceptions -mllvm -enable-emscripten-sjlj -mllvm -disable-lsr /tmp/tmpy4axwa77libemscripten_js_symbols.so --export=emscripten_stack_get_end --export=emscripten_stack_get_free --export=emscripten_stack_get_base --export=emscripten_stack_get_current --export=emscripten_stack_init --export=_emscripten_stack_alloc --export=__get_temp_ret --export=__set_temp_ret --export=__funcs_on_exit --export=__cxa_can_catch --export=__cxa_increment_exception_refcount --export=__cxa_decrement_exception_refcount --export=setThrew --export=__cxa_free_exception --export=__wasm_call_ctors --export=_emscripten_stack_restore --export=strerror --export=malloc --export=free --export=__get_exception_message --export-if-defined=__start_em_asm --export-if-defined=__stop_em_asm --export-if-defined=__start_em_lib_deps --export-if-defined=__stop_em_lib_deps --export-if-defined=__start_em_js --export-if-defined=__stop_em_js --export-if-defined=main --export-if-defined=__main_argc_argv --export-if-defined=fflush --export-table -z stack-size=65536 --no-growable-memory --initial-memory=50331648 --no-entry --stack-first --table-base=1' failed (returned 1)
+gmake[1]: *** [CMakeFiles/cmTC_53143.dir/build.make:101: cmTC_53143.js] Error 1
+gmake[1]: Leaving directory '/media/cisco/SHARED/coolubg-games/ecwolf-js/build/CMakeFiles/CMakeScratch/TryCompile-zOLxfr'
+gmake: *** [Makefile:127: cmTC_53143/fast] Error 2
+
+
+

@@ -1,0 +1,2 @@
+x += spdX;
+y += spdY;

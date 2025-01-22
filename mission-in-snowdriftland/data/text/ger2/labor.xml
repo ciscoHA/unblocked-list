@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="labor_greeting_01_headline"><![CDATA[HALLO CHUBBY SNOW!]]></text>
+	<text name="labor_greeting_02_copy"><![CDATA[IM MOMENT HABEN WIR <games_number> VON 24 SPIELMATERIALIEN<br />SICHERGESTELLT.]]></text>
+	<text name="labor_greeting_03_elpix"><![CDATA[SUPER, CHUBBY! WIR HABEN DAS<br />GESAMTE SPIELMATERIAL<br />SICHERGESTELLT.]]></text>
+	
+	<text name="labor_downloads_01_headline"><![CDATA[DANKE, DASS DU CHUBBY GEHOLFEN<br />HAST!]]></text>
+	<text name="labor_downloads_02_copy"><![CDATA[HIER KANNST DU DEINE<br />BELOHNUNGEN DOWNLOADEN:]]></text>
+	<text name="labor_downloads_03_wallpaper1"><![CDATA[DU BEKOMMST VON UNS EIN PAAR<br />SCHICKE WALLPAPER FÜR DEINEN<br />COMPUTER.]]></text>
+	<text name="labor_downloads_04_wallpaper2"><![CDATA[BITTE WÄHLE ZUERST DEINE<br />BILDSCHIRMAUFLÖSUNG AUS.]]></text>
+	<text name="labor_downloads_05_mp3"><![CDATA[WIR HABEN EINEN TOLLEN HANDY-<br />KLINGELTON FÜR DICH. DA WERDEN<br />DEINE FREUNDE STAUNEN!]]></text>
+	<text name="labor_downloads_06_icon"><![CDATA[DIESE KLEINEN ABER FEINEN<br />ICONS HABEN WIR EXTRA FÜR<br />DEINEN DESKTOP ERSTELLT.]]></text>
+
+	<text name="labor_downloads576_01_wallpaper1"><![CDATA[WALLPAPER AUS SNOWDRIFTLAND – DIE GIBT ES EXKLUSIV NUR HIER ZUM DOWNLOAD.]]></text>
+	<text name="labor_downloads576_02_wallpaper2"><![CDATA[BITTE WÄHLE ZUERST DEINE<br />BILDSCHIRMAUFLÖSUNG AUS.]]></text>
+	<text name="labor_downloads576_03_mp3"><![CDATA[WEIHNACHTEN GEHT VORBEI, ABER DIESE MUSIK WIRD DICH IMMER AN SNOWDRIFTLAND ERINNERN.]]></text>
+	<text name="labor_downloads576_04_icon"><![CDATA[MIT DIESEN DESKTOPICONS ERSCHEINT DEIN BILDSCHIRM IM SNOWDRIFTLAND-STYLE.]]></text>
+
+	<text name="labor_main_01_info"><![CDATA[INFOS]]></text>
+	<text name="labor_main_02_screenshot"><![CDATA[SCREENSHOTS]]></text>
+	<text name="labor_main_03_video"><![CDATA[VIDEOS]]></text>
+
+</texte>

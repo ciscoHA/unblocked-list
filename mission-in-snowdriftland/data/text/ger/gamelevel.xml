@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="gamelevel_finished_01_headline"><![CDATA[WAY TO GO, CHUBBY!<br />WITH YOUR HELP WE FOUND THE FILES OF<br />"<games_name>".<br />YOU CAN CHECK THEM OUT IN THE LABORATORY.]]></text>
+	<text name="gamelevel_24finished_01_elpix"><![CDATA[NOW YOU JUST NEED TO DEFEAT EL PIX. HE’S<br />HIDING IN THE BIG SNOW STATUE - GO GET HIM!]]></text>
+	<text name="gamelevel_tipp_01"><![CDATA[TIP: Game too slow? Best performance with Microsoft Internet Explorer®.]]></text>
+	
+	<text name="gamelevel_hints_01_headline"><![CDATA[TIP #1]]></text>
+	<text name="gamelevel_hints_02_copy"><![CDATA[YOU CAN CLIMB ICE FORMATIONS TO DISCOVER HIDDEN TREASURES.]]></text>
+	<text name="gamelevel_hints_03_headline"><![CDATA[TIP #2]]></text>
+	<text name="gamelevel_hints_04_copy"><![CDATA[COLLECT ALL THE ICE CRYSTALS IN THE ADVENT CALENDAR TO UNLOCK A SPECIAL BONUS STRAIGHT OUT OF SNOWDRIFTLAND.]]></text>
+	<text name="gamelevel_hints_05_headline"><![CDATA[TIP #3]]></text>
+	<text name="gamelevel_hints_06_copy"><![CDATA[JUMP ON TOP OF YOUR OPPONENTS TO KNOCK THEM OUT.]]></text>
+	<text name="gamelevel_hints_07_headline"><![CDATA[TIP #4]]></text>
+	<text name="gamelevel_hints_08_copy"><![CDATA[YOU CAN SLIDE DOWN SLOPES BY PRESSING THE DOWN ARROW.]]></text>
+	<text name="gamelevel_hints_09_headline"><![CDATA[TIP #5]]></text>
+	<text name="gamelevel_hints_10_copy"><![CDATA[THE STOLEN GAME FILES CAN BE FOUND IN A CHEST TOWARDS THE END OF THE LEVELS.]]></text>
+	<text name="gamelevel_hints_11_headline"><![CDATA[TIP #6]]></text>
+	<text name="gamelevel_hints_12_copy"><![CDATA[IF YOU KEEP THE WALK BUTTON PRESSED, CHUBBY WILL SOON START TO RUN, ALLOWING HIM TO JUMP HIGHER.]]></text>
+	<text name="gamelevel_hints_13_headline"><![CDATA[TIP #7]]></text>
+	<text name="gamelevel_hints_14_copy"><![CDATA[IN SOME SITUATIONS YOU CAN PROTECT CHUBBY FROM ATTACKS BY PRESSING THE DUCK BUTTON.]]></text>
+	<text name="gamelevel_hints_15_headline"><![CDATA[TIP #8]]></text>
+	<text name="gamelevel_hints_16_copy"><![CDATA[CHUBBY'S ENERGY LEVEL IS SHOWN BY THE NUMBER OF HEARTS. YOU CAN GIVE HIM MORE ENERGY BY FINDING THE HEARTS HIDDEN IN THE LEVELS.]]></text>
+	
+</texte>

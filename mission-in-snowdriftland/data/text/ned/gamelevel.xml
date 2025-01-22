@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="gamelevel_finished_01_headline"><![CDATA[GOEDZO, CHUBBY!<br />MET JOUW HULP HEBBEN WE DE SPELBESTANDEN VAN<br />"<games_name>" TERUGGEVONDEN.<br />JE KUNT ZE IN HET LABORATORIUM BEKIJKEN.]]></text>
+	<text name="gamelevel_24finished_01_elpix"><![CDATA[NU HOEF JE ALLEEN EL PIX TE VERSLAAN.<br />HIJ VERSTOPT ZICH IN DE GROTE SNEEUWPOP.<br />NEEM HEM TE GRAZEN!]]></text>
+	<text name="gamelevel_tipp_01"><![CDATA[TIP: spel te traag? Gebruik Microsoft Internet Explorer® voor de beste resultaten.]]></text>
+	
+	<text name="gamelevel_hints_01_headline"><![CDATA[TIP 1]]></text>
+	<text name="gamelevel_hints_02_copy"><![CDATA[JE KUNT OP IJSROTSEN KLIMMEN EN ZO VERBORGEN SCHATTEN ONTDEKKEN.]]></text>
+	<text name="gamelevel_hints_03_headline"><![CDATA[TIP 2]]></text>
+	<text name="gamelevel_hints_04_copy"><![CDATA[VERZAMEL ALLE IJSKRISTALLEN IN DE ADVENTSKALENDER OM EEN BIJZONDERE BONUS (RECHTSTREEKS UIT SNOWDRIFTLAND) VRIJ TE SPELEN.]]></text>
+	<text name="gamelevel_hints_05_headline"><![CDATA[TIP 3]]></text>
+	<text name="gamelevel_hints_06_copy"><![CDATA[SPRING OP JE TEGENSTANDERS OM ZE UIT TE SCHAKELEN.]]></text>
+	<text name="gamelevel_hints_07_headline"><![CDATA[TIP 4]]></text>
+	<text name="gamelevel_hints_08_copy"><![CDATA[JE KUNT OVER HELLINGEN NAAR BENEDEN GLIJDEN DOOR OP DE PIJL OMLAAG TE DRUKKEN.]]></text>
+	<text name="gamelevel_hints_09_headline"><![CDATA[TIP 5]]></text>
+	<text name="gamelevel_hints_10_copy"><![CDATA[DE GESTOLEN SPELBESTANDEN KUN JE VINDEN IN EEN KIST AAN HET EINDE VAN ELKE LEVEL.]]></text>
+	<text name="gamelevel_hints_11_headline"><![CDATA[TIP 6]]></text>
+	<text name="gamelevel_hints_12_copy"><![CDATA[ALS JE DE PIJL NAAR LINKS OF NAAR RECHTS INGEDRUKT HOUDT, ZAL CHUBBY AL SNEL BEGINNEN TE RENNEN WAARDOOR HIJ HOGER KAN SPRINGEN.]]></text>
+	<text name="gamelevel_hints_13_headline"><![CDATA[TIP 7]]></text>
+	<text name="gamelevel_hints_14_copy"><![CDATA[IN VEEL GEVALLEN KUN JE CHUBBY BESCHERMEN DOOR OP DE PIJL OMLAAG TE DRUKKEN EN HEM ZO TE LATEN BUKKEN.]]></text>
+	<text name="gamelevel_hints_15_headline"><![CDATA[TIP 8]]></text>
+	<text name="gamelevel_hints_16_copy"><![CDATA[CHUBBY'S LEVENS WORDEN WEERGEGEVEN DOOR HARTJES. JE KUNT VERLOREN LEVENS WEER AANVULLEN DOOR DE HARTJES TE VINDEN DIE IN DE LEVELS VERBORGEN ZIJN.]]></text>
+	
+</texte>

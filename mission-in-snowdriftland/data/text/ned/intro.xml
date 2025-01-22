@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="00_off_01_ort"><![CDATA[SPELWERELD]]></text>
+
+	<text name="01_office_01_off"><![CDATA[UPIXO HOOFDKWARTIER<br />(UNITED PIXELHEROES ORGANISATION)]]></text>	
+	<text name="01_office_02_direktor"><![CDATA[WAAAAT?!?!]]></text>	
+	<text name="01_office_03_direktor"><![CDATA[HOE BEDOEL JE, 'EL PIX IS HET GEHEIME<br />TELEPORTATIESTATION BINNENGEDRONGEN'?!]]></text>
+	<text name="01_office_04_labortyp"><![CDATA[STERKER NOG - HIJ HEEFT HET GEBRUIKT OM ZICH<br />NAAR DE MENSENWERELD TE TELEPORTEREN!]]></text>	
+	<text name="01_office_05_direktor"><![CDATA[WAT ZEG JE? WAT KAN HIJ DAAR IN HEMELSNAAM<br />TE ZOEKEN HEBBEN?]]></text>
+	<text name="01_office_06_labortyp"><![CDATA[WE HEBBEN ONTDEKT DAT HIJ EEN AANTAL BELANGRIJKE<br />SPELBESTANDEN UIT EEN LABORATORIUM HEEFT<br />GESTOLEN!]]></text>
+	<text name="01_office_07_labortyp"><![CDATA[DE BEVEILIGINGSCAMERA'S HEBBEN ALLES<br />GEREGISTREERD.]]></text>
+
+	<text name="02_lounge_01_schild"><![CDATA[BANENCENTRUM]]></text>	
+	<text name="02_lounge_02_schild"><![CDATA[NAAR DE BEWAKING]]></text>	
+	<text name="02_lounge_03_off"><![CDATA[ONDERTUSSEN OP EEN LAGERE VERDIEPING...]]></text>
+	<text name="02_lounge_04_maria"><![CDATA[HÉ CHUBBY! WAT ZIE JIJ ER DEPRI UIT, JOH!]]></text>
+	<text name="02_lounge_05_chubby"><![CDATA[O LINDA, MIJN CARRIÈRE IS ZO'N ENORME PUINHOOP! ZE<br />SELECTEREN ME NOOIT VOOR EEN ROL DIE BIJ ME PAST.]]></text>
+	<text name="02_lounge_06_chubby"><![CDATA[IK BEDOEL, MOET JE NOU EENS KIJKEN. HIER HEEFT<br />DE LEVEL-ONTWERPER ME ACHTER EEN BOOM GEPLAATST.]]></text>	
+	<text name="02_lounge_07_chubby"><![CDATA[EN HIER DACHT DE GRAFISCH ONTWERPER ZEKER LOLLIG<br />TE ZIJN.]]></text>	
+	<text name="02_lounge_08_chubby"><![CDATA[EN IN MIJN LAATSTE GAME GAVEN ZE ME EEN ROLLETJE<br />IN EEN WOESTIJNLEVEL! DA'S TOCH NIET COOL ALS JE<br />EEN SNEEUWPOPPETJE BENT?]]></text>	
+
+	<text name="03_security_01_labortyp"><![CDATA[DIT ZIJN DE BEELDEN VAN GISTERAVOND UIT HET<br />TELEPORTATIESTATION.]]></text>
+	<text name="03_security_02_labortyp"><![CDATA[DAAR HEB JE EL PIX!]]></text>
+	<text name="03_security_03_teleporter1"><![CDATA[MENSENWERELD]]></text>
+	<text name="03_security_04_teleporter2"><![CDATA[LUILEKKERLAND]]></text>
+	<text name="03_security_05_teleporter3"><![CDATA[POLYGONENPLEK]]></text>
+	<text name="03_security_06_teleporter4"><![CDATA[MELKWEG]]></text>
+	<text name="03_security_07_labortyp"><![CDATA[EN DAAR GAAT 'IE, DOOR DE POORT NAAR DE<br />MENSENWERELD.]]></text>
+	<text name="03_security_08_labortyp"><![CDATA[EN DAAR IS 'IE WEER TERUG MET DE SPELBESTANDEN<br />DIE HIJ ZOCHT.]]></text>
+	<text name="03_security_09_direktor"><![CDATA[HIJ HEEFT WEL LEF, ZEG! DIT IS VAST WEER EEN VAN<br />Z'N SLINKSE POGINGEN OM DE SPELWERELD AAN ZIJN<br />WIL TE ONDERWERPEN!]]></text>
+	<text name="03_security_10_labortyp"><![CDATA[INDERDAAD... SINDS ER BIJ HEM EEN PAAR PIXELS ZIJN<br />LOSGEGAAN, ZIJN ZIJN PLANNEN STEEDS KRANKZINNIGER<br />GEWORDEN...]]></text>
+
+	<text name="04_lounge_01_maria"><![CDATA[KOP OP, CHUBBY. GA EENS RUSTIG ZITTEN EN VUL<br />DIT FORMULIERTJE EVEN VOOR ME IN, OKÉ?]]></text>
+	<text name="04_lounge_02_maria"><![CDATA[WEDDEN DAT WE ZO IETS VINDEN DAT BETER BIJ JOUW<br />TALENTEN PAST?]]></text>
+	<text name="04_lounge_03_direktor"><![CDATA[DIT IS EEN RAMP VOOR DE SPELWERELD!<br />WAAR KUNNEN WE EL PIX VINDEN?]]></text>
+	<text name="04_lounge_04_labortyp"><![CDATA[HIJ LIJKT ZICH TE HEBBEN TERUGGETROKKEN IN ZIJN<br />EIGEN TERRITORIUM... IN DE SNOWDRIFTLAND!]]></text>
+	<text name="04_lounge_05_direktor"><![CDATA[WE MOETEN DIE GESTOLEN BESTANDEN ZO SNEL<br />MOGELIJK TERUG ZIEN TE HALEN.]]></text>
+	<text name="04_lounge_06_direktor"><![CDATA[STEL EEN TEAM SAMEN EN STUUR DIRECT ONZE BESTE<br />MAN EROPAF!]]></text>
+	<text name="04_lounge_07_labortyp"><![CDATA[DAT ZAL HELAAS NIET ZO 1, 2, 3 GAAN, BAAS...]]></text>
+	<text name="04_lounge_08_direktor"><![CDATA[HOEZO NIET?]]></text>
+	<text name="04_lounge_09_labortyp"><![CDATA[NOU, SNOWDRIFTLAND BEVINDT ZICH IN DE KOUDSTE<br />UITHOEK VAN DE SPELWERELD.]]></text>
+	<text name="04_lounge_10_labortyp"><![CDATA[ZO'N IJZINGWEKKEND KOUDE MISSIE VEREIST EEN<br />BEHOORLIJK KOELE KIKKER!]]></text>
+	<text name="04_lounge_11_direktor"><![CDATA[ER MOET TOCH IEMAND ZIJN...]]></text>
+
+	<text name="05_buttons_01_weiter"><![CDATA[VERDER]]></text>
+	<text name="05_buttons_02_skipintro"><![CDATA[INTRO OVERSLAAN]]></text>
+
+
+</texte>

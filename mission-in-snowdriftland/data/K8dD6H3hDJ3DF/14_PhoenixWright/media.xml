@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<media>
+	<platform name="platform">ds</platform>
+	<wallpaper name="wallpaper_language">false</wallpaper>
+	<wallpaper name="800x600">PhoenixWright_WP_800x600</wallpaper>
+	<wallpaper name="1024x768">PhoenixWright_WP_1024x768</wallpaper>
+	<wallpaper name="1280x1024">PhoenixWright_WP_1280x1024</wallpaper>
+	<download name="icons">PhoenixWright_DesktopIcons.zip</download>
+	<artwork name="artwork">14_PhoenixWright.jpg</artwork>
+	<screenshot name="1">ss_14_PhoenixWright_01.jpg</screenshot>
+	<screenshot name="2">ss_14_PhoenixWright_02.jpg</screenshot>
+	<screenshot name="3">ss_14_PhoenixWright_03.jpg</screenshot>
+	<screenshot name="4">ss_14_PhoenixWright_04.jpg</screenshot>
+	<screenshot name="5">ss_14_PhoenixWright_05.jpg</screenshot>
+	<screenshot name="6">ss_14_PhoenixWright_06.jpg</screenshot>
+</media>

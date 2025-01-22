@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="mainmap_buttons_01_intro"><![CDATA[INTRO]]></text>
+	<text name="mainmap_buttons_02_help"><![CDATA[AIDE]]></text>
+	<text name="mainmap_buttons_03_labor"><![CDATA[LABORATOIRE]]></text>
+	<text name="mainmap_buttons_04_feedback"><![CDATA[VOTRE AVIS]]></text>
+	<text name="mainmap_buttons_05_mainmap"><![CDATA[APERÇU]]></text>
+	<text name="mainmap_buttons_06_credits"><![CDATA[GENERIQUE]]></text>
+	
+	<text name="mainmap_info_01_date"><![CDATA[Ne stresse pas – La mission dans Snowdriftland reste en ligne jusqu’au 14.01.07.]]></text>
+	
+	<text name="mainmap_footer_01_impressum"><![CDATA[MENTION D'IMPRESSION]]></text>
+	<text name="mainmap_footer_02_copyright"><![CDATA[© 2000-2006 NINTENDO ET EXTRA TOXIC. TOUS DROITS RESERVES.]]></text>
+	
+	<text name="mainmap_feedback_01_head"><![CDATA[Si tu veux, tu peux nous dire maintenant ce que tu aimes où ce que tu n'aimes pas dans le calendrier de l'avent . Tous les commentaires sont bienvenus !]]></text>
+	<text name="mainmap_feedback_02_name"><![CDATA[TON NOM]]></text>
+	<text name="mainmap_feedback_03_hinweis"><![CDATA[Si tu nous envoies ton adresse e-mail, nous répondrons à ton message (optionnel).]]></text>
+	<text name="mainmap_feedback_04_send"><![CDATA[ENVOYER]]></text>
+	<text name="mainmap_feedback_05_email"><![CDATA[TON ADRESSE E-MAIL]]></text>
+	<text name="mainmap_feedback_06_danke"><![CDATA[Merci pour tes commentaires !]]></text>
+	
+	<text name="mainmap_credits_01a_schwabbel"><![CDATA[GENIAL ! TU AS FAIT UN SUPER TRAVAIL, CHUBBY! EL PIX EST HORS D’ETAT DE NUIRE ET TOUT LE MATERIEL DE JEU A ETE RECUPERE.]]></text>
+	<text name="mainmap_credits_01b_schwabbel"><![CDATA[. TU ES LE PLUS FORT DE TOUS LES PETITS BONHOMMES DE NEIGE DU MONDE DES JEUX VIDEO ! UPIXO A UN NOUVEAU HERO !]]></text>
+	<text name="mainmap_credits_02_danke"><![CDATA[MERCI D’AVOIR JOUE, DE JOYEUSES FETES ET UNE TRES BONNE ANNEE A TOUS CEUX QUI ONT AIDE CHUBBY DANS SA MISSION DANS SNOWDRIFTLAND !]]></text>
+	<text name="mainmap_credits_03_extratoxic"><![CDATA[IDEE, CONCEPTION, REALISATION :]]></text>
+	<text name="mainmap_credits_04_steve"><![CDATA[PROGRAMMATION, LEVELDESIGN :<br /><font color="#666666">STEVE WELZ</font>]]></text>
+	<text name="mainmap_credits_05_bogac"><![CDATA[GRAPHISME, DESIGN, ANIMATION :<br /><font color="#666666">BOGAC SARIAYDIN</font>]]></text>
+	<text name="mainmap_credits_06_christiane"><![CDATA[GESTION DU PROJET, TEXTE :<br /><font color="#666666">CHRISTIANE FRITSCH</font>]]></text>
+	<text name="mainmap_credits_07_fabian"><![CDATA[MUSIQUE ET EFFETS SONORES :<br /><font color="#666666">FABIAN DEL PRIORE (DYNAMEDION)</font>]]></text>
+	<text name="mainmap_credits_08_nintendo"><![CDATA[AVEC L’AIMABLE SOUTIEN DE]]></text>
+	<text name="mainmap_credits_09_creditsheadline"><![CDATA[NOUS REMERCIONS :]]></text>
+	<text name="mainmap_credits_10_credits01"><![CDATA[<font color="#666666">CHRISTINE RICHTER (NINTENDO)</font><br /><font color="#000000">POUR L’EXCELLENTE COOPERATION</font>]]></text>
+	<text name="mainmap_credits_11_credits02"><![CDATA[<font color="#666666">CARSTEN URBANSKI (PING247)</font><br /><font color="#000000">POUR LE LOADBALANCING ET LES SERVEURS]</font>]></text>
+	<text name="mainmap_credits_12_credits03"><![CDATA[<font color="#666666">JAKKAS</font><br /><font color="#000000">GUEST CONCEPT ARTIST FOR THE CAVE SCORPION</font><br /><font color="#666666">"SPECIALNE POZDROWIONKA DLA UCZNIÓW Z WAGROWIECKIEJ TRÓJKI"</font>]]></text>
+	<text name="mainmap_credits_13_credits04"><![CDATA[<font color="#666666">GINA</font><br /><font color="#000000">POUR LA CORRECTION DES TRADUCTIONS ANGLAISES</font>]]></text>
+	<text name="mainmap_credits_14_credits05"><![CDATA[<font color="#666666">BEYCE</font><br /><font color="#000000">SES BETA-TESTS TRES POUSSES ET POUR SA PARTICIPATION COMME GUEST CONCEPT ARTIST POUR « BEYCNAKE »</font>]]></text>
+	<text name="mainmap_credits_15_credits06"><![CDATA[<font color="#666666">MARGIT</font><br /><font color="#000000">POUR LES EXCELLENTS GATEAUX</font>]]></text>
+	<text name="mainmap_credits_16_credits07"><![CDATA[<font color="#666666">CARSTEN</font><br /><font color="#000000">POUR LES DELICIEUX REPAS PREPARES POUR LES MEMBRES SURMENES DE L’EQUIPE EXTRA TOXIC</font>]]></text>
+	<text name="mainmap_credits_17_credits08"><![CDATA[<font color="#666666">LA GRAND-MERE DE STEVE</font><br /><font color="#000000">POUR LES EXCELLENTS PETITS GATEAUX DE NOËL</font>]]></text>
+	<text name="mainmap_credits_18_credits09"><![CDATA[<font color="#666666">CHRISTIAN</font><br /><font color="#000000">POUR LES BONS CONSEILS POUR LE LEVELDESIGN</font>]]></text>
+	<text name="mainmap_credits_19_credits10"><![CDATA[<font color="#666666">HYVER ET EVA</font><br /><font color="#000000">POUR LEUR AIDE POUR UNE PETITE TRADUCTION EN NEERLANDAIS ET EN FRANÇAIS</font>]]></text>
+	<text name="mainmap_credits_20_credits11"><![CDATA[<font color="#666666">TOUS LES FANS</font><br /><font color="#000000">POUR LES BONS FEEDBACKS ET LES RAPPORTS INDISPENSABLES SUR LES BOGUES</font>]]></text>
+	<text name="mainmap_credits_21_upixoheadline"><![CDATA[<font color="#666666">QUE FONT LES HEROS DE UPIXO UNE FOIS L’AVENTURE TERMINEE ?</font>]]></text>
+	<text name="mainmap_credits_22_upixo1"><![CDATA[EL PIX A REÇU UN PATCH GRAPHIQUE QUI A CORRIGE LES ERREURS DE PIXEL AU NIVEAU DE SA TETE. LUI ET CHUBBY SNOW SONT A PRESENT DES HEROS TRES DEMANDES DANS LES JEUX VIDEO DE UPIXO.]]></text>
+	<text name="mainmap_credits_23_upixo2"><![CDATA[PROFESSEUR SCHWABBEL ET LA MAMAN PINGOUIN SE SONT FIANCES ET PREPARE LEUR MARIAGE.]]></text>
+	<text name="mainmap_credits_24_upixo3"><![CDATA[LES PINGOUINS DE LA CAVERNE ONT A PRESENT UN BOULOT BIEN PAYE AU CIRQUE PIXEL.]]></text>
+	<text name="mainmap_credits_25_download"><![CDATA[BONUS SPÉCIAL À TÉLÉCHARGER !]]></text>
+	<text name="mainmap_credits_26_watchagain"><![CDATA[VOIR À NOUVEAU]]></text>
+
+</texte>

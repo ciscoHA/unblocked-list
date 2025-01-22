@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<media>
+	<platform name="platform">wii</platform>
+	<wallpaper name="wallpaper_language">false</wallpaper>
+	<wallpaper name="800x600">WarioWareSmoothMoves_WP_800x600</wallpaper>
+	<wallpaper name="1024x768">WarioWareSmoothMoves_WP_1024x768</wallpaper>
+	<wallpaper name="1280x1024">WarioWareSmoothMoves_WP_1280x1024</wallpaper>
+	<download name="handy">WarioWareSmoothMoves_Ringtone.zip</download>	
+	<artwork name="artwork">24_WarioWareSmoothMoves.jpg</artwork>
+	<screenshot name="1">ss_24_WarioWareSmoothMoves_01.jpg</screenshot>
+	<screenshot name="2">ss_24_WarioWareSmoothMoves_02.jpg</screenshot>
+	<screenshot name="3">ss_24_WarioWareSmoothMoves_03.jpg</screenshot>
+	<screenshot name="4">ss_24_WarioWareSmoothMoves_04.jpg</screenshot>
+	<screenshot name="5">ss_24_WarioWareSmoothMoves_05.jpg</screenshot>
+	<screenshot name="6">ss_24_WarioWareSmoothMoves_06.jpg</screenshot>
+	<video name="video">WarioWareSmoothMoves_video.flv</video>
+</media>

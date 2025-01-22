@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="labor_greeting_01_headline"><![CDATA[HELLO CHUBBY SNOW!]]></text>
+	<text name="labor_greeting_02_copy"><![CDATA[SO FAR YOU'VE GATHERED <games_number> OUT<br />OF 24 GAME FILES.]]></text>
+	<text name="labor_greeting_03_elpix"><![CDATA[GREAT WORK CHUBBY! WITH YOUR HELP WE FOUND EVERY MISSING GAME FILE.]]></text>
+	
+	<text name="labor_downloads_01_headline"><![CDATA[THANKS FOR HELPING CHUBBY!]]></text>
+	<text name="labor_downloads_02_copy"><![CDATA[DOWNLOAD YOUR REWARDS RIGHT<br />HERE:]]></text>
+	<text name="labor_downloads_03_wallpaper1"><![CDATA[WE GIVE YOU SOME COOL<br />WALLPAPERS FOR YOUR COMPUTER.]]></text>
+	<text name="labor_downloads_04_wallpaper2"><![CDATA[PLEASE SELECT YOUR SCREEN<br />RESOLUTION.]]></text>
+	<text name="labor_downloads_05_mp3"><![CDATA[HERE'S A COOL MP3 TO IMPRESS<br />YOUR FRIENDS WITH!]]></text>
+	<text name="labor_downloads_06_icon"><![CDATA[THESE SMALL ICONS SHOULD DO<br />BIG THINGS FOR YOUR DESKTOP!]]></text>
+
+	<text name="labor_downloads576_01_wallpaper1"><![CDATA[WALLPAPERS FROM SNOWDRIFTLAND - DOWNLOADS AVAILABLE EXCLUSIVELY HERE.]]></text>
+	<text name="labor_downloads576_02_wallpaper2"><![CDATA[PLEASE SELECT YOUR SCREEN<br />RESOLUTION.]]></text>
+	<text name="labor_downloads576_03_mp3"><![CDATA[EVEN WHEN CHRISTMAS IS OVER, THESE TUNES WILL ALWAYS REMIND YOU OF SNOWDRIFTLAND.]]></text>
+	<text name="labor_downloads576_04_icon"><![CDATA[GIVE YOUR DESKTOP THE SNOWDRIFTLAND LOOK AND FEEL WITH THESE DESKTOP ICONS.]]></text>
+	
+	<text name="labor_main_01_info"><![CDATA[INFO]]></text>
+	<text name="labor_main_02_screenshot"><![CDATA[SCREENSHOTS]]></text>
+	<text name="labor_main_03_video"><![CDATA[VIDEOS]]></text>
+
+</texte>

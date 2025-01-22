@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="00_off_01_ort"><![CDATA[MONDE DES JEUX]]></text>
+
+	<text name="01_office_01_off"><![CDATA[QUARTIER GÉNÉRAL DE UPIXO<br />(UNITED PIXELHEROES ORGANISATION)]]></text>	
+	<text name="01_office_02_direktor"><![CDATA[QUUUOIIIII ?]]></text>	
+	<text name="01_office_03_direktor"><![CDATA[COMMENT ÇA "EL PIX EST ENTRÉ DANS LA STATION DE<br />TÉLÉPORTATION SECRÈTE" ?!]]></text>
+	<text name="01_office_04_labortyp"><![CDATA[CE N'EST PAS TOUT. IL L'A UTILISÉE POUR SE<br />TÉLÉPORTER VERS LE MONDE DES HUMAINS !]]></text>	
+	<text name="01_office_05_direktor"><![CDATA[MAIS QU'EST-CE QUE ÇA VEUT DIRE? QU'EST-CE QU'IL<br />POURRAIT BIEN VOULOIR FAIRE LÀ-BAS ?]]></text>
+	<text name="01_office_06_labortyp"><![CDATA[NOUS AVONS APPRIS QU'IL AVAIT VOLÉ D'IMPORTANTS<br />FICHIERS CONCERNANT DES JEUX DANS UN<br />LABORATOIRE !]]></text>
+	<text name="01_office_07_labortyp"><![CDATA[LES CAMÉRAS DE SURVEILLANCE ONT TOUT ENREGISTRÉ.]]></text>
+
+	<text name="02_lounge_01_schild"><![CDATA[AGENCE DU TRAVAIL]]></text>	
+	<text name="02_lounge_02_schild"><![CDATA[VERS CENTRE DE CONTRÔLE]]></text>	
+	<text name="02_lounge_03_off"><![CDATA[PENDANT CE TEMPS, UN ÉTAGE PLUS BAS...]]></text>
+	<text name="02_lounge_04_maria"><![CDATA[SALUT CHUBBY ! T'EN FAIS UNE TÊTE ! ]]></text>
+	<text name="02_lounge_05_chubby"><![CDATA[OH, LINDA, MA CARRIÈRE EST UN DÉSASTRE ! ILS NE ME<br />TROUVENT JAMAIS DE RÔLES QUI ME CORRESPONDENT.]]></text>
+	<text name="02_lounge_06_chubby"><![CDATA[JE VEUX DIRE, REGARDE UN PEU. LÀ, LE DESSINATEUR<br />M'A COLLÉ DERRIÈRE UN ARBRE.]]></text>	
+	<text name="02_lounge_07_chubby"><![CDATA[ET LÀ, JE SUPPOSE QUE LE DESSINATEUR DES DÉCORS<br />VOULAIT ÊTRE DRÔLE.]]></text>	
+	<text name="02_lounge_08_chubby"><![CDATA[ET DANS MON DERNIER JEU, ILS M'ONT FAIT JOUÉ DANS<br />UN NIVEAU SITUÉ EN PLEIN DÉSERT ! C'EST DUR POUR<br />UN BONHOMME DE NEIGE !]]></text>	
+
+	<text name="03_security_01_labortyp"><![CDATA[VOICI LA VIDÉO DE LA NUIT DERNIÈRE ENREGISTRÉE À<br />LA STATION DE TÉLÉPORTATION.]]></text>
+	<text name="03_security_02_labortyp"><![CDATA[VOILÀ EL PIX !]]></text>
+	<text name="03_security_03_teleporter1"><![CDATA[MONDE DES HUMAINS]]></text>
+	<text name="03_security_04_teleporter2"><![CDATA[ONIRISIA]]></text>
+	<text name="03_security_05_teleporter3"><![CDATA[PLACE POLYGONE]]></text>
+	<text name="03_security_06_teleporter4"><![CDATA[VOIE LACTÉE]]></text>
+	<text name="03_security_07_labortyp"><![CDATA[ET LE VOILÀ EN TRAIN DE SE TÉLÉPORTER VERS LE<br />MONDE DES HUMAINS.]]></text>
+	<text name="03_security_08_labortyp"><![CDATA[LE VOILÀ ENCORE, AVEC LES FICHIERS DES JEUX QU'IL<br />CHERCHAIT.]]></text>
+	<text name="03_security_09_direktor"><![CDATA[IL EST GONFLÉ ! PAS DE DOUTE, C'EST ENCORE UN DE<br />SES COUPS TORDUS POUR CONQUÉRIR LE MONDE<br />DES JEUX !]]></text>
+	<text name="03_security_10_labortyp"><![CDATA[OUI... DEPUIS QU'IL A PERDU DES PIXELS, SES IDÉES<br />SONT DE PLUS EN PLUS FARFELUES...]]></text>
+
+	<text name="04_lounge_01_maria"><![CDATA[COURAGE, CHUBBY. ASSIEDS-TOI ET REMPLIS CE<br />FORMULAIRE, HEIN?]]></text>
+	<text name="04_lounge_02_maria"><![CDATA[JE SUIS SÛRE QU'ON VA TROUVER QUELQUE CHOSE QUI<br />CORRESPOND À TES TALENTS.]]></text>
+	<text name="04_lounge_03_direktor"><![CDATA[C'EST UN DÉSASTRE POUR LE MONDE DES JEUX !<br />OÙ PEUT-ON TROUVER EL PIX ?]]></text>
+	<text name="04_lounge_04_labortyp"><![CDATA[IL SEMBLERAIT QU'IL SOIT RENTRÉ DANS SON<br />ROYAUME... À SNOWDRIFTLAND !]]></text>
+	<text name="04_lounge_05_direktor"><![CDATA[NOUS DEVONS NOUS ASSURER QUE LES BIENS DÉROBÉS<br />SOIENT RETOURNÉS AU PLUS VITE.]]></text>
+	<text name="04_lounge_06_direktor"><![CDATA[FORMEZ UNE ÉQUIPE SPÉCIALE ET ENVOYEZ NOTRE<br />MEILLEUR HOMME, RAPIDO !]]></text>
+	<text name="04_lounge_07_labortyp"><![CDATA[J'AI BIEN PEUR QUE ÇA NE SOIT PAS SIMPLE, PATRON.]]></text>
+	<text name="04_lounge_08_direktor"><![CDATA[ET POURQUOI PAS ?]]></text>
+	<text name="04_lounge_09_labortyp"><![CDATA[PARCE QUE SNOWDRIFTLAND SE SITUE DANS LA PARTIE<br />LA PLUS FROIDE DU MONDE DES JEUX.]]></text>
+	<text name="04_lounge_10_labortyp"><![CDATA[IL FAUDRAIT TROUVER QUELQU'UN CAPABLE D'UNE<br />EXTRÊME RÉSISTANCE AUX BASSES TEMPÉRATURES POUR<br />REMPLIR UNE MISSION AUSSI GLAÇANTE.]]></text>
+	<text name="04_lounge_11_direktor"><![CDATA[IL DOIT POURTANT Y AVOIR QUELQU'UN...]]></text>
+
+
+	<text name="05_buttons_01_weiter"><![CDATA[CONTINUER]]></text>
+	<text name="05_buttons_02_skipintro"><![CDATA[PASSER L'INTRO]]></text>
+
+
+</texte>

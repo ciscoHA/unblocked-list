@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<media>
+	<platform name="platform">ds</platform>
+	<wallpaper name="wallpaper_language">false</wallpaper>
+	<wallpaper name="800x600">YoshisIslandDS_WP_800x600</wallpaper>
+	<wallpaper name="1024x768">YoshisIslandDS_WP_1024x768</wallpaper>
+	<wallpaper name="1280x1024">YoshisIslandDS_WP_1280x1024</wallpaper>
+	<download name="icons">YoshisIslandDS_DesktopIcons.zip</download>
+	<download name="handy">YoshisIslandDS_Ringtone.zip</download>	
+	<artwork name="artwork">01_YoshisIslandDS.jpg</artwork>
+	<screenshot name="1">ss_01_YoshisIslandDS_01.jpg</screenshot>
+	<screenshot name="2">ss_01_YoshisIslandDS_02.jpg</screenshot>
+	<screenshot name="3">ss_01_YoshisIslandDS_03.jpg</screenshot>
+	<screenshot name="4">ss_01_YoshisIslandDS_04.jpg</screenshot>
+	<screenshot name="5">ss_01_YoshisIslandDS_05.jpg</screenshot>
+	<screenshot name="6">ss_01_YoshisIslandDS_06.jpg</screenshot>
+	<video name="video">YoshisIslandDS_video.flv</video>
+</media>

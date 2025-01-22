@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="00_off_01_ort"><![CDATA[VIDEO GAME WORLD]]></text>	
+
+	<text name="01_office_01_off"><![CDATA[UPIXO HEADQUARTERS<br />(UNITED PIXELHEROES ORGANISATION)]]></text>	
+	<text name="01_office_02_direktor"><![CDATA[WHAAAAAAT?!?!]]></text>	
+	<text name="01_office_03_direktor"><![CDATA[WHAT DO YOU MEAN, 'EL PIX HAS ENTERED THE SECRET<br />TELEPORT STATION'?!]]></text>
+	<text name="01_office_04_labortyp"><![CDATA[IT GETS WORSE. HE USED IT TO TELEPORT TO HUMAN<br />WORLD!]]></text>	
+	<text name="01_office_05_direktor"><![CDATA[SAY AGAIN? WHAT COULD HE POSSIBLY WANT FROM<br />THERE?]]></text>
+	<text name="01_office_06_labortyp"><![CDATA[WE FOUND OUT THAT HE STOLE SOME IMPORTANT GAME<br />FILES FROM A LABORATORY!]]></text>
+	<text name="01_office_07_labortyp"><![CDATA[THE SECURTITY CAMERAS CAPTURED EVERYTHING.]]></text>
+
+	<text name="02_lounge_01_schild"><![CDATA[JOB AGENCY]]></text>	
+	<text name="02_lounge_02_schild"><![CDATA[TO THE CONTROL CENTRE]]></text>	
+	<text name="02_lounge_03_off"><![CDATA[MEANWHILE, ONE FLOOR BELOW...]]></text>
+	<text name="02_lounge_04_maria"><![CDATA[HEY THERE, CHUBBY! WHY THE LONG FACE?]]></text>
+	<text name="02_lounge_05_chubby"><![CDATA[OH LINDA, MY CAREER IS SUCH A MESS! THEY NEVER<br />CAST ME IN A ROLE THAT SUITS ME.]]></text>
+	<text name="02_lounge_06_chubby"><![CDATA[I MEAN, TAKE A LOOK. HERE THE LEVEL DESIGNER STUCK<br />ME BEHIND A TREE.]]></text>	
+	<text name="02_lounge_07_chubby"><![CDATA[AND HERE THE GRAPHICS DESIGNER WAS TRYING TO BE<br />FUNNY, I SUPPOSE.]]></text>	
+	<text name="02_lounge_08_chubby"><![CDATA[AND IN MY LAST GAME THEY CAST ME IN A DESERT<br />LEVEL! THAT'S NOT COOL IF YOU'RE A SNOWMAN!]]></text>	
+
+	<text name="03_security_01_labortyp"><![CDATA[THIS IS LAST NIGHT'S FOOTAGE FROM THE TELEPORT<br />STATION.]]></text>
+	<text name="03_security_02_labortyp"><![CDATA[HERE COMES EL PIX!]]></text>
+	<text name="03_security_03_teleporter1"><![CDATA[HUMAN WORLD]]></text>
+	<text name="03_security_04_teleporter2"><![CDATA[AMBROSIA]]></text>
+	<text name="03_security_05_teleporter3"><![CDATA[POLYGON PLACE]]></text>
+	<text name="03_security_06_teleporter4"><![CDATA[MILKY WAY]]></text>
+	<text name="03_security_07_labortyp"><![CDATA[THERE HE GOES, TELEPORTING TO HUMAN WORLD.]]></text>
+	<text name="03_security_08_labortyp"><![CDATA[AND THERE HE IS AGAIN, WITH THE GAME FILES HE WAS<br />LOOKING FOR.]]></text>
+	<text name="03_security_09_direktor"><![CDATA[THE NERVE OF THAT GUY! NO DOUBT THIS IS ANOTHER<br />ONE OF HIS EVIL SCHEMES TO TAKE OVER VIDEO GAME WORLD!]]></text>
+	<text name="03_security_10_labortyp"><![CDATA[YES... EVER SINCE HE LOST SOME OF HIS PIXELS, HIS<br />IDEAS HAVE BECOME CRAZIER AND CRAZIER...]]></text>
+
+	<text name="04_lounge_01_maria"><![CDATA[CHEER UP, CHUBBY. WHY DON'T YOU TAKE A SEAT AND<br />FILL OUT THIS FORM, EH?]]></text>
+	<text name="04_lounge_02_maria"><![CDATA[I'M SURE WE'LL BE ABLE TO FIND SOMETHING THAT<br />SUITS YOUR TALENTS BEFORE YOU KNOW IT.]]></text>
+	<text name="04_lounge_03_direktor"><![CDATA[THIS IS A DISASTER FOR VIDEO GAME WORLD!<br />WHERE CAN WE FIND EL PIX?]]></text>
+	<text name="04_lounge_04_labortyp"><![CDATA[HE APPEARS TO HAVE RETREATED TO HIS REALM...<br />IN SNOWDRIFTLAND!]]></text>
+	<text name="04_lounge_05_direktor"><![CDATA[WE NEED TO MAKE SURE THAT THE STOLEN GOODS ARE<br />RETURNED AS SOON AS POSSIBLE.]]></text>
+	<text name="04_lounge_06_direktor"><![CDATA[PUT A SPECIAL TEAM TOGETHER AND SEND IN OUR BEST<br />MAN, PRONTO!]]></text>
+	<text name="04_lounge_07_labortyp"><![CDATA[I'M AFRAID IT'S NOT GOING TO BE THAT SIMPLE, BOSS.]]></text>
+	<text name="04_lounge_08_direktor"><![CDATA[WHY NOT?]]></text>
+	<text name="04_lounge_09_labortyp"><![CDATA[SNOWDRIFTLAND IS LOCATED IN THE COLDEST CORNER OF<br />VIDEO GAME WORLD.]]></text>
+	<text name="04_lounge_10_labortyp"><![CDATA[IT WOULD TAKE SOMEONE WITH AN EXTREME TOLERANCE<br />TO LOW TEMPERATURES TO TACKLE SUCH A CHILLING<br />MISSION.]]></text>
+	<text name="04_lounge_11_direktor"><![CDATA[THERE MUST BE SOMEONE...]]></text>
+
+	<text name="05_buttons_01_weiter"><![CDATA[CONTINUE]]></text>
+	<text name="05_buttons_02_skipintro"><![CDATA[SKIP INTRO]]></text>
+
+</texte>

@@ -1,0 +1,88 @@
+body,
+td,
+a,
+div,
+.p {
+  font-family: arial, sans-serif;
+  font-size: 16px;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  overflow: hidden !important;
+  background-color: #0a0a0a;
+}
+
+canvas {
+  background-color: white;
+
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+
+  .mainCanvas {
+    margin: 0;
+    padding: 0;
+    height: 100vh !important; /* Full viewport height */
+    width: calc(100vh * 4 / 3) !important; /* 4:3 aspect ratio based on height */
+    max-width: 100% !important; /* Ensure it doesn't overflow horizontally */
+    max-height: 100% !important; /* Ensure it doesn't overflow vertically */
+    position: absolute !important;
+    top: 0% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important; /* Centers it in the viewport */
+    background-color: white;
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+.controlsOuter {
+  background-color: #0a0a0a !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+
+.controlsBigger,
+.controlsBigger div,
+.controlsBigger span,
+.controlsBigger input {
+  font-size: 42px;
+}
+
+.controlsBigger input[type="checkbox"] {
+  -webkit-transform: scale(2.4, 2.4);
+}
+
+* {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.gamePadButton {
+  position: absolute;
+  border: #909090 solid 2px;
+  background-color: #d8d8d8;
+
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  width: 160px;
+  height: 200px;
+  font-size: 70px;
+  line-height: 200px;
+  font-family: arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+}
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="mainmap_buttons_01_intro"><![CDATA[INTRO]]></text>
+	<text name="mainmap_buttons_02_help"><![CDATA[HULP]]></text>
+	<text name="mainmap_buttons_03_labor"><![CDATA[LABORATORIUM]]></text>
+	<text name="mainmap_buttons_04_feedback"><![CDATA[FEEDBACK]]></text>
+	<text name="mainmap_buttons_05_mainmap"><![CDATA[OVERZICHT]]></text>
+	<text name="mainmap_buttons_06_credits"><![CDATA[CREDITS]]></text>
+	
+	<text name="mainmap_info_01_date"><![CDATA[Maak je geen zorgen – Mission in Snowdriftland is online beschikbaar tot en met 14 januari.]]></text>
+
+	<text name="mainmap_footer_01_impressum"><![CDATA[ALGEMENE VOORWAARDEN]]></text>
+	<text name="mainmap_footer_02_copyright"><![CDATA[© 2000-2006 NINTENDO EN EXTRA TOXIC. ALLE RECHTEN VOORBEHOUDEN.]]></text>
+
+	<text name="mainmap_feedback_01_head"><![CDATA[Als je wilt kun je ons vertellen wat je leuk vind aan de adventskalender, maar ook wat je er minder leuk aan vind. We waarderen alle reacties!]]></text>
+	<text name="mainmap_feedback_02_name"><![CDATA[JOUW NAAM]]></text>
+	<text name="mainmap_feedback_03_hinweis"><![CDATA[Als je ons je e-mailadres stuurt zullen we op je berichtje reageren.]]></text>
+	<text name="mainmap_feedback_04_send"><![CDATA[STUUR]]></text>
+	<text name="mainmap_feedback_05_email"><![CDATA[JOUW E-MAILADRES]]></text>
+	<text name="mainmap_feedback_06_danke"><![CDATA[Bedankt voor je reactie!]]></text>
+	
+	<text name="mainmap_credits_01a_schwabbel"><![CDATA[WOW! GOED WERK CHUBBY! EL PIX IS UITGESCHAKELD EN DE SPELBESTANDEN ZIJN VEILIGGESTELD.]]></text>
+	<text name="mainmap_credits_01b_schwabbel"><![CDATA[JIJ BENT DE DAPPERSTE SNEEUWPOP IN DE GAMEWERELD! UPIXO HEEFT HAAR NIEUWE HELD GEVONDEN!]]></text>
+	<text name="mainmap_credits_02_danke"><![CDATA[HEEL ERG BEDANKT VOOR HET SPELEN! PRETTIGE KERSTDAGEN EN EEN GELUKKIG NIEUWJAAR AAN IEDEREEN DIE CHUBBY HEEFT GEHOLPEN OP ZIJN MISSION IN SNOWDRIFTLAND!]]></text>
+	<text name="mainmap_credits_03_extratoxic"><![CDATA[IDEE, CONCEPT EN REALISATIE:]]></text>
+	<text name="mainmap_credits_04_steve"><![CDATA[ONTWIKKELING, LEVEL ONTWERP:<br /><font color="#666666">STEVE WELZ</font>]]></text>
+	<text name="mainmap_credits_05_bogac"><![CDATA[GRAPHICS, ONTWERP EN ANIMATIE:<br /><font color="#666666">BOGAC SARIAYDIN</font>]]></text>
+	<text name="mainmap_credits_06_christiane"><![CDATA[PROJECT MANAGEMENT, COPY:<br /><font color="#666666">CHRISTIANE FRITSCH</font>]]></text>
+	<text name="mainmap_credits_07_fabian"><![CDATA[MUZIEK EN GELUIDSEFFECTEN:<br /><font color="#666666">FABIAN DEL PRIORE (DYNAMEDION)</font>]]></text>
+	<text name="mainmap_credits_08_nintendo"><![CDATA[MISSION IN SNOWDRIFTLAND WORDT JE AANGEBODEN DOOR]]></text>
+	<text name="mainmap_credits_09_creditsheadline"><![CDATA[EEN SPECIAL WOORD VAN DANK GAAT UIT NAAR:]]></text>
+	<text name="mainmap_credits_10_credits01"><![CDATA[<font color="#666666">CHRISTINE RICHTER (NINTENDO)</font><br /><font color="#000000">VOOR DE SENSATIONELE SAMENWERKING</font>]]></text>
+	<text name="mainmap_credits_11_credits02"><![CDATA[<font color="#666666">CARSTEN URBANSKI (PING247)</font><br /><font color="#000000">VOOR "LOAD BALANCING" EN DE SERVERS</font>]]></text>
+	<text name="mainmap_credits_12_credits03"><![CDATA[<font color="#666666">JAKKAS</font><br /><font color="#000000">GAST CONCEPT ONTWERPER VOOR DE CAVE SCORPION</font><br /><font color="#666666">"SPECIALNE POZDROWIONKA DLA UCZNIÓW Z WAGROWIECKIEJ TRÓJKI"</font>]]></text>
+	<text name="mainmap_credits_13_credits04"><![CDATA[<font color="#666666">GINA</font><br /><font color="#000000">VOOR HET VERBETEREN VAN ONZE MATIGE ENGELSE VERTALINGEN</font>]]></text>
+	<text name="mainmap_credits_14_credits05"><![CDATA[<font color="#666666">BEYCE</font><br /><font color="#000000">VOOR HAAR UITVOERIGE BETA TESTS EN ALS GAST CONCEPT ONTWERPER VOOR DE "BEYCNAKE"</font>]]></text>
+	<text name="mainmap_credits_15_credits06"><![CDATA[<font color="#666666">MARGIT</font><br /><font color="#000000">VOOR HAAR FANTASTISCHE CAKES</font>]]></text>
+	<text name="mainmap_credits_16_credits07"><![CDATA[<font color="#666666">CARSTEN</font><br /><font color="#000000">VOOR DE VIJFSTERRENMAALTIJDEN DIE HIJ HET HARD WERKENDE EXTRA TOXIC TEAM VOORSCHOTELDE</font>]]></text>
+	<text name="mainmap_credits_17_credits08"><![CDATA[<font color="#666666">STEVE'S OMA</font><br /><font color="#000000">VOOR HAAR VERSCHRIKKELIJK LEKKERE KOEKJES</font>]]></text>
+	<text name="mainmap_credits_18_credits09"><![CDATA[<font color="#666666">CHRISTIAN</font><br /><font color="#000000">VOOR ZIJN NUTTIGE TIPS AANGAANDE LEVEL ONTWERP</font>]]></text>
+	<text name="mainmap_credits_19_credits10"><![CDATA[<font color="#666666">HYVER EN EVA</font><br /><font color="#000000">VOOR HUN HULP MET DE NEDERLANDSE EN FRANSE VERTALINGEN</font>]]></text>
+	<text name="mainmap_credits_20_credits11"><![CDATA[<font color="#666666">ALLE FANS</font><br /><font color="#000000">DIE ONS ZULKE GOEDE FEEDBACK GAVEN EN UITGEBREIDE CORRECTIES</font>]]></text>
+	<text name="mainmap_credits_21_upixoheadline"><![CDATA[<font color="#666666">EN WAAR ZIJN DE UPIXO HELDEN MEE BEZIG NA DIT AVONTUUR?</font>]]></text>
+	<text name="mainmap_credits_22_upixo1"><![CDATA[EL PIX HEFT EEN GRAPHICS PATCH GEKREGEN DIE DE PIXEL BUGS IN ZIJN HOOFD HEEFT OPGELOST. HIJ EN CHUBBY ZIJN NU DE MEEST GEVRAAGDE VIDEOGAME HELDEN BIJ UPIXO.]]></text>
+	<text name="mainmap_credits_23_upixo2"><![CDATA[PROFESSOR SCHWABBEL EN DE PINGUÏNMOEDER ZIJN VERLOOFD EN ZIJN VAN PLAN BINNENKORT TE TROUWEN.]]></text>
+	<text name="mainmap_credits_24_upixo3"><![CDATA[DE CAVE UR-PINGUÏNS HEBBEN EEN GOEDBETAALDE BAAN AANGEBODEN GEKREGEN BIJ HET PIXEL CIRCUS.]]></text>
+	<text name="mainmap_credits_25_download"><![CDATA[BONUSDOWNLOAD!]]></text>
+	<text name="mainmap_credits_26_watchagain"><![CDATA[OPNIEUW BEKIJKEN]]></text>
+
+</texte>

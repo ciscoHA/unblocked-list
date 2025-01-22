@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Celeste Classic Web</title>
+    <!-- Cool Unblocked Games | coolubg.github.io -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            background: #000;
+            color: #ccc;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Prevent scrollbars */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        iframe {
+            border: none;
+            /* Scale iframe while maintaining aspect ratio */
+            width: 100%;
+            height: 100%;
+            max-height: 100vh;
+            max-width: 100vw;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Embed the HTML entry point -->
+        <iframe src="docs/index.html" allowfullscreen></iframe>
+    </div>
+</body>
+</html>

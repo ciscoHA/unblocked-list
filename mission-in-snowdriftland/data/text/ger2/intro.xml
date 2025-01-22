@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texte>
+
+	<text name="00_off_01_ort"><![CDATA[VIDEOSPIELWELT]]></text>	
+
+	<text name="01_office_01_off"><![CDATA[UPIXO HAUPTQUARTIER<br />(UNITED PIXELHEROES ORGANISATION)]]></text>	
+	<text name="01_office_02_direktor"><![CDATA[WAAAAAAAAAS?!?!]]></text>	
+	<text name="01_office_03_direktor"><![CDATA[WAS SOLL DAS HEISSEN, 'EL PIX IST IN DIE GEHEIME<br />TELEPORTERSTATION EINGEDRUNGEN'?!]]></text>
+	<text name="01_office_04_labortyp"><![CDATA[DAS IST NOCH NICHT ALLES: ER HAT SICH VON DORT IN<br />DIE WELT DER MENSCHEN TELEPORTIERT!]]></text>	
+	<text name="01_office_05_direktor"><![CDATA[WIE BITTE?! WAS WILL ER DENN DA?]]></text>
+	<text name="01_office_06_labortyp"><![CDATA[WIR HABEN HERAUSGEFUNDEN, DASS ER WERTVOLLES<br />SPIELMATERIAL AUS EINEM ENTWICKLUNGSLABOR<br />GESTOHLEN HAT!]]></text>
+	<text name="01_office_07_labortyp"><![CDATA[DIE ÜBERWACHUNGSKAMERAS HABEN ALLES<br />AUFGEZEICHNET.]]></text>
+
+	<text name="02_lounge_01_schild"><![CDATA[JOBVERMITTLUNG]]></text>	
+	<text name="02_lounge_02_schild"><![CDATA[ZUR SICHERHEITSZENTRALE]]></text>	
+	<text name="02_lounge_03_off"><![CDATA[IN DER ZWISCHENZEIT, EIN STOCKWERK TIEFER...]]></text>
+	<text name="02_lounge_04_maria"><![CDATA[HALLO CHUBBY! WIESO GUCKST DU SO TRAURIG?]]></text>
+	<text name="02_lounge_05_chubby"><![CDATA[ACH LINDA, IRGENDWIE LÄUFT ALLES SCHIEF! ICH HABE<br />NUR PECH MIT MEINEN ROLLEN.]]></text>
+	<text name="02_lounge_06_chubby"><![CDATA[SCHAU MAL, HIER HAT MICH DER LEVELDESIGNER HINTER<br />EINEN BAUM GESETZT.]]></text>	
+	<text name="02_lounge_07_chubby"><![CDATA[UND HIER WOLLTE DER GRAFIKER WOHL WITZIG SEIN.]]></text>	
+	<text name="02_lounge_08_chubby"><![CDATA[UND BEIM LETZTEN VIDEOSPIEL WAR ICH IN EINEM<br />WÜSTENLEVEL EINGETEILT. ICH BIN ABER DOCH EIN<br />SCHNEEMANN!]]></text>	
+
+	<text name="03_security_01_labortyp"><![CDATA[HIER IST DIE AUFNAHME VON LETZTER NACHT AUS DER<br />TELEPORTERSTATION.]]></text>
+	<text name="03_security_02_labortyp"><![CDATA[DA KOMMT EL PIX!]]></text>
+	<text name="03_security_03_teleporter1"><![CDATA[MENSCHENWELT]]></text>
+	<text name="03_security_04_teleporter2"><![CDATA[SCHLARAFFENLAND]]></text>
+	<text name="03_security_05_teleporter3"><![CDATA[POLYGONWELT]]></text>
+	<text name="03_security_06_teleporter4"><![CDATA[MILCHSTRASSE]]></text>
+	<text name="03_security_07_labortyp"><![CDATA[JETZT TELEPORTIERT ER SICH IN DIE WELT<br />DER MENSCHEN.]]></text>
+	<text name="03_security_08_labortyp"><![CDATA[UND HIER KOMMT ER WIEDER ZURÜCK, MITSAMT DEM<br />SPIELMATERIAL.]]></text>
+	<text name="03_security_09_direktor"><![CDATA[UNGLAUBLICH! DA HAT DIESER BÖSEWICHT TATSÄCHLICH<br />WIEDER EINEN TEUFLISCHEN PLAN GESCHMIEDET, UM DER<br />VIDEOSPIELWELT ZU SCHADEN!]]></text>
+	<text name="03_security_10_labortyp"><![CDATA[TJA, SEITDEM IHM EIN PAAR PIXEL DURCHBRANNTEN,<br />SIND SEINE IDEEN IMMER WAHNWITZIGER<br />GEWORDEN...]]></text>
+
+	<text name="04_lounge_01_maria"><![CDATA[KOPF HOCH, CHUBBY. SETZ DICH ERSTMAL HIN UND FÜLL<br />DIESES FORMULAR AUS.]]></text>
+	<text name="04_lounge_02_maria"><![CDATA[WIR FINDEN SCHON ETWAS FÜR DICH, SCHNELLER ALS<br />DU DENKST.]]></text>
+	<text name="04_lounge_03_direktor"><![CDATA[DAS IST JA EINE KATASTROPHE FÜR DIE<br />VIDEOSPIELWELT! WO IST EL PIX JETZT?]]></text>
+	<text name="04_lounge_04_labortyp"><![CDATA[ER HAT SICH IN SEIN REICH ZURÜCKGEZOGEN:<br />SNOWDRIFTLAND.]]></text>
+	<text name="04_lounge_05_direktor"><![CDATA[WIR MÜSSEN DAS GESTOHLENE MATERIAL SO SCHNELL<br />WIE MÖGLICH ZURÜCKBRINGEN.]]></text>
+	<text name="04_lounge_06_direktor"><![CDATA[SOFORT EINE SPEZIALEINHEIT BILDEN UND UNSEREN<br />BESTEN MANN HINSCHICKEN!]]></text>
+	<text name="04_lounge_07_labortyp"><![CDATA[HERR DIREKTOR, WIR KÖNNEN NICHT EINFACH UNSEREN<br />BESTEN MANN HINSCHICKEN.]]></text>
+	<text name="04_lounge_08_direktor"><![CDATA[WIESO NICHT?]]></text>
+	<text name="04_lounge_09_labortyp"><![CDATA[SNOWDRIFTLAND IST DAS EISIGSTE REICH IN DER<br />GESAMTEN VIDEOSPIELWELT.]]></text>
+	<text name="04_lounge_10_labortyp"><![CDATA[NUR JEMAND, DER EXTREME KÄLTE AUSHÄLT, KANN DIESE<br />MISSION ÜBERSTEHEN.]]></text>
+	<text name="04_lounge_11_direktor"><![CDATA[ABER WER KÖNNTE DIESER JEMAND SEIN...?]]></text>
+
+	<text name="05_buttons_01_weiter"><![CDATA[WEITER]]></text>
+	<text name="05_buttons_02_skipintro"><![CDATA[INTRO ÜBERSPRINGEN]]></text>
+
+</texte>

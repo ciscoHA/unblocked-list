@@ -1,0 +1,33 @@
+src/CMakeFiles/engine.dir/emscripten/i_main.cpp.o: \
+  /media/cisco/SHARED/coolubg-games/ecwolf-js/src/emscripten/i_main.cpp \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cstdlib \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__assert \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__assertion_handler \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__config \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__config_site \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__verbose_abort \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__availability \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/compat/stdlib.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stdlib.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/stdlib.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/features.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/bits/alltypes.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/alloca.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stdio.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/stdio.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/wasi/api.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stddef.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/stddef.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/stddef.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_header_macro.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_ptrdiff_t.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_size_t.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_wchar_t.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_null.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_nullptr_t.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_max_align_t.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/__stddef_offsetof.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stdint.h \
+  /media/cisco/SHARED/emsdk/upstream/lib/clang/20/include/stdint.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/stdint.h \
+  /media/cisco/SHARED/emsdk/upstream/emscripten/cache/sysroot/include/bits/stdint.h

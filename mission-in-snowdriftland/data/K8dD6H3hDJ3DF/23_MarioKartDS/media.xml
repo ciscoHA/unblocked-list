@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<media>
+	<platform name="platform">ds</platform>
+	<wallpaper name="wallpaper_language">false</wallpaper>
+	<wallpaper name="800x600">MarioKartDS_WP_800x600</wallpaper>
+	<wallpaper name="1024x768">MarioKartDS_WP_1024x768</wallpaper>
+	<wallpaper name="1280x1024">MarioKartDS_WP_1280x1024</wallpaper>
+	<download name="icons">MarioKartDS_DesktopIcons.zip</download>
+	<download name="handy">MarioKartDS_Ringtone.zip</download>	
+	<artwork name="artwork">23_MarioKartDS.jpg</artwork>
+	<screenshot name="1">ss_23_MarioKartDS_01.jpg</screenshot>
+	<screenshot name="2">ss_23_MarioKartDS_02.jpg</screenshot>
+	<screenshot name="3">ss_23_MarioKartDS_03.jpg</screenshot>
+	<screenshot name="4">ss_23_MarioKartDS_04.jpg</screenshot>
+	<screenshot name="5">ss_23_MarioKartDS_05.jpg</screenshot>
+	<screenshot name="6">ss_23_MarioKartDS_06.jpg</screenshot>
+	<video name="video">MarioKartDS_video.flv</video>
+</media>

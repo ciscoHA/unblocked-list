@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content>
+	<game name="1" type="string">01_YoshisIslandDS</game>
+	<game name="2" type="string">02_MetroidPrimeHunters</game>
+	<game name="3" type="string">03_SuperPrincessPeach</game>
+	<game name="4" type="string">04_42ATC</game>
+	<game name="5" type="string">05_PokemonMD</game>
+	<game name="6" type="string">06_SudokuMaster</game>	
+	<game name="7" type="string">07_ZeldaTP</game>
+	<game name="8" type="string">08_WiiConsole</game>	
+	<game name="9" type="string">09_TraumaCenter</game>	
+	<game name="10" type="string">10_AnimalCrossing</game>	
+	<game name="11" type="string">11_AnotherCode</game>		
+	<game name="12" type="string">12_BrainTraining</game>
+	<game name="13" type="string">13_NDSLitePink</game>			
+	<game name="14" type="string">14_PhoenixWright</game>	
+	<game name="15" type="string">15_WiiSports</game>
+	<game name="16" type="string">16_EnglishTraining</game>
+	<game name="17" type="string">17_NewSuperMarioBros</game>
+	<game name="18" type="string">18_NDSBrowser</game>
+	<game name="19" type="string">19_TetrisDS</game>
+	<game name="20" type="string">20_WiiPlay</game>
+	<game name="21" type="string">21_NintendogsDalmatians</game>
+	<game name="22" type="string">22_BigBrainAcademy</game>
+	<game name="23" type="string">23_MarioKartDS</game>
+	<game name="24" type="string">24_WarioWareSmoothMoves</game>	
+	<game name="25" type="string">25_ElPix</game>		
+</content>
+

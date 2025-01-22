@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<media>
+	<platform name="platform">wii</platform>
+	<wallpaper name="wallpaper_language">false</wallpaper>
+	<wallpaper name="800x600">WiiConsole_WP_800x600</wallpaper>
+	<wallpaper name="1024x768">WiiConsole_WP_1024x768</wallpaper>
+	<wallpaper name="1280x1024">WiiConsole_WP_1280x1024</wallpaper>
+	<artwork name="artwork">08_WiiConsole.jpg</artwork>
+	<screenshot name="1">ss_08_WiiConsole_01.jpg</screenshot>
+	<screenshot name="2">ss_08_WiiConsole_02.jpg</screenshot>
+	<screenshot name="3">ss_08_WiiConsole_03.jpg</screenshot>
+	<screenshot name="4">ss_08_WiiConsole_04.jpg</screenshot>
+	<screenshot name="5">ss_08_WiiConsole_05.jpg</screenshot>
+	<screenshot name="6">ss_08_WiiConsole_06.jpg</screenshot>
+	<video name="video">WiiConsole_video.flv</video>
+</media>

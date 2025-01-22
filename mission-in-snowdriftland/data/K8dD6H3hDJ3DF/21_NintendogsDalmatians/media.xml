@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<media>
+	<platform name="platform">ds</platform>
+	<wallpaper name="wallpaper_language">false</wallpaper>
+	<wallpaper name="800x600">NintendogsDalmatians_WP_800x600</wallpaper>
+	<wallpaper name="1024x768">NintendogsDalmatians_WP_1024x768</wallpaper>
+	<wallpaper name="1280x1024">NintendogsDalmatians_WP_1280x1024</wallpaper>
+	<artwork name="artwork">21_NintendogsDalmatians.jpg</artwork>
+	<screenshot name="1">ss_21_NintendogsDalmatians_01.jpg</screenshot>
+	<screenshot name="2">ss_21_NintendogsDalmatians_02.jpg</screenshot>
+	<screenshot name="3">ss_21_NintendogsDalmatians_03.jpg</screenshot>
+	<screenshot name="4">ss_21_NintendogsDalmatians_04.jpg</screenshot>
+	<screenshot name="5">ss_21_NintendogsDalmatians_05.jpg</screenshot>
+	<screenshot name="6">ss_21_NintendogsDalmatians_06.jpg</screenshot>
+	<video name="video">NintendogsDalmatians_video.flv</video>
+</media>

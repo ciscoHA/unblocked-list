@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game>
+	<text name="title"><![CDATA[TETRIS DS]]></text>
+	<text name="navi"><![CDATA[TETRIS DS]]></text>
+	<text name="body"><![CDATA[Tetris est sans doute le "puzzle game" le plus adulé de tous les temps. Si vous n'y avez encore jamais joué, le concept est très simple : différents blocs de formes différentes descendent du sommet de l'écran et c'est à vous de les ordonner pour qu'ils forment des lignes qui, une fois complètes, disparaissent. La cadence augmente et une fois que les blocs atteignent le haut de l'écran, c'est "game over". Dans cette version, vous pourrez voir Mario se balader à travers les différents niveaux.]]></text>
+</game>

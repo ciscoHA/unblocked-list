@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<path name="path" type="string">data/</path>
+	<path name="actors" type="string">actors/</path>
+	<path name="levels" type="string">levels/</path>
+	<path name="sounds" type="string">sounds/</path>	
+	<movie name="loader" type="string">gameloader.swf</movie>	
+	<movie name="main" type="string">gamebase.swf</movie>	
+	<kb name="main_kb" type="int">9</kb>	
+	<xml name="levelsXML" type="string">levels.xml</xml>	
+	<kb name="levelsXML_kb" type="int">1</kb>
+	<kb name="lake.swf_kb" type="int">310</kb>
+	<kb name="forest.swf_kb" type="int">193</kb>	
+	<kb name="mountains.swf_kb" type="int">312</kb>		
+	<kb name="cave.swf_kb" type="int">464</kb>			
+	<kb name="boss.swf_kb" type="int">70</kb>				
+</config>
+
