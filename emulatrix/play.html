@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Emulatrix - Play Retro Games Online</title>
+	<meta property="og:title" content="Emulatrix">
+	<meta property="og:url" content="https://www.emulatrix.com">
+	<meta property="og:description" content="Play Retro Games Online">
+	<meta property="og:image" content="https://www.emulatrix.com/EmulatrixShare.png">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Emulatrix">
+	<meta name="theme-color" content="#000000">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="description"
+		content="JavaScript and WebAssembly Emulator. Sega Genesis, Nintendo, Super Nintendo, GameBoy, GameBoy Color, GameBoy Advance, MAME32, DOSBox and Virtual Machines.">
+	<meta name="keywords"
+		content="emulator, abandonware, games, sega, genesis, nintendo, super, gameboy, color, advance, mame, mame32, arcade, dos, dosbox, javascript, emscripten, online, free, open, source">
+	<link rel="manifest" href="Emulatrix.json">
+	<link rel="icon" sizes="16x16" type="image/svg+xml" href="EmulatrixFavIcon.svg">
+	<link rel="icon" sizes="192x192" type="image/svg+xml" href="EmulatrixFavIcon.svg">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		html,
+		body {
+			background-color: black;
+			height: 100%;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+		}
+
+
+		#content {
+			position: fixed;
+			height: 100%;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			border: none;
+			display: none
+		}
+
+		@media only screen and (orientation:portrait) {
+			#content {
+				position: fixed;
+				transform: rotate(-90deg);
+				transform-origin: left top;
+				width: 100vh;
+				overflow-x: hidden;
+				top: 100%;
+				left: 0
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<iframe id="content" src="about:blank"></iframe>
+	<script>
+
+		function resizeContent() {
+			// GETTING THE WINDOW WIDTH
+			var w = window.innerWidth;
+
+			// GETTING THE WINDOW HEIGHT
+			var h = window.innerHeight;
+			const aspectRatio = 4 / 3;
+
+
+			// CHECKING IF THE CURRENT DEVICE IS A MOBILE DEVICE
+			if (window.innerHeight > window.innerWidth) {
+				// RESIZING THE CONTAINER FOR MOBILE DEVICES
+				document.getElementById("content").style.width = h + "px";
+				document.getElementById("content").style.height = w + "px";
+			}
+			else {
+				// RESIZING THE CONTAINER FOR DESKTOP DEVICES
+				document.getElementById("content").style.width = w + "px";
+				document.getElementById("content").style.height = h + "px";
+			}
+			// Get viewport dimensions
+			const viewportWidth = window.innerWidth;
+			const viewportHeight = window.innerHeight;
+			const container = document.getElementById('content');
+			// Calculate new dimensions to maintain 4:3 aspect ratio
+			if (viewportWidth / viewportHeight > aspectRatio) {
+				// Viewport is wider than 4:3, so scale based on height
+				container.style.width = `${viewportHeight * aspectRatio}px`;
+				container.style.height = `${viewportHeight}px`;
+			} else {
+				// Viewport is taller or equal in aspect ratio, so scale based on width
+				container.style.width = `${viewportWidth}px`;
+				container.style.height = `${viewportWidth / aspectRatio}px`;
+			}
+		}
+
+		window.addEventListener("load", function () {
+			// CHECKING IF EMULATRIX IS NOT RUNNING WITHIN AN IFRAME
+			if (window.top == window.self) {
+				// RESIZING THE IFRAME
+				resizeContent();
+
+				// CREATING A 250 MS INTERVAL
+				setInterval(function () {
+					// FOCUSING THE CONTAINER
+					document.getElementById("content").focus();
+				}, 250);
+
+				// LOADING THE EMULATRIX MENU
+				document.getElementById("content").src = "Emulatrix.htm";
+
+				// SHOWING THE IFRAME
+				document.getElementById("content").style.display = "block";
+			}
+		});
+
+		window.addEventListener("resize", function () {
+			// RESIZING THE IFRAME WHEN THE SCREEN SIZE CHANGES
+			resizeContent();
+		});
+
+		var supportsOrientationChange = "onorientationchange" in window, orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+		window.addEventListener(orientationEvent, function () {
+			// RESIZING THE IFRAME WHEN THE SCREEN ORIENTATION CHANGES
+			resizeContent();
+		}, false);
+
+		function updateTitle() {
+			document.title = "Emulatrix";
+		}
+
+		if ("serviceWorker" in navigator) {
+			navigator.serviceWorker.register("worker.js").then(function (registration) {
+				// Registration successful
+				//console.log("ServiceWorker registration successful with scope: " + registration.scope);
+			}).catch(function (err) {
+				// Registration failed
+				//console.log("ServiceWorker registration failed: " + err);
+			});
+		}
+	</script>
+</body>
+
+</html>
