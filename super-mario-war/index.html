@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Mario War Emscripten</title>
+  <!-- Cool Unblocked Games | coolubg.github.io -->
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Ensure no scrollbars */
+    }
+
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      outline: none;  /* Remove outline */
+    }
+  </style>
+</head>
+<body>
+
+  <iframe src="smw.html" title="Super Mario War" tabindex="0"></iframe>
+
+  <script>
+    window.onload = function() {
+      var iframe = document.querySelector('iframe');
+      iframe.focus();
+      
+      // Re-focus iframe on click
+      document.body.addEventListener('click', function() {
+        iframe.focus();
+      });
+    };
+  </script>
+
+</body>
+</html>
